@@ -5,210 +5,241 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>王建国家族传承管理咨询系统解决方案</title>
   <style>
-    :root{--bg:#f6f4ee;--card:#fbfaf6;--ink:#2f281e;--muted:#6e6250;--gold:#c9a85c;--gold-dark:#9a7830;--line:#e8dfcf;--warn:#8a5b28}
-    *{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans SC",sans-serif;background:var(--bg);color:var(--ink);line-height:1.7}
-    .wrap{max-width:1120px;margin:0 auto;padding:32px 20px 64px}.hero{background:linear-gradient(135deg,#0f2233,#1d3f5f);color:#fff;border-radius:24px;padding:44px 40px;box-shadow:0 12px 40px rgba(0,0,0,.15)}
-    .eyebrow{display:inline-block;padding:6px 12px;border:1px solid rgba(255,255,255,.25);border-radius:999px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#e9d8a6}
-    h1{font-size:40px;line-height:1.2;margin:18px 0 12px}.subtitle{font-size:18px;color:#d9e6f1;max-width:840px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
-    .metric{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:18px}.metric .k{font-size:12px;color:#d7c08a;margin-bottom:8px}.metric .v{font-size:18px;font-weight:700}
-    .sec{margin-top:28px;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:28px 28px 24px}.sec-title{display:flex;align-items:center;gap:12px;margin-bottom:18px}.num{width:36px;height:36px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
-    h2{margin:0;font-size:24px} h3{margin:20px 0 10px;font-size:18px;color:var(--gold-dark)} p,li{font-size:15px}.muted{color:var(--muted)}
-    .cols{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.box{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px}.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.pillar{background:#fff;border:1px solid var(--line);border-top:4px solid var(--gold);border-radius:18px;padding:18px}.pillar h4{margin:0 0 10px;font-size:18px}
-    .warn{background:#fff8ef;border:1px solid #f1d7ad;border-left:5px solid var(--warn);border-radius:16px;padding:16px 18px;color:#5f4524}.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.step{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px}.footer{margin-top:26px;padding:24px 8px 0;color:#6d6458;font-size:13px;text-align:center}.tag{display:inline-block;padding:4px 10px;border-radius:999px;background:#f3ead6;color:#7a6120;font-size:12px;margin-right:6px;margin-bottom:8px}
-    @media (max-width:900px){.grid,.pillars,.timeline,.cols{grid-template-columns:1fr}.hero{padding:32px 24px}h1{font-size:30px}}
+    :root{--bg:#f5f2ea;--card:#fcfbf8;--ink:#2e271d;--muted:#6f6455;--gold:#c9a85c;--gold-dark:#9a7830;--line:#e8dfcf;--navy:#18344e;--navy2:#285170;--warn:#8a5b28;--soft:#fff9ee}
+    *{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans SC",sans-serif;background:var(--bg);color:var(--ink);line-height:1.75}
+    .wrap{max-width:1180px;margin:0 auto;padding:32px 20px 72px}
+    .hero{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;border-radius:28px;padding:46px 42px;box-shadow:0 14px 50px rgba(0,0,0,.18)}
+    .eyebrow{display:inline-block;padding:6px 12px;border:1px solid rgba(255,255,255,.22);border-radius:999px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#ecd59a}
+    h1{font-size:42px;line-height:1.2;margin:18px 0 12px}.subtitle{font-size:18px;color:#dce7f0;max-width:900px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}.metric{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:18px}.metric .k{font-size:12px;color:#e2cb92;margin-bottom:8px}.metric .v{font-size:18px;font-weight:700}
+    .sec{margin-top:28px;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:30px 28px 26px}.sec-title{display:flex;align-items:center;gap:12px;margin-bottom:18px}.num{width:38px;height:38px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}.sec h2{margin:0;font-size:25px}
+    h3{margin:20px 0 10px;font-size:18px;color:var(--gold-dark)} h4{margin:0 0 10px;font-size:18px}.muted{color:var(--muted)} p,li{font-size:15px}
+    .cols{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.box{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px}.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.pillar{background:#fff;border:1px solid var(--line);border-top:4px solid var(--gold);border-radius:18px;padding:18px}
+    .warn{background:#fff8ef;border:1px solid #f0d7ab;border-left:5px solid var(--warn);border-radius:16px;padding:16px 18px;color:#5f4524}.tag{display:inline-block;padding:4px 10px;border-radius:999px;background:#f3ead6;color:#7a6120;font-size:12px;margin:0 6px 8px 0}.svg-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px;overflow:auto}
+    .timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.step{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px}.step h4{color:var(--gold-dark)}
+    .checklist li{margin-bottom:8px}.footer{margin-top:28px;padding-top:24px;text-align:center;color:#6d6458;font-size:13px}.mini{font-size:13px;color:var(--muted)}
+    @media (max-width:940px){.grid,.pillars,.timeline,.cols{grid-template-columns:1fr}.hero{padding:34px 24px}h1{font-size:30px}}
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <section class="hero">
-      <div class="eyebrow">JIN CHENG FAMILY OFFICE</div>
-      <h1>王建国家族传承管理咨询系统解决方案</h1>
-      <div class="subtitle">锦承家族办公室 · 家族传承管理咨询系统解决方案提供商。面向境内上市企业家族，围绕家族治理、控制权传承与财富隔离保护，形成整体规划、分步实施、要事为先的初步传承简报。</div>
-      <div class="grid">
-        <div class="metric"><div class="k">客户类型</div><div class="v">A股上市公司实控人家族</div></div>
-        <div class="metric"><div class="k">核心任务</div><div class="v">控股稳定 + 家族治理 + 隔离保护</div></div>
-        <div class="metric"><div class="k">工作方法</div><div class="v">先诊断、后分层、再排序落地</div></div>
-      </div>
-    </section>
-
-    <section class="sec">
-      <div class="sec-title"><div class="num">1</div><h2>项目背景与核心目标</h2></div>
-      <div class="cols">
-        <div class="box">
-          <h3>家族与企业现状</h3>
-          <ul>
-            <li>创始人 / 实控人：王建国，62岁，董事长</li>
-            <li>上市公司：华泰智能科技股份有限公司（A股主板 / 模拟）</li>
-            <li>持股方式：个人直接持股 18% + 家族持股平台 10%</li>
-            <li>接班格局：长子接班经营，次女偏财富受益，配偶关注稳定与公平</li>
-          </ul>
-        </div>
-        <div class="box">
-          <h3>本次规划目标</h3>
-          <ul>
-            <li>保持上市公司控制权稳定</li>
-            <li>建立家族内部长期治理规则</li>
-            <li>平衡接班人与非接班成员利益</li>
-            <li>对婚姻、债务、执行与跨境风险做隔离保护</li>
-          </ul>
-        </div>
-      </div>
-      <div class="warn" style="margin-top:16px;">本方案为初步沟通简报，先解决方向与优先级问题，不把任何单一工具包装成总解法。</div>
-    </section>
-
-    <section class="sec">
-      <div class="sec-title"><div class="num">2</div><h2>关键事实与风险诊断摘要</h2></div>
-      <div class="box">
-        <span class="tag">控制权集中度：高</span>
-        <span class="tag">股权分散风险：高</span>
-        <span class="tag">一致行动稳定性：中</span>
-        <span class="tag">婚姻风险：中</span>
-        <span class="tag">监管合规：高</span>
-        <span class="tag">信披与市场预期：高</span>
-        <span class="tag">家族关系复杂度：中</span>
-        <span class="tag">跨境结构复杂度：中</span>
-      </div>
-      <h3>初步判断</h3>
-      <p class="muted">这是一个典型的“上市公司实控人 + 一名子女接班经营 + 一名子女偏财富安排”的家族传承场景。最关键的问题不是单纯分配股权，而是在合规前提下同时处理控制权稳定、家族内部公平感、婚姻风险与财富隔离。</p>
-    </section>
-
-    <section class="sec">
-      <div class="sec-title"><div class="num">3</div><h2>三大模块方案</h2></div>
-      <div class="pillars">
-        <div class="pillar">
-          <h4>Pillar One · 家族治理</h4>
-          <ul>
-            <li>家族理事会 / 家族委员会</li>
-            <li>家族宪章 / 家族公约</li>
-            <li>家族成员权责边界</li>
-            <li>争议解决机制</li>
-          </ul>
-          <p class="muted">目的：先解决规则与共识，再进入结构安排。</p>
-        </div>
-        <div class="pillar">
-          <h4>Pillar Two · 控制权传承</h4>
-          <ul>
-            <li>顶层控制权条款</li>
-            <li>持股平台与投票权安排</li>
-            <li>接班人与非接班成员平衡</li>
-            <li>应急替代机制</li>
-          </ul>
-          <p class="muted">目的：控制权平稳交接，不让股权平均分配破坏实控权。</p>
-        </div>
-        <div class="pillar">
-          <h4>Pillar Three · 财富隔离与保护</h4>
-          <ul>
-            <li>家族信托 / 家庭服务信托适配性</li>
-            <li>保全隔离协议</li>
-            <li>遗嘱与受益安排</li>
-            <li>境外资产二次保护层</li>
-          </ul>
-          <p class="muted">目的：将控制性资产与财富性资产分层处理。</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="sec">
-      <div class="sec-title"><div class="num">4</div><h2>家族治理结构设计</h2></div>
-      <div class="cols">
-        <div class="box">
-          <h3>建议动作</h3>
-          <ul>
-            <li>成立家族理事会：王建国、配偶李敏、长子王晨、次女王婷</li>
-            <li>起草家族宪章：明确经营权、财富权、表决边界</li>
-            <li>区分家族事务与公司事务</li>
-            <li>建立接班与授权规则</li>
-          </ul>
-          <p class="muted">必须先在家族层面澄清一个核心原则：公平不等于股权平均分配。</p>
-        </div>
-        <div class="box">
-          <h3>治理关键点</h3>
-          <ul>
-            <li>谁接班经营、谁承接财富受益</li>
-            <li>创始人退休后的家族议事规则</li>
-            <li>家族内部争议升级路径</li>
-            <li>配偶与非接班子女的稳定安排</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="sec">
-      <div class="sec-title"><div class="num">5</div><h2>控制权传承与治理权安排</h2></div>
-      <p>建议将长子王晨确定为经营接班核心，但不建议立即简单转移或平均分配核心股权。应采用“参与经营 → 部分授权 → 平稳交接”的阶段性路径，让经营权、控制权与市场预期管理同步推进。</p>
-      <ul>
-        <li>经营接班核心：王晨</li>
-        <li>控制性股权建议：维持在核心持股安排中，不做简单平均继承</li>
-        <li>非接班成员平衡：配偶与次女更多承接财富性收益与保障安排</li>
-        <li>市场预期管理：避免因控制权模糊引发资本市场误读</li>
-      </ul>
-      <div class="warn">涉及持股结构变更、控制权安排、一致行动关系变化、重大权益变动、减持计划、信披义务的事项，必须前置取得律师与券商 / 保荐机构意见。</div>
-    </section>
-
-    <section class="sec">
-      <div class="sec-title"><div class="num">6</div><h2>财富隔离与保护工具分层</h2></div>
-      <div class="cols">
-        <div class="box">
-          <h3>优先处理</h3>
-          <ul>
-            <li>非上市股权资产</li>
-            <li>现金与分红现金流</li>
-            <li>境内金融资产</li>
-            <li>境外资产二次安排（香港资产）</li>
-          </ul>
-        </div>
-        <div class="box">
-          <h3>谨慎推进</h3>
-          <ul>
-            <li>信托承接上市股权</li>
-            <li>控制权与受益权同步变化</li>
-            <li>婚姻安排与上市股权绑定</li>
-            <li>涉及实控人认定变化的结构安排</li>
-          </ul>
-        </div>
-      </div>
-      <p class="muted">核心思路是：控制性上市股权以稳定为优先，财富性资产先做保护与隔离，避免所有问题都压在上市股权一层解决。</p>
-    </section>
-
-    <section class="sec">
-      <div class="sec-title"><div class="num">7</div><h2>推进节奏与优先级</h2></div>
-      <div class="timeline">
-        <div class="step"><h3>阶段 1</h3><p>事实梳理与风险体检</p></div>
-        <div class="step"><h3>阶段 2</h3><p>治理与控制权设计</p></div>
-        <div class="step"><h3>阶段 3</h3><p>财富隔离与工具适配</p></div>
-        <div class="step"><h3>阶段 4</h3><p>法律、税务、信披与实施</p></div>
-      </div>
-      <p class="muted" style="margin-top:16px;">先做事实与治理，不急着先上信托、协议、保险等工具；先保证关键问题不出错，再逐步推进落地。</p>
-    </section>
-
-    <section class="sec">
-      <div class="sec-title"><div class="num">8</div><h2>锦承角色定位</h2></div>
-      <div class="cols">
-        <div class="box">
-          <ul>
-            <li>家族治理咨询</li>
-            <li>FO 顾问服务</li>
-            <li>家族保护人</li>
-            <li>受托人</li>
-          </ul>
-          <p class="muted">锦承的角色不是卖单一产品，而是作为传承总方案的统筹设计与协同中枢。</p>
-        </div>
-        <div class="box">
-          <h3>本项目中的作用</h3>
-          <ul>
-            <li>统筹家族治理、控制权、财富隔离三条线</li>
-            <li>协同律师、券商、税务及境外顾问</li>
-            <li>帮助家族建立长期治理与执行框架</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <div class="footer">
-      <div>锦承家族办公室 · 致力于为华人家族提供境内外全方位的传承规划服务</div>
-      <div>本方案为初步沟通简报，具体架构须结合家族实际情况与需求综合确定。</div>
-      <div>本方案仅供内部参考，请勿对外传阅。</div>
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">JIN CHENG FAMILY OFFICE</div>
+    <h1>王建国家族传承管理咨询系统解决方案</h1>
+    <div class="subtitle">面向境内上市企业实控人家族的初步传承简报。围绕家族治理、控制权传承与财富隔离保护三大模块，形成“先诊断、后分层、再排序落地”的系统规划框架。</div>
+    <div class="grid">
+      <div class="metric"><div class="k">客户类型</div><div class="v">A股上市公司实控人家族</div></div>
+      <div class="metric"><div class="k">本次核心目标</div><div class="v">控制权稳定 + 家族治理 + 隔离保护</div></div>
+      <div class="metric"><div class="k">工作方式</div><div class="v">整体规划 · 分步实施 · 要事为先</div></div>
     </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-title"><div class="num">1</div><h2>项目背景与核心目标</h2></div>
+    <div class="cols">
+      <div class="box">
+        <h3>家族与企业现状</h3>
+        <ul>
+          <li>创始人 / 实控人：王建国，62岁，董事长</li>
+          <li>公司：华泰智能科技股份有限公司（模拟 A股主板）</li>
+          <li>持股结构：个人直接持股 18% + 家族持股平台 10%</li>
+          <li>家庭结构：配偶李敏；长子王晨参与经营；次女王婷不参与经营</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>本次规划目标</h3>
+        <ul>
+          <li>保持上市公司控制权稳定与市场预期稳定</li>
+          <li>建立家族层面的规则、边界与争议解决机制</li>
+          <li>平衡接班人与非接班成员的利益安排</li>
+          <li>对婚姻、债务、执行与跨境资产风险做隔离保护</li>
+        </ul>
+      </div>
+    </div>
+    <div class="warn" style="margin-top:16px;">这不是“先上信托或协议”的工具推销方案，而是先解决方向、顺序与边界问题的初步规划。</div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-title"><div class="num">2</div><h2>关键事实与风险诊断摘要</h2></div>
+    <div class="box">
+      <span class="tag">控制权集中度：高</span>
+      <span class="tag">股权分散风险：高</span>
+      <span class="tag">一致行动稳定性：中</span>
+      <span class="tag">婚姻风险：中</span>
+      <span class="tag">债务 / 执行隔离：中</span>
+      <span class="tag">监管合规：高</span>
+      <span class="tag">信披与市场预期：高</span>
+      <span class="tag">家族关系复杂度：中</span>
+      <span class="tag">跨境结构复杂度：中</span>
+    </div>
+    <h3>初步判断</h3>
+    <p class="muted">这是一个典型的“经营权由长子承接、财富受益需要兼顾配偶与次女”的上市家族传承场景。最关键的不是简单分股，而是在合规前提下同时处理控制权、治理权、财富权与家庭公平感。</p>
+  </section>
+
+  <section class="sec">
+    <div class="sec-title"><div class="num">3</div><h2>三大模块方案</h2></div>
+    <div class="pillars">
+      <div class="pillar">
+        <h4>Pillar One · 家族治理</h4>
+        <ul>
+          <li>家族理事会 / 家族委员会</li>
+          <li>家族宪章 / 家族公约</li>
+          <li>家族成员权责边界</li>
+          <li>争议解决机制</li>
+        </ul>
+        <p class="mini">先把规则讲清，再谈工具，避免后续结构反复推翻。</p>
+      </div>
+      <div class="pillar">
+        <h4>Pillar Two · 控制权传承</h4>
+        <ul>
+          <li>顶层控制权条款</li>
+          <li>持股平台与投票权安排</li>
+          <li>接班人与非接班成员平衡</li>
+          <li>应急替代机制</li>
+        </ul>
+        <p class="mini">控制权不能因“表面公平”而碎片化。</p>
+      </div>
+      <div class="pillar">
+        <h4>Pillar Three · 财富隔离与保护</h4>
+        <ul>
+          <li>家族信托 / 家庭服务信托适配性</li>
+          <li>保全隔离协议</li>
+          <li>遗嘱与受益安排</li>
+          <li>境外资产二次保护层</li>
+        </ul>
+        <p class="mini">控制性资产与财富性资产要分层处理。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-title"><div class="num">4</div><h2>家族治理结构设计</h2></div>
+    <div class="cols">
+      <div class="box">
+        <h3>建议动作</h3>
+        <ul class="checklist">
+          <li>成立家族理事会：王建国、李敏、王晨、王婷</li>
+          <li>起草家族宪章：明确谁接班经营、谁承接财富性权益</li>
+          <li>划清家族事务与公司事务边界</li>
+          <li>建立争议升级路径与紧急事项表决规则</li>
+        </ul>
+        <p class="muted">必须先形成一个共识：传承中的公平不等于股权平均分配，而是控制权、收益权与保障权的综合平衡。</p>
+      </div>
+      <div class="svg-card">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 360" width="100%" height="auto">
+          <style>.box{fill:#f8f6f0;stroke:#c9a85c;stroke-width:2;rx:14}.title{font:700 20px -apple-system,BlinkMacSystemFont,'PingFang SC',sans-serif;fill:#2f2618}.txt{font:14px -apple-system,BlinkMacSystemFont,'PingFang SC',sans-serif;fill:#4a3d29}.line{stroke:#9a7b35;stroke-width:2}</style>
+          <rect class="box" x="330" y="20" width="200" height="56" rx="14"/><text class="title" x="430" y="54" text-anchor="middle">家族理事会</text>
+          <rect class="box" x="80" y="120" width="180" height="64" rx="14"/><text class="title" x="170" y="155" text-anchor="middle">控股平台 / SPV</text>
+          <rect class="box" x="340" y="120" width="180" height="64" rx="14"/><text class="title" x="430" y="155" text-anchor="middle">家族信托</text>
+          <rect class="box" x="600" y="120" width="180" height="64" rx="14"/><text class="title" x="690" y="155" text-anchor="middle">上市公司股权</text>
+          <line class="line" x1="430" y1="76" x2="170" y2="120"/><line class="line" x1="430" y1="76" x2="430" y2="120"/><line class="line" x1="430" y1="76" x2="690" y2="120"/>
+          <rect class="box" x="70" y="250" width="210" height="70" rx="14"/><text class="txt" x="175" y="285" text-anchor="middle">顶层控制权条款</text><text class="txt" x="175" y="305" text-anchor="middle">持股平台与章程规则</text>
+          <rect class="box" x="325" y="250" width="210" height="70" rx="14"/><text class="txt" x="430" y="285" text-anchor="middle">保全隔离协议</text><text class="txt" x="430" y="305" text-anchor="middle">遗嘱 / 受益安排</text>
+          <rect class="box" x="580" y="250" width="210" height="70" rx="14"/><text class="txt" x="685" y="285" text-anchor="middle">境外二次保护层</text><text class="txt" x="685" y="305" text-anchor="middle">HK / SG / BVI</text>
+          <line class="line" x1="170" y1="184" x2="175" y2="250"/><line class="line" x1="430" y1="184" x2="430" y2="250"/><line class="line" x1="690" y1="184" x2="685" y2="250"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-title"><div class="num">5</div><h2>控制权传承与治理权安排</h2></div>
+    <p>建议将长子王晨明确为经营接班核心，但不建议立即简单转移或平均分配核心股权。应采用“参与经营 → 部分授权 → 平稳交接”的阶段性路径，让经营权、控制权与市场预期管理同步推进。</p>
+    <div class="cols">
+      <div class="box">
+        <h3>接班路径</h3>
+        <ul>
+          <li>阶段一：继续深度参与经营，稳定内部威信</li>
+          <li>阶段二：逐步获得经营授权与关键岗位责任</li>
+          <li>阶段三：在合规前提下承接控制权核心安排</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>利益平衡</h3>
+        <ul>
+          <li>长子：偏经营权与控制权承接</li>
+          <li>次女：偏财富受益与现金流安排</li>
+          <li>配偶：偏家庭稳定与保护性安排</li>
+        </ul>
+      </div>
+    </div>
+    <div class="warn" style="margin-top:16px;">涉及持股结构变更、控制权安排、一致行动关系变化、重大权益变动、减持计划、信披义务的事项，必须前置取得律师与券商 / 保荐机构意见。</div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-title"><div class="num">6</div><h2>财富隔离与保护工具分层</h2></div>
+    <div class="cols">
+      <div class="box">
+        <h3>优先处理</h3>
+        <ul>
+          <li>现金与分红现金流</li>
+          <li>境内金融资产</li>
+          <li>境外资产（二次保护层）</li>
+          <li>非上市股权与不动产</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>谨慎推进</h3>
+        <ul>
+          <li>信托承接上市股权</li>
+          <li>控制权与收益权同步剧烈变化</li>
+          <li>婚姻安排与上市股权绑定</li>
+          <li>任何可能影响实控人认定的结构设计</li>
+        </ul>
+      </div>
+    </div>
+    <p class="muted">核心思路是：控制性上市股权以稳定为优先，财富性资产先做保护与隔离，避免所有问题都压在上市股权一层解决。</p>
+  </section>
+
+  <section class="sec">
+    <div class="sec-title"><div class="num">7</div><h2>推进节奏与优先级</h2></div>
+    <div class="timeline">
+      <div class="step"><h4>阶段 1</h4><p>事实梳理与风险体检</p></div>
+      <div class="step"><h4>阶段 2</h4><p>家族治理与控制权设计</p></div>
+      <div class="step"><h4>阶段 3</h4><p>财富隔离与工具适配</p></div>
+      <div class="step"><h4>阶段 4</h4><p>法律、税务、信披与实施</p></div>
+    </div>
+    <div class="warn" style="margin-top:16px;">不要抢跑：不要先签信托再补监管分析，不要先改持股结构再问律师与券商，不要让工具先于治理共识落地。</div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-title"><div class="num">8</div><h2>锦承角色定位</h2></div>
+    <div class="cols">
+      <div class="svg-card">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 520" width="100%" height="auto">
+          <style>.box{fill:#f8f6f0;stroke:#c9a85c;stroke-width:2;rx:14}.title{font:700 18px -apple-system,BlinkMacSystemFont,'PingFang SC',sans-serif;fill:#2f2618}.txt{font:14px -apple-system,BlinkMacSystemFont,'PingFang SC',sans-serif;fill:#4a3d29}.line{stroke:#9a7b35;stroke-width:2}.circle{fill:#fffdf5;stroke:#c9a85c;stroke-width:2}</style>
+          <rect class="box" x="40" y="60" width="220" height="260" rx="14"/><text class="title" x="150" y="95" text-anchor="middle">锦承角色</text><text class="txt" x="150" y="140" text-anchor="middle">家族治理咨询</text><text class="txt" x="150" y="180" text-anchor="middle">FO 顾问服务</text><text class="txt" x="150" y="220" text-anchor="middle">家族保护人</text><text class="txt" x="150" y="260" text-anchor="middle">受托人</text>
+          <rect class="box" x="350" y="60" width="220" height="260" rx="14"/><text class="title" x="460" y="95" text-anchor="middle">家族架构</text><text class="txt" x="460" y="140" text-anchor="middle">家族理事会</text><text class="txt" x="460" y="180" text-anchor="middle">家族办公室</text><text class="txt" x="460" y="220" text-anchor="middle">信托 / 持股平台</text><text class="txt" x="460" y="260" text-anchor="middle">受益安排</text>
+          <rect class="box" x="660" y="60" width="220" height="260" rx="14"/><text class="title" x="770" y="95" text-anchor="middle">顾问作用</text><text class="txt" x="770" y="140" text-anchor="middle">规则设计</text><text class="txt" x="770" y="180" text-anchor="middle">执行协调</text><text class="txt" x="770" y="220" text-anchor="middle">权益保护</text><text class="txt" x="770" y="260" text-anchor="middle">长期监督</text>
+          <line class="line" x1="260" y1="190" x2="350" y2="190"/><line class="line" x1="570" y1="190" x2="660" y2="190"/>
+          <circle class="circle" cx="220" cy="420" r="42"/><text class="txt" x="220" y="425" text-anchor="middle">股权</text><circle class="circle" cx="340" cy="420" r="42"/><text class="txt" x="340" y="425" text-anchor="middle">债券</text><circle class="circle" cx="460" cy="420" r="42"/><text class="txt" x="460" y="425" text-anchor="middle">保险</text><circle class="circle" cx="580" cy="420" r="42"/><text class="txt" x="580" y="425" text-anchor="middle">不动产</text><circle class="circle" cx="700" cy="420" r="42"/><text class="txt" x="700" y="425" text-anchor="middle">收藏品</text>
+        </svg>
+      </div>
+      <div class="box">
+        <h3>锦承在本案中的作用</h3>
+        <ul>
+          <li>统筹家族治理、控制权、财富隔离三条主线</li>
+          <li>协同律师、券商、税务与境外顾问</li>
+          <li>帮助家族形成长期治理与执行框架</li>
+          <li>作为传承方案的设计与协同中枢，而非单点产品提供方</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-title"><div class="num">9</div><h2>合规提示</h2></div>
+    <div class="warn">
+      <p><strong>重要提示：</strong>大股东及其关联方股份转让、减持、质押、受让均受监管规则约束。任何传承安排不能被认定为变相绕过限售期、减持规则、信息披露义务或实际控制人认定。</p>
+      <p>本方案为治理与传承规划框架，不替代专项证券法律意见。涉及持股结构变化、控制权安排、信披、减持、限售、权益变动的事项，需专项法律与券商 / 保荐机构复核后实施。</p>
+    </div>
+  </section>
+
+  <div class="footer">
+    <div>锦承家族办公室 · 致力于为华人家族提供境内外全方位的传承规划服务</div>
+    <div>本方案为初步沟通简报，具体架构须结合家族实际情况与需求综合确定。</div>
+    <div>本方案仅供内部参考，请勿对外传阅。</div>
   </div>
+</div>
 </body>
 </html>
