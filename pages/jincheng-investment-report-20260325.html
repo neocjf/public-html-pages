@@ -9,9 +9,14 @@
   body {
     background: #07090f;
     color: #d4d8e8;
-    font-family: 'SF Mono', 'Courier New', 'Monaco', monospace;
+    font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
     font-size: 13px;
     line-height: 1.6;
+  }
+  p {
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    margin-bottom: 8px;
   }
   .container {
     max-width: 760px;
@@ -88,7 +93,7 @@
     color: #555e80;
     letter-spacing: 1px;
   }
-  .card-body { padding: 14px 16px; }
+  .card-body { padding: 11px 13px; }
 
   /* Market table */
   table {
@@ -130,7 +135,7 @@
     color: #555e80;
     margin-top: 1px;
   }
-  .price { font-weight: 600; color: #d4d8e8; font-size: 13px; }
+  .price { font-weight: 600; color: #d4d8e8; font-size: 13px; font-family: 'SF Mono', 'Courier New', monospace; }
   .up { color: #2ecc40; font-weight: 700; }
   .down { color: #ff4136; font-weight: 700; }
   .neutral { color: #8890b0; }
@@ -178,11 +183,13 @@
     font-size: 18px;
     font-weight: 700;
     color: #d4af37;
+    font-family: 'SF Mono', 'Courier New', monospace;
   }
-  .rate-note {
-    font-size: 10px;
-    color: #8890b0;
-    margin-top: 2px;
+  .rate-item {
+    background: #080d1c;
+    border: 1px solid #1a1f38;
+    border-radius: 3px;
+    padding: 8px 10px;
   }
 
   /* Institution section */
@@ -197,7 +204,7 @@
   .inst-row:last-child { border-bottom: none; }
   .inst-name { font-weight: 600; color: #c8cfe8; font-size: 12px; }
   .inst-detail { font-size: 11px; color: #8890b0; margin-top: 2px; }
-  .inst-amount { font-size: 13px; font-weight: 700; white-space: nowrap; }
+  .inst-amount { font-size: 13px; font-weight: 700; white-space: nowrap; font-family: 'SF Mono', 'Courier New', monospace; }
 
   /* Hot events */
   .event-item {
@@ -226,7 +233,7 @@
   .tag-geo { background: rgba(255,65,54,0.15); color: #ff6b61; border: 1px solid rgba(255,65,54,0.3); }
   .tag-macro { background: rgba(212,175,55,0.15); color: #d4af37; border: 1px solid rgba(212,175,55,0.3); }
   .tag-crypto { background: rgba(46,130,220,0.15); color: #4a9eff; border: 1px solid rgba(46,130,220,0.3); }
-  .event-body { font-size: 12px; color: #9aa0bc; line-height: 1.7; }
+  .event-body { font-size: 12px; color: #9aa0bc; line-height: 1.6; word-break: keep-all; overflow-wrap: break-word; }
 
   /* Family office view */
   .fo-section { padding: 12px 0; border-bottom: 1px solid #0f1228; }
@@ -239,7 +246,7 @@
     text-transform: uppercase;
     margin-bottom: 6px;
   }
-  .fo-body { font-size: 12px; color: #9aa0bc; line-height: 1.75; }
+  .fo-body { font-size: 12px; color: #9aa0bc; line-height: 1.6; word-break: keep-all; overflow-wrap: break-word; }
   .fo-body strong { color: #d4d8e8; }
 
   /* Tomorrow section */
