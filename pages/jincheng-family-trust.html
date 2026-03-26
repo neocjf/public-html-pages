@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>上市公司家族传承顶层架构方案 · 锦承瑞和</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,600;1,400;1,600&family=IBM+Plex+Sans+SC:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* === RESET === */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* === DESIGN TOKENS === */
+:root {
+  --bg: #0d0e0c;
+  --bg2: #161714;
+  --bg3: #1d1f1b;
+  --text: #e8e4df;
+  --text2: #a09b95;
+  --text3: #6a6660;
+  --gold: #c9a97a;
+  --gold2: #a8885a;
+  --pink: #c4a8a0;
+  --jade: #7aab90;
+  --line: rgba(201,169,122,0.22);
+  --line2: rgba(201,169,122,0.08);
+}
+
+html, body {
+  width: 100%; height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'IBM Plex Sans', 'IBM Plex Sans SC', 'PingFang SC', sans-serif;
+  overflow: hidden;
+}
+
+/* === SLIDE ENGINE === */
+.deck { width: 100vw; height: 100vh; position: relative; overflow: hidden; }
+
+.slide {
+  position: absolute; inset: 0;
+  width: 100vw; height: 100vh; height: 100dvh;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  padding: clamp(1.8rem, 4.5vh, 3.5rem) clamp(2rem, 6vw, 5rem);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.65s cubic-bezier(0.4,0,0.2,1), transform 0.65s cubic-bezier(0.4,0,0.2,1);
+  transform: translateY(24px);
+}
+.slide.active {
+  opacity: 1; pointer-events: auto; transform: translateY(0);
+}
+.slide.exit {
+  opacity: 0; transform: translateY(-24px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* === AMBIENT BACKGROUND === */
+.slide::before {
+  content: '';
+  position: absolute;
+  width: clamp(300px, 50vw, 700px);
+  height: clamp(300px, 50vw, 700px);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,169,122,0.06) 0%, transparent 70%);
+  top: -20%;
+  right: -10%;
+  pointer-events: none;
+  z-index: 0;
+}
+.slide::after {
+  content: '';
+  position: absolute;
+  width: clamp(200px, 35vw, 500px);
+  height: clamp(200px, 35vw, 500px);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(122,171,144,0.05) 0%, transparent 70%);
+  bottom: -15%;
+  left: 5%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.slide > * { position: relative; z-index: 1; }
+
+/* === SLIDE HEADER === */
+.slide-meta {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  margin-bottom: clamp(1.2rem, 3vh, 2.5rem);
+}
+.slide-num {
+  font-family: 'Cormorant', Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 400;
+  color: var(--gold);
+  line-height: 1;
+  opacity: 0.5;
+}
+.slide-brand {
+  text-align: right;
+  font-size: clamp(0.6rem, 1vw, 0.75rem);
+  font-weight: 300;
+  color: var(--text3);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  line-height: 1.6;
+}
+
+/* === DIVIDER === */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--line);
+  margin-bottom: clamp(1rem, 2.5vh, 2rem);
+  flex-shrink: 0;
+}
+
+/* === TYPOGRAPHY === */
+.slide-title {
+  font-family: 'Cormorant', Georgia, serif;
+  font-size: clamp(1.6rem, 3.5vw, 3rem);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--text);
+  margin-bottom: clamp(0.4rem, 1vh, 0.8rem);
+  flex-shrink: 0;
+}
+.slide-subtitle {
+  font-size: clamp(0.75rem, 1.2vw, 0.95rem);
+  font-weight: 300;
+  color: var(--gold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: clamp(0.8rem, 2vh, 1.6rem);
+  flex-shrink: 0;
+}
+
+/* === HERO SLIDE === */
+.hero-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(0.5rem, 2vh, 1.5rem) 0;
+}
+.hero-eyebrow {
+  font-size: clamp(0.65rem, 1vw, 0.8rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 400;
+  margin-bottom: clamp(0.8rem, 2vh, 1.5rem);
+  display: flex; align-items: center; gap: 0.8em;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: clamp(20px, 3vw, 40px);
+  height: 1px;
+  background: var(--gold);
+}
+.hero-title {
+  font-family: 'Cormorant', Georgia, serif;
+  font-size: clamp(2.2rem, 5.5vw, 5rem);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--text);
+  margin-bottom: clamp(1rem, 2.5vh, 2rem);
+}
+.hero-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+.hero-desc {
+  font-size: clamp(0.8rem, 1.3vw, 1rem);
+  font-weight: 300;
+  color: var(--text2);
+  line-height: 1.8;
+  max-width: 55ch;
+}
+.hero-footer {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding-top: clamp(1rem, 3vh, 2rem);
+  border-top: 1px solid var(--line2);
+  margin-top: auto;
+  flex-shrink: 0;
+}
+.hero-tag {
+  font-size: clamp(0.6rem, 0.9vw, 0.7rem);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text3);
+  padding: 0.3em 0.9em;
+  border: 1px solid var(--line);
+  border-radius: 2em;
+}
+
+/* === TABLE SLIDE === */
+.table-wrap {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: clamp(0.7rem, 1.1vw, 0.88rem);
+}
+.info-table th {
+  text-align: left;
+  padding: clamp(0.5rem, 1.2vh, 0.9rem) clamp(0.8rem, 1.5vw, 1.2rem);
+  font-size: clamp(0.6rem, 0.9vw, 0.72rem);
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: var(--bg2);
+  border-bottom: 1px solid var(--line);
+}
+.info-table td {
+  padding: clamp(0.6rem, 1.5vh, 1rem) clamp(0.8rem, 1.5vw, 1.2rem);
+  color: var(--text2);
+  border-bottom: 1px solid var(--line2);
+  vertical-align: top;
+  line-height: 1.5;
+}
+.info-table tr:last-child td { border-bottom: none; }
+.info-table td:first-child { color: var(--text); font-weight: 500; white-space: nowrap; }
+.risk-tag {
+  display: inline-block;
+  padding: 0.15em 0.6em;
+  background: rgba(196,168,160,0.12);
+  color: var(--pink);
+  border-radius: 2em;
+  font-size: 0.9em;
+}
+
+/* === ARCHITECTURE SLIDE === */
+.arch-diagram {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(0.3rem, 1vh, 0.7rem);
+  overflow: hidden;
+}
+.arch-layer {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: clamp(0.8rem, 1.8vh, 1.3rem) clamp(1rem, 2vw, 1.8rem);
+  position: relative;
+  transition: border-color 0.3s;
+}
+.arch-layer:hover { border-color: var(--gold2); }
+.arch-layer-label {
+  font-size: clamp(0.55rem, 0.85vw, 0.68rem);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.3em;
+  font-weight: 400;
+}
+.arch-layer-title {
+  font-family: 'Cormorant', Georgia, serif;
+  font-size: clamp(1rem, 1.8vw, 1.4rem);
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.2em;
+}
+.arch-layer-desc {
+  font-size: clamp(0.65rem, 1vw, 0.8rem);
+  color: var(--text2);
+  font-weight: 300;
+}
+.arch-arrow {
+  text-align: center;
+  color: var(--gold);
+  opacity: 0.4;
+  font-size: clamp(0.7rem, 1.2vw, 1rem);
+  line-height: 1;
+  flex-shrink: 0;
+}
+.arch-layer.highlight {
+  border-color: rgba(201,169,122,0.5);
+  background: linear-gradient(135deg, var(--bg2), rgba(201,169,122,0.05));
+}
+.arch-badges {
+  display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.4rem;
+}
+.badge {
+  font-size: clamp(0.55rem, 0.8vw, 0.65rem);
+  padding: 0.2em 0.7em;
+  border-radius: 2em;
+  letter-spacing: 0.08em;
+}
+.badge-gold { background: rgba(201,169,122,0.15); color: var(--gold); border: 1px solid rgba(201,169,122,0.25); }
+.badge-jade { background: rgba(122,171,144,0.15); color: var(--jade); border: 1px solid rgba(122,171,144,0.25); }
+.badge-pink { background: rgba(196,168,160,0.15); color: var(--pink); border: 1px solid rgba(196,168,160,0.25); }
+
+/* === TOOLS SLIDE (2-col grid) === */
+.tools-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(0.6rem, 1.5vh, 1rem);
+  overflow: hidden;
+}
+.tool-card {
+  background: var(--bg2);
+  border: 1px solid var(--line2);
+  border-radius: 6px;
+  padding: clamp(0.8rem, 1.8vh, 1.4rem) clamp(0.8rem, 1.5vw, 1.2rem);
+  display: flex; flex-direction: column;
+  transition: border-color 0.3s;
+}
+.tool-card:hover { border-color: var(--line); }
+.tool-icon {
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  margin-bottom: 0.5em;
+}
+.tool-title {
+  font-family: 'Cormorant', Georgia, serif;
+  font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.4em;
+}
+.tool-body {
+  font-size: clamp(0.65rem, 0.95vw, 0.78rem);
+  color: var(--text2);
+  line-height: 1.65;
+  font-weight: 300;
+  flex: 1;
+}
+
+/* === GOVERNANCE SLIDE === */
+.gov-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.5rem, 1.2vh, 0.9rem);
+  overflow: hidden;
+}
+.gov-item {
+  display: flex;
+  gap: clamp(0.8rem, 1.5vw, 1.2rem);
+  align-items: flex-start;
+  background: var(--bg2);
+  border-left: 2px solid var(--gold);
+  border-radius: 0 6px 6px 0;
+  padding: clamp(0.7rem, 1.5vh, 1.1rem) clamp(0.8rem, 1.5vw, 1.2rem);
+}
+.gov-num {
+  font-family: 'Cormorant', Georgia, serif;
+  font-size: clamp(1.2rem, 2.2vw, 1.8rem);
+  font-weight: 600;
+  color: var(--gold);
+  opacity: 0.4;
+  line-height: 1;
+  flex-shrink: 0;
+  width: clamp(1.5rem, 2.5vw, 2rem);
+}
+.gov-content {}
+.gov-title {
+  font-size: clamp(0.78rem, 1.2vw, 0.95rem);
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 0.25em;
+}
+.gov-desc {
+  font-size: clamp(0.62rem, 0.92vw, 0.76rem);
+  color: var(--text2);
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+/* === FIREWALL SLIDE === */
+.firewall-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(0.3rem, 0.8vh, 0.6rem);
+  overflow: hidden;
+}
+.fw-zone {
+  padding: clamp(0.6rem, 1.5vh, 1rem) clamp(1rem, 2vw, 1.5rem);
+  border-radius: 6px;
+  text-align: center;
+}
+.fw-zone-label {
+  font-size: clamp(0.65rem, 1vw, 0.8rem);
+  font-weight: 300;
+  color: var(--text2);
+}
+.fw-zone.top { background: rgba(196,168,160,0.08); border: 1px solid rgba(196,168,160,0.2); }
+.fw-zone.mid { background: rgba(201,169,122,0.08); border: 1px solid rgba(201,169,122,0.25); }
+.fw-zone.bot { background: rgba(122,171,144,0.08); border: 1px solid rgba(122,171,144,0.2); }
+.fw-wall {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: clamp(0.5rem, 1.2vh, 0.8rem) clamp(1rem, 2vw, 1.5rem);
+  background: var(--bg2);
+  border-radius: 4px;
+}
+.fw-wall-bar {
+  flex: 1; height: 2px;
+  background: repeating-linear-gradient(90deg, var(--gold) 0, var(--gold) 6px, transparent 6px, transparent 12px);
+}
+.fw-wall-label {
+  font-size: clamp(0.6rem, 0.9vw, 0.72rem);
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  font-weight: 400;
+}
+
+/* === ROADMAP SLIDE === */
+.roadmap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.4rem, 1vh, 0.7rem);
+  overflow: hidden;
+}
+.rm-row {
+  display: flex;
+  gap: clamp(0.8rem, 1.5vw, 1.2rem);
+  align-items: flex-start;
+  background: var(--bg2);
+  border-radius: 6px;
+  padding: clamp(0.6rem, 1.4vh, 1rem) clamp(0.8rem, 1.5vw, 1.2rem);
+}
+.rm-step {
+  width: clamp(1.6rem, 2.5vw, 2rem);
+  height: clamp(1.6rem, 2.5vw, 2rem);
+  border-radius: 50%;
+  background: rgba(201,169,122,0.12);
+  border: 1px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-size: clamp(0.6rem, 0.9vw, 0.72rem);
+  color: var(--gold);
+  font-weight: 500;
+  flex-shrink: 0;
+}
+.rm-body { flex: 1; }
+.rm-title {
+  font-size: clamp(0.75rem, 1.1vw, 0.88rem);
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 0.2em;
+}
+.rm-time {
+  font-size: clamp(0.6rem, 0.88vw, 0.72rem);
+  color: var(--text2);
+  font-weight: 300;
+}
+
+/* === CLOSING SLIDE === */
+.closing-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: clamp(0.8rem, 2vh, 1.5rem);
+}
+.closing-quote {
+  font-family: 'Cormorant', Georgia, serif;
+  font-size: clamp(1.4rem, 3vw, 2.4rem);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--text);
+  max-width: 22em;
+}
+.closing-quote span { color: var(--gold); }
+.closing-tagline {
+  font-size: clamp(0.65rem, 1vw, 0.8rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+
+/* === NAVIGATION === */
+.nav {
+  position: fixed;
+  bottom: clamp(1rem, 3vh, 2rem);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: clamp(0.4rem, 1vw, 0.7rem);
+  z-index: 100;
+  background: rgba(13,14,12,0.85);
+  backdrop-filter: blur(10px);
+  padding: 0.5rem 1rem;
+  border-radius: 3em;
+  border: 1px solid var(--line2);
+}
+.nav-dot {
+  width: clamp(5px, 0.7vw, 8px);
+  height: clamp(5px, 0.7vw, 8px);
+  border-radius: 50%;
+  background: var(--text3);
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+  border: none;
+}
+.nav-dot.active { background: var(--gold); transform: scale(1.3); }
+.nav-btn {
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--text2);
+  cursor: pointer;
+  border-radius: 50%;
+  width: clamp(24px, 3vw, 32px);
+  height: clamp(24px, 3vw, 32px);
+  display: flex; align-items: center; justify-content: center;
+  font-size: clamp(0.65rem, 1vw, 0.8rem);
+  transition: border-color 0.3s, color 0.3s;
+}
+.nav-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+/* === PROGRESS BAR === */
+.progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold2), var(--gold));
+  transition: width 0.5s ease;
+  z-index: 200;
+}
+
+/* === ENTER ANIMATIONS === */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.slide.active .slide-meta    { animation: fadeUp 0.5s 0.05s both; }
+.slide.active .divider       { animation: fadeUp 0.5s 0.1s  both; }
+.slide.active .slide-subtitle { animation: fadeUp 0.5s 0.15s both; }
+.slide.active .slide-title   { animation: fadeUp 0.5s 0.2s  both; }
+.slide.active .hero-content  { animation: fadeUp 0.5s 0.15s both; }
+.slide.active .table-wrap    { animation: fadeUp 0.5s 0.25s both; }
+.slide.active .arch-diagram  { animation: fadeUp 0.5s 0.25s both; }
+.slide.active .tools-grid    { animation: fadeUp 0.5s 0.25s both; }
+.slide.active .gov-list      { animation: fadeUp 0.5s 0.25s both; }
+.slide.active .firewall-wrap { animation: fadeUp 0.5s 0.25s both; }
+.slide.active .roadmap       { animation: fadeUp 0.5s 0.25s both; }
+.slide.active .closing-content { animation: fadeUp 0.5s 0.15s both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .slide, .slide.active *, .slide > * { animation: none !important; transition: none !important; }
+}
+
+/* === HEIGHT BREAKPOINTS === */
+@media (max-height: 700px) {
+  .slide-meta { margin-bottom: 0.8rem; }
+  .divider { margin-bottom: 0.6rem; }
+}
+@media (max-height: 600px) {
+  .slide { padding: 1rem 1.5rem; }
+  .slide-num { font-size: 1.6rem; }
+}
+@media (max-height: 500px) {
+  .nav { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<div class="deck" id="deck">
+
+  <!-- ===== SLIDE 1: HERO ===== -->
+  <div class="slide active" data-slide="0">
+    <div class="slide-meta">
+      <div class="slide-num">01</div>
+      <div class="slide-brand">锦承瑞和<br>家族财富管理中心</div>
+    </div>
+    <div class="divider"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">专业方案</div>
+      <div class="hero-title">上市公司<br><em>家族传承</em><br>顶层架构方案</div>
+      <div class="hero-desc">
+        围绕家族信托架构、顶层控制权保护及家族治理公约，
+        构建财富与企业经营之间的安全隔离带，实现控制权稳定传承。
+      </div>
+      <div class="hero-footer">
+        <span class="hero-tag">上市公司传承</span>
+        <span class="hero-tag">家族信托</span>
+        <span class="hero-tag">治理公约</span>
+        <span class="hero-tag">控制权保护</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SLIDE 2: 客户现状 ===== -->
+  <div class="slide" data-slide="1">
+    <div class="slide-meta">
+      <div class="slide-num">02</div>
+      <div class="slide-brand">锦承瑞和<br>家族财富管理中心</div>
+    </div>
+    <div class="divider"></div>
+    <div class="slide-subtitle">客户现状诊断</div>
+    <div class="slide-title">现状与潜在风险</div>
+    <div class="table-wrap">
+      <table class="info-table">
+        <thead>
+          <tr>
+            <th>维度</th>
+            <th>现状描述</th>
+            <th>潜在风险</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>股权结构</td>
+            <td>有限公司 + 实控人个人双轨持股</td>
+            <td><span class="risk-tag">个人持股缺乏传承保护</span></td>
+          </tr>
+          <tr>
+            <td>家族参与</td>
+            <td>子女已入董事会，担任董事（非高管）</td>
+            <td><span class="risk-tag">经营权交接路径未明确</span></td>
+          </tr>
+          <tr>
+            <td>控制权</td>
+            <td>顶层保护条款已建立</td>
+            <td><span class="risk-tag">传承场景适用性待验证</span></td>
+          </tr>
+          <tr>
+            <td>治理机制</td>
+            <td>家族治理公约建设中</td>
+            <td><span class="risk-tag">家族决策缺乏制度约束</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===== SLIDE 3: 三层架构 ===== -->
+  <div class="slide" data-slide="2">
+    <div class="slide-meta">
+      <div class="slide-num">03</div>
+      <div class="slide-brand">锦承瑞和<br>家族财富管理中心</div>
+    </div>
+    <div class="divider"></div>
+    <div class="slide-subtitle">核心方案</div>
+    <div class="slide-title">三层隔离架构</div>
+    <div class="arch-diagram">
+      <div class="arch-layer highlight">
+        <div class="arch-layer-label">第一层 · 财富保护</div>
+        <div class="arch-layer-title">家族信托（境外）</div>
+        <div class="arch-layer-desc">开曼 / BVI / 香港可选 · 实控人担任「保护人」，保留撤换受托人等关键权利</div>
+        <div class="arch-badges">
+          <span class="badge badge-gold">财富隔离</span>
+          <span class="badge badge-gold">传承载体</span>
+          <span class="badge badge-pink">婚变保护</span>
+          <span class="badge badge-pink">债务隔离</span>
+        </div>
+      </div>
+      <div class="arch-arrow">↓ 持有权益</div>
+      <div class="arch-layer">
+        <div class="arch-layer-label">第二层 · 控制中枢</div>
+        <div class="arch-layer-title">家族持股平台（有限公司）</div>
+        <div class="arch-layer-desc">一致行动协议 + 章程限制 + 家族公约 · 家族集体表决，防止股权分散</div>
+        <div class="arch-badges">
+          <span class="badge badge-jade">集体表决</span>
+          <span class="badge badge-jade">转让限制</span>
+          <span class="badge badge-gold">信息隔离</span>
+        </div>
+      </div>
+      <div class="arch-arrow">↓ 控制</div>
+      <div class="arch-layer">
+        <div class="arch-layer-label">第三层 · 经营实体</div>
+        <div class="arch-layer-title">上市公司</div>
+        <div class="arch-layer-desc">顶层控制权条款已建立 · 家族成员担任董事，渐进式经营权交接</div>
+        <div class="arch-badges">
+          <span class="badge badge-jade">控制权稳定</span>
+          <span class="badge badge-gold">渐进接班</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SLIDE 4: 四大工具 ===== -->
+  <div class="slide" data-slide="3">
+    <div class="slide-meta">
+      <div class="slide-num">04</div>
+      <div class="slide-brand">锦承瑞和<br>家族财富管理中心</div>
+    </div>
+    <div class="divider"></div>
+    <div class="slide-subtitle">核心工具</div>
+    <div class="slide-title">四大传承工具</div>
+    <div class="tools-grid">
+      <div class="tool-card">
+        <div class="tool-icon">🏛️</div>
+        <div class="tool-title">家族信托</div>
+        <div class="tool-body">将家族财富与个人资产、企业经营风险彻底隔离。实控人保留保护人权利，信托存续、财富永续，不受个人身故、离婚、债务影响。</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">🛡️</div>
+        <div class="tool-title">控制权保护</div>
+        <div class="tool-body">在已建立条款基础上补充传承触发场景。增量工具：一致行动协议、股权回购权条款，确保实际控制权平稳延续。</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">📋</div>
+        <div class="tool-title">家族治理公约</div>
+        <div class="tool-body">明确股权管理、继承顺序、入职标准及争议解决机制。家族委员会作为信托受益人与上市公司董事会之间的缓冲层。</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">👨‍👩‍👧</div>
+        <div class="tool-title">子女接班路线图</div>
+        <div class="tool-body">观察期（1-2年）→ 历练期（2-3年）→ 接班期（视情况）。以董事身份起步，逐步承接业务线，最终进入高管序列。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SLIDE 5: 治理公约 ===== -->
+  <div class="slide" data-slide="4">
+    <div class="slide-meta">
+      <div class="slide-num">05</div>
+      <div class="slide-brand">锦承瑞和<br>家族财富管理中心</div>
+    </div>
+    <div class="divider"></div>
+    <div class="slide-subtitle">家族治理公约</div>
+    <div class="slide-title">三项核心条款</div>
+    <div class="gov-list">
+      <div class="gov-item">
+        <div class="gov-num">01</div>
+        <div class="gov-content">
+          <div class="gov-title">股权锁定条款</div>
+          <div class="gov-desc">家族成员持股不得单独转让，须经家族委员会表决通过。对外转让设置优先购买权，防止股权稀释或外流，维护家族整体控制地位。</div>
+        </div>
+      </div>
+      <div class="gov-item">
+        <div class="gov-num">02</div>
+        <div class="gov-content">
+          <div class="gov-title">继承顺序条款</div>
+          <div class="gov-desc">明确第一、第二顺位受益人及继承触发条件。与信托文件联动，确保财富传承路径清晰、合法、不引发家族纠纷。</div>
+        </div>
+      </div>
+      <div class="gov-item">
+        <div class="gov-num">03</div>
+        <div class="gov-content">
+          <div class="gov-title">入职标准条款</div>
+          <div class="gov-desc">家族成员进入经营层须满足年限、业绩或外部认证要求。设立家族委员会仲裁机制，内部化解争议，避免影响上市公司稳定性。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SLIDE 6: 隔离带 ===== -->
+  <div class="slide" data-slide="5">
+    <div class="slide-meta">
+      <div class="slide-num">06</div>
+      <div class="slide-brand">锦承瑞和<br>家族财富管理中心</div>
+    </div>
+    <div class="divider"></div>
+    <div class="slide-subtitle">安全隔离带</div>
+    <div class="slide-title">两道防火墙</div>
+    <div class="firewall-wrap">
+      <div class="fw-zone top">
+        <div class="fw-zone-label">⚠️ 个人风险层 — 个人债务 · 婚姻变动 · 遗产纠纷</div>
+      </div>
+      <div class="fw-wall">
+        <div class="fw-wall-bar"></div>
+        <div class="fw-wall-label">🔥 防火墙 ① — 信托独立性保护</div>
+        <div class="fw-wall-bar"></div>
+      </div>
+      <div class="fw-zone mid">
+        <div class="fw-zone-label" style="color: var(--gold);">✅ 家族财富层 — 信托财产池 · 受益人权益 · 分配机制</div>
+      </div>
+      <div class="fw-wall">
+        <div class="fw-wall-bar"></div>
+        <div class="fw-wall-label">🔥 防火墙 ② — 持股平台隔离层</div>
+        <div class="fw-wall-bar"></div>
+      </div>
+      <div class="fw-zone bot">
+        <div class="fw-zone-label" style="color: var(--jade);">🏢 企业经营层 — 上市公司日常经营 · 经营风险 · 市场波动</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SLIDE 7: 实施路径 ===== -->
+  <div class="slide" data-slide="6">
+    <div class="slide-meta">
+      <div class="slide-num">07</div>
+      <div class="slide-brand">锦承瑞和<br>家族财富管理中心</div>
+    </div>
+    <div class="divider"></div>
+    <div class="slide-subtitle">落地路径</div>
+    <div class="slide-title">五步实施计划</div>
+    <div class="roadmap">
+      <div class="rm-row">
+        <div class="rm-step">①</div>
+        <div class="rm-body">
+          <div class="rm-title">梳理现有控制权条款，评估传承场景适用性</div>
+          <div class="rm-time">第 1 个月</div>
+        </div>
+      </div>
+      <div class="rm-row">
+        <div class="rm-step">②</div>
+        <div class="rm-body">
+          <div class="rm-title">选定境外信托司法管辖地，启动设立程序</div>
+          <div class="rm-time">第 2–3 个月</div>
+        </div>
+      </div>
+      <div class="rm-row">
+        <div class="rm-step">③</div>
+        <div class="rm-body">
+          <div class="rm-title">起草家族治理公约，召开首届家族委员会</div>
+          <div class="rm-time">第 3–4 个月</div>
+        </div>
+      </div>
+      <div class="rm-row">
+        <div class="rm-step">④</div>
+        <div class="rm-body">
+          <div class="rm-title">制定子女接班三年路线图，明确阶段里程碑</div>
+          <div class="rm-time">第 4 个月</div>
+        </div>
+      </div>
+      <div class="rm-row">
+        <div class="rm-step">⑤</div>
+        <div class="rm-body">
+          <div class="rm-title">各层文件联动审查，确保法律一致性与合规性</div>
+          <div class="rm-time">第 5 个月</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SLIDE 8: CLOSING ===== -->
+  <div class="slide" data-slide="7">
+    <div class="slide-meta">
+      <div class="slide-num">08</div>
+      <div class="slide-brand">锦承瑞和<br>家族财富管理中心</div>
+    </div>
+    <div class="divider"></div>
+    <div class="closing-content">
+      <div class="closing-quote">
+        财富的真正传承，<br>
+        不是留下资产，<br>
+        而是<span>留下秩序</span>。
+      </div>
+      <div class="closing-tagline">锦承瑞和 · 让财富跨越时间</div>
+      <div style="margin-top: 1rem; display: flex; gap: 0.6rem; flex-wrap: wrap;">
+        <span class="hero-tag">家族信托结构设计</span>
+        <span class="hero-tag">法律与税务协同</span>
+        <span class="hero-tag">家族治理体系</span>
+        <span class="hero-tag">持续监测与调整</span>
+      </div>
+      <div style="margin-top: clamp(0.8rem, 2vh, 1.5rem); font-size: clamp(0.6rem, 0.85vw, 0.72rem); color: var(--text3); line-height: 1.7; max-width: 55ch;">
+        本方案为初步框架，具体结构设计需结合客户完整财务与法律信息后深化定制。
+      </div>
+    </div>
+  </div>
+
+</div><!-- /deck -->
+
+<!-- ===== NAVIGATION ===== -->
+<nav class="nav" id="nav">
+  <button class="nav-btn" id="prevBtn" aria-label="上一页">‹</button>
+  <!-- dots injected by JS -->
+  <button class="nav-btn" id="nextBtn" aria-label="下一页">›</button>
+</nav>
+
+<script>
+/* === SLIDE CONTROLLER === */
+const slides = document.querySelectorAll('.slide');
+const nav    = document.getElementById('nav');
+const prog   = document.getElementById('progress');
+let current  = 0;
+let animating = false;
+
+function goTo(idx) {
+  if (animating || idx === current || idx < 0 || idx >= slides.length) return;
+  animating = true;
+  slides[current].classList.remove('active');
+  slides[current].classList.add('exit');
+  const prev = current;
+  current = idx;
+  slides[current].classList.add('active');
+  setTimeout(() => {
+    slides[prev].classList.remove('exit');
+    animating = false;
+  }, 450);
+  updateNav();
+}
+
+function updateNav() {
+  const pct = ((current + 1) / slides.length) * 100;
+  prog.style.width = pct + '%';
+  nav.querySelectorAll('.nav-dot').forEach((d, i) => {
+    d.classList.toggle('active', i === current);
+  });
+}
+
+/* Build dots */
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+slides.forEach((_, i) => {
+  const d = document.createElement('button');
+  d.className = 'nav-dot' + (i === 0 ? ' active' : '');
+  d.setAttribute('aria-label', `第${i+1}页`);
+  d.addEventListener('click', () => goTo(i));
+  nav.insertBefore(d, nextBtn);
+});
+
+prevBtn.addEventListener('click', () => goTo(current - 1));
+nextBtn.addEventListener('click', () => goTo(current + 1));
+
+/* Keyboard */
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); goTo(current + 1); }
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')                    { e.preventDefault(); goTo(current - 1); }
+  if (e.key === 'Home') goTo(0);
+  if (e.key === 'End')  goTo(slides.length - 1);
+});
+
+/* Touch swipe */
+let touchX = null;
+document.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+document.addEventListener('touchend', e => {
+  if (touchX === null) return;
+  const dx = e.changedTouches[0].clientX - touchX;
+  if (Math.abs(dx) > 50) goTo(current + (dx < 0 ? 1 : -1));
+  touchX = null;
+}, { passive: true });
+
+/* Init progress */
+updateNav();
+</script>
+</body>
+</html>
