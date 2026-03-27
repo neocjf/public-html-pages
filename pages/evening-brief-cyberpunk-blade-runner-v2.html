@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>夜航内参｜霓虹未眠，资本已先行 · V2</title>
+  <style>
+    :root {
+      --bg0:#03040a;
+      --bg1:#070a12;
+      --bg2:#0c1220;
+      --bg3:#121a2c;
+      --panel:rgba(9,14,24,.56);
+      --panel-2:rgba(15,22,36,.72);
+      --text:#eef3ff;
+      --muted:#9aa7c5;
+      --blue:#4de1ff;
+      --pink:#ff4fd8;
+      --violet:#9a6cff;
+      --gold:#ffc95a;
+      --green:#6dffb7;
+      --red:#ff5c7c;
+      --line:rgba(77,225,255,.14);
+      --max:1080px;
+      --shadow:0 24px 90px rgba(0,0,0,.55);
+    }
+
+    * { box-sizing:border-box; }
+    html,body { min-height:100%; }
+    body {
+      margin:0;
+      color:var(--text);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+      background:
+        radial-gradient(circle at 12% 10%, rgba(255,79,216,.16), transparent 22%),
+        radial-gradient(circle at 86% 18%, rgba(77,225,255,.14), transparent 24%),
+        radial-gradient(circle at 50% 110%, rgba(154,108,255,.18), transparent 34%),
+        linear-gradient(180deg,var(--bg0),var(--bg1) 18%,var(--bg2) 55%,var(--bg3));
+      line-height:1.72;
+      overflow-x:hidden;
+      position:relative;
+    }
+
+    .fx-layer,
+    .grid-layer,
+    .rain-layer,
+    .noise-layer,
+    .streams,
+    .particles { position:fixed; inset:0; pointer-events:none; }
+    .fx-layer, .grid-layer, .rain-layer, .noise-layer, .streams, .particles { z-index:0; }
+
+    .grid-layer {
+      background:
+        linear-gradient(rgba(77,225,255,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(77,225,255,.05) 1px, transparent 1px);
+      background-size:42px 42px;
+      mask-image:linear-gradient(to bottom, transparent, rgba(255,255,255,.9) 12%, rgba(255,255,255,.22) 65%, transparent);
+      opacity:.24;
+    }
+
+    .rain-layer {
+      opacity:.12;
+      background-image:linear-gradient(to bottom, rgba(255,255,255,.12) 0, rgba(255,255,255,0) 76%);
+      background-size:2px 18px;
+      transform:skewX(-8deg);
+      animation:rainMove 12s linear infinite;
+    }
+
+    .noise-layer::before,
+    .noise-layer::after {
+      content:"";
+      position:absolute;
+      inset:0;
+      mix-blend-mode:screen;
+    }
+    .noise-layer::before {
+      opacity:.11;
+      background-image:
+        radial-gradient(rgba(255,255,255,.9) .55px, transparent .75px),
+        radial-gradient(rgba(77,225,255,.45) .45px, transparent .7px),
+        radial-gradient(rgba(255,79,216,.35) .5px, transparent .8px);
+      background-size:5px 5px, 9px 9px, 11px 11px;
+      background-position:0 0, 13px 8px, 7px 15px;
+      animation:grainShift 7s steps(10) infinite;
+    }
+    .noise-layer::after {
+      opacity:.08;
+      background:repeating-linear-gradient(to bottom, rgba(255,255,255,.045) 0, rgba(255,255,255,.045) 1px, transparent 2px, transparent 5px);
+      animation:scanDrift 8s linear infinite;
+    }
+
+    .streams { overflow:hidden; }
+    .stream {
+      position:absolute;
+      top:-40vh;
+      width:1px;
+      height:180vh;
+      opacity:.45;
+      background:linear-gradient(to bottom, transparent, rgba(77,225,255,.1), rgba(77,225,255,.6), transparent 82%);
+      filter:drop-shadow(0 0 8px rgba(77,225,255,.35));
+      animation:streamFall linear infinite;
+    }
+    .stream::before {
+      content:attr(data-code);
+      position:absolute;
+      left:-10px;
+      top:-10%;
+      width:24px;
+      color:rgba(109,255,183,.78);
+      font-size:11px;
+      line-height:12px;
+      white-space:pre;
+      text-shadow:0 0 8px rgba(109,255,183,.28);
+      opacity:.82;
+    }
+
+    .particle {
+      position:absolute;
+      width:2px;
+      height:2px;
+      border-radius:50%;
+      background:rgba(77,225,255,.7);
+      box-shadow:0 0 10px rgba(77,225,255,.45);
+      animation:floatParticle linear infinite;
+    }
+
+    .wrap {
+      max-width:var(--max);
+      margin:0 auto;
+      padding:26px 18px 80px;
+      position:relative;
+      z-index:2;
+    }
+
+    .ticker {
+      position:relative;
+      display:flex;
+      overflow:hidden;
+      border:1px solid rgba(77,225,255,.2);
+      border-radius:14px;
+      margin-bottom:18px;
+      background:rgba(7,14,28,.72);
+      box-shadow:0 0 18px rgba(77,225,255,.12), inset 0 0 0 1px rgba(255,255,255,.02);
+    }
+    .ticker::before {
+      content:"LIVE NIGHT SIGNAL";
+      position:absolute;
+      left:12px;
+      top:50%;
+      transform:translateY(-50%);
+      font-size:11px;
+      letter-spacing:.18em;
+      color:var(--blue);
+      z-index:2;
+      text-shadow:0 0 10px rgba(77,225,255,.35);
+      animation:blinkSoft 2.2s infinite;
+    }
+    .ticker-track {
+      display:inline-flex;
+      gap:30px;
+      padding:10px 16px 10px 150px;
+      min-width:max-content;
+      animation:tickerMove 24s linear infinite;
+      font-size:13px;
+      letter-spacing:.08em;
+      color:#deeeff;
+    }
+    .ticker b { color:var(--gold); }
+    .ticker i { color:var(--green); font-style:normal; }
+    .ticker em { color:#ff8ce5; font-style:normal; }
+
+    .hero {
+      position:relative;
+      overflow:hidden;
+      border:1px solid rgba(255,79,216,.16);
+      border-radius:30px;
+      padding:42px 30px 34px;
+      background:linear-gradient(135deg, rgba(20,12,35,.72), rgba(6,18,35,.68));
+      box-shadow:var(--shadow), 0 0 24px rgba(255,79,216,.12), 0 0 32px rgba(77,225,255,.08);
+      backdrop-filter:blur(12px);
+    }
+    .hero::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(115deg, transparent 16%, rgba(77,225,255,.11) 36%, transparent 50%),
+        linear-gradient(145deg, transparent 52%, rgba(255,79,216,.12) 72%, transparent 86%);
+      animation:holoSweep 6s ease-in-out infinite;
+      pointer-events:none;
+    }
+    .hero::after {
+      content:"";
+      position:absolute;
+      inset:auto -60px -180px auto;
+      width:420px;
+      height:420px;
+      background:radial-gradient(circle, rgba(255,79,216,.18), rgba(255,79,216,0) 72%);
+      filter:blur(8px);
+      pointer-events:none;
+    }
+
+    .corners::before, .corners::after,
+    .corners span::before, .corners span::after {
+      content:"";
+      position:absolute;
+      width:22px; height:22px;
+      border-color:rgba(77,225,255,.52);
+      box-shadow:0 0 12px rgba(77,225,255,.16);
+      pointer-events:none;
+    }
+    .corners::before { top:14px; left:14px; border-top:2px solid; border-left:2px solid; }
+    .corners::after { top:14px; right:14px; border-top:2px solid; border-right:2px solid; }
+    .corners span::before { bottom:14px; left:14px; border-bottom:2px solid; border-left:2px solid; }
+    .corners span::after { bottom:14px; right:14px; border-bottom:2px solid; border-right:2px solid; }
+
+    .eyebrow {
+      position:relative;
+      z-index:1;
+      display:inline-block;
+      margin-bottom:16px;
+      padding:6px 12px;
+      border:1px solid rgba(77,225,255,.28);
+      border-radius:999px;
+      color:var(--blue);
+      font-size:12px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      box-shadow:0 0 12px rgba(77,225,255,.16), inset 0 0 0 1px rgba(255,255,255,.02);
+      animation:bluePulse 2.8s ease-in-out infinite;
+    }
+
+    .glitch-wrap { position:relative; z-index:1; display:inline-block; }
+    h1 {
+      margin:0 0 12px;
+      font-size:50px;
+      line-height:1.04;
+      letter-spacing:.02em;
+      color:#fff8ff;
+      text-shadow:0 0 10px rgba(255,255,255,.22), 0 0 20px rgba(255,79,216,.22), 0 0 34px rgba(77,225,255,.14);
+      animation:neonFlicker 4.2s infinite;
+      position:relative;
+      z-index:2;
+    }
+    h1::before, h1::after {
+      content:attr(data-text);
+      position:absolute;
+      left:0; top:0;
+      width:100%;
+      overflow:hidden;
+      pointer-events:none;
+      opacity:.65;
+    }
+    h1::before {
+      color:rgba(77,225,255,.68);
+      transform:translate(2px,0);
+      clip-path:polygon(0 0,100% 0,100% 34%,0 44%);
+      animation:glitchTop 3.8s infinite linear alternate-reverse;
+    }
+    h1::after {
+      color:rgba(255,79,216,.64);
+      transform:translate(-2px,0);
+      clip-path:polygon(0 58%,100% 48%,100% 100%,0 100%);
+      animation:glitchBottom 2.9s infinite linear alternate-reverse;
+    }
+
+    .subtitle, .lead, .hero-data { position:relative; z-index:1; }
+    .subtitle {
+      font-size:19px;
+      color:var(--muted);
+      max-width:760px;
+      margin-bottom:18px;
+    }
+    .lead {
+      margin:0;
+      padding:14px 16px;
+      border-left:3px solid var(--pink);
+      background:rgba(255,255,255,.04);
+      border-radius:14px;
+      color:#ffd7f4;
+      max-width:790px;
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.03);
+    }
+
+    .hero-data {
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:12px;
+      margin-top:18px;
+    }
+    .hud {
+      position:relative;
+      overflow:hidden;
+      border:1px solid rgba(77,225,255,.16);
+      border-radius:14px;
+      padding:10px 12px;
+      background:rgba(8,16,28,.42);
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.02), 0 0 14px rgba(77,225,255,.06);
+    }
+    .hud::after {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(90deg, transparent, rgba(77,225,255,.08), transparent);
+      transform:translateX(-120%);
+      animation:signalSweep 4.6s linear infinite;
+    }
+    .hud .k {
+      color:var(--blue);
+      font-size:11px;
+      letter-spacing:.15em;
+      text-transform:uppercase;
+      margin-bottom:4px;
+    }
+    .hud .v { color:#fff; font-size:15px; font-weight:700; }
+
+    .grid { display:grid; gap:18px; margin-top:24px; }
+    .card {
+      position:relative;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:var(--panel);
+      border-radius:22px;
+      padding:24px 22px;
+      backdrop-filter:blur(10px);
+      box-shadow:0 10px 40px rgba(0,0,0,.28);
+    }
+    .card::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(120deg, transparent 0 20%, rgba(77,225,255,.05) 34%, transparent 44%, transparent 72%, rgba(255,79,216,.05) 84%, transparent 100%);
+      pointer-events:none;
+    }
+    .card::after {
+      content:"";
+      position:absolute;
+      left:0; right:0; top:0;
+      height:1px;
+      background:linear-gradient(90deg, transparent, rgba(77,225,255,.65), transparent);
+      box-shadow:0 0 12px rgba(77,225,255,.22);
+    }
+
+    h2, h3, p, ul, li { position:relative; z-index:1; }
+    h2 { margin:0 0 12px; font-size:28px; color:#fff; }
+    h3 { margin:0 0 10px; font-size:22px; color:var(--gold); }
+    p { margin:8px 0; }
+    ul { margin:12px 0 0; padding-left:20px; }
+    li { margin:8px 0; }
+
+    .signal {
+      position:relative;
+      margin-top:14px;
+      padding:16px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.06);
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
+      overflow:hidden;
+    }
+    .signal::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      border-left:2px solid rgba(77,225,255,.38);
+      opacity:.7;
+    }
+    .signal::after {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(90deg, transparent, rgba(77,225,255,.08), transparent);
+      transform:translateX(-120%);
+      animation:signalSweep 4.2s linear infinite;
+    }
+    .signal strong {
+      color:var(--gold);
+      font-size:18px;
+      text-shadow:0 0 8px rgba(255,201,90,.12);
+    }
+
+    .quote {
+      margin-top:16px;
+      padding:16px 18px;
+      border-left:3px solid var(--blue);
+      border-radius:14px;
+      background:rgba(77,225,255,.06);
+      color:#d9f7ff;
+      font-weight:600;
+      box-shadow:inset 0 0 0 1px rgba(77,225,255,.08), 0 0 16px rgba(77,225,255,.04);
+      animation:quotePulse 3.6s ease-in-out infinite;
+    }
+    .final {
+      font-size:23px;
+      font-weight:800;
+      color:#fff4c9;
+      text-shadow:0 0 12px rgba(255,201,90,.22);
+    }
+
+    .footer {
+      margin-top:24px;
+      text-align:center;
+      color:var(--muted);
+      font-size:13px;
+      letter-spacing:.08em;
+    }
+
+    @keyframes tickerMove { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+    @keyframes rainMove { from { background-position:0 -200px; } to { background-position:0 200px; } }
+    @keyframes grainShift {
+      0% { transform:translate(0,0); }
+      20% { transform:translate(-0.8%,0.6%); }
+      40% { transform:translate(0.7%,-0.4%); }
+      60% { transform:translate(-0.3%,0.8%); }
+      80% { transform:translate(0.5%,-0.6%); }
+      100% { transform:translate(0,0); }
+    }
+    @keyframes scanDrift { from { transform:translateY(-16px); } to { transform:translateY(16px); } }
+    @keyframes holoSweep {
+      0%,100% { transform:translateX(-10%) skewX(-12deg); opacity:.42; }
+      50% { transform:translateX(12%) skewX(-12deg); opacity:.9; }
+    }
+    @keyframes signalSweep { from { transform:translateX(-120%); } to { transform:translateX(120%); } }
+    @keyframes bluePulse {
+      0%,100% { box-shadow:0 0 10px rgba(77,225,255,.12), 0 0 24px rgba(77,225,255,.06); }
+      50% { box-shadow:0 0 16px rgba(77,225,255,.28), 0 0 34px rgba(77,225,255,.12); }
+    }
+    @keyframes neonFlicker {
+      0%,18%,22%,24%,53%,57%,100% { opacity:1; }
+      20%,55% { opacity:.86; }
+      21%,56% { opacity:.74; }
+    }
+    @keyframes glitchTop {
+      0%,100% { transform:translate(2px,0); }
+      20% { transform:translate(-1px,-1px); }
+      40% { transform:translate(3px,1px); }
+      60% { transform:translate(1px,-1px); }
+      80% { transform:translate(-2px,0); }
+    }
+    @keyframes glitchBottom {
+      0%,100% { transform:translate(-2px,0); }
+      25% { transform:translate(2px,1px); }
+      50% { transform:translate(-3px,-1px); }
+      75% { transform:translate(1px,1px); }
+    }
+    @keyframes quotePulse {
+      0%,100% { box-shadow:inset 0 0 0 1px rgba(77,225,255,.08), 0 0 0 rgba(77,225,255,0); }
+      50% { box-shadow:inset 0 0 0 1px rgba(77,225,255,.14), 0 0 16px rgba(77,225,255,.06); }
+    }
+    @keyframes blinkSoft { 0%,100% { opacity:.95; } 50% { opacity:.55; } }
+    @keyframes streamFall {
+      from { transform:translateY(-18vh); }
+      to { transform:translateY(22vh); }
+    }
+    @keyframes floatParticle {
+      from { transform:translateY(0) scale(.8); opacity:0; }
+      15% { opacity:.9; }
+      to { transform:translateY(-120vh) scale(1.2); opacity:0; }
+    }
+
+    @media (max-width:760px) {
+      .wrap { padding:18px 12px 48px; }
+      .hero, .card { padding:20px 16px; }
+      h1 { font-size:34px; }
+      .subtitle { font-size:16px; }
+      h2 { font-size:23px; }
+      h3 { font-size:19px; }
+      .final { font-size:19px; }
+      .hero-data { grid-template-columns:1fr; }
+      .ticker-track { padding-left:118px; }
+      .ticker::before { left:10px; font-size:10px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="grid-layer"></div>
+  <div class="rain-layer"></div>
+  <div class="noise-layer"></div>
+  <div class="streams" id="streams"></div>
+  <div class="particles" id="particles"></div>
+
+  <div class="wrap">
+    <section class="ticker">
+      <div class="ticker-track">
+        <span><b>USD</b> HIGH RISE MODE</span>
+        <span><i>GOLD</i> DEFENSIVE SIGNAL ACTIVE</span>
+        <span><em>TECH</em> CORE HOLDS / FRINGE FADES</span>
+        <span><b>FLOW</b> LIQUIDITY REPRICING</span>
+        <span><i>RISK</i> STRUCTURE &gt; EMOTION</span>
+        <span><em>NIGHT</em> CAPITAL NEVER SLEEPS</span>
+        <span><b>USD</b> HIGH RISE MODE</span>
+        <span><i>GOLD</i> DEFENSIVE SIGNAL ACTIVE</span>
+        <span><em>TECH</em> CORE HOLDS / FRINGE FADES</span>
+        <span><b>FLOW</b> LIQUIDITY REPRICING</span>
+      </div>
+    </section>
+
+    <section class="hero corners">
+      <span></span>
+      <div class="eyebrow">Night Brief · Cyberpunk V2</div>
+      <div class="glitch-wrap">
+        <h1 data-text="夜航内参｜霓虹未眠，资本已先行">夜航内参｜霓虹未眠，资本已先行</h1>
+      </div>
+      <div class="subtitle">银翼杀手风格晚间观察。在霓虹反光、流动性退潮和情绪噪音之间，只提取今晚最值得记住的信号。</div>
+      <p class="lead">城市的灯还亮着，屏幕的光还在闪，消息流像雨一样打在玻璃上。今晚真正值得看的，不是噪音，而是资金正在往哪里撤、往哪里聚。</p>
+
+      <div class="hero-data">
+        <div class="hud">
+          <div class="k">Signal One</div>
+          <div class="v">USD / 高楼顶层 / 风险承压</div>
+        </div>
+        <div class="hud">
+          <div class="k">Signal Two</div>
+          <div class="v">Gold / 不确定性保险 / 防御升温</div>
+        </div>
+        <div class="hud">
+          <div class="k">Signal Three</div>
+          <div class="v">Tech / 核心发光 / 边缘熄灯</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h2>今夜三条信号</h2>
+
+        <div class="signal">
+          <strong>01｜美元还站在高楼顶层</strong>
+          <p>只要强美元和高利率还压着，很多风险资产的反弹，都更像雨夜里的霓虹倒影——看着很亮，不代表路真的平了。</p>
+        </div>
+
+        <div class="signal">
+          <strong>02｜黄金不是情绪，是保险</strong>
+          <p>当地缘风险、货币信用焦虑和全球赤字压力没有真正退场，黄金就不是短线故事，而是资金给不确定性上的保单。</p>
+        </div>
+
+        <div class="signal">
+          <strong>03｜科技还在主舞台，但分化会越来越狠</strong>
+          <p>真正有兑现能力、有现金流、有统治力的核心资产，会继续发光；只靠故事、情绪和想象力撑估值的票，会先在夜里熄灯。</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>今晚最该看的，不是涨跌，而是结构</h2>
+        <ul>
+          <li>避险是在增强，还是风险偏好真的回来了？</li>
+          <li>龙头是在继续吸金，还是边缘资产在最后补涨？</li>
+          <li>这是短期修复，还是中期切换？</li>
+        </ul>
+        <div class="quote">方向比波动重要，结构比情绪重要。</div>
+      </article>
+
+      <article class="card">
+        <h3>给今晚还清醒的人一句提醒</h3>
+        <p class="final">别追灯光，只留那些在下一轮波动里不容易死的仓位。</p>
+        <p>在这个年代，最危险的不是波动，而是把幻觉当趋势，把反光当曙光。</p>
+      </article>
+    </section>
+
+    <div class="footer">公开发布版本 · 夜航内参 · 赛博朋克 / 银翼杀手风 V2</div>
+  </div>
+
+  <script>
+    const streams = document.getElementById('streams');
+    const particles = document.getElementById('particles');
+    const codePool = ['101101','ALPHA','RISK','FLOW','USD','GOLD','TECH','HK','CN','US','SIGNAL','GRID','VOID','BETA'];
+
+    for (let i = 0; i < 18; i++) {
+      const s = document.createElement('div');
+      s.className = 'stream';
+      s.style.left = (Math.random() * 100) + 'vw';
+      s.style.animationDuration = (8 + Math.random() * 10) + 's';
+      s.style.animationDelay = (-Math.random() * 12) + 's';
+      s.style.opacity = 0.18 + Math.random() * 0.4;
+      const lines = [];
+      for (let j = 0; j < 18; j++) {
+        lines.push(codePool[Math.floor(Math.random() * codePool.length)]);
+      }
+      s.setAttribute('data-code', lines.join('\A'));
+      streams.appendChild(s);
+    }
+
+    for (let i = 0; i < 30; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const size = 1 + Math.random() * 2.2;
+      p.style.width = size + 'px';
+      p.style.height = size + 'px';
+      p.style.left = (Math.random() * 100) + 'vw';
+      p.style.top = (60 + Math.random() * 40) + 'vh';
+      p.style.animationDuration = (10 + Math.random() * 16) + 's';
+      p.style.animationDelay = (-Math.random() * 18) + 's';
+      p.style.opacity = 0.15 + Math.random() * 0.8;
+      particles.appendChild(p);
+    }
+  </script>
+</body>
+</html>
