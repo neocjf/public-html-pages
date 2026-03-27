@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>夜航内参｜霓虹未眠，资本已先行</title>
+  <style>
+    :root {
+      --bg1: #06070d;
+      --bg2: #0b0f1a;
+      --panel: rgba(10, 16, 28, 0.82);
+      --text: #eef3ff;
+      --muted: #a6b0cf;
+      --pink: #ff4fd8;
+      --blue: #52d6ff;
+      --violet: #9f6bff;
+      --gold: #ffc857;
+      --line: rgba(82, 214, 255, 0.18);
+      --glow: 0 0 16px rgba(82, 214, 255, 0.28), 0 0 36px rgba(255, 79, 216, 0.12);
+      --max: 980px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(255,79,216,.18), transparent 28%),
+        radial-gradient(circle at 85% 15%, rgba(82,214,255,.16), transparent 32%),
+        radial-gradient(circle at 50% 85%, rgba(159,107,255,.12), transparent 28%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+      min-height: 100vh;
+      line-height: 1.72;
+      overflow-x: hidden;
+    }
+    .rain::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: linear-gradient(to bottom, rgba(255,255,255,.06) 0, rgba(255,255,255,0) 70%);
+      background-size: 2px 18px;
+      opacity: .08;
+      mix-blend-mode: screen;
+    }
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 32px 20px 72px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero {
+      position: relative;
+      border: 1px solid rgba(255,79,216,.22);
+      border-radius: 28px;
+      padding: 40px 30px 34px;
+      background:
+        linear-gradient(135deg, rgba(17, 13, 32, .90), rgba(8, 18, 32, .92));
+      box-shadow: 0 24px 80px rgba(0,0,0,.45), var(--glow);
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -10% -25% auto;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,79,216,.20), rgba(255,79,216,0));
+      filter: blur(8px);
+    }
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 16px;
+      padding: 6px 12px;
+      border: 1px solid rgba(82,214,255,.28);
+      border-radius: 999px;
+      color: var(--blue);
+      font-size: 12px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      box-shadow: 0 0 12px rgba(82,214,255,.16);
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: 46px;
+      line-height: 1.08;
+      letter-spacing: .02em;
+      text-shadow: 0 0 18px rgba(255,79,216,.22), 0 0 24px rgba(82,214,255,.18);
+    }
+    .subtitle {
+      font-size: 19px;
+      color: var(--muted);
+      margin-bottom: 18px;
+      max-width: 720px;
+    }
+    .lead {
+      margin: 0;
+      padding: 14px 16px;
+      border-left: 3px solid var(--pink);
+      background: rgba(255,255,255,.04);
+      border-radius: 14px;
+      color: #ffd8f7;
+      max-width: 760px;
+    }
+    .grid {
+      display: grid;
+      gap: 18px;
+      margin-top: 24px;
+    }
+    .card {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      backdrop-filter: blur(8px);
+      border-radius: 22px;
+      padding: 24px 22px;
+      box-shadow: 0 10px 36px rgba(0,0,0,.25);
+    }
+    h2 {
+      margin: 0 0 12px;
+      font-size: 28px;
+      color: #ffffff;
+    }
+    h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+      color: var(--gold);
+    }
+    p { margin: 8px 0; }
+    ul {
+      margin: 12px 0 0;
+      padding-left: 20px;
+    }
+    li { margin: 8px 0; }
+    .signal {
+      margin-top: 14px;
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.06);
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
+    }
+    .signal strong {
+      color: var(--gold);
+      font-size: 18px;
+    }
+    .quote {
+      margin-top: 16px;
+      padding: 16px 18px;
+      border-left: 3px solid var(--blue);
+      border-radius: 14px;
+      background: rgba(82,214,255,.06);
+      color: #d7f6ff;
+      font-weight: 600;
+      box-shadow: inset 0 0 0 1px rgba(82,214,255,.08);
+    }
+    .final {
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff3c7;
+      text-shadow: 0 0 12px rgba(255,200,87,.18);
+    }
+    .footer {
+      margin-top: 24px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    @media (max-width: 760px) {
+      .wrap { padding: 22px 14px 48px; }
+      .hero, .card { padding: 20px 16px; }
+      h1 { font-size: 32px; }
+      .subtitle { font-size: 16px; }
+      h2 { font-size: 23px; }
+      h3 { font-size: 19px; }
+      .final { font-size: 19px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="rain"></div>
+  <div class="wrap">
+    <section class="hero">
+      <div class="eyebrow">Night Brief · Cyberpunk Edition</div>
+      <h1>夜航内参｜霓虹未眠，资本已先行</h1>
+      <div class="subtitle">银翼杀手风格晚间观察。在屏幕反光、流动性退潮和情绪噪音之间，只提取今晚最值得记住的信号。</div>
+      <p class="lead">城市的灯还亮着，屏幕的光还在闪，消息流像雨一样打在玻璃上。今晚真正值得看的，不是噪音，而是资金正在往哪里撤、往哪里聚。</p>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h2>今夜三条信号</h2>
+
+        <div class="signal">
+          <strong>01｜美元还站在高楼顶层</strong>
+          <p>只要强美元和高利率还压着，很多风险资产的反弹，都更像雨夜里的霓虹倒影——看着很亮，不代表路真的平了。</p>
+        </div>
+
+        <div class="signal">
+          <strong>02｜黄金不是情绪，是保险</strong>
+          <p>当地缘风险、货币信用焦虑和全球赤字压力没有真正退场，黄金就不是短线故事，而是资金给不确定性上的保单。</p>
+        </div>
+
+        <div class="signal">
+          <strong>03｜科技还在主舞台，但分化会越来越狠</strong>
+          <p>真正有兑现能力、有现金流、有统治力的核心资产，会继续发光；只靠故事、情绪和想象力撑估值的票，会先在夜里熄灯。</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>今晚最该看的，不是涨跌，而是结构</h2>
+        <ul>
+          <li>避险是在增强，还是风险偏好真的回来了？</li>
+          <li>龙头是在继续吸金，还是边缘资产在最后补涨？</li>
+          <li>这是短期修复，还是中期切换？</li>
+        </ul>
+        <div class="quote">方向比波动重要，结构比情绪重要。</div>
+      </article>
+
+      <article class="card">
+        <h3>给今晚还清醒的人一句提醒</h3>
+        <p class="final">别追灯光，只留那些在下一轮波动里不容易死的仓位。</p>
+        <p>在这个年代，最危险的不是波动，而是把幻觉当趋势，把反光当曙光。</p>
+      </article>
+    </section>
+
+    <div class="footer">公开发布版本 · 夜航内参 · 赛博朋克 / 银翼杀手风</div>
+  </div>
+</body>
+</html>
