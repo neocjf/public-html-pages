@@ -6,70 +6,187 @@
   <title>夜航内参｜霓虹未眠，资本已先行</title>
   <style>
     :root {
-      --bg1: #06070d;
-      --bg2: #0b0f1a;
-      --panel: rgba(10, 16, 28, 0.82);
+      --bg1: #05060b;
+      --bg2: #090d18;
+      --bg3: #101728;
+      --panel: rgba(10, 16, 28, 0.72);
+      --panel-strong: rgba(14, 22, 36, 0.84);
       --text: #eef3ff;
       --muted: #a6b0cf;
       --pink: #ff4fd8;
       --blue: #52d6ff;
       --violet: #9f6bff;
       --gold: #ffc857;
-      --line: rgba(82, 214, 255, 0.18);
-      --glow: 0 0 16px rgba(82, 214, 255, 0.28), 0 0 36px rgba(255, 79, 216, 0.12);
-      --max: 980px;
+      --green: #67ffbf;
+      --line: rgba(82, 214, 255, 0.16);
+      --max: 1020px;
+      --glow-pink: 0 0 12px rgba(255,79,216,.45), 0 0 28px rgba(255,79,216,.18);
+      --glow-blue: 0 0 12px rgba(82,214,255,.38), 0 0 28px rgba(82,214,255,.16);
     }
+
     * { box-sizing: border-box; }
+
+    html, body { min-height: 100%; }
+
     body {
       margin: 0;
       color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
       background:
-        radial-gradient(circle at 15% 10%, rgba(255,79,216,.18), transparent 28%),
-        radial-gradient(circle at 85% 15%, rgba(82,214,255,.16), transparent 32%),
-        radial-gradient(circle at 50% 85%, rgba(159,107,255,.12), transparent 28%),
-        linear-gradient(180deg, var(--bg1), var(--bg2));
-      min-height: 100vh;
+        radial-gradient(circle at 15% 12%, rgba(255,79,216,.16), transparent 24%),
+        radial-gradient(circle at 85% 18%, rgba(82,214,255,.16), transparent 26%),
+        radial-gradient(circle at 50% 110%, rgba(159,107,255,.14), transparent 30%),
+        linear-gradient(180deg, var(--bg1), var(--bg2) 35%, var(--bg3));
       line-height: 1.72;
       overflow-x: hidden;
+      position: relative;
     }
-    .rain::before {
+
+    body::before,
+    body::after {
       content: "";
       position: fixed;
       inset: 0;
       pointer-events: none;
-      background-image: linear-gradient(to bottom, rgba(255,255,255,.06) 0, rgba(255,255,255,0) 70%);
-      background-size: 2px 18px;
-      opacity: .08;
-      mix-blend-mode: screen;
+      z-index: 0;
     }
+
+    /* 全息颗粒 */
+    body::before {
+      opacity: .1;
+      background-image:
+        radial-gradient(rgba(255,255,255,.9) .55px, transparent .75px),
+        radial-gradient(rgba(82,214,255,.45) .45px, transparent .7px),
+        radial-gradient(rgba(255,79,216,.35) .5px, transparent .8px);
+      background-size: 5px 5px, 9px 9px, 11px 11px;
+      background-position: 0 0, 13px 8px, 7px 15px;
+      mix-blend-mode: screen;
+      animation: grainShift 7s steps(10) infinite;
+    }
+
+    /* 扫描线 + 全息投影感 */
+    body::after {
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          rgba(255,255,255,.045) 0,
+          rgba(255,255,255,.045) 1px,
+          rgba(0,0,0,0) 2px,
+          rgba(0,0,0,0) 5px
+        );
+      opacity: .09;
+      animation: scanDrift 9s linear infinite;
+    }
+
+    .rain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: .12;
+      background-image: linear-gradient(to bottom, rgba(255,255,255,.08) 0, rgba(255,255,255,0) 76%);
+      background-size: 2px 20px;
+      transform: skewX(-8deg);
+      animation: rainMove 14s linear infinite;
+    }
+
+    .grid-glow {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        linear-gradient(rgba(82,214,255,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(82,214,255,.05) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(to bottom, transparent, rgba(255,255,255,.7) 16%, rgba(255,255,255,.2) 70%, transparent);
+      opacity: .24;
+    }
+
     .wrap {
       max-width: var(--max);
       margin: 0 auto;
-      padding: 32px 20px 72px;
+      padding: 28px 18px 72px;
       position: relative;
       z-index: 1;
     }
+
+    .ticker {
+      display: flex;
+      gap: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      border: 1px solid rgba(82,214,255,.2);
+      border-radius: 14px;
+      margin-bottom: 18px;
+      background: rgba(10, 18, 34, .7);
+      box-shadow: var(--glow-blue);
+      position: relative;
+    }
+
+    .ticker::before {
+      content: "LIVE DATA STREAM";
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 11px;
+      letter-spacing: .18em;
+      color: var(--blue);
+      opacity: .85;
+      z-index: 2;
+    }
+
+    .ticker-track {
+      display: inline-flex;
+      gap: 28px;
+      padding: 10px 16px 10px 140px;
+      min-width: max-content;
+      animation: tickerMove 26s linear infinite;
+      color: #d8ecff;
+      font-size: 13px;
+      letter-spacing: .06em;
+    }
+
+    .ticker span b { color: var(--gold); }
+    .ticker span i { color: var(--green); font-style: normal; }
+    .ticker span em { color: #ff7adf; font-style: normal; }
+
     .hero {
       position: relative;
-      border: 1px solid rgba(255,79,216,.22);
-      border-radius: 28px;
-      padding: 40px 30px 34px;
-      background:
-        linear-gradient(135deg, rgba(17, 13, 32, .90), rgba(8, 18, 32, .92));
-      box-shadow: 0 24px 80px rgba(0,0,0,.45), var(--glow);
+      border: 1px solid rgba(255,79,216,.2);
+      border-radius: 30px;
+      padding: 42px 30px 34px;
+      background: linear-gradient(135deg, rgba(17, 13, 32, .84), rgba(7, 19, 34, .78));
+      box-shadow: 0 24px 80px rgba(0,0,0,.5), var(--glow-pink), var(--glow-blue);
       overflow: hidden;
+      backdrop-filter: blur(10px);
     }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(115deg, transparent 18%, rgba(82,214,255,.1) 38%, transparent 52%),
+        linear-gradient(145deg, transparent 52%, rgba(255,79,216,.1) 72%, transparent 86%);
+      opacity: .9;
+      animation: holoSweep 6.5s ease-in-out infinite;
+      pointer-events: none;
+    }
+
     .hero::after {
       content: "";
       position: absolute;
-      inset: auto -10% -25% auto;
-      width: 320px;
-      height: 320px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,79,216,.20), rgba(255,79,216,0));
+      width: 380px;
+      height: 380px;
+      right: -80px;
+      bottom: -160px;
+      background: radial-gradient(circle, rgba(255,79,216,.18), rgba(255,79,216,0) 68%);
       filter: blur(8px);
+      pointer-events: none;
     }
+
     .eyebrow {
       display: inline-block;
       margin-bottom: 16px;
@@ -80,21 +197,36 @@
       font-size: 12px;
       letter-spacing: .16em;
       text-transform: uppercase;
-      box-shadow: 0 0 12px rgba(82,214,255,.16);
+      box-shadow: var(--glow-blue);
+      animation: neonPulseBlue 2.8s ease-in-out infinite;
+      position: relative;
+      z-index: 1;
     }
+
     h1 {
       margin: 0 0 10px;
-      font-size: 46px;
-      line-height: 1.08;
+      font-size: 48px;
+      line-height: 1.06;
       letter-spacing: .02em;
-      text-shadow: 0 0 18px rgba(255,79,216,.22), 0 0 24px rgba(82,214,255,.18);
+      position: relative;
+      z-index: 1;
+      color: #fff8ff;
+      text-shadow:
+        0 0 8px rgba(255,255,255,.24),
+        0 0 18px rgba(255,79,216,.28),
+        0 0 36px rgba(82,214,255,.14);
+      animation: neonFlicker 4.4s infinite;
     }
+
     .subtitle {
       font-size: 19px;
       color: var(--muted);
       margin-bottom: 18px;
-      max-width: 720px;
+      max-width: 760px;
+      position: relative;
+      z-index: 1;
     }
+
     .lead {
       margin: 0;
       padding: 14px 16px;
@@ -102,48 +234,114 @@
       background: rgba(255,255,255,.04);
       border-radius: 14px;
       color: #ffd8f7;
-      max-width: 760px;
+      max-width: 780px;
+      position: relative;
+      z-index: 1;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.04);
     }
+
+    .hero-data {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hud {
+      border: 1px solid rgba(82,214,255,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+      background: rgba(9, 16, 28, .48);
+      backdrop-filter: blur(6px);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.02), 0 0 14px rgba(82,214,255,.08);
+    }
+
+    .hud .k {
+      color: var(--blue);
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .hud .v {
+      color: #f7fbff;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
     .grid {
       display: grid;
       gap: 18px;
       margin-top: 24px;
     }
+
     .card {
+      position: relative;
       border: 1px solid var(--line);
       background: var(--panel);
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(10px);
       border-radius: 22px;
       padding: 24px 22px;
-      box-shadow: 0 10px 36px rgba(0,0,0,.25);
+      box-shadow: 0 10px 36px rgba(0,0,0,.28);
+      overflow: hidden;
     }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 0 22%, rgba(82,214,255,.05) 34%, transparent 44%, transparent 70%, rgba(255,79,216,.05) 84%, transparent 100%);
+      pointer-events: none;
+    }
+
     h2 {
       margin: 0 0 12px;
       font-size: 28px;
       color: #ffffff;
+      position: relative;
+      z-index: 1;
     }
+
     h3 {
       margin: 0 0 10px;
       font-size: 22px;
       color: var(--gold);
+      position: relative;
+      z-index: 1;
     }
-    p { margin: 8px 0; }
-    ul {
-      margin: 12px 0 0;
-      padding-left: 20px;
-    }
+
+    p { margin: 8px 0; position: relative; z-index: 1; }
+    ul { margin: 12px 0 0; padding-left: 20px; position: relative; z-index: 1; }
     li { margin: 8px 0; }
+
     .signal {
       margin-top: 14px;
       padding: 16px;
       border-radius: 16px;
       border: 1px solid rgba(255,255,255,.06);
       background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
+      position: relative;
+      overflow: hidden;
     }
+
+    .signal::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(82,214,255,.08), transparent);
+      transform: translateX(-120%);
+      animation: signalSweep 4.8s linear infinite;
+      pointer-events: none;
+    }
+
     .signal strong {
       color: var(--gold);
       font-size: 18px;
     }
+
     .quote {
       margin-top: 16px;
       padding: 16px 18px;
@@ -153,38 +351,138 @@
       color: #d7f6ff;
       font-weight: 600;
       box-shadow: inset 0 0 0 1px rgba(82,214,255,.08);
+      position: relative;
+      z-index: 1;
+      animation: quotePulse 3.6s ease-in-out infinite;
     }
+
     .final {
       font-size: 22px;
       font-weight: 700;
       color: #fff3c7;
       text-shadow: 0 0 12px rgba(255,200,87,.18);
     }
+
     .footer {
       margin-top: 24px;
       text-align: center;
       color: var(--muted);
       font-size: 13px;
+      letter-spacing: .08em;
     }
+
+    @keyframes neonFlicker {
+      0%, 18%, 22%, 24%, 53%, 57%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 8px rgba(255,255,255,.24), 0 0 18px rgba(255,79,216,.28), 0 0 36px rgba(82,214,255,.14);
+      }
+      20%, 55% {
+        opacity: .88;
+        text-shadow: 0 0 6px rgba(255,255,255,.18), 0 0 12px rgba(255,79,216,.18), 0 0 20px rgba(82,214,255,.08);
+      }
+      21%, 56% {
+        opacity: .74;
+      }
+    }
+
+    @keyframes neonPulseBlue {
+      0%, 100% { box-shadow: 0 0 10px rgba(82,214,255,.12), 0 0 22px rgba(82,214,255,.08); }
+      50% { box-shadow: 0 0 14px rgba(82,214,255,.28), 0 0 34px rgba(82,214,255,.14); }
+    }
+
+    @keyframes grainShift {
+      0% { transform: translate(0, 0); }
+      20% { transform: translate(-0.8%, 0.6%); }
+      40% { transform: translate(0.7%, -0.4%); }
+      60% { transform: translate(-0.3%, 0.8%); }
+      80% { transform: translate(0.5%, -0.6%); }
+      100% { transform: translate(0, 0); }
+    }
+
+    @keyframes scanDrift {
+      from { transform: translateY(-20px); }
+      to { transform: translateY(20px); }
+    }
+
+    @keyframes rainMove {
+      from { background-position: 0 -200px; }
+      to { background-position: 0 200px; }
+    }
+
+    @keyframes holoSweep {
+      0%, 100% { transform: translateX(-8%) skewX(-12deg); opacity: .45; }
+      50% { transform: translateX(10%) skewX(-12deg); opacity: .9; }
+    }
+
+    @keyframes tickerMove {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    @keyframes signalSweep {
+      from { transform: translateX(-120%); }
+      to { transform: translateX(120%); }
+    }
+
+    @keyframes quotePulse {
+      0%, 100% { box-shadow: inset 0 0 0 1px rgba(82,214,255,.08), 0 0 0 rgba(82,214,255,0); }
+      50% { box-shadow: inset 0 0 0 1px rgba(82,214,255,.12), 0 0 18px rgba(82,214,255,.08); }
+    }
+
     @media (max-width: 760px) {
-      .wrap { padding: 22px 14px 48px; }
+      .wrap { padding: 18px 12px 44px; }
       .hero, .card { padding: 20px 16px; }
       h1 { font-size: 32px; }
       .subtitle { font-size: 16px; }
       h2 { font-size: 23px; }
       h3 { font-size: 19px; }
       .final { font-size: 19px; }
+      .hero-data { grid-template-columns: 1fr; }
+      .ticker-track { padding-left: 110px; }
+      .ticker::before { left: 10px; font-size: 10px; }
     }
   </style>
 </head>
 <body>
   <div class="rain"></div>
+  <div class="grid-glow"></div>
+
   <div class="wrap">
+    <section class="ticker">
+      <div class="ticker-track">
+        <span><b>USD</b> HIGH RISE MODE</span>
+        <span><i>GOLD</i> DEFENSIVE SIGNAL ACTIVE</span>
+        <span><em>TECH</em> CORE HOLDS / FRINGE FADES</span>
+        <span><b>FLOW</b> LIQUIDITY REPRICING</span>
+        <span><i>RISK</i> STRUCTURE &gt; EMOTION</span>
+        <span><em>NIGHT</em> CAPITAL NEVER SLEEPS</span>
+        <span><b>USD</b> HIGH RISE MODE</span>
+        <span><i>GOLD</i> DEFENSIVE SIGNAL ACTIVE</span>
+        <span><em>TECH</em> CORE HOLDS / FRINGE FADES</span>
+        <span><b>FLOW</b> LIQUIDITY REPRICING</span>
+      </div>
+    </section>
+
     <section class="hero">
       <div class="eyebrow">Night Brief · Cyberpunk Edition</div>
       <h1>夜航内参｜霓虹未眠，资本已先行</h1>
       <div class="subtitle">银翼杀手风格晚间观察。在屏幕反光、流动性退潮和情绪噪音之间，只提取今晚最值得记住的信号。</div>
       <p class="lead">城市的灯还亮着，屏幕的光还在闪，消息流像雨一样打在玻璃上。今晚真正值得看的，不是噪音，而是资金正在往哪里撤、往哪里聚。</p>
+
+      <div class="hero-data">
+        <div class="hud">
+          <div class="k">Signal One</div>
+          <div class="v">USD / 高楼顶层 / 风险承压</div>
+        </div>
+        <div class="hud">
+          <div class="k">Signal Two</div>
+          <div class="v">Gold / 不确定性保险 / 防御升温</div>
+        </div>
+        <div class="hud">
+          <div class="k">Signal Three</div>
+          <div class="v">Tech / 核心发光 / 边缘熄灯</div>
+        </div>
+      </div>
     </section>
 
     <section class="grid">
