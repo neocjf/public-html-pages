@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>锦承家办 · 每日内参 · 合集</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #f5f0e8;
+    font-family: 'Georgia', 'Noto Serif SC', serif;
+    color: #2c1f0e;
+    min-height: 100vh;
+  }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #2c1f0e 0%, #4a3520 100%);
+    padding: 40px 24px 32px;
+    text-align: center;
+    border-bottom: 3px solid #c8962a;
+  }
+  .header-logo {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: #c8962a;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .header-title {
+    font-size: 26px;
+    color: #f5f0e8;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+  .header-subtitle {
+    font-size: 12px;
+    color: #a08050;
+    letter-spacing: 2px;
+  }
+  .header-divider {
+    width: 60px;
+    height: 1px;
+    background: #c8962a;
+    margin: 16px auto 0;
+  }
+
+  /* Stats bar */
+  .stats-bar {
+    background: #2c1f0e;
+    padding: 12px 24px;
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    border-bottom: 1px solid #c8962a33;
+  }
+  .stat-item {
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 18px;
+    font-weight: bold;
+    color: #c8962a;
+  }
+  .stat-label {
+    font-size: 10px;
+    color: #a08050;
+    letter-spacing: 1px;
+    margin-top: 2px;
+  }
+
+  /* Content */
+  .container {
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 24px 16px;
+  }
+
+  /* Month section */
+  .month-section {
+    margin-bottom: 28px;
+  }
+  .month-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .month-line {
+    flex: 1;
+    height: 1px;
+    background: #c8962a55;
+  }
+  .month-label {
+    font-size: 11px;
+    color: #c8962a;
+    letter-spacing: 3px;
+    font-weight: bold;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* Brief card */
+  .brief-card {
+    background: #fff9f0;
+    border: 1px solid #e0d0b0;
+    border-left: 3px solid #c8962a;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  .brief-card:hover {
+    box-shadow: 0 4px 16px rgba(200,150,42,0.15);
+  }
+  .brief-card a {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: inherit;
+    gap: 14px;
+  }
+  .brief-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .icon-morning { background: #fff3cd; }
+  .icon-evening { background: #1a2540; }
+  .brief-info {
+    flex: 1;
+  }
+  .brief-date {
+    font-size: 13px;
+    font-weight: bold;
+    color: #2c1f0e;
+    margin-bottom: 3px;
+  }
+  .brief-tag {
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: #a08050;
+  }
+  .brief-tag.morning { color: #b07a20; }
+  .brief-tag.evening { color: #5060a0; }
+  .brief-arrow {
+    color: #c8962a;
+    font-size: 14px;
+    opacity: 0.6;
+  }
+
+  /* Version group */
+  .version-group {
+    background: #fdf8f0;
+    border: 1px solid #e8d8b8;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  .version-main {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    gap: 14px;
+    border-bottom: 1px solid #e8d8b822;
+  }
+  .version-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px 16px 12px;
+  }
+  .version-link {
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    background: #f0e8d0;
+    color: #8a6020;
+    text-decoration: none;
+    border: 1px solid #d4b870;
+    transition: background 0.15s;
+  }
+  .version-link:hover {
+    background: #c8962a;
+    color: #fff;
+    border-color: #c8962a;
+  }
+
+  /* Footer */
+  .footer {
+    background: #2c1f0e;
+    padding: 24px;
+    text-align: center;
+    border-top: 2px solid #c8962a;
+    margin-top: 16px;
+  }
+  .footer-text {
+    font-size: 10px;
+    color: #a08050;
+    letter-spacing: 2px;
+    line-height: 1.8;
+  }
+  .footer-gold {
+    color: #c8962a;
+    font-size: 13px;
+    margin-bottom: 8px;
+    letter-spacing: 3px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-logo">JINCHENG FAMILY OFFICE</div>
+  <div class="header-title">锦承家办 · 每日内参</div>
+  <div class="header-subtitle">DAILY INTELLIGENCE BRIEF · ARCHIVES</div>
+  <div class="header-divider"></div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-num" id="total-count">—</div>
+    <div class="stat-label">期内参</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num" id="day-count">—</div>
+    <div class="stat-label">覆盖天数</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">2026</div>
+    <div class="stat-label">开始年份</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 2026年3月 -->
+  <div class="month-section">
+    <div class="month-header">
+      <div class="month-line"></div>
+      <div class="month-label">2026 · 03月</div>
+      <div class="month-line"></div>
+    </div>
+
+    <!-- 3月29日 -->
+    <div class="brief-card">
+      <a href="jincheng-brief-20260329.html">
+        <div class="brief-icon icon-morning">☀️</div>
+        <div class="brief-info">
+          <div class="brief-date">3月29日 · 早间版</div>
+          <div class="brief-tag morning">MORNING BRIEF · 家族传承内参</div>
+        </div>
+        <div class="brief-arrow">›</div>
+      </a>
+    </div>
+    <div class="brief-card">
+      <a href="jincheng-brief-evening-2026-03-29.html">
+        <div class="brief-icon icon-evening">🌙</div>
+        <div class="brief-info">
+          <div class="brief-date">3月29日 · 晚间版</div>
+          <div class="brief-tag evening">EVENING BRIEF · 收盘简报</div>
+        </div>
+        <div class="brief-arrow">›</div>
+      </a>
+    </div>
+
+    <!-- 3月28日 -->
+    <div class="version-group">
+      <div class="version-main">
+        <div class="brief-icon icon-morning">☀️</div>
+        <div class="brief-info">
+          <div class="brief-date">3月28日 · 早间版</div>
+          <div class="brief-tag morning">MORNING BRIEF</div>
+        </div>
+      </div>
+      <div class="version-links">
+        <a class="version-link" href="jincheng-brief-20260328-v1.html">标准版</a>
+        <a class="version-link" href="jincheng-brief-20260328-styleC-v1.html">Style C · 深蓝黑金</a>
+      </div>
+    </div>
+    <div class="brief-card">
+      <a href="jincheng-brief-evening-2026-03-28.html">
+        <div class="brief-icon icon-evening">🌙</div>
+        <div class="brief-info">
+          <div class="brief-date">3月28日 · 晚间版</div>
+          <div class="brief-tag evening">EVENING BRIEF · 收盘简报</div>
+        </div>
+        <div class="brief-arrow">›</div>
+      </a>
+    </div>
+
+    <!-- 3月27日 -->
+    <div class="version-group">
+      <div class="version-main">
+        <div class="brief-icon icon-morning">☀️</div>
+        <div class="brief-info">
+          <div class="brief-date">3月27日 · 早间版</div>
+          <div class="brief-tag morning">MORNING BRIEF · 多版本</div>
+        </div>
+      </div>
+      <div class="version-links">
+        <a class="version-link" href="jincheng-brief-20260327-final.html">最终版</a>
+        <a class="version-link" href="jincheng-brief-20260327-V4.html">V4 深蓝金</a>
+        <a class="version-link" href="jincheng-brief-20260327-styleA.html">Style A</a>
+        <a class="version-link" href="jincheng-brief-20260327-styleB.html">Style B</a>
+        <a class="version-link" href="jincheng-brief-20260327-v3.html">v3</a>
+        <a class="version-link" href="jincheng-brief-20260327-v2.html">v2</a>
+        <a class="version-link" href="jincheng-brief-20260327.html">v1</a>
+      </div>
+    </div>
+    <div class="brief-card">
+      <a href="jincheng-brief-evening-2026-03-27.html">
+        <div class="brief-icon icon-evening">🌙</div>
+        <div class="brief-info">
+          <div class="brief-date">3月27日 · 晚间版</div>
+          <div class="brief-tag evening">EVENING BRIEF · 收盘简报</div>
+        </div>
+        <div class="brief-arrow">›</div>
+      </a>
+    </div>
+
+    <!-- 3月26日 -->
+    <div class="brief-card">
+      <a href="jincheng-brief-20260326.html">
+        <div class="brief-icon icon-morning">☀️</div>
+        <div class="brief-info">
+          <div class="brief-date">3月26日 · 早间版</div>
+          <div class="brief-tag morning">MORNING BRIEF</div>
+        </div>
+        <div class="brief-arrow">›</div>
+      </a>
+    </div>
+    <div class="brief-card">
+      <a href="jincheng-brief-evening-20260326.html">
+        <div class="brief-icon icon-evening">🌙</div>
+        <div class="brief-info">
+          <div class="brief-date">3月26日 · 晚间版</div>
+          <div class="brief-tag evening">EVENING BRIEF · 收盘简报</div>
+        </div>
+        <div class="brief-arrow">›</div>
+      </a>
+    </div>
+
+    <!-- 3月25日 -->
+    <div class="brief-card">
+      <a href="jincheng-brief-20260325.html">
+        <div class="brief-icon icon-morning">☀️</div>
+        <div class="brief-info">
+          <div class="brief-date">3月25日 · 早间版</div>
+          <div class="brief-tag morning">MORNING BRIEF</div>
+        </div>
+        <div class="brief-arrow">›</div>
+      </a>
+    </div>
+
+    <!-- 3月23日 -->
+    <div class="brief-card">
+      <a href="jincheng-brief-20260323.html">
+        <div class="brief-icon icon-morning">☀️</div>
+        <div class="brief-info">
+          <div class="brief-date">3月23日 · 早间版</div>
+          <div class="brief-tag morning">MORNING BRIEF · 创刊号</div>
+        </div>
+        <div class="brief-arrow">›</div>
+      </a>
+    </div>
+
+  </div><!-- /month-section -->
+
+</div><!-- /container -->
+
+<div class="footer">
+  <div class="footer-gold">◆ JINCHENG FO ◆</div>
+  <div class="footer-text">
+    锦承家族办公室 · 内部参考资料<br>
+    INTERNAL USE ONLY · NOT FOR DISTRIBUTION<br>
+    © 2026 Jincheng Family Office
+  </div>
+</div>
+
+<script>
+  // Count total briefs and days
+  const cards = document.querySelectorAll('.brief-card, .version-group');
+  const days = new Set();
+  const dates = ['0323','0325','0326','0327','0328','0329'];
+  dates.forEach(d => days.add(d));
+  // count individual links
+  const links = document.querySelectorAll('a[href*="jincheng-brief"]');
+  document.getElementById('total-count').textContent = links.length;
+  document.getElementById('day-count').textContent = days.size;
+</script>
+
+</body>
+</html>
