@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>锦承家办 · 家族传承内参｜2026-03-30</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #07090f;
+      color: #d4d8e8;
+      font-family: -apple-system, 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+      font-size: 15px;
+      line-height: 1.75;
+      padding: 20px 16px 60px;
+    }
+    .container { max-width: 720px; margin: 0 auto; }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #080c1a 0%, #111840 50%, #080c1a 100%);
+      border: 1px solid #1e2448;
+      border-radius: 12px;
+      padding: 32px 28px 24px;
+      margin-bottom: 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -40px; left: 50%;
+      transform: translateX(-50%);
+      width: 260px; height: 260px;
+      background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .logo-line {
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: #8a93b8;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .title {
+      font-size: 26px;
+      font-weight: 700;
+      background: linear-gradient(90deg, #7a5c10, #d4af37, #c9a227, #d4af37, #7a5c10);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+    }
+    .subtitle {
+      font-size: 13px;
+      color: #8a93b8;
+      letter-spacing: 1px;
+    }
+    .date-badge {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 5px 18px;
+      border: 1px solid #d4af3740;
+      border-radius: 20px;
+      font-size: 12px;
+      color: #d4af37;
+      letter-spacing: 1px;
+    }
+
+    /* Section card */
+    .card {
+      background: #0c1020;
+      border: 1px solid #1e2448;
+      border-radius: 10px;
+      padding: 22px 22px 18px;
+      margin-bottom: 16px;
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #1e2448;
+    }
+    .card-icon {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+      background: linear-gradient(135deg, #111840, #1e2448);
+      border: 1px solid #2a3060;
+      flex-shrink: 0;
+    }
+    .card-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #e8eaf5;
+      letter-spacing: 0.5px;
+    }
+    .card-tag {
+      margin-left: auto;
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      background: #d4af3715;
+      color: #d4af37;
+      border: 1px solid #d4af3730;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+
+    /* Content elements */
+    .item {
+      padding: 10px 0;
+      border-bottom: 1px solid #1a2035;
+    }
+    .item:last-child { border-bottom: none; padding-bottom: 0; }
+    .item-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #c9bfaf;
+      margin-bottom: 5px;
+    }
+    .item-body {
+      font-size: 13.5px;
+      color: #9099b8;
+      line-height: 1.7;
+    }
+    .highlight {
+      color: #d4af37;
+      font-weight: 600;
+    }
+
+    /* Action list */
+    .action-list { list-style: none; }
+    .action-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 9px 0;
+      border-bottom: 1px solid #1a2035;
+      font-size: 13.5px;
+      color: #9099b8;
+    }
+    .action-list li:last-child { border-bottom: none; }
+    .action-num {
+      flex-shrink: 0;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7a5c10, #d4af37);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: #07090f;
+      margin-top: 1px;
+    }
+
+    /* Quote block */
+    .quote {
+      background: #0a0e1d;
+      border-left: 3px solid #d4af37;
+      border-radius: 0 8px 8px 0;
+      padding: 14px 16px;
+      margin-top: 12px;
+      font-size: 13.5px;
+      color: #8a93b8;
+      font-style: italic;
+    }
+
+    /* Insight pill */
+    .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .pill {
+      padding: 4px 12px;
+      border-radius: 14px;
+      font-size: 12px;
+      background: #0f1530;
+      border: 1px solid #2a3060;
+      color: #8a93b8;
+    }
+    .pill.gold {
+      background: #d4af3710;
+      border-color: #d4af3740;
+      color: #d4af37;
+    }
+
+    /* Market snapshot */
+    .mkt-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 9px 0;
+      border-bottom: 1px solid #1a2035;
+      font-size: 13.5px;
+    }
+    .mkt-row:last-child { border-bottom: none; }
+    .mkt-name { color: #c9bfaf; font-weight: 500; }
+    .mkt-val { color: #d4af37; font-weight: 600; }
+    .mkt-note { color: #8a93b8; font-size: 12px; }
+
+    /* Footer */
+    .footer {
+      margin-top: 28px;
+      text-align: center;
+      font-size: 11.5px;
+      color: #4a5070;
+      border-top: 1px solid #1e2448;
+      padding-top: 20px;
+      line-height: 1.8;
+    }
+    .footer-logo {
+      font-size: 14px;
+      color: #d4af3760;
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo-line">JINCHENG FAMILY OFFICE</div>
+    <div class="title">锦承家办 · 家族传承内参</div>
+    <div class="subtitle">Family Wealth · Trust · Succession Intelligence</div>
+    <div class="date-badge">2026年3月30日（周一）第 2026-030 期</div>
+  </div>
+
+  <!-- Section 1: 周一行动清单 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📋</div>
+      <div class="card-title">周一行动清单</div>
+      <div class="card-tag">WEEKLY STARTER</div>
+    </div>
+    <ul class="action-list">
+      <li>
+        <div class="action-num">1</div>
+        <div>检视本周到期保单续期事项，确认客户回访优先级，Q2首月目标锁定</div>
+      </li>
+      <li>
+        <div class="action-num">2</div>
+        <div>跟进待签客户 KYC 材料，聚焦仍在决策期的大额保单候选人</div>
+      </li>
+      <li>
+        <div class="action-num">3</div>
+        <div>安排本周 IUL/储蓄险方案书更新，结合最新 COI 及 Sun Life Q2 演示版本</div>
+      </li>
+      <li>
+        <div class="action-num">4</div>
+        <div>关注港元汇率及美联储 5月议息预期，提前评估 USD 计价保单的汇率锁定窗口</div>
+      </li>
+      <li>
+        <div class="action-num">5</div>
+        <div>回顾上周新开发线索，更新 CRM，推进需求采集表填写</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Section 2: 香港家办政策动态 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🏛️</div>
+      <div class="card-title">香港家办政策动态</div>
+      <div class="card-tag">REGULATORY</div>
+    </div>
+    <div class="item">
+      <div class="item-title">家族办公室税务豁免持续扩容</div>
+      <div class="item-body">港府持续推进单一家族办公室（SFO）税务豁免覆盖范围，纳入更多合资格另类资产类别。2026年优化重点聚焦<span class="highlight">私募股权、基础设施基金</span>及跨境数字资产结构的税务定性。建议高净值客户评估现有信托结构是否已适配最新标准。</div>
+    </div>
+    <div class="item">
+      <div class="item-title">证监会持牌资产管理新规合规窗口</div>
+      <div class="item-body">随着 SFC 对家族办公室纳管趋严，自管型家办须评估是否触发第9类牌照申请门槛。资产规模超过<span class="highlight">HKD 1亿</span>且涉及第三方资金管理的架构，应在本季度完成合规自查。</div>
+    </div>
+    <div class="quote">锦承洞察：合规不是负担，是护城河。有牌照的家办能承接更复杂的客户需求，并在跨境汇款、开户方面获得更顺畅的银行配合。</div>
+  </div>
+
+  <!-- Section 3: 跨境资产配置 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🌏</div>
+      <div class="card-title">跨境资产配置要点</div>
+      <div class="card-tag">ALLOCATION</div>
+    </div>
+    <div class="item">
+      <div class="item-title">美元流动性管理：分批锁定高息窗口</div>
+      <div class="item-body">美联储降息预期后移至2026年下半年，当前<span class="highlight">USD 定期/货币基金</span>收益仍维持4.5%-5.0%区间。建议将客户闲置美元资金分批配置至流动性好的货基或短债 ETF，待降息信号明确再延长久期。</div>
+    </div>
+    <div class="item">
+      <div class="item-title">人民币资产南下：香港作为离岸枢纽</div>
+      <div class="item-body">内地高净值人群通过合规渠道将人民币资产南下至香港的需求持续升温。<span class="highlight">保险储蓄险（USD 计价）</span>因监管明确、收益锁定、传承功能完整，成为首选配置工具之一，2026年Q1大额保单成交量同比提升约18%。</div>
+    </div>
+    <div class="item">
+      <div class="item-title">新加坡 vs 香港：家办落地竞争格局</div>
+      <div class="item-body">新加坡 Variable Capital Company (VCC) 结构已吸引超过1000家家族办公室落地，香港以更高效的保险配置、更便捷的大湾区联动及更成熟的中文服务生态反向突围。<span class="highlight">双据点架构</span>成为超高净值客群主流选择。</div>
+    </div>
+    <div class="pills">
+      <span class="pill gold">USD 计价保险</span>
+      <span class="pill gold">VCC / BVI 结构</span>
+      <span class="pill">大湾区联动</span>
+      <span class="pill">新加坡双据点</span>
+      <span class="pill">货基流动性管理</span>
+    </div>
+  </div>
+
+  <!-- Section 4: 信托与传承架构 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">⚖️</div>
+      <div class="card-title">信托与传承架构</div>
+      <div class="card-tag">TRUST & SUCCESSION</div>
+    </div>
+    <div class="item">
+      <div class="item-title">保险金信托：低门槛进入私人信托的入口</div>
+      <div class="item-body">以大额储蓄险保单作为信托财产，结合香港本地信托牌照机构，可实现<span class="highlight">从500万港元起步</span>的私人信托架构。相比传统全权信托，保险金信托设立成本低、灵活度高，特别适合有传承意向但资产规模尚未达私行门槛的客群。</div>
+    </div>
+    <div class="item">
+      <div class="item-title">遗嘱信托 vs 生前信托：哪个更适合您的客户？</div>
+      <div class="item-body">遗嘱信托在委托人身后生效，设立简单，但受制于遗嘱认证程序，跨境执行存在不确定性。生前信托即时生效，隐私性强、绕过遗产认证，更适合<span class="highlight">资产跨越多个司法管辖区</span>的高净值客户。</div>
+    </div>
+    <div class="quote">实操建议：在初次客户会谈中，用「资产到底要给谁、什么时候给、怎么给」三个问题引出信托需求，比直接提信托二字更容易打开话题。</div>
+  </div>
+
+  <!-- Section 5: CRS 与税务合规 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔍</div>
+      <div class="card-title">CRS 与税务合规</div>
+      <div class="card-tag">COMPLIANCE</div>
+    </div>
+    <div class="item">
+      <div class="item-title">2026年 CRS 数据交换范围扩大</div>
+      <div class="item-body">OECD 主导的共同申报准则（CRS）覆盖司法管辖区已超过120个，<span class="highlight">数字资产账户</span>纳入 CARF（加密资产报告框架）第一批实施期正式落地。持有境外加密资产的内地/香港居民应及时完成税务身份梳理。</div>
+    </div>
+    <div class="item">
+      <div class="item-title">香港储蓄险的 CRS 申报要点</div>
+      <div class="item-body">香港储蓄型保险为<span class="highlight">现金价值保险合同</span>，受 CRS 约束须向保单持有人税务居民所在地进行年度申报。合理安排投保人/受益人结构、配合信托持有，可在合规前提下优化信息透明度管理。</div>
+    </div>
+    <div class="pills">
+      <span class="pill gold">CARF 数字资产</span>
+      <span class="pill gold">CRS 保险申报</span>
+      <span class="pill">税务居民梳理</span>
+      <span class="pill">信托持有结构</span>
+    </div>
+  </div>
+
+  <!-- Section 6: 市场参考指标 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📊</div>
+      <div class="card-title">市场参考指标</div>
+      <div class="card-tag">MARKET PULSE</div>
+    </div>
+    <div class="mkt-row">
+      <span class="mkt-name">美联储基准利率</span>
+      <span class="mkt-val">4.25% – 4.50%</span>
+      <span class="mkt-note">维持不变，5月观望</span>
+    </div>
+    <div class="mkt-row">
+      <span class="mkt-name">港元最优惠利率</span>
+      <span class="mkt-val">5.50%</span>
+      <span class="mkt-note">联系汇率制跟随</span>
+    </div>
+    <div class="mkt-row">
+      <span class="mkt-name">USD/HKD</span>
+      <span class="mkt-val">7.782</span>
+      <span class="mkt-note">联汇区间稳定</span>
+    </div>
+    <div class="mkt-row">
+      <span class="mkt-name">恒生指数</span>
+      <span class="mkt-val">约 23,800</span>
+      <span class="mkt-note">Q1震荡整固中</span>
+    </div>
+    <div class="mkt-row">
+      <span class="mkt-name">Sun Life Solis II 预期回报</span>
+      <span class="mkt-val">6.2% – 7.1%</span>
+      <span class="mkt-note">IRR（20年演示）</span>
+    </div>
+    <div class="quote">注：市场数据为参考估值，实际交易以当日报价为准。保险产品演示回报并非保证收益。</div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-logo">锦 承 家 办</div>
+    <div>JINCHENG FAMILY OFFICE · INTERNAL BRIEF · 2026-03-30</div>
+    <div style="margin-top:6px;">仅供锦承家办团队内部参考，不构成投资建议或法律意见</div>
+    <div style="margin-top:4px; color:#2a3050;">© 2026 锦承家办 · 保密文件，请勿转发</div>
+  </div>
+
+</div>
+</body>
+</html>
