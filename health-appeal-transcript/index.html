@@ -9,8 +9,14 @@
   --bg: #08101a;
   --bg2: #101b2c;
   --panel: rgba(15, 23, 36, 0.90);
+  --panel2: rgba(19, 29, 46, 0.95);
   --gold: #d7b26c;
+  --gold-soft: rgba(215,178,108,.12);
+  --blue: #8fb8ff;
+  --green: #a9e8c3;
+  --red: #ffb7b7;
   --text: #eef4ff;
+  --muted: #9fb1c8;
   --line: rgba(215,178,108,.18);
   --shadow: 0 28px 68px rgba(0,0,0,.34);
   --radius: 24px;
@@ -24,20 +30,20 @@ body {
     radial-gradient(circle at top right, rgba(215,178,108,.14), transparent 24%),
     radial-gradient(circle at left center, rgba(143,184,255,.08), transparent 22%),
     linear-gradient(180deg, var(--bg), var(--bg2));
-  line-height: 1.92;
+  line-height: 1.82;
 }
 .wrap { max-width: 1160px; margin: 0 auto; padding: 38px 22px 90px; }
-.card {
+.hero {
   position: relative;
   overflow: hidden;
-  background: var(--panel);
-  border: 1px solid rgba(255,255,255,.06);
-  border-radius: var(--radius);
+  border-radius: 34px;
   padding: 34px 32px;
+  background: linear-gradient(135deg, rgba(8,12,19,.96), rgba(15,23,36,.92));
+  border: 1px solid var(--line);
   box-shadow: var(--shadow);
-  backdrop-filter: blur(10px);
+  margin-bottom: 28px;
 }
-.card::before {
+.hero::before {
   content: "";
   position: absolute;
   right: -110px; top: -110px;
@@ -45,8 +51,37 @@ body {
   background: radial-gradient(circle, rgba(215,178,108,.18), transparent 64%);
   pointer-events: none;
 }
-.transcript {
+.hero .transcript {
   position: relative;
+  font-size: 17.5px;
+  color: #dfe8f6;
+}
+.grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; margin-top: 0; }
+.card {
+  grid-column: span 12;
+  background: var(--panel);
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: var(--radius);
+  padding: 30px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+}
+.highlight {
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(215,178,108,.09), rgba(215,178,108,.03));
+}
+.section-title {
+  padding-top: 22px;
+  padding-bottom: 22px;
+  background: linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,.01));
+}
+.section-title h2 {
+  margin: 0;
+  font-size: 28px;
+  color: var(--gold);
+  line-height: 1.35;
+}
+.transcript {
   white-space: pre-wrap;
   word-break: break-word;
   font-size: 17px;
@@ -54,15 +89,18 @@ body {
 }
 @media (max-width: 920px) {
   .wrap { padding: 20px 14px 40px; }
-  .card { padding: 22px 18px; }
-  .transcript { font-size: 16px; }
+  .hero, .card { padding: 22px 18px; }
+  .transcript, .hero .transcript { font-size: 16px; }
+  .section-title h2 { font-size: 23px; }
 }
 @media print {
   :root {
     --bg: #ffffff;
     --bg2: #ffffff;
     --panel: #ffffff;
+    --panel2: #ffffff;
     --text: #111111;
+    --muted: #555555;
     --gold: #8a6a2f;
     --line: rgba(0,0,0,.12);
     --shadow: none;
@@ -74,84 +112,40 @@ body {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
+  body { line-height: 1.55; }
   .wrap { max-width: none; padding: 0; }
-  .card {
+  .hero, .card {
     box-shadow: none !important;
     background: #ffffff !important;
     color: #111111 !important;
     border: 1px solid rgba(0,0,0,.08);
+    break-inside: avoid-page;
+    page-break-inside: avoid;
   }
-  .card::before { display: none !important; }
-  .transcript {
+  .hero::before { display: none !important; }
+  .section-title h2 { color: #8a6a2f !important; }
+  .transcript, .hero .transcript {
     color: #111111 !important;
-    font-size: 12.5pt;
-    line-height: 1.7;
+    font-size: 12.2pt;
+    line-height: 1.68;
   }
 }
 </style>
 </head>
 <body>
   <div class="wrap">
-    <section class="card">
-      <div class="transcript">北美的大型寿险公司，其核保逻辑遵循基于大量精算数据的《核保手册》（Underwriting Manuals）。保司的决策绝不仅仅是因为两张化验单上“HBsAg（乙肝表面抗原）阳性且数值波动（22.92升至49.7）”，而是将乙肝指标与体检报告中的其他潜在风险进行了“合并惩罚（Combined Risk Penalty）”。
-
-泛美（PA）核保加费的底层逻辑
-保司加费的核心原因并非乙肝本身，而是乙肝叠加代谢异常带来的肝硬化/肝癌不可控风险。
-
-1.“肝回声稍粗”： 体检报告的超声结果提示“肝回声稍密。肝回声稍粗”。在北美的核保医学语境中，“Coarse echotexture（回声粗糙）”是一个比较危险的信号，核保团队会直接将其与“早期肝纤维化（Fibrosis）”甚至“肝硬化前期”划等号。
-
-2.“乙肝病毒携带”叠加“非酒精性脂肪肝病（NAFLD）”： 客户BMI 25（超重），低密度脂蛋白（LDL-C）高达 3.91 mmol/L，超声提示脂肪肝倾向。乙肝病毒加上脂肪肝，属于肝脏双重打击（Double Hit）。
-
-3.客户目前肝功能（ALT/AST 23）完全正常，且HBV DNA（病毒载量）测不出，但因为缺乏评估肝脏硬度的标准数据，核保员会直接加费。
-
-两年期向标准体申诉的临床行动建议：
+    <section class="hero"><div class="transcript">北美的大型寿险公司，其核保逻辑遵循基于大量精算数据的《核保手册》（Underwriting Manuals）。保司的决策绝不仅仅是因为两张化验单上“HBsAg（乙肝表面抗原）阳性且数值波动（22.92升至49.7）”，而是将乙肝指标与体检报告中的其他潜在风险进行了“合并惩罚（Combined Risk Penalty）”。</div></section>
+    <div class="grid">
+      <section class="card"><div class="transcript">泛美（PA）核保加费的底层逻辑
+保司加费的核心原因并非乙肝本身，而是乙肝叠加代谢异常带来的肝硬化/肝癌不可控风险。</div></section><section class="card"><div class="transcript">1.“肝回声稍粗”： 体检报告的超声结果提示“肝回声稍密。肝回声稍粗”。在北美的核保医学语境中，“Coarse echotexture（回声粗糙）”是一个比较危险的信号，核保团队会直接将其与“早期肝纤维化（Fibrosis）”甚至“肝硬化前期”划等号。</div></section><section class="card"><div class="transcript">2.“乙肝病毒携带”叠加“非酒精性脂肪肝病（NAFLD）”： 客户BMI 25（超重），低密度脂蛋白（LDL-C）高达 3.91 mmol/L，超声提示脂肪肝倾向。乙肝病毒加上脂肪肝，属于肝脏双重打击（Double Hit）。</div></section><section class="card"><div class="transcript">3.客户目前肝功能（ALT/AST 23）完全正常，且HBV DNA（病毒载量）测不出，但因为缺乏评估肝脏硬度的标准数据，核保员会直接加费。</div></section><section class="card"><div class="transcript">两年期向标准体申诉的临床行动建议：
 为了在两年后向泛美提出申诉（Appeal）并降费（Rate Reduction），需要用北美核保系统认可的数据来打消核保团队的顾虑。以下是分为四个阶段的健康管理与数据收集建议：
 阶段一：建立“标准”档案（第1-3个月）
-不试图用常规体检去说服核保，做高阶检查。
-
-1.执行肝脏弹性硬度检测（FibroScan / 瞬态弹性成像）： 这是申诉的必要工具，普通的B超只能看形态，FibroScan可以量化肝脏的硬度（kPa值）和脂肪变性程度（CAP值）。
-
-	•	目标数据： 证明肝脏硬度值 &lt; 7.0 kPa（证明肯定没有肝纤维化）。拿到这个数据，泛美关于“肝回声粗=纤维化”的推断就有可能消除。
-
-	•	完善甲胎蛋白（AFP）与肝脏超声造影： 确认目前没有任何微小肝癌迹象（体检报告AFP为1.6，数据不错，需保持）。
-
-	•	血脂干预起步： LDL-C 3.91 偏高。如果通过饮食无法在几个月内降至 3.0 以下，可以在全科医生指导下，可考虑极低剂量的他汀类药物（如瑞舒伐他汀 5mg）短期干预，迅速扑灭血管和肝脏的脂质堆积。
-
-阶段二：代谢逆转与肝脏减负（第4-12个月）
-乙肝表面抗原（HBsAg）很难在两年内转阴，但我们可以把脂肪肝和超重完全逆转，消除双重打击。
-
-1.体重管理： 客户目前172cm，74kg（BMI 25）。
-
-	•	目标数据： 用8个月时间稳步减重 5-7kg，将体重控制在 67-69kg（BMI 降至 22.5-23.3 的绝对健康区间）。
-
-2.地中海饮食结构： 增加深海鱼（Omega-3抗炎）、优质橄榄油、大量十字花科蔬菜，戒掉任何形式的酒精（这对乙肝+脂肪肝是底线），严格限制添加糖和精制碳水（米面）。
-
-3.有氧与抗阻训练结合： 每周进行至少150分钟的低心率有氧运动（如快走、慢跑、骑行），加速肝脏脂肪代谢。
-
-阶段三：稳定状态态维持（第13-21个月）
-北美保司要求申诉时通常提供连续两年的稳定医疗记录。
-
-1.建立季度/半年度监控记录：
-
-	•	每半年查一次：肝功能全套（ALT/AST务必保持在30以下）、HBV DNA（必须持续保持在“未检出”状态）。
-
-	•	每年查一次：肝脏彩超、AFP、FibroScan。
-
-2.专科医生背书记录： 每次复查，务必请三甲医院感染科或肝病科主治医生在病历上写下明确的诊断（最后附带英文）：“Inactive HBV Carrier (非活动性乙肝携带者)，肝功能持续正常，无肝纤维化及脂肪肝，无需药物治疗，定期随访。” （核保比较看重专科医生的书面不干预声明）。
-
-阶段四：发起降费申诉战役（第22-24个月）
-假设客户的体重已达标，血脂正常，积累了近两年较好的复查数据。
-
-1.组合申诉包（Appeal Dossier）： 附上连续两年的HBV DNA持续阴性报告。
-
-	•	附上连续两年的ALT/AST正常报告。
-
-	•	重要： 附上最新的FibroScan报告，证明肝脏弹性正常，超声下“肝回声粗”并未向肝硬化发展。
-
-	•	血脂正常的生化报告单。
-	•	
-</div>
-    </section>
+不试图用常规体检去说服核保，做高阶检查。</div></section><section class="card"><div class="transcript">1.执行肝脏弹性硬度检测（FibroScan / 瞬态弹性成像）： 这是申诉的必要工具，普通的B超只能看形态，FibroScan可以量化肝脏的硬度（kPa值）和脂肪变性程度（CAP值）。</div></section><section class="card"><div class="transcript">•	目标数据： 证明肝脏硬度值 &lt; 7.0 kPa（证明肯定没有肝纤维化）。拿到这个数据，泛美关于“肝回声粗=纤维化”的推断就有可能消除。</div></section><section class="card"><div class="transcript">•	完善甲胎蛋白（AFP）与肝脏超声造影： 确认目前没有任何微小肝癌迹象（体检报告AFP为1.6，数据不错，需保持）。</div></section><section class="card"><div class="transcript">•	血脂干预起步： LDL-C 3.91 偏高。如果通过饮食无法在几个月内降至 3.0 以下，可以在全科医生指导下，可考虑极低剂量的他汀类药物（如瑞舒伐他汀 5mg）短期干预，迅速扑灭血管和肝脏的脂质堆积。</div></section><section class="card"><div class="transcript">阶段二：代谢逆转与肝脏减负（第4-12个月）
+乙肝表面抗原（HBsAg）很难在两年内转阴，但我们可以把脂肪肝和超重完全逆转，消除双重打击。</div></section><section class="card"><div class="transcript">1.体重管理： 客户目前172cm，74kg（BMI 25）。</div></section><section class="card"><div class="transcript">•	目标数据： 用8个月时间稳步减重 5-7kg，将体重控制在 67-69kg（BMI 降至 22.5-23.3 的绝对健康区间）。</div></section><section class="card"><div class="transcript">2.地中海饮食结构： 增加深海鱼（Omega-3抗炎）、优质橄榄油、大量十字花科蔬菜，戒掉任何形式的酒精（这对乙肝+脂肪肝是底线），严格限制添加糖和精制碳水（米面）。</div></section><section class="card"><div class="transcript">3.有氧与抗阻训练结合： 每周进行至少150分钟的低心率有氧运动（如快走、慢跑、骑行），加速肝脏脂肪代谢。</div></section><section class="card"><div class="transcript">阶段三：稳定状态态维持（第13-21个月）
+北美保司要求申诉时通常提供连续两年的稳定医疗记录。</div></section><section class="card"><div class="transcript">1.建立季度/半年度监控记录：</div></section><section class="card"><div class="transcript">•	每半年查一次：肝功能全套（ALT/AST务必保持在30以下）、HBV DNA（必须持续保持在“未检出”状态）。</div></section><section class="card"><div class="transcript">•	每年查一次：肝脏彩超、AFP、FibroScan。</div></section><section class="card"><div class="transcript">2.专科医生背书记录： 每次复查，务必请三甲医院感染科或肝病科主治医生在病历上写下明确的诊断（最后附带英文）：“Inactive HBV Carrier (非活动性乙肝携带者)，肝功能持续正常，无肝纤维化及脂肪肝，无需药物治疗，定期随访。” （核保比较看重专科医生的书面不干预声明）。</div></section><section class="card"><div class="transcript">阶段四：发起降费申诉战役（第22-24个月）
+假设客户的体重已达标，血脂正常，积累了近两年较好的复查数据。</div></section><section class="card"><div class="transcript">1.组合申诉包（Appeal Dossier）： 附上连续两年的HBV DNA持续阴性报告。</div></section><section class="card"><div class="transcript">•	附上连续两年的ALT/AST正常报告。</div></section><section class="card"><div class="transcript">•	重要： 附上最新的FibroScan报告，证明肝脏弹性正常，超声下“肝回声粗”并未向肝硬化发展。</div></section><section class="card"><div class="transcript">•	血脂正常的生化报告单。
+	•</div></section>
+    </div>
   </div>
 </body>
 </html>
