@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>锦承家办·全球投资晚报 2026-03-31</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    background: #07090f;
+    color: #d4d8e8;
+    font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.55;
+    min-width: 320px;
+  }
+
+  /* ─── TICKER ─── */
+  .ticker-wrap {
+    background: #050709;
+    border-bottom: 1px solid #d4af37;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 5px 0;
+    font-size: 10.5px;
+    font-family: 'SF Mono', 'Courier New', monospace;
+  }
+  .ticker-inner {
+    display: inline-block;
+    animation: ticker-scroll 50s linear infinite;
+    will-change: transform;
+  }
+  @keyframes ticker-scroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+  .ti { display: inline-block; margin: 0 22px; }
+  .tn { color: #666c88; margin-right: 5px; }
+  .tp { color: #dde1f0; margin-right: 4px; }
+  .tu { color: #2ecc40; }
+  .td { color: #ff4136; }
+
+  /* ─── HEADER ─── */
+  header {
+    background: linear-gradient(160deg, #070b18 0%, #0f1638 50%, #070b18 100%);
+    border-bottom: 2px solid #d4af37;
+    padding: 20px 20px 16px;
+    text-align: center;
+  }
+  .hd-brand { font-size: 9.5px; color: #d4af37; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 7px; }
+  header h1 { font-size: 19px; font-weight: 700; color: #f0e8c4; letter-spacing: 0.5px; margin-bottom: 5px; }
+  .hd-meta { font-size: 10px; color: #7880a0; letter-spacing: 1px; }
+  .pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #2ecc40; margin-right: 5px; vertical-align: middle; animation: blink 2s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+  /* ─── ALERT BAR ─── */
+  .alert-bar {
+    background: rgba(255,65,54,.08);
+    border-left: 3px solid #ff4136;
+    padding: 8px 14px;
+    margin-bottom: 12px;
+    font-size: 11.5px;
+    color: #e0a0a0;
+    line-height: 1.45;
+  }
+  .alert-bar strong { color: #ff6b5b; }
+
+  /* ─── CONTAINER ─── */
+  .wrap { max-width: 680px; margin: 0 auto; padding: 16px 12px 48px; }
+
+  /* ─── CARD ─── */
+  .card { background: #0b0f1e; border: 1px solid #1b2040; border-radius: 4px; margin-bottom: 12px; overflow: hidden; }
+  .ch { background: #0e1428; border-bottom: 1px solid #1b2040; padding: 8px 12px; display: flex; align-items: center; gap: 7px; }
+  .ch .ico { font-size: 12px; flex-shrink: 0; }
+  .ch h2 { font-size: 10px; font-weight: 700; color: #d4af37; letter-spacing: 2px; text-transform: uppercase; }
+  .ch .sub { margin-left: auto; font-size: 9px; color: #2d3352; letter-spacing: 1px; white-space: nowrap; }
+  .cb { padding: 10px 12px; }
+
+  /* ─── TABLE ─── */
+  .tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table { width: 100%; border-collapse: collapse; font-size: 11.5px; min-width: 320px; }
+  thead tr { border-bottom: 1px solid #1b2040; }
+  thead th { color: #2d3352; font-weight: 600; font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; padding: 5px 6px; text-align: left; white-space: nowrap; }
+  thead th:not(:first-child) { text-align: right; }
+  tbody tr { border-bottom: 1px solid #0d1122; }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: #0f1530; }
+  td { padding: 7px 6px; vertical-align: middle; white-space: nowrap; }
+  td:not(:first-child) { text-align: right; }
+  td:first-child { white-space: normal; min-width: 90px; }
+  .an { font-weight: 700; color: #dde1f0; font-size: 12px; line-height: 1.3; }
+  .as { font-size: 9.5px; color: #2d3352; margin-top: 1px; }
+  .pr { font-weight: 600; color: #cdd0e0; font-family: 'SF Mono','Courier New',monospace; font-size: 12px; }
+  .up { color: #2ecc40; font-weight: 700; }
+  .dn { color: #ff4136; font-weight: 700; }
+  .nt { color: #7880a0; }
+  .bup { display: inline-block; background: rgba(46,204,64,.1); color: #2ecc40; border: 1px solid rgba(46,204,64,.2); border-radius: 2px; padding: 1px 5px; font-size: 10px; font-weight: 700; white-space: nowrap; }
+  .bdn { display: inline-block; background: rgba(255,65,54,.1); color: #ff4136; border: 1px solid rgba(255,65,54,.2); border-radius: 2px; padding: 1px 5px; font-size: 10px; font-weight: 700; white-space: nowrap; }
+
+  /* ─── RATE GRID ─── */
+  .rgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+  .ri { background: #07090f; border: 1px solid #161c30; border-radius: 3px; padding: 8px 10px; }
+  .rl { font-size: 9px; color: #2d3352; letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 3px; }
+  .rv { font-size: 16px; font-weight: 700; color: #d4af37; font-family: 'SF Mono','Courier New',monospace; }
+  .rc { font-size: 10px; margin-top: 2px; }
+
+  /* ─── NEWS ROWS ─── */
+  .ev { display: flex; gap: 10px; padding: 9px 0; border-bottom: 1px solid #0d1122; }
+  .ev:last-child { border-bottom: none; }
+  .tag { flex-shrink: 0; font-size: 8.5px; font-weight: 700; letter-spacing: .8px; padding: 2px 5px; border-radius: 2px; height: fit-content; margin-top: 2px; white-space: nowrap; }
+  .t-r { background: rgba(255,65,54,.1); color: #ff4136; border: 1px solid rgba(255,65,54,.22); }
+  .t-g { background: rgba(212,175,55,.1); color: #d4af37; border: 1px solid rgba(212,175,55,.22); }
+  .t-b { background: rgba(70,130,200,.1); color: #6ba3d6; border: 1px solid rgba(70,130,200,.22); }
+  .t-e { background: rgba(46,204,64,.1); color: #2ecc40; border: 1px solid rgba(46,204,64,.22); }
+  .t-o { background: rgba(255,140,0,.1); color: #ffa040; border: 1px solid rgba(255,140,0,.22); }
+  .ev-b { flex: 1; min-width: 0; }
+  .ev-t { font-size: 12px; font-weight: 700; color: #dde1f0; margin-bottom: 3px; line-height: 1.4; }
+  .ev-d { font-size: 11px; color: #7880a0; line-height: 1.5; }
+
+  /* ─── FAMILY OFFICE INSIGHTS ─── */
+  .fo { padding: 9px 0; border-bottom: 1px solid #0d1122; }
+  .fo:last-child { border-bottom: none; }
+  .fo-l { font-size: 9px; font-weight: 700; color: #d4af37; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 3px; }
+  .fo-t { font-size: 11.5px; color: #9298b0; line-height: 1.55; }
+  .fo-t strong { color: #dde1f0; }
+
+  /* ─── TOMORROW GRID ─── */
+  .tgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+  @media (max-width: 400px) { .tgrid { grid-template-columns: 1fr; } }
+  .ti2 { background: #07090f; border: 1px solid #161c30; border-radius: 3px; padding: 8px 10px; }
+  .ti2-time { font-size: 9px; color: #2d3352; margin-bottom: 3px; letter-spacing: .8px; }
+  .ti2-title { font-size: 11.5px; font-weight: 700; color: #dde1f0; margin-bottom: 3px; line-height: 1.3; }
+  .ti2-desc { font-size: 10.5px; color: #7880a0; line-height: 1.45; }
+
+  /* ─── FOOTER ─── */
+  footer { text-align: center; padding: 14px 0 0; font-size: 9.5px; color: #1e2338; letter-spacing: .8px; border-top: 1px solid #131828; line-height: 1.7; }
+</style>
+</head>
+<body>
+
+<!-- TICKER (real data 2026-03-31) -->
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span class="ti"><span class="tn">S&amp;P 500</span><span class="tp">6,343.72</span><span class="td">▼-0.39%</span></span>
+    <span class="ti"><span class="tn">纳斯达克</span><span class="tp">19,752</span><span class="td">▼-0.73%</span></span>
+    <span class="ti"><span class="tn">道琼斯</span><span class="tp">45,217</span><span class="tu">▲+0.11%</span></span>
+    <span class="ti"><span class="tn">恒生</span><span class="tp">24,788</span><span class="tu">▲+0.15%</span></span>
+    <span class="ti"><span class="tn">黄金</span><span class="tp">$4,590</span><span class="tu">▲+0.30%</span></span>
+    <span class="ti"><span class="tn">WTI 原油</span><span class="tp">$101.81</span><span class="td">▼-4.12%</span></span>
+    <span class="ti"><span class="tn">BTC</span><span class="tp">$67,400</span><span class="td">▼-1.20%</span></span>
+    <span class="ti"><span class="tn">美元指数</span><span class="tp">103.5</span><span class="tu">▲+0.22%</span></span>
+    <span class="ti"><span class="tn">10Y UST</span><span class="tp">4.36%</span><span class="td">▼-1bp</span></span>
+    <span class="ti"><span class="tn">USD/CNY</span><span class="tp">7.272</span><span class="nt">─</span></span>
+    <span class="ti"><span class="tn">USD/HKD</span><span class="tp">7.780</span><span class="nt">─</span></span>
+    <!-- duplicate for seamless loop -->
+    <span class="ti"><span class="tn">S&amp;P 500</span><span class="tp">6,343.72</span><span class="td">▼-0.39%</span></span>
+    <span class="ti"><span class="tn">纳斯达克</span><span class="tp">19,752</span><span class="td">▼-0.73%</span></span>
+    <span class="ti"><span class="tn">道琼斯</span><span class="tp">45,217</span><span class="tu">▲+0.11%</span></span>
+    <span class="ti"><span class="tn">恒生</span><span class="tp">24,788</span><span class="tu">▲+0.15%</span></span>
+    <span class="ti"><span class="tn">黄金</span><span class="tp">$4,590</span><span class="tu">▲+0.30%</span></span>
+    <span class="ti"><span class="tn">WTI 原油</span><span class="tp">$101.81</span><span class="td">▼-4.12%</span></span>
+    <span class="ti"><span class="tn">BTC</span><span class="tp">$67,400</span><span class="td">▼-1.20%</span></span>
+    <span class="ti"><span class="tn">美元指数</span><span class="tp">103.5</span><span class="tu">▲+0.22%</span></span>
+    <span class="ti"><span class="tn">10Y UST</span><span class="tp">4.36%</span><span class="td">▼-1bp</span></span>
+    <span class="ti"><span class="tn">USD/CNY</span><span class="tp">7.272</span><span class="nt">─</span></span>
+    <span class="ti"><span class="tn">USD/HKD</span><span class="tp">7.780</span><span class="nt">─</span></span>
+  </div>
+</div>
+
+<header>
+  <div class="hd-brand">锦承家族办公室 · 机密内参</div>
+  <h1>全球投资晚报</h1>
+  <div class="hd-meta"><span class="pulse"></span>2026年3月31日（周二）· 20:30 HKT · Q1 季末收盘</div>
+</header>
+
+<div class="wrap">
+
+  <!-- ALERT -->
+  <div class="alert-bar">
+    ⚠️ <strong>今日风险提示</strong>：Q1 2026 季末收盘，美股全季下跌约 6%，原油高位回落 -4.1%（中东谈判出现新信号），美元走强。季末机构再平衡引发资金流动，港股逆势微涨。下周关注美国 ISM 制造业 PMI 与 Fed 官员表态。
+  </div>
+
+  <!-- 1. 全球市场 -->
+  <div class="card">
+    <div class="ch"><span class="ico">📊</span><h2>全球市场概览</h2><span class="sub">WSJ / Yahoo Finance · 实时</span></div>
+    <div class="cb">
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>资产</th>
+              <th>最新价</th>
+              <th>日涨跌</th>
+              <th>信号</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="an">S&amp;P 500</div><div class="as">美股大盘 · Q1 -6.1%</div></td>
+              <td><span class="pr">6,343.72</span></td>
+              <td><span class="dn">▼ -0.39%</span></td>
+              <td><span class="bdn">季末承压</span></td>
+            </tr>
+            <tr>
+              <td><div class="an">纳斯达克</div><div class="as">科技股 · Q1 -8.2%</div></td>
+              <td><span class="pr">19,752</span></td>
+              <td><span class="dn">▼ -0.73%</span></td>
+              <td><span class="bdn">弱势</span></td>
+            </tr>
+            <tr>
+              <td><div class="an">道琼斯</div><div class="as">蓝筹防御</div></td>
+              <td><span class="pr">45,217</span></td>
+              <td><span class="up">▲ +0.11%</span></td>
+              <td><span class="bup">防御</span></td>
+            </tr>
+            <tr>
+              <td><div class="an">恒生指数</div><div class="as">港股 · 季末回暖</div></td>
+              <td><span class="pr">24,788</span></td>
+              <td><span class="up">▲ +0.15%</span></td>
+              <td><span class="bup">企稳</span></td>
+            </tr>
+            <tr>
+              <td><div class="an">黄金现货</div><div class="as">XAU/USD · 历史高位</div></td>
+              <td><span class="pr">$4,590</span></td>
+              <td><span class="up">▲ +0.30%</span></td>
+              <td><span class="bup">历史高</span></td>
+            </tr>
+            <tr>
+              <td><div class="an">WTI 原油</div><div class="as">大宗商品</div></td>
+              <td><span class="pr">$101.81</span></td>
+              <td><span class="dn">▼ -4.12%</span></td>
+              <td><span class="bdn">回落</span></td>
+            </tr>
+            <tr>
+              <td><div class="an">比特币</div><div class="as">BTC/USD</div></td>
+              <td><span class="pr">$67,400</span></td>
+              <td><span class="dn">▼ -1.20%</span></td>
+              <td><span class="bdn">震荡</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 利率汇率 -->
+  <div class="card">
+    <div class="ch"><span class="ico">💱</span><h2>利率与汇率</h2><span class="sub">TradingEconomics / Fed H.10 · 实时</span></div>
+    <div class="cb">
+      <div class="rgrid">
+        <div class="ri">
+          <div class="rl">10Y 美债收益率</div>
+          <div class="rv">4.36%</div>
+          <div class="rc dn">▼ -1bp · 季末避险</div>
+        </div>
+        <div class="ri">
+          <div class="rl">美元指数 DXY</div>
+          <div class="rv">103.5</div>
+          <div class="rc up">▲ +0.22% · 季末走强</div>
+        </div>
+        <div class="ri">
+          <div class="rl">USD / CNY</div>
+          <div class="rv">7.272</div>
+          <div class="rc nt">在岸参考价</div>
+        </div>
+        <div class="ri">
+          <div class="rl">USD / HKD</div>
+          <div class="rv">7.780</div>
+          <div class="rc nt">联系汇率稳定</div>
+        </div>
+        <div class="ri">
+          <div class="rl">美联储基准利率</div>
+          <div class="rv">4.25%</div>
+          <div class="rc nt">暂停降息观望</div>
+        </div>
+        <div class="ri">
+          <div class="rl">HIBOR 隔夜</div>
+          <div class="rv">4.82%</div>
+          <div class="rc nt">港元流动性稳定</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. 今日要闻 -->
+  <div class="card">
+    <div class="ch"><span class="ico">🔥</span><h2>今日要闻</h2><span class="sub">Bloomberg / CNBC · 实时</span></div>
+    <div class="cb">
+      <div class="ev">
+        <span class="tag t-b">美股</span>
+        <div class="ev-b">
+          <div class="ev-t">Q1 2026 季末收盘：标普跌约 6%，纳指领跌，道指相对抗跌</div>
+          <div class="ev-d">美股第一季度全面下行。标普 500 收跌 6%，纳指跌逾 8%，科技板块承受关税、利率双重压力。道指防御板块凭借能源、工业股相对支撑，季度跌幅约 4%。</div>
+        </div>
+      </div>
+      <div class="ev">
+        <span class="tag t-o">原油</span>
+        <div class="ev-b">
+          <div class="ev-t">WTI 原油单日跌 -4.1% 至 $101.81，中东谈判出现新进展</div>
+          <div class="ev-d">特朗普与伊朗谈判出现积极信号，市场对中东停火预期升温。WTI 大幅回落，但仍维持三位数水平，供给端担忧尚未解除。</div>
+        </div>
+      </div>
+      <div class="ev">
+        <span class="tag t-r">关税</span>
+        <div class="ev-b">
+          <div class="ev-t">美国对华 145% 关税持续实施，贸易博弈走向长期化</div>
+          <div class="ev-d">自 2025 年以来美国对中国出口商品叠加关税已达 145%，中方持续反制。两国尚无实质谈判信号，企业供应链重组压力加大，亚洲出口导向型经济体持续承压。</div>
+        </div>
+      </div>
+      <div class="ev">
+        <span class="tag t-g">美联储</span>
+        <div class="ev-b">
+          <div class="ev-t">鲍威尔：通胀仍高于目标，降息条件尚不成熟</div>
+          <div class="ev-d">鲍威尔 3 月 30 日讲话重申 Fed 将保持数据依赖，当前通胀受能源价格推动高于 2% 目标，在"看到更多进展"之前不会贸然降息，市场降息预期进一步后移至 2026 Q3。</div>
+        </div>
+      </div>
+      <div class="ev">
+        <span class="tag t-b">港股</span>
+        <div class="ev-b">
+          <div class="ev-t">恒生指数 Q1 逆势跑赢，季末收 24,788 微涨 +0.15%</div>
+          <div class="ev-d">港股 Q1 整体表现优于美股，中国 AI 政策红利、科技股重估逻辑仍在。季末收盘 24,788，距全年高点 28,056 约 -12%，外资流入趋势未见明显逆转。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. 家办视角 -->
+  <div class="card">
+    <div class="ch"><span class="ico">🏛️</span><h2>家办视角</h2><span class="sub">FAMILY OFFICE LENS</span></div>
+    <div class="cb">
+      <div class="fo">
+        <div class="fo-l">Q1 季末再平衡</div>
+        <div class="fo-t"><strong>季末流动性风险已过</strong>：机构季末再平衡造成的波动随收盘落定。Q2 资金流向将受制于美联储时间表与中东局势。建议趁季末情绪平稳窗口，审视组合久期与能源敞口。</div>
+      </div>
+      <div class="fo">
+        <div class="fo-l">黄金配置</div>
+        <div class="fo-t"><strong>金价 $4,590 续创历史高位</strong>：地缘风险 + 美元走强背景下黄金表现顽强，已成为本季度最佳资产之一（Q1 +约 18%）。家族办公室保持黄金仓位，视 $4,400 支撑位为增持窗口。</div>
+      </div>
+      <div class="fo">
+        <div class="fo-l">原油回落信号</div>
+        <div class="fo-t"><strong>WTI 单日跌 4% 值得关注</strong>：若中东停火谈判实质推进，油价可能快速回落至 $90 以下。能源配置家族应关注止盈时机，同时警惕地缘反复导致的油价二次冲高风险。</div>
+      </div>
+      <div class="fo">
+        <div class="fo-l">港股机会</div>
+        <div class="fo-t"><strong>Q1 逆势跑赢是结构性信号</strong>：恒指 Q1 跌幅明显小于美股，技术股与 AI 赋能板块资金持续流入。Q2 催化剂关注：中国两会后政策落地节奏、人民币汇率稳定性与港美息差演化。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. 明日关注 -->
+  <div class="card">
+    <div class="ch"><span class="ico">📅</span><h2>明日关注</h2><span class="sub">APRIL 1 · WEDNESDAY</span></div>
+    <div class="cb">
+      <div class="tgrid">
+        <div class="ti2">
+          <div class="ti2-time">21:45 HKT</div>
+          <div class="ti2-title">美国 ISM 制造业 PMI</div>
+          <div class="ti2-desc">关键制造业景气指标。若低于 50 荣枯线，经济衰退预期将升温，对美股与美元构成压力。</div>
+        </div>
+        <div class="ti2">
+          <div class="ti2-time">09:45 HKT</div>
+          <div class="ti2-title">中国 Caixin 制造业 PMI</div>
+          <div class="ti2-desc">预期维持扩张区间。数据若超预期，将强化港股 Q2 走强逻辑，关注出口订单分项。</div>
+        </div>
+        <div class="ti2">
+          <div class="ti2-time">全天</div>
+          <div class="ti2-title">中东局势持续</div>
+          <div class="ti2-desc">停火谈判进展将决定原油走向。若实质性突破，WTI 可能快速回落 $90 以下，关注能源资产敞口。</div>
+        </div>
+        <div class="ti2">
+          <div class="ti2-time">Q2 开盘</div>
+          <div class="ti2-title">机构 Q2 资金部署</div>
+          <div class="ti2-desc">季初机构通常重新部署资金。关注是否有防御→成长风格切换信号，美债收益率方向是关键。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  JINCHENG FAMILY OFFICE · CONFIDENTIAL · FOR AUTHORIZED RECIPIENTS ONLY<br>
+  数据来源：WSJ / Yahoo Finance / TradingEconomics / Investing.com · 本内参仅供内部参考，不构成投资建议
+</footer>
+
+</body>
+</html>
