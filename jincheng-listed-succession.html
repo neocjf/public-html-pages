@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>境内上市家族传承管理咨询系统解决方案 · 锦承家族办公室</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap');
+
+  :root {
+    --gold: #c9a227;
+    --gold-light: #e2c96a;
+    --gold-pale: #f5edcf;
+    --navy: #0a1628;
+    --navy-mid: #1a2d4a;
+    --navy-soft: #243a5e;
+    --ink: #1a1a2e;
+    --ink-soft: #2d3452;
+    --gray: #6b7280;
+    --gray-light: #e5e7eb;
+    --bg: #f8f6f1;
+    --bg-warm: #faf8f3;
+    --white: #ffffff;
+    --red-warn: #b91c1c;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.8;
+    font-size: 15px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 50%, #0d1f3c 100%);
+    color: var(--white);
+    padding: 72px 40px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 60% 40%, rgba(201,162,39,0.12) 0%, transparent 65%),
+                radial-gradient(ellipse at 20% 80%, rgba(201,162,39,0.07) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    border: 1px solid rgba(201,162,39,0.6);
+    color: var(--gold-light);
+    font-size: 11px;
+    letter-spacing: 3px;
+    padding: 5px 18px;
+    border-radius: 2px;
+    margin-bottom: 28px;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.45;
+    margin-bottom: 14px;
+    letter-spacing: 1px;
+  }
+  .hero h1 span { color: var(--gold-light); }
+  .hero-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 1px;
+    margin-bottom: 40px;
+  }
+  .hero-divider {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 36px;
+  }
+  .hero-tags {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .hero-tag {
+    background: rgba(201,162,39,0.12);
+    border: 1px solid rgba(201,162,39,0.3);
+    color: var(--gold-pale);
+    font-size: 12px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+  /* ── SECTION HEADER ── */
+  .section { padding: 56px 0 0; }
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .section-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .section-desc {
+    font-size: 14px;
+    color: var(--gray);
+    margin-bottom: 30px;
+    line-height: 1.7;
+  }
+  .gold-rule {
+    width: 40px;
+    height: 2px;
+    background: var(--gold);
+    margin-bottom: 30px;
+  }
+
+  /* ── DIAGNOSIS GRID ── */
+  .diag-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .diag-card {
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-left: 3px solid var(--red-warn);
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .diag-card .diag-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--red-warn);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .diag-card .diag-icon { font-size: 16px; }
+  .diag-card p { font-size: 13px; color: var(--ink-soft); line-height: 1.7; }
+  .diag-card .law-ref {
+    font-size: 11px;
+    color: var(--gray);
+    margin-top: 8px;
+    font-style: italic;
+  }
+
+  /* ── ROTHSCHILD MODEL ── */
+  .model-box {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    border-radius: 12px;
+    padding: 36px 40px;
+    color: var(--white);
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .model-box::after {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(201,162,39,0.06);
+    pointer-events: none;
+  }
+  .model-box .model-quote {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 18px;
+    color: var(--gold-light);
+    border-left: 3px solid var(--gold);
+    padding-left: 20px;
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+  .model-keys {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .model-key {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(201,162,39,0.2);
+    border-radius: 8px;
+    padding: 18px;
+    text-align: center;
+  }
+  .model-key .key-num {
+    font-size: 28px;
+    font-family: 'Noto Serif SC', serif;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .model-key .key-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.5;
+  }
+
+  /* ── ARCH DIAGRAM ── */
+  .arch-wrap {
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: 12px;
+    padding: 40px 32px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .arch-diagram {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+  .arch-node {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .arch-box {
+    text-align: center;
+    border-radius: 8px;
+    padding: 14px 28px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.5;
+    position: relative;
+  }
+  .arch-box-gold {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-soft) 100%);
+    color: var(--gold-light);
+    border: 1.5px solid var(--gold);
+    min-width: 240px;
+  }
+  .arch-box-navy {
+    background: var(--navy-mid);
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.15);
+    min-width: 220px;
+  }
+  .arch-box-blue {
+    background: #1e3a5f;
+    color: rgba(255,255,255,0.9);
+    border: 1px solid rgba(255,255,255,0.1);
+    min-width: 200px;
+  }
+  .arch-box-warm {
+    background: var(--gold-pale);
+    color: var(--navy);
+    border: 1px solid rgba(201,162,39,0.4);
+    min-width: 180px;
+    font-size: 12px;
+  }
+  .arch-box-trust {
+    background: #f0fdf4;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+    min-width: 180px;
+    font-size: 12px;
+  }
+  .arch-box sub {
+    font-size: 11px;
+    opacity: 0.75;
+    display: block;
+    margin-top: 3px;
+    font-weight: 400;
+  }
+  .arch-arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2px 0;
+  }
+  .arch-arrow-line {
+    width: 2px;
+    height: 24px;
+    background: linear-gradient(180deg, var(--gold) 0%, rgba(201,162,39,0.3) 100%);
+  }
+  .arch-arrow-tip {
+    width: 0; height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid rgba(201,162,39,0.5);
+  }
+  .arch-arrow-label {
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 1px;
+    margin: 3px 0;
+    font-weight: 500;
+  }
+  .arch-split {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    width: 100%;
+  }
+  .arch-split-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+  .arch-split-connector {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    height: 36px;
+    margin: 0;
+  }
+  .arch-split-connector::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 18px;
+    background: rgba(201,162,39,0.5);
+  }
+  .arch-split-connector::after {
+    content: '';
+    position: absolute;
+    top: 18px;
+    left: calc(50% - 100px);
+    width: 200px;
+    height: 2px;
+    background: rgba(201,162,39,0.3);
+  }
+  .arch-split-down {
+    position: absolute;
+    bottom: 0;
+    width: 2px;
+    height: 16px;
+    background: rgba(201,162,39,0.4);
+  }
+  .arch-split-down-left { left: calc(50% - 100px); }
+  .arch-split-down-right { left: calc(50% + 100px - 2px); }
+
+  /* ── MODULES ── */
+  .module-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .module-tab {
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: 10px;
+    padding: 24px 20px;
+    cursor: default;
+    transition: all 0.2s;
+    border-top: 3px solid var(--gold);
+  }
+  .module-tab .tab-num {
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .module-tab .tab-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 16px;
+    color: var(--navy);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .module-tab .tab-desc {
+    font-size: 12px;
+    color: var(--gray);
+    line-height: 1.7;
+  }
+
+  /* ── DETAIL CARDS ── */
+  .detail-card {
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .detail-card-header {
+    background: linear-gradient(90deg, var(--navy) 0%, var(--navy-mid) 100%);
+    padding: 18px 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .detail-card-header .header-icon {
+    width: 32px; height: 32px;
+    background: rgba(201,162,39,0.2);
+    border: 1px solid rgba(201,162,39,0.4);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+  .detail-card-header h3 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 16px;
+    color: var(--white);
+    font-weight: 600;
+  }
+  .detail-card-header .header-sub {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 2px;
+  }
+  .detail-card-body { padding: 28px; }
+
+  /* ── LISTS ── */
+  .feature-list { list-style: none; }
+  .feature-list li {
+    display: flex;
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid #f3f4f6;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .feature-list li:last-child { border-bottom: none; }
+  .feature-list li::before {
+    content: '◆';
+    color: var(--gold);
+    font-size: 8px;
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+  .feature-list li strong { color: var(--navy); font-weight: 600; }
+
+  /* ── TAX TABLE ── */
+  .tax-table-wrap { overflow-x: auto; margin-bottom: 8px; }
+  .tax-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .tax-table thead tr {
+    background: linear-gradient(90deg, var(--navy) 0%, var(--navy-mid) 100%);
+    color: var(--gold-light);
+  }
+  .tax-table thead th {
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    font-size: 12px;
+  }
+  .tax-table tbody tr {
+    border-bottom: 1px solid #f0f0f0;
+    transition: background 0.15s;
+  }
+  .tax-table tbody tr:hover { background: var(--bg-warm); }
+  .tax-table tbody td {
+    padding: 11px 16px;
+    color: var(--ink-soft);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+  .tax-table tbody td:first-child { font-weight: 500; color: var(--navy); }
+  .badge-warn {
+    display: inline-block;
+    background: #fef3c7;
+    color: #92400e;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    border: 1px solid #fde68a;
+  }
+  .badge-ok {
+    display: inline-block;
+    background: #d1fae5;
+    color: #065f46;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    border: 1px solid #a7f3d0;
+  }
+  .badge-caution {
+    display: inline-block;
+    background: #fee2e2;
+    color: #991b1b;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    border: 1px solid #fecaca;
+  }
+
+  /* ── TOOL MATRIX ── */
+  .tool-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  .tool-card {
+    background: var(--bg-warm);
+    border: 1px solid var(--gray-light);
+    border-radius: 8px;
+    padding: 18px;
+  }
+  .tool-card .tool-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .tool-card .tool-yes { color: var(--gray); font-size: 12px; line-height: 1.7; }
+  .tool-card .tool-no {
+    font-size: 11px;
+    color: var(--gray);
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed var(--gray-light);
+    line-height: 1.6;
+  }
+  .tool-card .tool-no::before {
+    content: '⚠ 不能单独解决：';
+    font-weight: 600;
+    color: #d97706;
+  }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px; top: 8px; bottom: 8px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--gold) 0%, rgba(201,162,39,0.2) 100%);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 28px;
+    padding-left: 24px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -22px; top: 6px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--bg);
+    box-shadow: 0 0 0 2px var(--gold);
+  }
+  .timeline-item .time-label {
+    font-size: 11px;
+    color: var(--gold);
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+  }
+  .timeline-item .time-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .timeline-item .time-items {
+    list-style: none;
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+  .timeline-item .time-items li::before {
+    content: '· ';
+    color: var(--gold);
+  }
+  .priority-badge {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 10px;
+    border-radius: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .p5 { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+  .p4 { background: #fff7ed; color: #9a3412; border: 1px solid #fed7aa; }
+  .p3 { background: #fefce8; color: #854d0e; border: 1px solid #fde68a; }
+
+  /* ── JINCHENG ROLE ── */
+  .role-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  .role-card {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    border-radius: 10px;
+    padding: 22px;
+    color: var(--white);
+  }
+  .role-card .role-icon { font-size: 24px; margin-bottom: 10px; }
+  .role-card .role-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gold-light);
+    margin-bottom: 8px;
+  }
+  .role-card .role-desc {
+    font-size: 12px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+  }
+
+  /* ── WARNING BOX ── */
+  .warn-box {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-left: 4px solid #f59e0b;
+    border-radius: 8px;
+    padding: 18px 22px;
+    margin: 24px 0;
+  }
+  .warn-box .warn-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #92400e;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .warn-box p { font-size: 13px; color: #78350f; line-height: 1.75; }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.45);
+    text-align: center;
+    padding: 40px 24px;
+    margin-top: 64px;
+    font-size: 12px;
+    line-height: 1.9;
+  }
+  .footer .footer-logo {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 16px;
+    color: var(--gold-light);
+    margin-bottom: 12px;
+  }
+  .footer .footer-divider {
+    width: 40px;
+    height: 1px;
+    background: rgba(201,162,39,0.3);
+    margin: 14px auto;
+  }
+
+  /* ── SEPARATOR ── */
+  .section-sep {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gray-light), transparent);
+    margin: 48px 0 0;
+  }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 22px; }
+    .diag-grid, .module-tabs, .model-keys, .tool-grid, .role-grid { grid-template-columns: 1fr; }
+    .arch-box { min-width: unset; padding: 12px 16px; }
+    .arch-split { flex-direction: column; align-items: center; }
+    .arch-split-connector::after { display: none; }
+    .arch-split-connector::before { height: 30px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">Jincheng Family Office · 锦承家族办公室</div>
+  <h1>境内上市家族<br><span>控制权传承与税务安排</span><br>系统解决方案</h1>
+  <p class="hero-sub">锦承家族办公室 · 家族传承管理咨询系统解决方案提供商</p>
+  <div class="hero-divider"></div>
+  <div class="hero-tags">
+    <span class="hero-tag">A股上市公司</span>
+    <span class="hero-tag">罗斯柴尔德治理模式</span>
+    <span class="hero-tag">控制权代际传承</span>
+    <span class="hero-tag">税务节点规划</span>
+    <span class="hero-tag">家族宪章</span>
+    <span class="hero-tag">家族委员会</span>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="container">
+
+  <!-- SECTION 1: 问题诊断 -->
+  <div class="section">
+    <p class="section-label">Section 01 · Problem Diagnosis</p>
+    <h2 class="section-title">继承法的四大致命风险</h2>
+    <p class="section-desc">《民法典》继承编的法定分割原则，是上市家族控制权最直接的威胁来源。每传一代，若无系统性治理架构，股权将持续被动稀释，控制权终将分崩。</p>
+    <div class="gold-rule"></div>
+
+    <div class="diag-grid">
+      <div class="diag-card">
+        <div class="diag-title"><span class="diag-icon">⚖️</span>法定继承强制分割</div>
+        <p>多个继承人依《民法典》第1130条平等分割原则，强制均分股权，造成持股碎片化，一致行动关系瓦解。</p>
+        <p class="law-ref">《民法典》第1130条：同一顺序继承人继承遗产的份额，一般应当均等。</p>
+      </div>
+      <div class="diag-card">
+        <div class="diag-title"><span class="diag-icon">💔</span>婚姻风险传导</div>
+        <p>子女离婚，上市股权可能被认定为夫妻共同财产，分割给非家族成员，导致控制权外溢，无法追回。</p>
+        <p class="law-ref">《民法典》第1062条：婚姻关系存续期间所得财产一般为夫妻共有财产。</p>
+      </div>
+      <div class="diag-card">
+        <div class="diag-title"><span class="diag-icon">📉</span>多代持续稀释</div>
+        <p>代代均分，每传一代控制比例折半。两代之后，若无集中治理安排，控制权将跌破维持表决优势的最低线。</p>
+        <p class="law-ref">示例：创始人持股40%，两代均分后，每人持股可能降至10%以下。</p>
+      </div>
+      <div class="diag-card">
+        <div class="diag-title"><span class="diag-icon">🚸</span>无行为能力继承人</div>
+        <p>未成年子孙或无行为能力成员直接继承上市股权，监护人干预导致投票权混乱，影响上市公司治理稳定。</p>
+        <p class="law-ref">涉及重大事项表决时，法定代理人行使权利，家族意志难以统一执行。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-sep"></div>
+
+  <!-- SECTION 2: 罗斯柴尔德模式 -->
+  <div class="section">
+    <p class="section-label">Section 02 · Model Reference</p>
+    <h2 class="section-title">罗斯柴尔德家族治理的核心逻辑</h2>
+    <p class="section-desc">罗斯柴尔德家族200年不分裂的根本，不是"信托"或"遗嘱"，而是通过系统性制度安排，实现<strong>治理权与所有权的彻底分离</strong>。其三大核心设计经适配后，可在A股合规框架下落地。</p>
+    <div class="gold-rule"></div>
+
+    <div class="model-box">
+      <div class="model-quote">
+        「让所有人成为受益人，把治理权留在家族机制里」<br>
+        — 罗斯柴尔德家族治理精髓
+      </div>
+      <div class="model-keys">
+        <div class="model-key">
+          <div class="key-num">01</div>
+          <div class="key-label">控制权与所有权分离<br><small style="opacity:0.6;">家族成员持有收益权，不直接持有投票权</small></div>
+        </div>
+        <div class="model-key">
+          <div class="key-num">02</div>
+          <div class="key-label">家族委员会集体行权<br><small style="opacity:0.6;">治理权留在制度层面，非个人单独行使</small></div>
+        </div>
+        <div class="model-key">
+          <div class="key-num">03</div>
+          <div class="key-label">限制转让与优先购买<br><small style="opacity:0.6;">股份不得外流，优先由家族内部承接</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-sep"></div>
+
+  <!-- SECTION 3: 架构图 -->
+  <div class="section">
+    <p class="section-label">Section 03 · Structure Design</p>
+    <h2 class="section-title">A股合规传承架构设计</h2>
+    <p class="section-desc">以家族有限合伙平台为核心，实现治理权（GP）与收益权（LP）的制度分离；通过家族委员会统一行权，隔断代际法定继承分割路径。</p>
+    <div class="gold-rule"></div>
+
+    <div class="arch-wrap">
+      <div class="arch-diagram">
+
+        <!-- 家族委员会 -->
+        <div class="arch-node">
+          <div class="arch-box arch-box-gold">
+            家族委员会（Family Council）
+            <sub>战略决策核心 · 家族宪章执行机构</sub>
+          </div>
+        </div>
+
+        <div class="arch-arrow">
+          <div class="arch-arrow-line"></div>
+          <div class="arch-arrow-label">任命 · 授权 · 治理</div>
+          <div class="arch-arrow-tip"></div>
+        </div>
+
+        <!-- 家族持股平台 -->
+        <div class="arch-node">
+          <div class="arch-box arch-box-navy">
+            家族有限合伙持股平台
+            <sub>GP：家族管理公司（执行事务合伙人·持治理权）｜LP：家族成员（仅享收益权）</sub>
+          </div>
+        </div>
+
+        <div class="arch-arrow">
+          <div class="arch-arrow-line"></div>
+          <div class="arch-arrow-label">控股 · 统一行权</div>
+          <div class="arch-arrow-tip"></div>
+        </div>
+
+        <!-- 上市公司 -->
+        <div class="arch-node">
+          <div class="arch-box arch-box-gold" style="min-width:260px;">
+            境内 A 股上市公司
+            <sub>实控人认定：家族管理公司 / 接班核心成员（保持连续性）</sub>
+          </div>
+        </div>
+
+        <!-- 分叉连接器 -->
+        <div class="arch-split-connector" style="width:440px; max-width:100%; position:relative; height:40px; margin-top:4px;">
+          <div style="position:absolute;left:50%;transform:translateX(-50%);top:0;width:2px;height:20px;background:rgba(201,162,39,0.5);"></div>
+          <div style="position:absolute;top:20px;left:calc(50% - 110px);width:220px;height:2px;background:rgba(201,162,39,0.35);"></div>
+          <div style="position:absolute;top:20px;left:calc(50% - 110px);width:2px;height:18px;background:rgba(201,162,39,0.4);"></div>
+          <div style="position:absolute;top:20px;right:calc(50% - 112px);width:2px;height:18px;background:rgba(201,162,39,0.4);"></div>
+        </div>
+
+        <!-- 接班人 / 非接班人 -->
+        <div class="arch-split" style="margin-top:2px;">
+          <div class="arch-split-item">
+            <div class="arch-box arch-box-warm" style="min-width:190px;">
+              接班成员（经营层）
+              <sub>进入公司管理/董事会<br>逐步承接 GP 治理权</sub>
+            </div>
+          </div>
+          <div class="arch-split-item">
+            <div class="arch-box arch-box-warm" style="min-width:190px;">
+              非接班成员（受益层）
+              <sub>仅持有 LP 份额<br>依家族宪章分配收益</sub>
+            </div>
+          </div>
+        </div>
+
+        <div class="arch-arrow" style="margin-top:12px;">
+          <div class="arch-arrow-line"></div>
+          <div class="arch-arrow-label">现金流 · 非股权资产保护</div>
+          <div class="arch-arrow-tip"></div>
+        </div>
+
+        <!-- 家族信托 -->
+        <div class="arch-node">
+          <div class="arch-box arch-box-trust" style="min-width:260px;">
+            家族信托（非上市资产层）
+            <sub>承接：现金 · 保险金 · 境外资产 · 非经营性财富</sub>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="warn-box" style="margin-top:28px;margin-bottom:0;">
+        <div class="warn-title">⚠ A股合规要点</div>
+        <p>上市股权留在家族有限合伙平台，<strong>不装入境内家族信托</strong>（以避免信披、控制权认定、减持规则等复杂问题）。家族信托仅承接非上市资产及现金流层。持股结构调整前，须前置取得律师意见及券商/保荐机构确认。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-sep"></div>
+
+  <!-- SECTION 4: 三大模块 -->
+  <div class="section">
+    <p class="section-label">Section 04 · Three Core Modules</p>
+    <h2 class="section-title">三大模块方案详解</h2>
+    <p class="section-desc">家族治理、控制权传承、财富隔离三大模块协同运作，形成完整的代际传承闭环。</p>
+    <div class="gold-rule"></div>
+
+    <div class="module-tabs">
+      <div class="module-tab">
+        <div class="tab-num">MODULE 01</div>
+        <div class="tab-title">家族治理结构</div>
+        <div class="tab-desc">建立家族委员会，制定家族宪章，确立接班机制与争议解决规则，以制度代替血缘排序。</div>
+      </div>
+      <div class="module-tab">
+        <div class="tab-num">MODULE 02</div>
+        <div class="tab-title">控制权传承安排</div>
+        <div class="tab-desc">持股平台集中治理权，GP/LP 分离，接班路径制度化，一致行动关系稳固延续。</div>
+      </div>
+      <div class="module-tab">
+        <div class="tab-num">MODULE 03</div>
+        <div class="tab-title">财富隔离与保护</div>
+        <div class="tab-desc">非上市资产信托化，婚姻风险前置隔断，非接班成员以保险等工具进行权益补偿。</div>
+      </div>
+    </div>
+
+    <!-- 模块1详细 -->
+    <div class="detail-card">
+      <div class="detail-card-header">
+        <div class="header-icon">🏛</div>
+        <div>
+          <h3>模块一：家族治理结构设计</h3>
+          <div class="header-sub">Family Governance Architecture</div>
+        </div>
+      </div>
+      <div class="detail-card-body">
+        <ul class="feature-list">
+          <li><strong>家族委员会（Family Council）</strong>：由全体成员选出5-7人，设主席（创始人或首席接班人）；职权涵盖批准接班人、制定分红规则、审议股权内部转让；重大事项2/3多数决，日常事项简单多数决；每年至少两次正式会议并形成决议记录。</li>
+          <li><strong>家族宪章核心条款</strong>：明确股份不得向家族成员以外转让（限制转让条款）；成员离婚时，股权由家族持股平台回购，以等价现金置换（婚姻风险隔断）；接班人须通过家族委员会认证，不以血缘排序为唯一标准。</li>
+          <li><strong>接班人培育路径</strong>：接班成员从基层经营历练 → 进入管理层 → 委员会认证 → 逐步承接GP治理权，形成可验证的能力授权路径，而非一次性财产分配。</li>
+          <li><strong>争议解决机制</strong>：家族内部调解 → 家族委员会裁决 → 外部独立调解人（最后手段）；优先通过治理机制内部解决，避免诉诸司法导致控制权信息公开化。</li>
+          <li><strong>非接班成员边界</strong>：以LP份额享有收益权，不参与经营决策，不持有投票权；家族宪章明确其权利边界，减少未来争议。</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 模块2详细 -->
+    <div class="detail-card">
+      <div class="detail-card-header">
+        <div class="header-icon">🏗</div>
+        <div>
+          <h3>模块二：控制权传承与持股安排</h3>
+          <div class="header-sub">Shareholding Platform & Control Transfer</div>
+        </div>
+      </div>
+      <div class="detail-card-body">
+        <ul class="feature-list">
+          <li><strong>有限合伙持股平台结构</strong>：创始人担任GP（执行事务合伙人），掌握全部表决权；家族成员各方担任LP（有限合伙人），仅享受收益权。LP份额在家族内部可无偿赠与，不触发公开市场减持。</li>
+          <li><strong>接班路径制度化</strong>：接班人从LP逐步升为GP，或由家族管理公司更换执行负责人；创始人退出GP时，由接班子女代替，控制权不跨家族外溢，实控人认定连续性得以保持。</li>
+          <li><strong>一致行动协议</strong>：全体家族持股成员签署一致行动协议，须在上市公司年报中持续披露；协议变更须前置公告，确保监管合规与市场预期稳定。</li>
+          <li><strong>董事席位设计</strong>：关键董事席位通过公司章程与股东协议固定，由家族委员会提名权加以保障，防止因持股变化而失去董事会控制。</li>
+          <li><strong>紧急替代机制</strong>：家族宪章明确创始人突发情况下的临时授权路径，避免因创始人突发失能导致控制权真空。</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 工具适配矩阵 -->
+    <div class="detail-card">
+      <div class="detail-card-header">
+        <div class="header-icon">🛠</div>
+        <div>
+          <h3>模块三：财富隔离工具适配</h3>
+          <div class="header-sub">Wealth Protection Tool Matrix</div>
+        </div>
+      </div>
+      <div class="detail-card-body">
+        <div class="tool-grid">
+          <div class="tool-card">
+            <div class="tool-title">🏢 家族有限合伙持股平台</div>
+            <div class="tool-yes">✔ 集中持股，治理权与收益权分离<br>✔ 管理权与收益权一定程度分层<br>✔ 家族成员统一行权路径</div>
+            <div class="tool-no">变更时须评估实控人认定影响、一致行动关系变化、信披义务</div>
+          </div>
+          <div class="tool-card">
+            <div class="tool-title">🔐 家族信托（非上市资产）</div>
+            <div class="tool-yes">✔ 现金、保险金、境外资产长期保护<br>✔ 受益分配节奏可控<br>✔ 未成年人、婚姻、挥霍安排</div>
+            <div class="tool-no">上市股权不建议直接装入，避免触发A股信披与控制权认定问题</div>
+          </div>
+          <div class="tool-card">
+            <div class="tool-title">💍 婚前/婚内协议</div>
+            <div class="tool-yes">✔ 婚姻风险前置隔断<br>✔ 家族财富与经营性资产边界明确<br>✔ 与持股平台回购条款协同保障</div>
+            <div class="tool-no">不能单独解决控制权安排与上市监管问题</div>
+          </div>
+          <div class="tool-card">
+            <div class="tool-title">🛡 保险（大额人寿/年金）</div>
+            <div class="tool-yes">✔ 非接班成员财富补偿与传承流动性<br>✔ 养老、教育、应急现金流保障<br>✔ 避免非接班成员因财富需求争夺股权</div>
+            <div class="tool-no">不能解决上市公司控制权交接与投票权安排</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-sep"></div>
+
+  <!-- SECTION 5: 税务安排 -->
+  <div class="section">
+    <p class="section-label">Section 05 · Tax Planning</p>
+    <h2 class="section-title">关键税务节点与规划策略</h2>
+    <p class="section-desc">代际传承架构的税务规划，核心目标是：减少误判、减少重复征税、减少提前触发、减少后续争议。当前无遗产税窗口是关键战略时间点。</p>
+    <div class="gold-rule"></div>
+
+    <div class="detail-card">
+      <div class="detail-card-header">
+        <div class="header-icon">📊</div>
+        <div>
+          <h3>各阶段税务分析</h3>
+          <div class="header-sub">Tax Analysis by Stage</div>
+        </div>
+      </div>
+      <div class="detail-card-body">
+        <div class="tax-table-wrap">
+          <table class="tax-table">
+            <thead>
+              <tr>
+                <th>阶段</th>
+                <th>关键税务事件</th>
+                <th>税负</th>
+                <th>风险提示</th>
+                <th>建议</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>① 平台搭建</td>
+                <td>个人以现金出资设立有限合伙</td>
+                <td><span class="badge-ok">暂不触发</span></td>
+                <td>若以已增值上市股权出资，可能视同转让，按市价征20%个税</td>
+                <td>以现金出资；股权出资须前置税务分析</td>
+              </tr>
+              <tr>
+                <td>② 持有阶段</td>
+                <td>上市公司分红</td>
+                <td><span class="badge-warn">20% 个税</span></td>
+                <td>合伙企业穿透征税，自然人合伙人按20%个税，与直接持股相同</td>
+                <td>无优化空间，但结构可控；可设计分红节奏</td>
+              </tr>
+              <tr>
+                <td>③ 代际传承</td>
+                <td>LP份额无偿赠与（父母→子女）</td>
+                <td><span class="badge-ok">当前无遗产税/赠与税</span></td>
+                <td>若有对价，税务局可能认定为转让，按差价征20%个税；赠与须留存充分文件</td>
+                <td>在无遗产税窗口期，以无偿赠与方式完成LP份额代际分配</td>
+              </tr>
+              <tr>
+                <td>④ 减持阶段</td>
+                <td>通过平台减持上市股份</td>
+                <td><span class="badge-warn">20% 个税</span></td>
+                <td>平台减持不豁免大股东减持限制；须严格遵守减持新规</td>
+                <td>减持计划须前置与律师、券商协调；窗口期与预披露合规</td>
+              </tr>
+              <tr>
+                <td>⑤ 境外资产</td>
+                <td>境外信托/账户收益</td>
+                <td><span class="badge-caution">视居民身份</span></td>
+                <td>家族成员若涉及多税收居民身份，须专项分析；CRS信息互换已覆盖主要司法管辖区</td>
+                <td>境内上市股权不宜放入境外信托；境外资产须单独评估税务归属</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="detail-card" style="margin-top:20px;">
+      <div class="detail-card-header">
+        <div class="header-icon">🎯</div>
+        <div>
+          <h3>核心税务战略：利用无遗产税窗口</h3>
+          <div class="header-sub">Strategic Tax Window — No Inheritance Tax</div>
+        </div>
+      </div>
+      <div class="detail-card-body">
+        <ul class="feature-list">
+          <li><strong>当前政策机遇</strong>：中国目前无遗产税、无赠与税，为代际财富转移提供了低成本路径。此窗口期不应被动等待，应主动规划提前完成关键转移。</li>
+          <li><strong>操作路径</strong>：在家族有限合伙平台建立后，创始人将LP份额逐步以无偿赠与方式转让给子女，实现法律所有权代际分配，同时保持GP治理权不变。</li>
+          <li><strong>时间优先级</strong>：子女未婚前完成的LP份额赠与，不计入婚后共同财产（须配合婚前协议留存文件）；赠与时子女年龄与婚姻状态是关键节点。</li>
+          <li><strong>不触发继承法分割</strong>：LP份额代际分配通过赠与完成，不依赖继承法法定分配，根本上切断法定继承均分路径。</li>
+          <li><strong>文件留存要求</strong>：赠与协议、公证文件、税务备案须完整留存，以备税务机关后续核查。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-sep"></div>
+
+  <!-- SECTION 6: 推进节奏 -->
+  <div class="section">
+    <p class="section-label">Section 06 · Implementation Roadmap</p>
+    <h2 class="section-title">分步推进路径</h2>
+    <p class="section-desc">不追求一次性做满架构，先处理高风险节点，再逐步完善工具层。整体规划，分步实施，要事优先。</p>
+    <div class="gold-rule"></div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="time-label">第一步 · 立即启动</div>
+        <div class="time-title">现状梳理与风险体检 <span class="priority-badge p5">优先级 ★★★★★</span></div>
+        <ul class="time-items">
+          <li>家族持股结构完整穿透（直接持股 / 平台 / 代持清查）</li>
+          <li>婚姻风险评估（子女婚姻状况、配偶职业背景）</li>
+          <li>一致行动关系梳理（现有协议是否完整有效）</li>
+          <li>初步税务与监管风险体检</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="time-label">第二步 · 3个月内</div>
+        <div class="time-title">家族治理基础框架 <span class="priority-badge p4">优先级 ★★★★</span></div>
+        <ul class="time-items">
+          <li>家族委员会章程起草与成员确认</li>
+          <li>家族宪章核心条款框架确定（限制转让、接班标准、离婚回购）</li>
+          <li>接班路径与非接班成员权益初步共识</li>
+          <li>婚前/婚内协议同步评估</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="time-label">第三步 · 6个月内</div>
+        <div class="time-title">持股平台设计与合规审查 <span class="priority-badge p4">优先级 ★★★★</span></div>
+        <ul class="time-items">
+          <li>有限合伙持股平台法律架构设计</li>
+          <li>前置取得律师意见：实控人认定影响、一致行动关系变化评估</li>
+          <li>配合券商/保荐机构：信息披露规划与时间窗口安排</li>
+          <li>平台设立与存量持股过渡方案</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="time-label">第四步 · 12个月内</div>
+        <div class="time-title">LP份额代际赠与与非上市资产保护 <span class="priority-badge p3">优先级 ★★★</span></div>
+        <ul class="time-items">
+          <li>LP份额分批无偿赠与（趁无遗产税窗口，配合赠与协议与公证）</li>
+          <li>非上市资产（现金、保险金）装入家族信托</li>
+          <li>大额人寿保险配置（非接班成员财富补偿）</li>
+          <li>境外资产税务居民身份评估（如有）</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="time-label">持续推进</div>
+        <div class="time-title">家族治理迭代与接班人培育 <span class="priority-badge p3">优先级 ★★★</span></div>
+        <ul class="time-items">
+          <li>家族宪章每3-5年迭代更新</li>
+          <li>接班人经营历练路径监督与评估</li>
+          <li>年度家族委员会正式会议</li>
+          <li>监管环境变化（如遗产税立法）的应急预案滚动更新</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-sep"></div>
+
+  <!-- SECTION 7: 锦承角色 -->
+  <div class="section">
+    <p class="section-label">Section 07 · Jincheng Role</p>
+    <h2 class="section-title">锦承家族办公室的服务定位</h2>
+    <p class="section-desc">从治理顾问到长期陪伴，锦承以独立、专业的视角，协同法律、税务、信托各方，为家族提供系统性传承管理支持。</p>
+    <div class="gold-rule"></div>
+
+    <div class="role-grid">
+      <div class="role-card">
+        <div class="role-icon">🏛</div>
+        <div class="role-title">家族治理顾问</div>
+        <div class="role-desc">设计家族委员会结构、家族宪章、接班路径与争议解决机制，将治理从家务共识升级为制度安排。</div>
+      </div>
+      <div class="role-card">
+        <div class="role-icon">📐</div>
+        <div class="role-title">财富规划统筹</div>
+        <div class="role-desc">信托、保险、婚姻协议、持股平台等工具的整合配置，避免单一工具包装成总解法，确保结构协同。</div>
+      </div>
+      <div class="role-card">
+        <div class="role-icon">🔗</div>
+        <div class="role-title">多方协调角色</div>
+        <div class="role-desc">对接券商/保荐机构、证券律师、税务顾问、信托公司，统筹监管合规与文件落地，减少多方摩擦。</div>
+      </div>
+      <div class="role-card">
+        <div class="role-icon">♾</div>
+        <div class="role-title">长期传承陪伴</div>
+        <div class="role-desc">家族宪章迭代、接班人培育监督、政策环境变化预警（如遗产税立法动向），持续守护家族传承目标。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 合规提示 -->
+  <div class="warn-box" style="margin-top:48px;">
+    <div class="warn-title">⚠ 重要合规声明</div>
+    <p>
+      本方案为治理与传承规划框架，<strong>不替代专项证券法律意见</strong>。凡涉及实际控制人认定变化、持股结构调整、一致行动关系、减持安排、信息披露义务的事项，须在取得律师书面意见及券商/保荐机构确认后方可实施。对上市股权的任何安排，不得被认定为变相绕过限售期、减持规则或实际控制人认定。本方案所涉税务分析基于现行法规，不承诺零税负或特定税收优惠，建议配合专业税务顾问实施。
+    </p>
+  </div>
+
+</div><!-- /container -->
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-logo">锦承家族办公室</div>
+  <div>致力于为华人家族提供境内外全方位的传承规划服务</div>
+  <div class="footer-divider"></div>
+  <div>本方案为初步沟通简报，具体架构须结合家族实际情况与需求综合确定。</div>
+  <div>本方案仅供内部参考，请勿对外传阅。</div>
+  <div style="margin-top:12px; font-size:11px; opacity:0.4;">© 2026 锦承家族办公室 · Jincheng Family Office · All rights reserved</div>
+</div>
+
+</body>
+</html>
