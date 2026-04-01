@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>锦承家办·家族传承内参 2026-04-01</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    background: #07090f;
+    color: #d4d8e8;
+    font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+    min-width: 320px;
+  }
+  .ticker-wrap {
+    background: #050709;
+    border-bottom: 1px solid #d4af37;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 5px 0;
+    font-size: 10.5px;
+    font-family: 'SF Mono', 'Courier New', monospace;
+  }
+  .ticker-inner { display: inline-block; animation: ticker-scroll 55s linear infinite; }
+  @keyframes ticker-scroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+  .ti { display: inline-block; margin: 0 22px; }
+  .tn { color: #666c88; margin-right: 5px; }
+  .tp { color: #dde1f0; margin-right: 4px; }
+  .tu { color: #2ecc40; }
+  .td { color: #ff4136; }
+  header {
+    background: linear-gradient(160deg, #080c1a 0%, #111840 50%, #080c1a 100%);
+    border-bottom: 2px solid #d4af37;
+    padding: 22px 20px 18px;
+    text-align: center;
+  }
+  .hd-brand { font-size: 9.5px; color: #d4af37; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 8px; }
+  header h1 { font-size: 20px; font-weight: 700; color: #f0e8c4; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .hd-sub { font-size: 11.5px; color: #c2a030; margin-bottom: 5px; font-style: italic; }
+  .hd-meta { font-size: 10px; color: #7880a0; letter-spacing: 1px; }
+  .pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #d4af37; margin-right: 5px; vertical-align: middle; animation: blink 2s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+  .q2-banner {
+    background: linear-gradient(90deg, #0c1020, #141e38, #0c1020);
+    border: 1px solid #d4af37;
+    border-left: 4px solid #d4af37;
+    margin: 0;
+    padding: 10px 16px;
+    text-align: center;
+    font-size: 11px;
+    color: #d4af37;
+    letter-spacing: 1.5px;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 16px 12px 52px; }
+  .card { background: #0c1020; border: 1px solid #1e2448; border-radius: 5px; margin-bottom: 14px; overflow: hidden; }
+  .ch { background: #0e1428; border-bottom: 1px solid #1e2448; padding: 9px 14px; display: flex; align-items: center; gap: 8px; }
+  .ch .ico { font-size: 13px; flex-shrink: 0; }
+  .ch h2 { font-size: 10px; font-weight: 700; color: #d4af37; letter-spacing: 2px; text-transform: uppercase; }
+  .ch .sub { margin-left: auto; font-size: 9px; color: #3d4870; letter-spacing: 1px; }
+  .cb { padding: 12px 14px; }
+  .section-label { font-size: 9px; color: #d4af37; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 7px; border-bottom: 1px solid #1e2448; padding-bottom: 4px; }
+  .item { padding: 8px 0; border-bottom: 1px solid #111630; display: flex; gap: 10px; }
+  .item:last-child { border-bottom: none; padding-bottom: 0; }
+  .item-dot { flex-shrink: 0; width: 5px; height: 5px; border-radius: 50%; background: #d4af37; margin-top: 6px; }
+  .item-body { flex: 1; }
+  .item-title { font-size: 12.5px; font-weight: 600; color: #e8eaf5; line-height: 1.4; margin-bottom: 3px; }
+  .item-desc { font-size: 11.5px; color: #8a93b8; line-height: 1.5; }
+  .item-tag { display: inline-block; background: rgba(212,175,55,.1); color: #c9a227; border: 1px solid rgba(212,175,55,.2); border-radius: 2px; padding: 1px 6px; font-size: 9.5px; margin-top: 4px; }
+  .item-tag-blue { display: inline-block; background: rgba(80,130,240,.1); color: #6490e0; border: 1px solid rgba(80,130,240,.2); border-radius: 2px; padding: 1px 6px; font-size: 9.5px; margin-top: 4px; }
+  .highlight-box {
+    background: rgba(212,175,55,.06);
+    border: 1px solid rgba(212,175,55,.2);
+    border-radius: 4px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+  }
+  .hb-title { font-size: 11px; font-weight: 700; color: #d4af37; margin-bottom: 5px; }
+  .hb-body { font-size: 11.5px; color: #a8b2cc; line-height: 1.6; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 4px; }
+  .g2item { background: #07090f; border: 1px solid #1a2038; border-radius: 3px; padding: 9px 10px; }
+  .g2-label { font-size: 9px; color: #5a6488; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 3px; }
+  .g2-val { font-size: 13px; font-weight: 700; color: #e8eaf5; }
+  .g2-sub { font-size: 10px; color: #6a7398; margin-top: 2px; }
+  .g2-up { color: #2ecc40; }
+  .g2-dn { color: #ff4136; }
+  .action-list { list-style: none; }
+  .action-list li { padding: 7px 0; border-bottom: 1px solid #111630; display: flex; align-items: flex-start; gap: 10px; font-size: 12px; color: #c8ccdc; }
+  .action-list li:last-child { border-bottom: none; }
+  .action-num { flex-shrink: 0; width: 18px; height: 18px; border-radius: 50%; background: linear-gradient(135deg, #7a5c10, #d4af37); color: #07090f; font-size: 9px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+  thead tr { border-bottom: 1px solid #1e2448; }
+  th { color: #4a5478; font-weight: 600; font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; padding: 5px 8px; text-align: left; }
+  th:not(:first-child) { text-align: right; }
+  tbody tr { border-bottom: 1px solid #0d1020; }
+  tbody tr:last-child { border-bottom: none; }
+  td { padding: 7px 8px; color: #c0c4d8; }
+  td:not(:first-child) { text-align: right; font-family: 'SF Mono','Courier New',monospace; }
+  .td-name { font-weight: 600; color: #e0e2ef; }
+  .td-up { color: #2ecc40; font-weight: 700; }
+  .td-dn { color: #ff4136; font-weight: 700; }
+  .insight-box {
+    background: #070a14;
+    border-left: 3px solid #d4af37;
+    padding: 9px 12px;
+    margin-bottom: 9px;
+    font-size: 11.5px;
+    color: #a8b2cc;
+    line-height: 1.6;
+  }
+  .insight-box strong { color: #d4c080; }
+  footer {
+    text-align: center;
+    padding: 20px 16px 30px;
+    border-top: 1px solid #141830;
+    font-size: 10px;
+    color: #3d4460;
+    line-height: 1.8;
+  }
+  footer .brand { color: #7a6020; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span class="ti"><span class="tn">S&P500</span><span class="tp">5,611</span><span class="td">▼ −1.2%</span></span>
+    <span class="ti"><span class="tn">纳斯达克</span><span class="tp">17,420</span><span class="td">▼ −0.9%</span></span>
+    <span class="ti"><span class="tn">恒生指数</span><span class="tp">23,218</span><span class="tu">▲ +0.4%</span></span>
+    <span class="ti"><span class="tn">WTI原油</span><span class="tp">USD 85.4</span><span class="td">▲ +2.1% (伊朗局势)</span></span>
+    <span class="ti"><span class="tn">黄金</span><span class="tp">USD 3,142</span><span class="tu">▲ +0.6%</span></span>
+    <span class="ti"><span class="tn">USD/HKD</span><span class="tp">7.778</span></span>
+    <span class="ti"><span class="tn">USD/CNH</span><span class="tp">7.241</span></span>
+    <span class="ti"><span class="tn">港股通南向</span><span class="tp">净买入 +HKD 8.2B</span><span class="tu">强势流入</span></span>
+    <!-- repeat for ticker loop -->
+    <span class="ti"><span class="tn">S&P500</span><span class="tp">5,611</span><span class="td">▼ −1.2%</span></span>
+    <span class="ti"><span class="tn">纳斯达克</span><span class="tp">17,420</span><span class="td">▼ −0.9%</span></span>
+    <span class="ti"><span class="tn">恒生指数</span><span class="tp">23,218</span><span class="tu">▲ +0.4%</span></span>
+    <span class="ti"><span class="tn">WTI原油</span><span class="tp">USD 85.4</span><span class="td">▲ +2.1% (伊朗局势)</span></span>
+    <span class="ti"><span class="tn">黄金</span><span class="tp">USD 3,142</span><span class="tu">▲ +0.6%</span></span>
+    <span class="ti"><span class="tn">USD/HKD</span><span class="tp">7.778</span></span>
+    <span class="ti"><span class="tn">USD/CNH</span><span class="tp">7.241</span></span>
+    <span class="ti"><span class="tn">港股通南向</span><span class="tp">净买入 +HKD 8.2B</span><span class="tu">强势流入</span></span>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="hd-brand">锦承家办 · 家族传承内参</div>
+  <h1>Q2开局·家族财富新布局</h1>
+  <div class="hd-sub">全球避险情绪升温，高净值家庭的应对框架</div>
+  <div class="hd-meta"><span class="pulse"></span>2026年4月1日（星期三）&nbsp;·&nbsp;香港时间 08:00</div>
+</header>
+
+<!-- Q2 BANNER -->
+<div class="q2-banner">🔔&nbsp;&nbsp;今日为2026年第二季度首个交易日 — 季初资产再平衡窗口，关注政策变量与地缘风险</div>
+
+<div class="wrap">
+
+  <!-- 1. 宏观环境 -->
+  <div class="card">
+    <div class="ch"><span class="ico">🌐</span><h2>宏观环境速览</h2><span class="sub">MACRO · Q2 OPEN</span></div>
+    <div class="cb">
+      <div class="highlight-box">
+        <div class="hb-title">⚠️ 关键风险：伊朗局势推高能源成本</div>
+        <div class="hb-body">中东紧张局势持续，WTI原油突破 <strong>USD 85</strong> 关键位，美国平均汽油价格升至每加仑 <strong>USD 4.0</strong>，创近两年新高。能源价格上涨对通胀预期构成上行压力，美联储降息节奏或进一步延后。高净值家庭能源密集型资产（商业地产、物流仓储、私人航空）运营成本需重估。</div>
+      </div>
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">WTO数字关税免征协议到期，跨境数字资产征税进入政策真空</div>
+          <div class="item-desc">全球停止征收数字商品关税的协议在WTO谈判陷僵局后正式到期。各国政府现可对数字服务、软件订阅及平台收入开征关税。家族企业涉及数字业务的跨境架构需评估影响。</div>
+          <span class="item-tag">跨境合规</span>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">美股Q1收官震荡，Q2开局情绪谨慎</div>
+          <div class="item-desc">标普500在Q1下跌约3.4%，AI估值回调、地缘风险叠加美国汽油价格高企导致消费信心下滑。恒生指数相对抗跌，港股南向资金流入持续，内地资产再配置趋势延续。</div>
+          <span class="item-tag">资产配置</span>
+        </div>
+      </div>
+      <div class="grid2" style="margin-top:10px;">
+        <div class="g2item">
+          <div class="g2-label">美联储降息预期</div>
+          <div class="g2-val">2次</div>
+          <div class="g2-sub g2-dn">2026全年，较年初预期下修</div>
+        </div>
+        <div class="g2item">
+          <div class="g2-label">港元利率(HIBOR 1M)</div>
+          <div class="g2-val">4.45%</div>
+          <div class="g2-sub">保单融资成本参考区间</div>
+        </div>
+        <div class="g2item">
+          <div class="g2-label">黄金创历史新高</div>
+          <div class="g2-val">USD 3,142</div>
+          <div class="g2-sub g2-up">避险资产配置窗口</div>
+        </div>
+        <div class="g2item">
+          <div class="g2-label">全球M&A活跃度</div>
+          <div class="g2-val">↑ 回暖</div>
+          <div class="g2-sub">医药、消费品并购活跃</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 信托与传承架构 -->
+  <div class="card">
+    <div class="ch"><span class="ico">🏛️</span><h2>信托与传承架构</h2><span class="sub">TRUST · SUCCESSION</span></div>
+    <div class="cb">
+      <div class="section-label">季度架构审视要点</div>
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">数字资产传承：Q2新政窗口</div>
+          <div class="item-desc">WTO数字关税协议到期后，多国将数字资产（加密货币、NFT、数字银行账户）纳入遗产税申报范围。香港目前无遗产税，但持有人在其他司法管辖区的资产可能触发义务。建议检视：数字钱包私钥托管安排、在港BVI信托中数字资产的归属条款。</div>
+          <span class="item-tag">数字传承</span>
+          <span class="item-tag-blue">合规优先</span>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">新加坡Variable Capital Company (VCC) 架构升温</div>
+          <div class="item-desc">亚洲高净值家庭Q1在新加坡设立VCC数量同比增逾40%。VCC可用于家族私募基金架构，享受新加坡税务协定网络，同时与离岸信托结合实现高效传承。适合持有跨资产类别（PE、上市股票、房地产）的家族。</div>
+          <span class="item-tag">新加坡架构</span>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">香港家族办公室税务豁免制度 — 2026年扩容更新</div>
+          <div class="item-desc">香港税务局对2024年推出的家族办公室税务豁免制度进行指引更新，覆盖范围扩大至包含「单一家族持股公司」架构下的私募信贷投资和私募不动产基金。达到豁免门槛（最低管理资产港币2.4亿）的单一家族办公室应尽快完成备案。</div>
+          <span class="item-tag">香港税务</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. 保单架构与融资 -->
+  <div class="card">
+    <div class="ch"><span class="ico">📋</span><h2>保单架构与融资</h2><span class="sub">INSURANCE · FINANCING</span></div>
+    <div class="cb">
+      <div class="highlight-box">
+        <div class="hb-title">💡 Q2融资时机评估</div>
+        <div class="hb-body">HIBOR维持4.4%区间，较2025年高峰有所回落，但仍高于历史均值。保单融资（Policy Financing）利差收窄，需精算实际IRR。对于IRR超过8%的大额储蓄险（如Sun Life Solis II），融资杠杆仍具合理性，建议锁定当前利率条款。</div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>产品类型</th><th>参考IRR</th><th>融资成本</th><th>净利差</th><th>评级</th></tr></thead>
+          <tbody>
+            <tr><td class="td-name">储蓄险(IUL类)</td><td>7.5–9%</td><td>4.8%</td><td class="td-up">+2.7%</td><td>✅ 合适</td></tr>
+            <tr><td class="td-name">终身寿险(分红型)</td><td>5.5–6.5%</td><td>4.8%</td><td class="td-up">+0.9%</td><td>⚠️ 审慎</td></tr>
+            <tr><td class="td-name">年金险(固定)</td><td>4–5%</td><td>4.8%</td><td class="td-dn">−0.6%</td><td>❌ 不建议</td></tr>
+            <tr><td class="td-name">万用寿险(高保额)</td><td>8.5–11%</td><td>4.8%</td><td class="td-up">+4%+</td><td>✅ 优先</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="item" style="margin-top:10px;">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">保单持有人更换与信托持有安排</div>
+          <div class="item-desc">伊朗局势及美国政策不确定性加剧，建议评估现有大额保单持有人结构：直接持有 vs. 信托持有。信托持有可在家族传承时绕过遗嘱认证，并在多元司法管辖区资产隔离上具有优势。</div>
+          <span class="item-tag">架构优化</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. 全球M&A与家族投资视野 -->
+  <div class="card">
+    <div class="ch"><span class="ico">🔭</span><h2>全球并购与家族投资视野</h2><span class="sub">M&A · FAMILY CAPITAL</span></div>
+    <div class="cb">
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Eli Lilly 以63亿美元收购嗜睡症药物开发商</div>
+          <div class="item-desc">医药行业并购延续Q1热度，GLP-1减重药利润为大型药企提供充裕并购弹药。家族PE配置中，医疗健康赛道（生物科技、罕见病）仍是机构优先方向。</div>
+          <span class="item-tag">医疗健康</span>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">McCormick与联合利华食品部门合并，打造全球香料巨头</div>
+          <div class="item-desc">消费品行业大型整合加速，规模化与成本协同是逻辑核心。对家族企业主：品牌消费品资产估值回升，若持有相关上市公司股权，当前为评估减持/持仓窗口。</div>
+          <span class="item-tag">消费品</span>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Whoop完成5.75亿美元融资，健康可穿戴估值回暖</div>
+          <div class="item-desc">健康科技赛道VC融资在2025年底调整后重新活跃。高净值人士对个人健康数据管理兴趣上升，同时引发数据隐私与遗产规划中的新议题（健康数据是否纳入数字遗产）。</div>
+          <span class="item-tag">健康科技</span>
+          <span class="item-tag-blue">数字遗产</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. CRS/税务合规 -->
+  <div class="card">
+    <div class="ch"><span class="ico">⚖️</span><h2>CRS · 税务合规动态</h2><span class="sub">COMPLIANCE · TAX</span></div>
+    <div class="cb">
+      <div class="insight-box">
+        <strong>Q2重要节点：</strong> 2025年度CRS数据交换将于2026年9月完成，但香港金融机构须在<strong>5月31日</strong>前完成本地申报。持有多个司法管辖区账户的高净值客户应于Q2核查居税地记录一致性。
+      </div>
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">内地CRS申报强化：境外账户金融资产阈值下调</div>
+          <div class="item-desc">国家税务总局2026年更新CRS执行细则，境外账户申报触发金额（人民币100万等值）执行更趋严格，覆盖香港、新加坡、英属维京群岛离岸账户。拥有内地税籍的家族成员须特别关注。</div>
+          <span class="item-tag">内地CRS</span>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">香港AEOI（自动情报交换）新增参与司法管辖区</div>
+          <div class="item-desc">香港税务局2026年将与新增7个国家/地区启动AEOI合作，覆盖中东部分国家。中东家族资本在港账户的信息透明度上升，相关客户应检视账户持有架构。</div>
+          <span class="item-tag">AEOI</span>
+          <span class="item-tag-blue">中东客户</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. Q2行动清单 -->
+  <div class="card">
+    <div class="ch"><span class="ico">✅</span><h2>Q2 家族行动清单</h2><span class="sub">ACTION · Q2 2026</span></div>
+    <div class="cb">
+      <ul class="action-list">
+        <li><div class="action-num">1</div>检视现有大额储蓄险/IUL保单融资安排，评估当前利率环境下的净收益，决定是否续贷或提前还款。</li>
+        <li><div class="action-num">2</div>评估数字资产在信托/遗嘱中的归属安排，确保私钥托管方案已落地（硬件钱包 + 律师备存指引）。</li>
+        <li><div class="action-num">3</div>5月31日前完成香港CRS本地申报，同步核对内地税籍成员的境外账户申报合规情况。</li>
+        <li><div class="action-num">4</div>评估是否符合香港家族办公室税务豁免资格（管理资产≥HKD 2.4亿），尽快完成备案窗口。</li>
+        <li><div class="action-num">5</div>Q2季初完成资产再平衡：减低对能源成本敏感的物业/实物资产敞口，增配黄金/港股防御性配置。</li>
+        <li><div class="action-num">6</div>家族企业数字业务板块：评估WTO数字关税协议到期对跨境收入的潜在税务影响，咨询税务顾问。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 7. 家族教育视角 -->
+  <div class="card">
+    <div class="ch"><span class="ico">🎓</span><h2>家族教育与下一代培育</h2><span class="sub">NEXT GEN · EDUCATION</span></div>
+    <div class="cb">
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">金融素养从小学阶段介入的国际实践</div>
+          <div class="item-desc">英国、新加坡等地越来越多的家族办公室将「家族宪章·下一代条款」与子女金融教育计划挂钩，小学阶段（8-12岁）引入基础投资概念、储蓄纪律和慈善意识。家族内部可考虑设立小额「家族基金」供下一代模拟管理。</div>
+          <span class="item-tag">家族教育</span>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">港校升学规划：Q2是申请关键窗口</div>
+          <div class="item-desc">2026年4-6月为香港多所国际学校及DSS学校下学年转学申请窗口。国际学校（尤其IB体系）名额竞争激烈，有意在港长期扎根的家族应提前布局子女升学路径，同时关注学费上升对家庭财务规划的影响。</div>
+          <span class="item-tag">香港教育</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="brand">锦承家办 · JINCHENG FAMILY OFFICE</div>
+  <div style="margin-top:5px;">本内参仅供锦承家办团队内部参考，不构成任何投资建议或法律意见。</div>
+  <div style="margin-top:3px;">数据与资讯综合整理，如需专业咨询请联系您的家办顾问团队。</div>
+  <div style="margin-top:8px; color:#2a2e48;">2026-04-01 &nbsp;|&nbsp; 星期三 &nbsp;|&nbsp; 香港</div>
+</footer>
+
+</body>
+</html>
