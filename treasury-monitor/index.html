@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>美国国债持仓监控 · Dec 2025</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-deep: #060a12;
+  --bg-primary: #0a1020;
+  --bg-card: #0e1528;
+  --bg-card-hover: #121c34;
+  --bg-row-even: rgba(255,255,255,0.015);
+  --accent-us: #3b6bdb;
+  --accent-us-light: #6b9aff;
+  --accent-us-dim: rgba(59,107,219,0.08);
+  --accent-red: #ef4444;
+  --accent-red-dim: rgba(239,68,68,0.08);
+  --accent-green: #22c55e;
+  --accent-green-dim: rgba(34,197,94,0.08);
+  --accent-amber: #f59e0b;
+  --accent-amber-dim: rgba(245,158,11,0.08);
+  --accent-cyan: #06b6d4;
+  --text-primary: #e2e8f0;
+  --text-secondary: #8494ad;
+  --text-muted: #475569;
+  --border: rgba(255,255,255,0.06);
+  --border-accent: rgba(59,107,219,0.2);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  font-family: 'IBM Plex Sans', sans-serif;
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+body::before {
+  content:'';
+  position:fixed; inset:0;
+  background:
+    radial-gradient(ellipse at 20% 10%, rgba(59,107,219,0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 90%, rgba(239,68,68,0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(6,182,212,0.02) 0%, transparent 60%);
+  pointer-events:none;
+}
+
+.container { max-width:1140px; margin:0 auto; padding:0 24px; position:relative; z-index:1; }
+
+/* FLAG STRIPE */
+.flag-stripe {
+  height: 3px;
+  background: linear-gradient(90deg, #3b6bdb 0%, #3b6bdb 33%, #fff 33%, #fff 66%, #ef4444 66%, #ef4444 100%);
+  opacity: 0.6;
+}
+
+/* HEADER */
+.header { padding:56px 0 36px; border-bottom:1px solid var(--border); }
+
+.header-badge {
+  font-family:'JetBrains Mono', monospace;
+  font-size:10px; letter-spacing:5px; text-transform:uppercase;
+  color:var(--accent-us-light);
+  background:var(--accent-us-dim);
+  border:1px solid var(--border-accent);
+  padding:5px 14px;
+  display:inline-block;
+  margin-bottom:20px;
+}
+
+.header h1 {
+  font-family:'Playfair Display', serif;
+  font-size:clamp(30px, 5vw, 50px);
+  font-weight:900;
+  letter-spacing:-0.5px;
+  line-height:1.15;
+  color:var(--text-primary);
+}
+
+.header h1 .flag { font-size:0.8em; margin-right:8px; }
+
+.header-sub {
+  font-size:15px;
+  color:var(--text-secondary);
+  margin-top:10px;
+}
+
+.header-meta {
+  display:flex; flex-wrap:wrap; gap:20px; margin-top:16px;
+}
+
+.meta-pill {
+  font-family:'JetBrains Mono', monospace;
+  font-size:11px;
+  padding:5px 14px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid var(--border);
+  color:var(--text-muted);
+  display:flex; align-items:center; gap:6px;
+}
+
+.meta-pill .dot {
+  width:5px; height:5px; border-radius:50%;
+}
+
+.dot-live { background:var(--accent-green); box-shadow:0 0 6px var(--accent-green); animation:pulse 2s ease infinite; }
+.dot-delayed { background:var(--accent-amber); }
+
+/* YIELD BANNER */
+.yield-banner {
+  margin:32px 0;
+  padding:28px 32px;
+  background: linear-gradient(135deg, rgba(59,107,219,0.06) 0%, rgba(6,182,212,0.04) 100%);
+  border:1px solid var(--border-accent);
+  display:flex;
+  align-items:center;
+  gap:24px;
+  flex-wrap:wrap;
+}
+
+.yield-icon { font-size:36px; }
+
+.yield-info { flex:1; min-width:200px; }
+
+.yield-label {
+  font-family:'JetBrains Mono', monospace;
+  font-size:10px; letter-spacing:3px; text-transform:uppercase;
+  color:var(--text-muted);
+  margin-bottom:4px;
+}
+
+.yield-value {
+  font-family:'JetBrains Mono', monospace;
+  font-size:32px;
+  font-weight:700;
+  color:var(--accent-us-light);
+}
+
+.yield-note {
+  font-size:12px;
+  color:var(--text-muted);
+  font-style:italic;
+}
+
+/* SECTION */
+.section { padding:48px 0; }
+
+.section-header {
+  display:flex; align-items:center; gap:12px;
+  margin-bottom:24px;
+  padding-bottom:12px;
+  border-bottom:1px solid var(--border);
+}
+
+.section-icon { font-size:20px; }
+
+.section-title {
+  font-family:'IBM Plex Sans', sans-serif;
+  font-size:20px; font-weight:700;
+  color:var(--text-primary);
+}
+
+.section-sub {
+  font-family:'JetBrains Mono', monospace;
+  font-size:10px;
+  color:var(--text-muted);
+  letter-spacing:1px;
+}
+
+/* TABLE */
+.table-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+
+.holdings-table {
+  width:100%;
+  border-collapse:collapse;
+}
+
+.holdings-table thead th {
+  font-family:'JetBrains Mono', monospace;
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--text-muted);
+  padding:12px 14px;
+  text-align:left;
+  border-bottom:2px solid var(--border-accent);
+  white-space:nowrap;
+  position:sticky; top:0;
+  background:var(--bg-deep);
+}
+
+.holdings-table thead th.right { text-align:right; }
+
+.holdings-table tbody tr {
+  border-bottom:1px solid var(--border);
+  transition:background 0.2s;
+  opacity:0;
+  animation:fadeRow 0.4s ease forwards;
+}
+
+.holdings-table tbody tr:nth-child(even) { background:var(--bg-row-even); }
+.holdings-table tbody tr:hover { background:var(--bg-card-hover); }
+
+.holdings-table td {
+  padding:14px;
+  font-size:13px;
+  vertical-align:middle;
+  white-space:nowrap;
+}
+
+.rank {
+  font-family:'JetBrains Mono', monospace;
+  font-size:12px;
+  font-weight:700;
+  color:var(--text-muted);
+  width:36px;
+  text-align:center;
+}
+
+.rank-top { color:var(--accent-us-light); }
+
+.country-name {
+  font-weight:600;
+  color:var(--text-primary);
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.country-flag { font-size:18px; }
+
+.holdings-val {
+  font-family:'JetBrains Mono', monospace;
+  font-size:14px;
+  font-weight:600;
+  color:var(--text-primary);
+  text-align:right;
+}
+
+.change-cell {
+  font-family:'JetBrains Mono', monospace;
+  font-size:12px;
+  text-align:right;
+  font-weight:500;
+}
+
+.change-down { color:var(--accent-red); }
+.change-up { color:var(--accent-green); }
+.change-flat { color:var(--text-muted); }
+
+.snapshot-cell {
+  font-family:'JetBrains Mono', monospace;
+  font-size:11px;
+  color:var(--text-muted);
+  text-align:center;
+}
+
+/* EUROCLEAR CALLOUT */
+.callout {
+  margin:24px 0;
+  padding:24px 28px;
+  border-left:3px solid var(--accent-amber);
+  background:var(--accent-amber-dim);
+}
+
+.callout-title {
+  font-weight:700;
+  font-size:14px;
+  color:var(--accent-amber);
+  margin-bottom:8px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.callout-body {
+  font-size:13px;
+  color:var(--text-secondary);
+  line-height:1.8;
+}
+
+/* INSTITUTION TABLE */
+.inst-table {
+  width:100%;
+  border-collapse:collapse;
+}
+
+.inst-table thead th {
+  font-family:'JetBrains Mono', monospace;
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--text-muted);
+  padding:12px 14px;
+  text-align:left;
+  border-bottom:2px solid rgba(6,182,212,0.2);
+  white-space:nowrap;
+}
+
+.inst-table thead th.right { text-align:right; }
+
+.inst-table tbody tr {
+  border-bottom:1px solid var(--border);
+  transition:background 0.2s;
+  opacity:0;
+  animation:fadeRow 0.4s ease forwards;
+}
+
+.inst-table tbody tr:hover { background:var(--bg-card-hover); }
+
+.inst-table td {
+  padding:14px;
+  font-size:13px;
+  vertical-align:top;
+  white-space:nowrap;
+}
+
+.inst-name {
+  font-weight:600;
+  color:var(--text-primary);
+}
+
+.inst-detail {
+  font-size:11px;
+  color:var(--text-muted);
+  margin-top:2px;
+  white-space:normal;
+  max-width:260px;
+}
+
+.inst-val {
+  font-family:'JetBrains Mono', monospace;
+  font-size:14px;
+  font-weight:600;
+  color:var(--text-primary);
+  text-align:right;
+}
+
+.inst-date {
+  font-family:'JetBrains Mono', monospace;
+  font-size:11px;
+  color:var(--text-muted);
+  text-align:right;
+}
+
+/* BAR CHART (CSS) */
+.bar-chart {
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-top:24px;
+}
+
+.bar-row {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  opacity:0;
+  animation:fadeRow 0.5s ease forwards;
+}
+
+.bar-label {
+  font-family:'JetBrains Mono', monospace;
+  font-size:11px;
+  color:var(--text-secondary);
+  width:160px;
+  text-align:right;
+  flex-shrink:0;
+}
+
+@media (max-width:640px) {
+  .bar-label { width:80px; font-size:10px; }
+}
+
+.bar-track {
+  flex:1;
+  height:28px;
+  background:rgba(255,255,255,0.02);
+  border:1px solid var(--border);
+  position:relative;
+  overflow:hidden;
+}
+
+.bar-fill {
+  height:100%;
+  display:flex;
+  align-items:center;
+  padding-left:10px;
+  font-family:'JetBrains Mono', monospace;
+  font-size:11px;
+  font-weight:500;
+  color:#fff;
+  transition:width 1s ease;
+}
+
+.bar-fill.fed { background:linear-gradient(90deg, #3b6bdb, #2751a8); }
+.bar-fill.mmf { background:linear-gradient(90deg, #6b9aff, #3b6bdb); }
+.bar-fill.ssf { background:linear-gradient(90deg, #06b6d4, #0891b2); }
+.bar-fill.jp { background:linear-gradient(90deg, #ef4444, #b91c1c); }
+.bar-fill.cn { background:linear-gradient(90deg, #f59e0b, #d97706); }
+.bar-fill.uk { background:linear-gradient(90deg, #8b5cf6, #6d28d9); }
+.bar-fill.eu { background:linear-gradient(90deg, #22c55e, #16a34a); }
+.bar-fill.ky { background:linear-gradient(90deg, #64748b, #475569); }
+.bar-fill.lu { background:linear-gradient(90deg, #ec4899, #db2777); }
+.bar-fill.fr { background:linear-gradient(90deg, #14b8a6, #0d9488); }
+
+/* FOOTER */
+.footer {
+  padding:40px 0;
+  border-top:1px solid var(--border);
+  text-align:center;
+}
+
+.footer p {
+  font-family:'JetBrains Mono', monospace;
+  font-size:11px;
+  color:var(--text-muted);
+  letter-spacing:1px;
+  line-height:2.2;
+}
+
+.footer a {
+  color:var(--text-secondary);
+  text-decoration:none;
+  border-bottom:1px dotted var(--text-muted);
+}
+
+.footer a:hover { color:var(--text-primary); }
+
+/* ANIMATIONS */
+@keyframes fadeRow {
+  from { opacity:0; transform:translateY(8px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
+@keyframes pulse {
+  0%,100% { opacity:1; }
+  50% { opacity:0.4; }
+}
+
+/* STAGGER */
+.holdings-table tbody tr:nth-child(1),
+.inst-table tbody tr:nth-child(1) { animation-delay:0.05s; }
+.holdings-table tbody tr:nth-child(2),
+.inst-table tbody tr:nth-child(2) { animation-delay:0.1s; }
+.holdings-table tbody tr:nth-child(3),
+.inst-table tbody tr:nth-child(3) { animation-delay:0.15s; }
+.holdings-table tbody tr:nth-child(4),
+.inst-table tbody tr:nth-child(4) { animation-delay:0.2s; }
+.holdings-table tbody tr:nth-child(5),
+.inst-table tbody tr:nth-child(5) { animation-delay:0.25s; }
+.holdings-table tbody tr:nth-child(6),
+.inst-table tbody tr:nth-child(6) { animation-delay:0.3s; }
+.holdings-table tbody tr:nth-child(7),
+.inst-table tbody tr:nth-child(7) { animation-delay:0.35s; }
+.holdings-table tbody tr:nth-child(8),
+.inst-table tbody tr:nth-child(8) { animation-delay:0.4s; }
+.holdings-table tbody tr:nth-child(9),
+.inst-table tbody tr:nth-child(9) { animation-delay:0.45s; }
+.holdings-table tbody tr:nth-child(10),
+.inst-table tbody tr:nth-child(10) { animation-delay:0.5s; }
+
+.bar-row:nth-child(1) { animation-delay:0.1s; }
+.bar-row:nth-child(2) { animation-delay:0.15s; }
+.bar-row:nth-child(3) { animation-delay:0.2s; }
+.bar-row:nth-child(4) { animation-delay:0.25s; }
+.bar-row:nth-child(5) { animation-delay:0.3s; }
+.bar-row:nth-child(6) { animation-delay:0.35s; }
+.bar-row:nth-child(7) { animation-delay:0.4s; }
+.bar-row:nth-child(8) { animation-delay:0.45s; }
+.bar-row:nth-child(9) { animation-delay:0.5s; }
+.bar-row:nth-child(10) { animation-delay:0.55s; }
+
+@media (max-width:640px) {
+  .holdings-table td, .holdings-table th,
+  .inst-table td, .inst-table th { padding:10px 8px; font-size:12px; }
+  .yield-banner { padding:20px; }
+  .yield-value { font-size:24px; }
+}
+</style>
+</head>
+<body>
+
+<div class="flag-stripe"></div>
+
+<div class="container">
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-badge">🏛 U.S. TREASURY HOLDINGS MONITOR</div>
+  <h1><span class="flag">🇺🇸</span>美国国债持仓监控</h1>
+  <p class="header-sub">全球主权与机构持仓追踪 · 基于 TIC 月报 / Fed 周报 / 季度公开数据</p>
+  <div class="header-meta">
+    <span class="meta-pill"><span class="dot dot-delayed"></span>数据期: Dec 2025（TIC月报，滞后~2月）</span>
+    <span class="meta-pill">报告时间: 2026-04-01 10:01 HKT</span>
+  </div>
+</header>
+
+<!-- YIELD BANNER -->
+<div class="yield-banner">
+  <span class="yield-icon">🎯</span>
+  <div class="yield-info">
+    <div class="yield-label">10年期国债收益率</div>
+    <div class="yield-value" style="color:var(--text-muted);">— 数据待更新</div>
+  </div>
+  <div class="yield-note">实时收益率需交易时段抓取</div>
+</div>
+
+<!-- COUNTRY HOLDINGS -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-icon">🏆</span>
+    <span class="section-title">前 10 大国家持仓</span>
+    <span class="section-sub">Dec 2025 vs Nov 2025</span>
+  </div>
+
+  <!-- VISUAL BAR CHART -->
+  <div class="bar-chart">
+    <div class="bar-row">
+      <span class="bar-label">🇯🇵 Japan</span>
+      <div class="bar-track"><div class="bar-fill jp" style="width:100%">$1,185.5B</div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">🇬🇧 United Kingdom</span>
+      <div class="bar-track"><div class="bar-fill uk" style="width:73%">$866.0B</div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">🇨🇳 China</span>
+      <div class="bar-track"><div class="bar-fill cn" style="width:57.7%">$683.5B</div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">🇧🇪 Belgium ⚡</span>
+      <div class="bar-track"><div class="bar-fill eu" style="width:40.3%">$477.3B</div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">🇨🇦 Canada</span>
+      <div class="bar-track"><div class="bar-fill fed" style="width:39.5%">$468.2B</div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">🇱🇺 Luxembourg</span>
+      <div class="bar-track"><div class="bar-fill lu" style="width:36.7%">$435.1B</div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">🇰🇾 Cayman Islands</span>
+      <div class="bar-track"><div class="bar-fill ky" style="width:35.5%">$421.2B</div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">🇫🇷 France</span>
+      <div class="bar-track"><div class="bar-fill fr" style="width:31.1%">$368.9B</div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">🇮🇪 Ireland</span>
+      <div class="bar-track"><div class="bar-fill fed" style="width:28.7%">$340.7B</div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">🇹🇼 Taiwan</span>
+      <div class="bar-track"><div class="bar-fill mmf" style="width:26.2%">$310.6B</div></div>
+    </div>
+  </div>
+
+  <!-- DATA TABLE -->
+  <div class="table-wrap" style="margin-top:32px;">
+    <table class="holdings-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>国家/地区</th>
+          <th class="right">持仓（Dec 2025）</th>
+          <th class="right">月度变动</th>
+          <th style="text-align:center">72h 快照</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="rank rank-top">1</td>
+          <td><span class="country-name"><span class="country-flag">🇯🇵</span>Japan</span></td>
+          <td class="holdings-val">$1,185.5B</td>
+          <td class="change-cell change-down">↓ $17.2B</td>
+          <td class="snapshot-cell">无变化</td>
+        </tr>
+        <tr>
+          <td class="rank rank-top">2</td>
+          <td><span class="country-name"><span class="country-flag">🇬🇧</span>United Kingdom</span></td>
+          <td class="holdings-val">$866.0B</td>
+          <td class="change-cell change-down">↓ $23.0B</td>
+          <td class="snapshot-cell">无变化</td>
+        </tr>
+        <tr>
+          <td class="rank rank-top">3</td>
+          <td><span class="country-name"><span class="country-flag">🇨🇳</span>China, Mainland</span></td>
+          <td class="holdings-val">$683.5B</td>
+          <td class="change-cell change-flat">→ $0.4B</td>
+          <td class="snapshot-cell">无变化</td>
+        </tr>
+        <tr>
+          <td class="rank">4</td>
+          <td><span class="country-name"><span class="country-flag">🇧🇪</span>Belgium ⚡</span></td>
+          <td class="holdings-val">$477.3B</td>
+          <td class="change-cell change-down">↓ $3.7B</td>
+          <td class="snapshot-cell">无变化</td>
+        </tr>
+        <tr>
+          <td class="rank">5</td>
+          <td><span class="country-name"><span class="country-flag">🇨🇦</span>Canada</span></td>
+          <td class="holdings-val">$468.2B</td>
+          <td class="change-cell change-down">↓ $4.0B</td>
+          <td class="snapshot-cell">无变化</td>
+        </tr>
+        <tr>
+          <td class="rank">6</td>
+          <td><span class="country-name"><span class="country-flag">🇱🇺</span>Luxembourg</span></td>
+          <td class="holdings-val">$435.1B</td>
+          <td class="change-cell change-up">↑ $9.7B</td>
+          <td class="snapshot-cell">无变化</td>
+        </tr>
+        <tr>
+          <td class="rank">7</td>
+          <td><span class="country-name"><span class="country-flag">🇰🇾</span>Cayman Islands</span></td>
+          <td class="holdings-val">$421.2B</td>
+          <td class="change-cell change-down">↓ $6.4B</td>
+          <td class="snapshot-cell">无变化</td>
+        </tr>
+        <tr>
+          <td class="rank">8</td>
+          <td><span class="country-name"><span class="country-flag">🇫🇷</span>France</span></td>
+          <td class="holdings-val">$368.9B</td>
+          <td class="change-cell change-down">↓ $7.2B</td>
+          <td class="snapshot-cell">无变化</td>
+        </tr>
+        <tr>
+          <td class="rank">9</td>
+          <td><span class="country-name"><span class="country-flag">🇮🇪</span>Ireland</span></td>
+          <td class="holdings-val">$340.7B</td>
+          <td class="change-cell change-flat">→ $0.4B</td>
+          <td class="snapshot-cell">无变化</td>
+        </tr>
+        <tr>
+          <td class="rank">10</td>
+          <td><span class="country-name"><span class="country-flag">🇹🇼</span>Taiwan</span></td>
+          <td class="holdings-val">$310.6B</td>
+          <td class="change-cell change-down">↓ $2.3B</td>
+          <td class="snapshot-cell">无变化</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- EUROCLEAR CALLOUT -->
+  <div class="callout">
+    <div class="callout-title">⚡ Euroclear（比利时代理）— 第4大持有方</div>
+    <div class="callout-body">
+      Dec 2025: <strong>$477.3B</strong> &nbsp;|&nbsp; Nov 2025: $481.0B &nbsp;|&nbsp; 月度: ↓$3.7B<br>
+      比利时数值 = Euroclear 国际清算系统托管仓位。实际持有人：欧洲央行 / 商业银行 / 养老基金。<br>
+      通过布鲁塞尔 Euroclear 系统清算，<strong>非主权持仓</strong>。
+    </div>
+  </div>
+</section>
+
+<!-- INSTITUTION HOLDINGS -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-icon">🏦</span>
+    <span class="section-title">前 10 大机构持仓</span>
+    <span class="section-sub">混合频率数据</span>
+  </div>
+  <div class="table-wrap">
+    <table class="inst-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>机构</th>
+          <th class="right">持仓规模</th>
+          <th class="right">数据时点</th>
+          <th style="text-align:center">72h</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="rank rank-top">1</td>
+          <td>
+            <div class="inst-name">美联储（Fed SOMA）</div>
+            <div class="inst-detail">Notes+Bonds: $3,585.7B · Bills: $381.6B</div>
+          </td>
+          <td class="inst-val">$6,271.5B</td>
+          <td class="inst-date">2026-03-25</td>
+          <td class="snapshot-cell">无变化</td>
+        </tr>
+        <tr>
+          <td class="rank rank-top">2</td>
+          <td>
+            <div class="inst-name">美国货币市场基金</div>
+            <div class="inst-detail">主要持有短期国债</div>
+          </td>
+          <td class="inst-val">~$8,190B</td>
+          <td class="inst-date">2025 Q3</td>
+          <td class="snapshot-cell">无变化</td>
+        </tr>
+        <tr>
+          <td class="rank rank-top">3</td>
+          <td>
+            <div class="inst-name">社保信托基金 (SSF)</div>
+            <div class="inst-detail">国内最大机构持有方，季报</div>
+          </td>
+          <td class="inst-val">~$2,900B</td>
+          <td class="inst-date">季报</td>
+          <td class="snapshot-cell">无变化</td>
+        </tr>
+        <tr>
+          <td class="rank">4</td>
+          <td>
+            <div class="inst-name">🇯🇵 日本央行 (BOJ)</div>
+            <div class="inst-detail">政府+央行外汇储备</div>
+          </td>
+          <td class="inst-val">~$950B</td>
+          <td class="inst-date">—</td>
+          <td class="snapshot-cell">无变化</td>
+        </tr>
+        <tr>
+          <td class="rank">5</td>
+          <td>
+            <div class="inst-name">🇨🇳 中国人民银行 / 外管局</div>
+            <div class="inst-detail">不透明，TIC 代理数据</div>
+          </td>
+          <td class="inst-val">~$684B</td>
+          <td class="inst-date">TIC代理</td>
+          <td class="snapshot-cell">无变化</td>
+        </tr>
+        <tr>
+          <td class="rank">6</td>
+          <td>
+            <div class="inst-name">🇬🇧 英国金融机构</div>
+            <div class="inst-detail">养老金+保险+清算</div>
+          </td>
+          <td class="inst-val">~$866B</td>
+          <td class="inst-date">—</td>
+          <td class="snapshot-cell">无变化</td>
+        </tr>
+        <tr>
+          <td class="rank">7</td>
+          <td>
+            <div class="inst-name">🇧🇪 Euroclear 托管</div>
+            <div class="inst-detail">比利时代理数据</div>
+          </td>
+          <td class="inst-val">~$477B</td>
+          <td class="inst-date">TIC</td>
+          <td class="snapshot-cell">无变化</td>
+        </tr>
+        <tr>
+          <td class="rank">8</td>
+          <td>
+            <div class="inst-name">🇰🇾 开曼群岛（对冲基金）</div>
+            <div class="inst-detail">TIC 私人持仓</div>
+          </td>
+          <td class="inst-val">~$421B</td>
+          <td class="inst-date">TIC</td>
+          <td class="snapshot-cell">无变化</td>
+        </tr>
+        <tr>
+          <td class="rank">9</td>
+          <td>
+            <div class="inst-name">🇱🇺 卢森堡（欧洲基金中心）</div>
+            <div class="inst-detail">欧洲基金中心</div>
+          </td>
+          <td class="inst-val">~$435B</td>
+          <td class="inst-date">TIC</td>
+          <td class="snapshot-cell">无变化</td>
+        </tr>
+        <tr>
+          <td class="rank">10</td>
+          <td>
+            <div class="inst-name">🇫🇷 法国机构</div>
+            <div class="inst-detail">BNP / SocGen 等</div>
+          </td>
+          <td class="inst-val">~$369B</td>
+          <td class="inst-date">TIC</td>
+          <td class="snapshot-cell">无变化</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+</div><!-- /container -->
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <p>📎 更新频率: 国家月报 (TIC) · Fed 周报 (NY Fed) · 机构季报</p>
+    <p>
+      <a href="https://ticdata.treasury.gov" target="_blank">ticdata.treasury.gov</a> &nbsp;·&nbsp;
+      <a href="https://markets.newyorkfed.org" target="_blank">markets.newyorkfed.org</a>
+    </p>
+    <p style="margin-top:8px;">Generated 2026-04-01 · For informational purposes only</p>
+  </div>
+</footer>
+
+</body>
+</html>
