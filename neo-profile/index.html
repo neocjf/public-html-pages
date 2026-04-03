@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>程竞飞 Neo Cheng | 财星集团 · 德方集团</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&family=Space+Grotesk:wght@300;400;500;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-deep: #0a0e1a;
+  --bg-primary: #0f1629;
+  --bg-card: #151d35;
+  --bg-card-hover: #1a2540;
+  --accent-gold: #c9a84c;
+  --accent-gold-light: #e8d08c;
+  --accent-blue: #2d5f9a;
+  --accent-blue-light: #4a8fd4;
+  --accent-teal: #1a8a7a;
+  --text-primary: #e8e6e1;
+  --text-secondary: #8b95aa;
+  --text-muted: #556078;
+  --border: rgba(201,168,76,0.12);
+  --border-accent: rgba(201,168,76,0.3);
+  --shadow-gold: rgba(201,168,76,0.08);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Space Grotesk', 'Noto Serif SC', sans-serif;
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 15% 10%, rgba(201,168,76,0.06) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 80%, rgba(45,95,154,0.08) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 50%, rgba(26,138,122,0.04) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+  overflow: hidden;
+}
+
+.hero-bg-lines {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.hero-bg-lines::before,
+.hero-bg-lines::after {
+  content: '';
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, rgba(201,168,76,0.08), transparent);
+}
+.hero-bg-lines::before { left: 20%; }
+.hero-bg-lines::after { left: 80%; }
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 800px;
+}
+
+.hero-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 32px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.2s forwards;
+}
+
+.hero-name-cn {
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(48px, 8vw, 96px);
+  font-weight: 900;
+  letter-spacing: 12px;
+  background: linear-gradient(135deg, var(--accent-gold-light) 0%, var(--accent-gold) 50%, #8b7332 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.4s forwards;
+}
+
+.hero-name-en {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(16px, 2.5vw, 24px);
+  font-weight: 300;
+  letter-spacing: 8px;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.6s forwards;
+}
+
+.hero-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(16px, 2vw, 22px);
+  font-weight: 400;
+  color: var(--text-secondary);
+  line-height: 2;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.8s forwards;
+}
+
+.hero-title span {
+  color: var(--accent-gold);
+  font-weight: 700;
+}
+
+.hero-divider {
+  width: 60px;
+  height: 1px;
+  background: var(--accent-gold);
+  margin: 32px auto;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.7s forwards;
+}
+
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 32px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 1s forwards;
+}
+
+.hero-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  padding: 8px 20px;
+  border: 1px solid var(--border-accent);
+  color: var(--accent-gold-light);
+  background: rgba(201,168,76,0.04);
+  transition: all 0.3s ease;
+}
+
+.hero-tag:hover {
+  background: rgba(201,168,76,0.1);
+  transform: translateY(-2px);
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 1.2s forwards;
+}
+
+.scroll-hint span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: var(--text-muted);
+}
+
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(180deg, var(--accent-gold), transparent);
+  animation: scrollPulse 2s ease infinite;
+}
+
+/* ===== SECTIONS ===== */
+.section {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 100px 24px;
+}
+
+.section-header {
+  margin-bottom: 60px;
+}
+
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 900;
+  color: var(--text-primary);
+  letter-spacing: 4px;
+}
+
+/* ===== CAREER TIMELINE ===== */
+.timeline {
+  position: relative;
+  padding-left: 40px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, var(--accent-gold), var(--accent-blue), transparent);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 48px;
+  padding: 28px 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  transition: all 0.4s ease;
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.timeline-item:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-accent);
+  transform: translateX(4px);
+  box-shadow: -4px 0 20px var(--shadow-gold);
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -46px;
+  top: 35px;
+  width: 11px;
+  height: 11px;
+  background: var(--bg-deep);
+  border: 2px solid var(--accent-gold);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.timeline-item:hover::before {
+  background: var(--accent-gold);
+  box-shadow: 0 0 12px var(--accent-gold);
+}
+
+.timeline-period {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--accent-gold);
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.timeline-role {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.timeline-company {
+  font-size: 15px;
+  color: var(--accent-blue-light);
+  margin-bottom: 10px;
+}
+
+.timeline-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.timeline-highlight {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  padding: 3px 10px;
+  background: rgba(201,168,76,0.08);
+  border: 1px solid var(--border-accent);
+  color: var(--accent-gold-light);
+  margin-top: 10px;
+  margin-right: 6px;
+}
+
+/* ===== BUSINESS GRID ===== */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .bento-grid { grid-template-columns: 1fr; }
+}
+
+.bento-card {
+  padding: 36px 28px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.bento-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.bento-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-gold), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.bento-card:hover {
+  border-color: var(--border-accent);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px var(--shadow-gold);
+}
+
+.bento-card:hover::before { opacity: 1; }
+
+.bento-card.span-2 { grid-column: span 2; }
+
+@media (max-width: 768px) {
+  .bento-card.span-2 { grid-column: span 1; }
+}
+
+.bento-icon {
+  font-size: 28px;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.bento-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.bento-text {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.9;
+}
+
+.bento-list {
+  list-style: none;
+  padding: 0;
+}
+
+.bento-list li {
+  font-size: 14px;
+  color: var(--text-secondary);
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bento-list li::before {
+  content: '▸';
+  color: var(--accent-gold);
+  font-size: 10px;
+}
+
+/* ===== PARTNERS ===== */
+.partners-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.partner-badge {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 14px 28px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+}
+
+.partner-badge:hover {
+  border-color: var(--accent-gold);
+  color: var(--accent-gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px var(--shadow-gold);
+}
+
+/* ===== EDUCATION ===== */
+.edu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 600px) {
+  .edu-grid { grid-template-columns: 1fr; }
+}
+
+.edu-item {
+  padding: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent-gold);
+  transition: all 0.3s ease;
+}
+
+.edu-item:hover {
+  border-left-color: var(--accent-gold-light);
+  background: var(--bg-card-hover);
+}
+
+.edu-period {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--accent-gold);
+  letter-spacing: 2px;
+}
+
+.edu-school {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 6px 0;
+}
+
+.edu-major {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* ===== CONTACT ===== */
+.contact-section {
+  text-align: center;
+  padding: 120px 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-section .section-header { margin-bottom: 40px; }
+
+.contact-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.contact-item {
+  padding: 20px 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+  min-width: 200px;
+}
+
+.contact-item:hover {
+  border-color: var(--accent-gold);
+  transform: translateY(-2px);
+}
+
+.contact-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.contact-value {
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.contact-value a {
+  color: var(--accent-gold-light);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contact-value a:hover { color: var(--accent-gold); }
+
+/* ===== FOOTER ===== */
+.footer {
+  text-align: center;
+  padding: 40px 24px;
+  border-top: 1px solid var(--border);
+  position: relative;
+  z-index: 1;
+}
+
+.footer p {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--text-muted);
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50% { opacity: 0.8; transform: scaleY(1.2); }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-bg-lines"></div>
+  <div class="hero-content">
+    <div class="hero-label">Finstar Group · Tek Fong Group</div>
+    <h1 class="hero-name-cn">程 竞 飞</h1>
+    <p class="hero-name-en">NEO CHENG JINGFEI</p>
+    <div class="hero-divider"></div>
+    <p class="hero-title">
+      <span>财星集团</span> 创始人 · <span>德方集团</span> 董事<br>
+      香港保险经纪 · 财富管理 · 家族办公室
+    </p>
+    <div class="hero-tags">
+      <span class="hero-tag">保险经纪</span>
+      <span class="hero-tag">财富传承</span>
+      <span class="hero-tag">跨境金融</span>
+      <span class="hero-tag">保单融资</span>
+      <span class="hero-tag">家族办公室</span>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>SCROLL</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ===== CAREER ===== -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-label">Career</div>
+    <h2 class="section-title">职业历程</h2>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-period">2019.9 — 至今</div>
+      <div class="timeline-role">董事 / 股东</div>
+      <div class="timeline-company">德方集团有限公司（香港）</div>
+      <div class="timeline-desc">持牌保险经纪，专注大额保单与高净值客户服务。</div>
+      <span class="timeline-highlight">保险经纪</span>
+      <span class="timeline-highlight">大额保单</span>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-period">2017.3 — 2019.9</div>
+      <div class="timeline-role">总经理</div>
+      <div class="timeline-company">腾越集团有限公司（香港）</div>
+      <div class="timeline-desc">高端客户金融咨询，累计服务客户投资额超1亿港币。</div>
+      <span class="timeline-highlight">AUM > HKD 1亿</span>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-period">2017.11 — 至今</div>
+      <div class="timeline-role">总经理 / 法人</div>
+      <div class="timeline-company">腾越（深圳）咨询有限责任公司</div>
+      <div class="timeline-desc">中国区跨境金融投资咨询业务。</div>
+      <span class="timeline-highlight">跨境金融</span>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-period">2009.3 — 2019.3</div>
+      <div class="timeline-role">总经理 / 法人</div>
+      <div class="timeline-company">深圳市掌炫世纪网络科技有限公司</div>
+      <div class="timeline-desc">手机电子杂志软件，年销售额千万级，装机量超 1000 万。</div>
+      <span class="timeline-highlight">装机量 1000万+</span>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-period">2007.11 — 2009.3</div>
+      <div class="timeline-role">移动业务部总监</div>
+      <div class="timeline-company">上海掌上灵通咨询（NASDAQ: LTON）</div>
+      <div class="timeline-desc">负责移动业务部，月收入达 800 万信息费。</div>
+      <span class="timeline-highlight">NASDAQ 上市公司</span>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-period">2004.4 — 2007.11</div>
+      <div class="timeline-role">高级经理</div>
+      <div class="timeline-company">深圳市华动飞天网络技术（00800.HK）</div>
+      <div class="timeline-desc">A8 BOX 项目，月信息费收入 4000 万，合作数十家手机厂商。</div>
+      <span class="timeline-highlight">月收入 4000万</span>
+      <span class="timeline-highlight">港股上市公司</span>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-period">2000.11 — 2004.4</div>
+      <div class="timeline-role">研发经理</div>
+      <div class="timeline-company">赢时通科技（深圳）有限公司</div>
+      <div class="timeline-desc">证券交易网站开发，手机端网站早期开发者。</div>
+      <span class="timeline-highlight">证券科技先驱</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BUSINESS ===== -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-label">Business</div>
+    <h2 class="section-title">业务版图</h2>
+  </div>
+  <div class="bento-grid">
+    <div class="bento-card span-2">
+      <span class="bento-icon">🏛</span>
+      <div class="bento-title">公司架构</div>
+      <ul class="bento-list">
+        <li>财星集团 Finstar Group — 控股公司，环球保险 / 家族办公室</li>
+        <li>德方集团 Tek Fong Group — 运营主体</li>
+        <li>德方保险经纪 — 持牌保险经纪</li>
+        <li>腾越荟 / 腾越金融 — 子公司</li>
+      </ul>
+    </div>
+    <div class="bento-card">
+      <span class="bento-icon">🎯</span>
+      <div class="bento-title">客户群体</div>
+      <ul class="bento-list">
+        <li>高净值人士</li>
+        <li>跨境客户</li>
+        <li>家族企业主</li>
+      </ul>
+    </div>
+    <div class="bento-card">
+      <span class="bento-icon">🔐</span>
+      <div class="bento-title">保险规划</div>
+      <div class="bento-text">大额人寿保单、储蓄分红、医疗保障、保单融资方案设计。</div>
+    </div>
+    <div class="bento-card">
+      <span class="bento-icon">🌏</span>
+      <div class="bento-title">跨境金融</div>
+      <div class="bento-text">香港-深圳双城联动，跨境资产配置与金融投资咨询。</div>
+    </div>
+    <div class="bento-card">
+      <span class="bento-icon">👨‍👩‍👧‍👦</span>
+      <div class="bento-title">财富传承</div>
+      <div class="bento-text">家族信托规划、代际传承方案设计、资产隔离与保护。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PARTNERS ===== -->
+<section class="section" style="text-align:center;">
+  <div class="section-header" style="text-align:center;">
+    <div class="section-label">Partners</div>
+    <h2 class="section-title">合作保险公司</h2>
+  </div>
+  <div class="partners-row">
+    <span class="partner-badge">AXA 安盛</span>
+    <span class="partner-badge">Manulife 宏利</span>
+    <span class="partner-badge">FWD 盈聚</span>
+    <span class="partner-badge">AIA 友邦</span>
+    <span class="partner-badge">Prudential 保诚</span>
+    <span class="partner-badge">Sun Life 永明</span>
+  </div>
+</section>
+
+<!-- ===== EDUCATION ===== -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-label">Education</div>
+    <h2 class="section-title">教育背景</h2>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-item">
+      <div class="edu-period">1996 — 2000</div>
+      <div class="edu-school">东北林业大学</div>
+      <div class="edu-major">计算机科学专业（本科）</div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-period">1993 — 1996</div>
+      <div class="edu-school">依兰县高级中学</div>
+      <div class="edu-major">哈尔滨</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="contact-section">
+  <div class="section-header">
+    <div class="section-label">Contact</div>
+    <h2 class="section-title">联系方式</h2>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-item">
+      <div class="contact-label">WhatsApp</div>
+      <div class="contact-value"><a href="https://wa.me/85295655059">+852 9565 5059</a></div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-label">Email</div>
+      <div class="contact-value"><a href="mailto:neo@finstargp.com">neo@finstargp.com</a></div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-label">Email</div>
+      <div class="contact-value"><a href="mailto:neo@tekfong.com">neo@tekfong.com</a></div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-label">Location</div>
+      <div class="contact-value">香港 · 深圳</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <p>© 2026 CHENG JINGFEI · FINSTAR GROUP · TEK FONG GROUP</p>
+</footer>
+
+<script>
+// Intersection Observer for scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.timeline-item, .bento-card').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
