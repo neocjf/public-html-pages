@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pelosi 国会议员持仓变动报告 · 2026-04-01</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Crimson+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-deep: #07090f;
+  --bg-primary: #0c1018;
+  --bg-card: #111827;
+  --bg-card-alt: #0f1520;
+  --bg-row-hover: #151e30;
+  --green: #00e87b;
+  --green-dim: rgba(0,232,123,0.08);
+  --green-border: rgba(0,232,123,0.2);
+  --red: #ff3b5c;
+  --red-dim: rgba(255,59,92,0.08);
+  --red-border: rgba(255,59,92,0.2);
+  --blue: #3b82f6;
+  --blue-dim: rgba(59,130,246,0.08);
+  --blue-border: rgba(59,130,246,0.2);
+  --gold: #f59e0b;
+  --gold-dim: rgba(245,158,11,0.08);
+  --text-primary: #e2e8f0;
+  --text-secondary: #8892a8;
+  --text-muted: #4a5568;
+  --border: rgba(255,255,255,0.06);
+  --border-accent: rgba(255,255,255,0.1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 10% 20%, rgba(0,232,123,0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 80%, rgba(255,59,92,0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(59,130,246,0.02) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== HEADER ===== */
+.header {
+  padding: 60px 0 40px;
+  border-bottom: 1px solid var(--border);
+}
+
+.header-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.header-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: var(--gold-dim);
+  padding: 6px 14px;
+  border: 1px solid rgba(245,158,11,0.2);
+  display: inline-block;
+  margin-bottom: 16px;
+}
+
+.header h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 700;
+  letter-spacing: -1px;
+  line-height: 1.1;
+}
+
+.header h1 .name { color: var(--text-primary); }
+.header h1 .suffix {
+  font-weight: 300;
+  color: var(--text-secondary);
+  font-size: 0.6em;
+}
+
+.header-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 16px;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.meta-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green);
+  animation: pulse 2s ease infinite;
+}
+
+.meta-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+.meta-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.header-note {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 12px;
+  font-style: italic;
+}
+
+/* ===== SUMMARY STRIP ===== */
+.summary-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 32px 0;
+}
+
+@media (max-width: 640px) {
+  .summary-strip { grid-template-columns: repeat(2, 1fr); }
+}
+
+.summary-card {
+  padding: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeUp 0.5s ease forwards;
+}
+
+.summary-card:nth-child(1) { animation-delay: 0.1s; }
+.summary-card:nth-child(2) { animation-delay: 0.2s; }
+.summary-card:nth-child(3) { animation-delay: 0.3s; }
+.summary-card:nth-child(4) { animation-delay: 0.4s; }
+
+.summary-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+}
+
+.summary-card.buy::before { background: var(--green); }
+.summary-card.sell::before { background: var(--red); }
+.summary-card.other::before { background: var(--blue); }
+.summary-card.etf::before { background: var(--gold); }
+
+.summary-number {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.summary-card.buy .summary-number { color: var(--green); }
+.summary-card.sell .summary-number { color: var(--red); }
+.summary-card.other .summary-number { color: var(--blue); }
+.summary-card.etf .summary-number { color: var(--gold); }
+
+.summary-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ===== SECTION ===== */
+.section {
+  padding: 48px 0;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.section-icon {
+  font-size: 18px;
+}
+
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
+}
+
+.section-count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+  background: rgba(255,255,255,0.04);
+  padding: 3px 10px;
+  border-radius: 2px;
+}
+
+/* ===== TABLE ===== */
+.trade-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.trade-table thead th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-accent);
+  white-space: nowrap;
+}
+
+.trade-table tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+}
+
+.trade-table tbody tr:hover { background: var(--bg-row-hover); }
+
+.trade-table td {
+  padding: 14px 16px;
+  font-size: 13px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.trade-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.trade-action {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  padding: 4px 10px;
+  display: inline-block;
+}
+
+.action-buy {
+  color: var(--green);
+  background: var(--green-dim);
+  border: 1px solid var(--green-border);
+}
+
+.action-sell {
+  color: var(--red);
+  background: var(--red-dim);
+  border: 1px solid var(--red-border);
+}
+
+.action-other {
+  color: var(--blue);
+  background: var(--blue-dim);
+  border: 1px solid var(--blue-border);
+}
+
+.trade-ticker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.trade-name {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.trade-amount {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-align: right;
+}
+
+/* ===== INSIGHT BAR ===== */
+.insight-bar {
+  display: flex;
+  gap: 16px;
+  padding: 32px 0;
+  flex-wrap: wrap;
+}
+
+.insight-box {
+  flex: 1;
+  min-width: 260px;
+  padding: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+}
+
+.insight-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.insight-tickers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ticker-chip {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 12px;
+  border: 1px solid var(--border);
+  transition: all 0.2s;
+}
+
+.ticker-chip:hover {
+  border-color: var(--text-secondary);
+  background: rgba(255,255,255,0.03);
+}
+
+.ticker-chip.buy-chip {
+  color: var(--green);
+  border-color: var(--green-border);
+}
+
+.ticker-chip.sell-chip {
+  color: var(--red);
+  border-color: var(--red-border);
+}
+
+/* ===== ETF CALLOUT ===== */
+.etf-callout {
+  margin: 32px 0;
+  padding: 28px;
+  background: var(--gold-dim);
+  border: 1px solid rgba(245,158,11,0.2);
+  border-left: 3px solid var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.etf-icon { font-size: 28px; }
+
+.etf-text {
+  flex: 1;
+  min-width: 200px;
+}
+
+.etf-title {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.etf-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.etf-ticker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  padding: 40px 0;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.footer p {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  line-height: 2;
+}
+
+.footer a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  transition: color 0.2s;
+}
+
+.footer a:hover { color: var(--text-primary); }
+
+/* ===== RESPONSIVE ===== */
+.table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 640px) {
+  .trade-table td, .trade-table th { padding: 10px 10px; }
+  .trade-ticker { font-size: 12px; }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* Row stagger */
+.trade-table tbody tr {
+  opacity: 0;
+  animation: fadeUp 0.4s ease forwards;
+}
+.trade-table tbody tr:nth-child(1) { animation-delay: 0.05s; }
+.trade-table tbody tr:nth-child(2) { animation-delay: 0.1s; }
+.trade-table tbody tr:nth-child(3) { animation-delay: 0.15s; }
+.trade-table tbody tr:nth-child(4) { animation-delay: 0.2s; }
+.trade-table tbody tr:nth-child(5) { animation-delay: 0.25s; }
+.trade-table tbody tr:nth-child(6) { animation-delay: 0.3s; }
+.trade-table tbody tr:nth-child(7) { animation-delay: 0.35s; }
+.trade-table tbody tr:nth-child(8) { animation-delay: 0.4s; }
+.trade-table tbody tr:nth-child(9) { animation-delay: 0.45s; }
+.trade-table tbody tr:nth-child(10) { animation-delay: 0.5s; }
+
+.new-table tbody tr:nth-child(1) { animation-delay: 0.05s; }
+.new-table tbody tr:nth-child(2) { animation-delay: 0.1s; }
+.new-table tbody tr:nth-child(3) { animation-delay: 0.15s; }
+.new-table tbody tr:nth-child(4) { animation-delay: 0.2s; }
+.new-table tbody tr:nth-child(5) { animation-delay: 0.25s; }
+.new-table tbody tr:nth-child(6) { animation-delay: 0.3s; }
+.new-table tbody tr:nth-child(7) { animation-delay: 0.35s; }
+.new-table tbody tr:nth-child(8) { animation-delay: 0.4s; }
+.new-table tbody tr:nth-child(9) { animation-delay: 0.45s; }
+.new-table tbody tr:nth-child(10) { animation-delay: 0.5s; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-badge">📡 STOCK ACT DISCLOSURE TRACKER</div>
+  <div class="header-top">
+    <div>
+      <h1><span class="name">Nancy Pelosi</span> <span class="suffix">持仓变动报告</span></h1>
+    </div>
+  </div>
+  <div class="header-meta">
+    <div class="meta-item">
+      <div class="meta-dot"></div>
+      <span class="meta-label">Report Date</span>
+      <span class="meta-value">2026-04-01 10:01 HKT</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Source</span>
+      <span class="meta-value">U.S. House PTR Financial Disclosures</span>
+    </div>
+  </div>
+  <p class="header-note">STOCK Act 要求国会议员在 45 天内披露证券交易</p>
+</header>
+
+<!-- SUMMARY -->
+<div class="summary-strip">
+  <div class="summary-card buy">
+    <div class="summary-number">11</div>
+    <div class="summary-label">Buy 买入</div>
+  </div>
+  <div class="summary-card sell">
+    <div class="summary-number">15</div>
+    <div class="summary-label">Sell 卖出</div>
+  </div>
+  <div class="summary-card other">
+    <div class="summary-number">4</div>
+    <div class="summary-label">其他操作</div>
+  </div>
+  <div class="summary-card etf">
+    <div class="summary-number">NANC</div>
+    <div class="summary-label">跟踪 ETF</div>
+  </div>
+</div>
+
+<!-- NEW CHANGES -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-icon">🔔</span>
+    <span class="section-title">新增变动</span>
+    <span class="section-count">10 笔</span>
+  </div>
+  <div class="table-wrap">
+    <table class="trade-table new-table">
+      <thead>
+        <tr>
+          <th>日期</th>
+          <th>操作</th>
+          <th>标的</th>
+          <th style="text-align:right">金额区间</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="trade-date">12/30/2025</td>
+          <td><span class="trade-action action-buy">BUY</span></td>
+          <td><div class="trade-ticker">$AMZN</div><div class="trade-name">Amazon.com Inc.</div></td>
+          <td class="trade-amount">$250,001 – $500,000</td>
+        </tr>
+        <tr>
+          <td class="trade-date">12/30/2025</td>
+          <td><span class="trade-action action-sell">SELL</span></td>
+          <td><div class="trade-ticker">$AMZN</div><div class="trade-name">Amazon.com Inc.</div></td>
+          <td class="trade-amount">$5,000,001 – $25,000,000</td>
+        </tr>
+        <tr>
+          <td class="trade-date">12/30/2025</td>
+          <td><span class="trade-action action-other">CONTRIB</span></td>
+          <td><div class="trade-ticker">$AMZN</div><div class="trade-name">Amazon.com Inc.</div></td>
+          <td class="trade-amount">$100,001 – $250,000</td>
+        </tr>
+        <tr>
+          <td class="trade-date">12/30/2025</td>
+          <td><span class="trade-action action-sell">SELL</span></td>
+          <td><div class="trade-ticker">$AAPL</div><div class="trade-name">Apple Inc.</div></td>
+          <td class="trade-amount">$250,001 – $500,000</td>
+        </tr>
+        <tr>
+          <td class="trade-date">12/30/2025</td>
+          <td><span class="trade-action action-sell">SELL</span></td>
+          <td><div class="trade-ticker">$DIS</div><div class="trade-name">Walt Disney Company</div></td>
+          <td class="trade-amount">$1,000,001 – $5,000,000</td>
+        </tr>
+        <tr>
+          <td class="trade-date">12/24/2025</td>
+          <td><span class="trade-action action-sell">SELL <small>partial</small></span></td>
+          <td><div class="trade-ticker">$GOOGL</div><div class="trade-name">Alphabet Inc.</div></td>
+          <td class="trade-amount">$1,000,001 – $5,000,000</td>
+        </tr>
+        <tr>
+          <td class="trade-date">12/24/2025</td>
+          <td><span class="trade-action action-other">PURCHASE</span></td>
+          <td><div class="trade-ticker">$AMZN</div><div class="trade-name">Amazon.com Inc. (20 contracts)</div></td>
+          <td class="trade-amount">$1,000,001 – $5,000,000</td>
+        </tr>
+        <tr>
+          <td class="trade-date">12/24/2025</td>
+          <td><span class="trade-action action-other">SP</span></td>
+          <td><div class="trade-ticker">$NVDA</div><div class="trade-name">NVIDIA Corp.</div></td>
+          <td class="trade-amount">N/A</td>
+        </tr>
+        <tr>
+          <td class="trade-date">01/16/2026</td>
+          <td><span class="trade-action action-buy">BUY</span></td>
+          <td><div class="trade-ticker">$???</div><div class="trade-name">未披露标的</div></td>
+          <td class="trade-amount">$1,000,001 – $5,000,000</td>
+        </tr>
+        <tr>
+          <td class="trade-date">01/16/2026</td>
+          <td><span class="trade-action action-buy">BUY</span></td>
+          <td><div class="trade-ticker">$???</div><div class="trade-name">未披露标的</div></td>
+          <td class="trade-amount">$500,001 – $1,000,000</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- RECENT 20 TRADES -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-icon">📋</span>
+    <span class="section-title">最近 20 笔交易记录</span>
+    <span class="section-count">完整历史</span>
+  </div>
+  <div class="table-wrap">
+    <table class="trade-table">
+      <thead>
+        <tr>
+          <th>日期</th>
+          <th>操作</th>
+          <th>标的</th>
+          <th style="text-align:right">金额区间</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="trade-date">01/16/2026</td>
+          <td><span class="trade-action action-buy">BUY</span></td>
+          <td><div class="trade-ticker">$???</div></td>
+          <td class="trade-amount">$1,000,001 – $5,000,000</td>
+        </tr>
+        <tr>
+          <td class="trade-date">01/16/2026</td>
+          <td><span class="trade-action action-buy">BUY</span></td>
+          <td><div class="trade-ticker">$???</div></td>
+          <td class="trade-amount">$500,001 – $1,000,000</td>
+        </tr>
+        <tr>
+          <td class="trade-date">12/30/2025</td>
+          <td><span class="trade-action action-buy">BUY</span></td>
+          <td><div class="trade-ticker">AMZN</div></td>
+          <td class="trade-amount">$250,001 – $500,000</td>
+        </tr>
+        <tr>
+          <td class="trade-date">12/30/2025</td>
+          <td><span class="trade-action action-sell">SELL</span></td>
+          <td><div class="trade-ticker">AMZN</div></td>
+          <td class="trade-amount">$5,000,001 – $25,000,000</td>
+        </tr>
+        <tr>
+          <td class="trade-date">12/30/2025</td>
+          <td><span class="trade-action action-other">CONTRIB</span></td>
+          <td><div class="trade-ticker">AMZN</div></td>
+          <td class="trade-amount">$100,001 – $250,000</td>
+        </tr>
+        <tr>
+          <td class="trade-date">12/30/2025</td>
+          <td><span class="trade-action action-sell">SELL</span></td>
+          <td><div class="trade-ticker">AAPL</div></td>
+          <td class="trade-amount">$250,001 – $500,000</td>
+        </tr>
+        <tr>
+          <td class="trade-date">12/30/2025</td>
+          <td><span class="trade-action action-sell">SELL</span></td>
+          <td><div class="trade-ticker">DIS</div></td>
+          <td class="trade-amount">$1,000,001 – $5,000,000</td>
+        </tr>
+        <tr>
+          <td class="trade-date">12/24/2025</td>
+          <td><span class="trade-action action-sell">SELL <small>partial</small></span></td>
+          <td><div class="trade-ticker">GOOGL</div></td>
+          <td class="trade-amount">$1,000,001 – $5,000,000</td>
+        </tr>
+        <tr>
+          <td class="trade-date">12/24/2025</td>
+          <td><span class="trade-action action-other">PURCHASE</span></td>
+          <td><div class="trade-ticker">AMZN</div></td>
+          <td class="trade-amount">$1,000,001 – $5,000,000</td>
+        </tr>
+        <tr>
+          <td class="trade-date">12/24/2025</td>
+          <td><span class="trade-action action-other">SP</span></td>
+          <td><div class="trade-ticker">NVDA</div></td>
+          <td class="trade-amount">N/A</td>
+        </tr>
+        <tr>
+          <td class="trade-date">12/20/2024</td>
+          <td><span class="trade-action action-buy">BUY</span></td>
+          <td><div class="trade-ticker">GOOGL</div></td>
+          <td class="trade-amount">$500,001 – $1,000,000</td>
+        </tr>
+        <tr>
+          <td class="trade-date">12/20/2024</td>
+          <td><span class="trade-action action-buy">BUY</span></td>
+          <td><div class="trade-ticker">PANW</div></td>
+          <td class="trade-amount">$1,000,001 – $5,000,000</td>
+        </tr>
+        <tr>
+          <td class="trade-date">07/01/2024</td>
+          <td><span class="trade-action action-sell">SELL <small>partial</small></span></td>
+          <td><div class="trade-ticker">AVGO</div></td>
+          <td class="trade-amount">$500,001 – $1,000,000</td>
+        </tr>
+        <tr>
+          <td class="trade-date">06/26/2024</td>
+          <td><span class="trade-action action-buy">BUY</span></td>
+          <td><div class="trade-ticker">AVGO</div></td>
+          <td class="trade-amount">$1,000,001 – $5,000,000</td>
+        </tr>
+        <tr>
+          <td class="trade-date">06/24/2024</td>
+          <td><span class="trade-action action-sell">SELL</span></td>
+          <td><div class="trade-ticker">AVGO</div></td>
+          <td class="trade-amount">$250,001 – $500,000</td>
+        </tr>
+        <tr>
+          <td class="trade-date">06/24/2024</td>
+          <td><span class="trade-action action-sell">SELL</span></td>
+          <td><div class="trade-ticker">TSLA</div></td>
+          <td class="trade-amount">N/A</td>
+        </tr>
+        <tr>
+          <td class="trade-date">06/20/2025</td>
+          <td><span class="trade-action action-sell">SELL</span></td>
+          <td><div class="trade-ticker">$???</div></td>
+          <td class="trade-amount">$15,001 – $50,000</td>
+        </tr>
+        <tr>
+          <td class="trade-date">02/21/2024</td>
+          <td><span class="trade-action action-buy">BUY</span></td>
+          <td><div class="trade-ticker">PANW</div></td>
+          <td class="trade-amount">$100,001 – $250,000</td>
+        </tr>
+        <tr>
+          <td class="trade-date">02/12/2024</td>
+          <td><span class="trade-action action-sell">SELL</span></td>
+          <td><div class="trade-ticker">PANW</div></td>
+          <td class="trade-amount">N/A</td>
+        </tr>
+        <tr>
+          <td class="trade-date">12/31/2024</td>
+          <td><span class="trade-action action-sell">SELL <small>partial</small></span></td>
+          <td><div class="trade-ticker">GOOGL</div></td>
+          <td class="trade-amount">$5,000,001 – $25,000,000</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- INSIGHT BAR -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-icon">📊</span>
+    <span class="section-title">近期持仓倾向</span>
+    <span class="section-count">最近 30 笔分析</span>
+  </div>
+  <div class="insight-bar">
+    <div class="insight-box">
+      <div class="insight-label">🟢 买入标的 · 11 笔</div>
+      <div class="insight-tickers">
+        <span class="ticker-chip buy-chip">GOOGL</span>
+        <span class="ticker-chip buy-chip">PANW</span>
+        <span class="ticker-chip buy-chip">AVGO</span>
+        <span class="ticker-chip buy-chip">VST</span>
+        <span class="ticker-chip buy-chip">AAPL</span>
+        <span class="ticker-chip buy-chip">NVDA</span>
+        <span class="ticker-chip buy-chip">AMZN</span>
+      </div>
+    </div>
+    <div class="insight-box">
+      <div class="insight-label">🔴 卖出标的 · 15 笔</div>
+      <div class="insight-tickers">
+        <span class="ticker-chip sell-chip">DIS</span>
+        <span class="ticker-chip sell-chip">GOOGL</span>
+        <span class="ticker-chip sell-chip">TEM</span>
+        <span class="ticker-chip sell-chip">PANW</span>
+        <span class="ticker-chip sell-chip">AVGO</span>
+        <span class="ticker-chip sell-chip">VST</span>
+        <span class="ticker-chip sell-chip">TSLA</span>
+        <span class="ticker-chip sell-chip">AAPL</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ETF CALLOUT -->
+<div class="etf-callout">
+  <span class="etf-icon">📌</span>
+  <div class="etf-text">
+    <div class="etf-title">跟踪 ETF: Tidal Financial Group</div>
+    <div class="etf-desc">追踪国会议员交易信号，与本报告数据同源。可作为间接跟单工具参考。</div>
+  </div>
+  <div class="etf-ticker">$NANC</div>
+</div>
+
+</div><!-- /container -->
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <p>Data Source: <a href="https://disclosures-clerk.house.gov" target="_blank">disclosures-clerk.house.gov</a></p>
+    <p>Generated 2026-04-01 · For informational purposes only · Not investment advice</p>
+  </div>
+</footer>
+
+</body>
+</html>
