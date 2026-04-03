@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>锦承家办 · 全球大事周报 | 2026年第14周 (3.31–4.3)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-primary: #0a0e1a;
+  --bg-card: #111827;
+  --bg-card-hover: #1a2332;
+  --border-card: #1e293b;
+  --accent-gold: #f0b90b;
+  --accent-gold-dim: rgba(240,185,11,0.15);
+  --accent-red: #ef4444;
+  --accent-red-dim: rgba(239,68,68,0.12);
+  --accent-green: #22c55e;
+  --accent-green-dim: rgba(34,197,94,0.12);
+  --accent-blue: #3b82f6;
+  --accent-blue-dim: rgba(59,130,246,0.12);
+  --accent-purple: #a855f7;
+  --accent-purple-dim: rgba(168,85,247,0.12);
+  --accent-orange: #f97316;
+  --accent-orange-dim: rgba(249,115,22,0.12);
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 16px 60px;
+}
+
+/* ===== HERO ===== */
+.hero {
+  text-align: center;
+  padding: 48px 20px 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(ellipse, rgba(240,185,11,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent-gold-dim);
+  border: 1px solid rgba(240,185,11,0.25);
+  color: var(--accent-gold);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, #f1f5f9 30%, var(--accent-gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero .subtitle {
+  font-size: 16px;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.hero .date-range {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+/* ===== SECTION ===== */
+.section {
+  margin-top: 40px;
+  animation: fadeUp 0.6s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-card);
+}
+
+.section-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.section-header h2 {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.section-header .section-tag {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* ===== CARDS ===== */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 16px;
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  background: var(--bg-card-hover);
+  border-color: rgba(240,185,11,0.2);
+}
+
+.card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card p, .card li {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.card ul li {
+  position: relative;
+  padding-left: 16px;
+  margin-bottom: 6px;
+}
+
+.card ul li::before {
+  content: '›';
+  position: absolute;
+  left: 0;
+  color: var(--accent-gold);
+  font-weight: 700;
+}
+
+/* ===== TAG CHIPS ===== */
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.tag-red { background: var(--accent-red-dim); color: var(--accent-red); }
+.tag-green { background: var(--accent-green-dim); color: var(--accent-green); }
+.tag-blue { background: var(--accent-blue-dim); color: var(--accent-blue); }
+.tag-gold { background: var(--accent-gold-dim); color: var(--accent-gold); }
+.tag-purple { background: var(--accent-purple-dim); color: var(--accent-purple); }
+.tag-orange { background: var(--accent-orange-dim); color: var(--accent-orange); }
+
+/* ===== MARKET GRID ===== */
+.market-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.market-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+  transition: border-color 0.2s;
+}
+
+.market-item:hover {
+  border-color: rgba(240,185,11,0.3);
+}
+
+.market-item .label {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.market-item .price {
+  font-size: 22px;
+  font-weight: 800;
+  font-family: 'Inter', monospace;
+}
+
+.market-item .change {
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.up { color: var(--accent-green); }
+.down { color: var(--accent-red); }
+.flat { color: var(--text-muted); }
+
+/* ===== HIGHLIGHT BOX ===== */
+.highlight-box {
+  background: linear-gradient(135deg, rgba(240,185,11,0.06), rgba(240,185,11,0.02));
+  border: 1px solid rgba(240,185,11,0.2);
+  border-left: 3px solid var(--accent-gold);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 16px 0;
+}
+
+.highlight-box .hl-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent-gold);
+  margin-bottom: 8px;
+}
+
+.highlight-box p, .highlight-box li {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+/* ===== RISK BOX ===== */
+.risk-box {
+  background: linear-gradient(135deg, rgba(239,68,68,0.06), rgba(239,68,68,0.02));
+  border: 1px solid rgba(239,68,68,0.2);
+  border-left: 3px solid var(--accent-red);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 16px 0;
+}
+
+.risk-box .rl-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent-red);
+  margin-bottom: 8px;
+}
+
+.risk-box p, .risk-box li {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+/* ===== OPPORTUNITY BOX ===== */
+.opp-box {
+  background: linear-gradient(135deg, rgba(34,197,94,0.06), rgba(34,197,94,0.02));
+  border: 1px solid rgba(34,197,94,0.2);
+  border-left: 3px solid var(--accent-green);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 16px 0;
+}
+
+.opp-box .ol-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent-green);
+  margin-bottom: 8px;
+}
+
+.opp-box p, .opp-box li {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+/* ===== TIMELINE ===== */
+.timeline {
+  position: relative;
+  padding-left: 24px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: var(--border-card);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -22px;
+  top: 8px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent-gold);
+  border: 2px solid var(--bg-primary);
+}
+
+.timeline-item .tl-date {
+  font-size: 12px;
+  color: var(--accent-gold);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.timeline-item .tl-content {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ===== STRATEGY TABLE ===== */
+.strategy-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 13px;
+}
+
+.strategy-table th {
+  background: rgba(240,185,11,0.08);
+  color: var(--accent-gold);
+  font-weight: 600;
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-card);
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+
+.strategy-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-card);
+  color: var(--text-secondary);
+  vertical-align: top;
+}
+
+.strategy-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  text-align: center;
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-card);
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.footer .brand {
+  color: var(--accent-gold);
+  font-weight: 600;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 600px) {
+  .container { padding: 12px 12px 40px; }
+  .hero { padding: 32px 12px 28px; }
+  .card { padding: 16px; }
+  .market-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .market-item .price { font-size: 18px; }
+  .strategy-table { font-size: 12px; }
+  .strategy-table th, .strategy-table td { padding: 8px 10px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ===== HERO ===== -->
+<div class="hero">
+  <div class="hero-badge">📡 WEEKLY INTELLIGENCE BRIEF</div>
+  <h1>全球大事周报</h1>
+  <div class="subtitle">锦承家办 · 内部参考</div>
+  <div class="date-range">2026年第14周 · 3月31日 — 4月3日（周五）</div>
+</div>
+
+<!-- ===== 一、本周全球大事概览 ===== -->
+<div class="section" style="animation-delay:0.1s">
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--accent-red-dim)">🔥</div>
+    <div>
+      <h2>本周全球大事概览</h2>
+      <div class="section-tag">TOP EVENTS OF THE WEEK</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🎯 "解放日"关税一周年 — Trump 加码新一轮关税</h3>
+    <p>4月2日是 Trump"解放日"关税一周年。本周特朗普政府祭出新动作：</p>
+    <ul>
+      <li><strong>药品关税</strong>：对部分进口药品征收最高 <span class="tag tag-red">100%</span> 关税，部分企业获豁免</li>
+      <li><strong>金属关税调整</strong>：维持 50% 钢铝关税不变，新增部分金属产品关键豁免</li>
+      <li><strong>退税机制落地</strong>：宣布正式建立关税退还系统，意在缓解部分企业压力</li>
+      <li>NPR、Cato、Tax Foundation 等多方评估：一年来关税对美国农业、制造业负面影响显著，贸易逆差未实质改善</li>
+    </ul>
+    <div class="highlight-box">
+      <div class="hl-title">💡 家办视角</div>
+      <p>药品关税对保险理赔成本可能产生传导效应。跨境供应链企业客户需关注金属关税调整对成本结构的影响。美国贸易政策不确定性仍是Q2最大外部变量之一。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>⚔️ 伊朗冲突与霍尔木兹海峡 — 本周最大波动源</h3>
+    <p>本周地缘风暴中心：</p>
+    <ul>
+      <li>Trump 发表关于伊朗战争的讲话，<strong>威胁对伊朗发动更多打击</strong>，同时暗示 <span class="tag tag-orange">2-3周内撤出</span></li>
+      <li>原油价格剧烈波动：WTI 一度日内跳涨 <strong>11%+</strong>，Brent 涨近 8%；WTI 突破 <strong>$100</strong>（2022年以来首次）</li>
+      <li>伊朗方面表态承诺在霍尔木兹海峡"配合通行"，市场对此半信半疑</li>
+      <li>Brookings 分析指出：<strong>伊朗冲突的能源冲击尚未完全释放</strong>，超6亿桶原油仍面临风险</li>
+      <li>周中市场出现剧烈多空博弈：做多"战争结束"vs 做空"冲突升级"</li>
+    </ul>
+    <div class="risk-box">
+      <div class="rl-title">⚠️ 风险评估</div>
+      <p>霍尔木兹海峡是全球原油运输生命线。即使短期停火，保费、运输成本、库存调整已造成的成本传导需要时间消化。高净值客户如有能源相关持仓或企业敞口，需立即盘点。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🇨🇳 中国瞄准离岸信托 — 对超级富豪加大税务打击力度</h3>
+    <p>3月31日 Bloomberg 重磅报道引爆市场关注：</p>
+    <ul>
+      <li>中国据悉正在<strong>加强对离岸信托的税务穿透</strong>，重点打击通过港股红筹架构持有资产的超高净值人群</li>
+      <li>目标范围：通过 BVI/Cayman 信托持有上市公司股权并借此规避中国税务义务的富豪</li>
+      <li>Hong Kong Standard、AASTOCKS 等多家媒体跟进报道</li>
+      <li>这是近年来中国对离岸信托最明确的监管升级信号</li>
+    </ul>
+    <div class="highlight-box">
+      <div class="hl-title">💡 家办核心关注</div>
+      <ul>
+        <li>此消息直接关联我们的核心客群 — 持有离岸信托的中国高净值家族</li>
+        <li>建议立即对存量客户的信托结构进行合规健康检查</li>
+        <li>重点审查：受益人穿透披露、控制权认定、税务居民身份、分配路径</li>
+        <li>信托从"隐身工具"到"合规资产"的转型窗口正在收窄</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>📈 全球央行：加息预期升温</h3>
+    <ul>
+      <li><strong>ECB</strong>：3月已暂停降息，上调2026年通胀预期（受伊朗战争影响）；欧元区最新通胀数据引发加息预测</li>
+      <li><strong>Fed</strong>：市场押注Fed可能因能源价格传导重新考虑加息，"降息交易"基本结束</li>
+      <li>Reuters 报道：多国央行因战争引发的通胀风险，交易员开始押注加息周期</li>
+      <li>Finance & Commerce：央行在通胀风险中权衡利率走向</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>🌏 亚洲与港股亮点</h3>
+    <ul>
+      <li>恒生指数4月1日大涨 <strong>2.04%</strong>，风险偏好回暖</li>
+      <li>中国对石油危机有预案，Reuters 称"投资者正在收获回报"</li>
+      <li>中国3月制造业PMI扩张，但价格压力加剧（Business Times）</li>
+      <li>零跑汽车CEO与创始人增持 HK$2.3亿 H股，释放信心信号</li>
+      <li>越南成为 Trump 关税战"赢家"之一，供应链转移持续</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== 二、关键市场数据 ===== -->
+<div class="section" style="animation-delay:0.2s">
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--accent-blue-dim)">📊</div>
+    <div>
+      <h2>关键市场数据快照</h2>
+      <div class="section-tag">MARKET SNAPSHOT · 4月3日数据</div>
+    </div>
+  </div>
+
+  <div class="market-grid">
+    <div class="market-item">
+      <div class="label">S&P 500</div>
+      <div class="price">6,582.69</div>
+      <div class="change up">本周 ▲ ~3.2%</div>
+    </div>
+    <div class="market-item">
+      <div class="label">Nasdaq</div>
+      <div class="price">21,879</div>
+      <div class="change up">反弹中</div>
+    </div>
+    <div class="market-item">
+      <div class="label">恒生指数</div>
+      <div class="price">25,116</div>
+      <div class="change up">▲ 2%+</div>
+    </div>
+    <div class="market-item">
+      <div class="label">上证综指</div>
+      <div class="price">3,887</div>
+      <div class="change flat">— 窄幅</div>
+    </div>
+    <div class="market-item">
+      <div class="label">WTI 原油</div>
+      <div class="price">&gt;$100</div>
+      <div class="change down" style="color:var(--accent-orange)">剧烈波动</div>
+    </div>
+    <div class="market-item">
+      <div class="label">黄金 COMEX</div>
+      <div class="price">~$4,589</div>
+      <div class="change down">短期回调</div>
+    </div>
+    <div class="market-item">
+      <div class="label">BTC</div>
+      <div class="price">$66,679</div>
+      <div class="change down">▼ 0.4%</div>
+    </div>
+    <div class="market-item">
+      <div class="label">ETH</div>
+      <div class="price">$2,055</div>
+      <div class="change down">▼ 1.5%</div>
+    </div>
+    <div class="market-item">
+      <div class="label">USD/CNY</div>
+      <div class="price">6.8947</div>
+      <div class="change flat">— 稳定</div>
+    </div>
+    <div class="market-item">
+      <div class="label">USD/HKD</div>
+      <div class="price">7.8373</div>
+      <div class="change flat">— 联汇区间</div>
+    </div>
+    <div class="market-item">
+      <div class="label">EUR/USD</div>
+      <div class="price">1.1543</div>
+      <div class="change up">欧元强势</div>
+    </div>
+    <div class="market-item">
+      <div class="label">USD/JPY</div>
+      <div class="price">159.43</div>
+      <div class="change flat">日元承压</div>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <div class="hl-title">📌 本周市场主线</div>
+    <p><strong>多空剧烈博弈</strong>：S&P 500在经历连续5周下跌后本周反弹 ~3.2%。但驱动力并非基本面改善，而是"伊朗停战交易"叠加"央行按兵不动"的短期情绪修复。原油与股市负相关加剧，油价每涨10%对美股形成约1-2%压制。黄金从高位回调至 $4,589 附近，金银比飙升。</p>
+  </div>
+</div>
+
+<!-- ===== 三、家族办公室重点关注 ===== -->
+<div class="section" style="animation-delay:0.3s">
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--accent-gold-dim)">🏛️</div>
+    <div>
+      <h2>家族办公室重点关注</h2>
+      <div class="section-tag">FAMILY OFFICE WATCHLIST</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>1️⃣ 离岸信托合规 — 最紧迫事项</h3>
+    <ul>
+      <li><strong>Bloomberg 报道确认</strong>：中国税务机关正在系统性穿透离岸信托结构</li>
+      <li>重点对象：通过 BVI/Cayman 信托持有港股红筹股权的超高净值人群</li>
+      <li>影响范围：信托设立人的税务居民身份、受益权分配、控制权穿透</li>
+    </ul>
+    <div class="risk-box">
+      <div class="rl-title">🚨 行动建议</div>
+      <ul style="list-style:none;padding:0">
+        <li style="padding-left:16px;position:relative;margin-bottom:4px"><span style="position:absolute;left:0;color:var(--accent-red);font-weight:700">1.</span> 盘点存量客户离岸信托结构，标注涉及港股红筹的高风险案例</li>
+        <li style="padding-left:16px;position:relative;margin-bottom:4px"><span style="position:absolute;left:0;color:var(--accent-red);font-weight:700">2.</span> 审查信托契约中受益人/保护人/控制权条款的税务穿透风险</li>
+        <li style="padding-left:16px;position:relative;margin-bottom:4px"><span style="position:absolute;left:0;color:var(--accent-red);font-weight:700">3.</span> 对客户进行 CRS/税务居民身份交叉核对</li>
+        <li style="padding-left:16px;position:relative;margin-bottom:4px"><span style="position:absolute;left:0;color:var(--accent-red);font-weight:700">4.</span> 考虑是否需要主动向客户发出合规提醒</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>2️⃣ 能源冲击 → 通胀传导 → 保险/理赔成本</h3>
+    <ul>
+      <li>原油突破$100对全球通胀的传导将在Q2逐步显现</li>
+      <li>保险产品端：与通胀挂钩的保障产品成本可能上调</li>
+      <li>投资端：保险公司固收资产在加息环境中面临重估</li>
+      <li>客户端：高净值客户的企业如有能源成本敞口，需要对冲方案</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>3️⃣ 药品关税对保险行业影响</h3>
+    <ul>
+      <li>100%药品关税虽有豁免，但长期趋势是药品价格上行</li>
+      <li>涉及跨境医疗保险客户，尤其是在美就医的高端客户</li>
+      <li>短期影响有限（部分豁免），但Q3-Q4可能传导至保费</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>4️⃣ 加息周期重启？对资产配置的系统性影响</h3>
+    <ul>
+      <li>如果Fed被迫加息，对债券、REITs、高杠杆资产冲击最大</li>
+      <li>保单融资成本将直接上升（Libor/SOFR联动）</li>
+      <li>分红型保单的新钱收益率可能改善（但存量保单面值承压）</li>
+      <li>美元计价资产短期受益于加息预期（美元走强）</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== 四、Q2投资策略与重点 ===== -->
+<div class="section" style="animation-delay:0.4s">
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--accent-green-dim)">📐</div>
+    <div>
+      <h2>Q2投资策略与重点</h2>
+      <div class="section-tag">Q2 2026 STRATEGY FRAMEWORK</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🧭 宏观定调：多维度极化 + 高波动</h3>
+    <p>JPMorgan 年度展望将2026年定义为"多维度极化"年。Q2开局，三大主线交织：</p>
+    <ul>
+      <li><strong>地缘风险</strong>：伊朗战事走向不明，霍尔木兹海峡通行权仍是灰犀牛</li>
+      <li><strong>通胀-利率博弈</strong>：能源驱动的二次通胀 vs 央行的政策空间有限</li>
+      <li><strong>贸易格局重塑</strong>："解放日"关税一周年，全球供应链仍在调整中</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>📋 Q2 资产配置建议框架</h3>
+    <table class="strategy-table">
+      <thead>
+        <tr>
+          <th>资产类别</th>
+          <th>方向</th>
+          <th>逻辑</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>美股大盘</strong></td>
+          <td><span class="tag tag-orange">中性偏谨慎</span></td>
+          <td>反弹后需确认：是死猫跳还是趋势反转。关注Q1财报季（4月中旬开始）</td>
+        </tr>
+        <tr>
+          <td><strong>港股/A股</strong></td>
+          <td><span class="tag tag-green">结构性看好</span></td>
+          <td>中国石油危机预案充分，制造业PMI扩张。但离岸信托政策风险压制红筹板块</td>
+        </tr>
+        <tr>
+          <td><strong>原油/能源</strong></td>
+          <td><span class="tag tag-red">高波动 / 事件驱动</span></td>
+          <td>WTI $100+ 不可持续，但下行需要霍尔木兹确认安全。双向风险巨大</td>
+        </tr>
+        <tr>
+          <td><strong>黄金</strong></td>
+          <td><span class="tag tag-gold">中长期看好</span></td>
+          <td>JPMorgan 目标 $5,800。短期回调至 $4,500-4,600 是配置窗口</td>
+        </tr>
+        <tr>
+          <td><strong>美债/固收</strong></td>
+          <td><span class="tag tag-blue">关注久期</span></td>
+          <td>如加息重启，短久期占优。长端债券面临双重压力（通胀+供给）</td>
+        </tr>
+        <tr>
+          <td><strong>加密资产</strong></td>
+          <td><span class="tag tag-purple">中性观望</span></td>
+          <td>BTC $66k 区间震荡。Q2若风险偏好回暖+BTC ETF 流入，有突破可能</td>
+        </tr>
+        <tr>
+          <td><strong>美元现金</strong></td>
+          <td><span class="tag tag-green">偏多</span></td>
+          <td>加息预期支撑美元。现金的机会成本在高利率环境中下降</td>
+        </tr>
+        <tr>
+          <td><strong>私募/另类</strong></td>
+          <td><span class="tag tag-blue">精选</span></td>
+          <td>Schroders Q2展望强调"韧性增强"，优选基础设施与实物资产</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="opp-box">
+    <div class="ol-title">✅ Q2 关键机会</div>
+    <ul style="list-style:none;padding:0">
+      <li style="padding-left:16px;position:relative;margin-bottom:6px"><span style="position:absolute;left:0">🔹</span><strong>黄金回调建仓</strong>：$4,500-4,600 区间分批配置，中期目标 $5,500+</li>
+      <li style="padding-left:16px;position:relative;margin-bottom:6px"><span style="position:absolute;left:0">🔹</span><strong>港股科技/消费龙头</strong>：估值修复+南向资金持续流入</li>
+      <li style="padding-left:16px;position:relative;margin-bottom:6px"><span style="position:absolute;left:0">🔹</span><strong>短久期高等级债</strong>：锁定高票息，规避利率风险</li>
+      <li style="padding-left:16px;position:relative;margin-bottom:6px"><span style="position:absolute;left:0">🔹</span><strong>储蓄型保险/万能险</strong>：高利率环境下新钱收益率改善，配置窗口</li>
+      <li style="padding-left:16px;position:relative;margin-bottom:6px"><span style="position:absolute;left:0">🔹</span><strong>供应链转移受益股</strong>：越南、印度、墨西哥相关ETF</li>
+    </ul>
+  </div>
+
+  <div class="risk-box">
+    <div class="rl-title">⚠️ Q2 核心风险</div>
+    <ul style="list-style:none;padding:0">
+      <li style="padding-left:16px;position:relative;margin-bottom:6px"><span style="position:absolute;left:0">🔴</span><strong>伊朗冲突升级</strong>：霍尔木兹海峡封锁 = 全球能源价格暴涨 + 通胀失控</li>
+      <li style="padding-left:16px;position:relative;margin-bottom:6px"><span style="position:absolute;left:0">🔴</span><strong>Fed被迫加息</strong>：能源通胀传导 → 全面紧缩 → 风险资产暴跌</li>
+      <li style="padding-left:16px;position:relative;margin-bottom:6px"><span style="position:absolute;left:0">🔴</span><strong>关税持续升级</strong>：100%药品关税只是开始？对华贸易战2.0 走向</li>
+      <li style="padding-left:16px;position:relative;margin-bottom:6px"><span style="position:absolute;left:0">🔴</span><strong>中国离岸信托监管</strong>：如大面积穿透，将引发离岸架构系统性重估</li>
+      <li style="padding-left:16px;position:relative;margin-bottom:6px"><span style="position:absolute;left:0">🔴</span><strong>杠杆ETF集中度</strong>：TQQQ/TSLL 等杠杆产品在高波动市逢跌加速亏损</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== 五、下周重要日历 ===== -->
+<div class="section" style="animation-delay:0.5s">
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--accent-purple-dim)">📅</div>
+    <div>
+      <h2>下周重要日历</h2>
+      <div class="section-tag">WEEK AHEAD · APR 7–11, 2026</div>
+    </div>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="tl-date">4月7日 周一</div>
+      <div class="tl-content">
+        <strong>清明假期后A股开盘</strong> — 关注节后资金流向与情绪修复<br>
+        美国ISM服务业PMI（3月）— 经济韧性关键指标
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-date">4月8日 周二</div>
+      <div class="tl-content">
+        <strong>OPEC+ 月度会议</strong> — 伊朗局势下的减产/增产决策<br>
+        中国3月外贸数据（预计）— 关税影响的滞后反映
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-date">4月9日 周三</div>
+      <div class="tl-content">
+        <strong>FOMC 会议纪要发布</strong>（3月会议）— 关注加息讨论措辞<br>
+        美国CPI数据（3月）— 能源传导是否加速
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-date">4月10日 周四</div>
+      <div class="tl-content">
+        <strong>ECB 利率决议</strong>（如有）— 加息预期验证<br>
+        美国PPI数据（3月）— 企业端成本压力
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-date">4月11日 周五</div>
+      <div class="tl-content">
+        <strong>美国Q1财报季拉开序幕</strong> — 关注银行股（JPMorgan等）<br>
+        中国3月社融数据（预计）— 信贷投放力度
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-date">持续关注</div>
+      <div class="tl-content">
+        <strong>伊朗局势</strong> — Trump 表示2-3周内撤出，需持续跟踪<br>
+        <strong>关税后续</strong> — 药品关税细则、各国报复措施<br>
+        <strong>离岸信托监管</strong> — 中国税务机关下一步动作
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 六、给 Neo 的具体建议 ===== -->
+<div class="section" style="animation-delay:0.6s">
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--accent-gold-dim)">💼</div>
+    <div>
+      <h2>给 Neo 的具体建议</h2>
+      <div class="section-tag">ACTIONABLE ITEMS</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🔧 本周末/下周初必做</h3>
+    <ul>
+      <li><strong>信托客户合规筛查</strong>：对照 Bloomberg 报道，梳理涉及离岸信托 + 港股红筹的客户名单</li>
+      <li><strong>客户沟通准备</strong>：起草关于"离岸信托税务新形势"的简报/话术，供团队使用</li>
+      <li><strong>个人持仓检视</strong>：杠杆ETF（TQQQ/TSLL/TEMT/MSFU）在高波动市风险极大，建议趁反弹减仓</li>
+      <li><strong>保单融资利率确认</strong>：如客户有在途保单融资，确认当前基准利率水平和成本变化</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>📝 Q2 内容/获客方向</h3>
+    <ul>
+      <li>可以写一篇关于"离岸信托的2026合规新现实"的公众号文章（续此前那篇）</li>
+      <li>"加息环境下的保险配置策略"— 储蓄险新钱收益率改善是卖点</li>
+      <li>"能源危机下的资产保护"— 从伊朗冲突讲到家族资产韧性</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div class="footer">
+  <div class="brand">锦承家办 · JENCERE FAMILY OFFICE</div>
+  <div>内部参考 · 不构成投资建议 · 数据截至 2026年4月3日 10:00 HKT</div>
+  <div style="margin-top:8px">数据来源：Reuters · Bloomberg · CNBC · CoinGecko · Google Finance · Open Exchange Rates</div>
+  <div style="margin-top:4px;font-size:11px;color:var(--text-muted)">Powered by JinCheng AI · @JinChengFObot</div>
+</div>
+
+</div>
+</body>
+</html>
