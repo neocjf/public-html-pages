@@ -48,20 +48,20 @@
   .hd-brand { font-size: 9.5px; color: #d4af37; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 7px; }
   header h1 { font-size: 19px; font-weight: 700; color: #f0e8c4; letter-spacing: 0.5px; margin-bottom: 5px; }
   .hd-meta { font-size: 10px; color: #7880a0; letter-spacing: 1px; }
-  .pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #d4af37; margin-right: 5px; vertical-align: middle; animation: blink 2s infinite; }
+  .pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #2ecc40; margin-right: 5px; vertical-align: middle; animation: blink 2s infinite; }
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
 
   /* ─── ALERT BAR ─── */
   .alert-bar {
-    background: rgba(255,140,0,.08);
-    border-left: 3px solid #ffa040;
+    background: rgba(255,65,54,.08);
+    border-left: 3px solid #ff4136;
     padding: 8px 14px;
     margin-bottom: 12px;
     font-size: 11.5px;
-    color: #e0c080;
+    color: #e0a0a0;
     line-height: 1.45;
   }
-  .alert-bar strong { color: #ffa040; }
+  .alert-bar strong { color: #ff6b5b; }
 
   /* ─── CONTAINER ─── */
   .wrap { max-width: 680px; margin: 0 auto; padding: 16px 12px 48px; }
@@ -94,7 +94,6 @@
   .nt { color: #7880a0; }
   .bup { display: inline-block; background: rgba(46,204,64,.1); color: #2ecc40; border: 1px solid rgba(46,204,64,.2); border-radius: 2px; padding: 1px 5px; font-size: 10px; font-weight: 700; white-space: nowrap; }
   .bdn { display: inline-block; background: rgba(255,65,54,.1); color: #ff4136; border: 1px solid rgba(255,65,54,.2); border-radius: 2px; padding: 1px 5px; font-size: 10px; font-weight: 700; white-space: nowrap; }
-  .bne { display: inline-block; background: rgba(255,140,0,.1); color: #ffa040; border: 1px solid rgba(255,140,0,.2); border-radius: 2px; padding: 1px 5px; font-size: 10px; font-weight: 700; white-space: nowrap; }
 
   /* ─── RATE GRID ─── */
   .rgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
@@ -112,7 +111,6 @@
   .t-b { background: rgba(70,130,200,.1); color: #6ba3d6; border: 1px solid rgba(70,130,200,.22); }
   .t-e { background: rgba(46,204,64,.1); color: #2ecc40; border: 1px solid rgba(46,204,64,.22); }
   .t-o { background: rgba(255,140,0,.1); color: #ffa040; border: 1px solid rgba(255,140,0,.22); }
-  .t-p { background: rgba(180,100,220,.1); color: #c87aff; border: 1px solid rgba(180,100,220,.22); }
   .ev-b { flex: 1; min-width: 0; }
   .ev-t { font-size: 12px; font-weight: 700; color: #dde1f0; margin-bottom: 3px; line-height: 1.4; }
   .ev-d { font-size: 11px; color: #7880a0; line-height: 1.5; }
@@ -138,51 +136,51 @@
 </head>
 <body>
 
-<!-- TICKER (real data) -->
+<!-- TICKER (April 2, 2026 data — last trading day before Good Friday) -->
 <div class="ticker-wrap">
   <div class="ticker-inner">
-    <span class="ti"><span class="tn">S&amp;P 500</span><span class="tp">6,582.69</span><span class="tu">▲+0.1%</span></span>
-    <span class="ti"><span class="tn">纳斯达克</span><span class="tp">21,879.18</span><span class="tu">▲+0.2%</span></span>
-    <span class="ti"><span class="tn">道琼斯</span><span class="tp">46,504.67</span><span class="td">▼-0.1%</span></span>
+    <span class="ti"><span class="tn">S&amp;P 500</span><span class="tp">6,582.69</span><span class="tu">▲+0.11%</span></span>
+    <span class="ti"><span class="tn">纳斯达克</span><span class="tp">21,879.18</span><span class="tu">▲+0.18%</span></span>
+    <span class="ti"><span class="tn">道琼斯</span><span class="tp">46,504.67</span><span class="td">▼-0.13%</span></span>
     <span class="ti"><span class="tn">恒生</span><span class="tp">25,116.53</span><span class="td">▼-0.70%</span></span>
-    <span class="ti"><span class="tn">黄金</span><span class="tp">$4,676</span><span class="td">▼-1.98%</span></span>
-    <span class="ti"><span class="tn">WTI 原油</span><span class="tp">>$108</span><span class="tu">▲溢价</span></span>
-    <span class="ti"><span class="tn">BTC</span><span class="tp">$66,300</span><span class="nt">─</span></span>
-    <span class="ti"><span class="tn">美元指数</span><span class="tp">100.22</span><span class="tu">▲+0.8%</span></span>
-    <span class="ti"><span class="tn">10Y UST</span><span class="tp">4.31%</span><span class="tu">▲+12bp</span></span>
-    <span class="ti"><span class="tn">USD/CNY</span><span class="tp">~7.27</span><span class="nt">─</span></span>
-    <span class="ti"><span class="tn">USD/HKD</span><span class="tp">7.82</span><span class="nt">联系汇率</span></span>
+    <span class="ti"><span class="tn">黄金</span><span class="tp">$4,529.66</span><span class="td">▼-0.61%</span></span>
+    <span class="ti"><span class="tn">WTI 原油</span><span class="tp">$106.38</span><span class="tu">▲+3.40%</span></span>
+    <span class="ti"><span class="tn">BTC</span><span class="tp">$66,650</span><span class="tu">▲+0.61%</span></span>
+    <span class="ti"><span class="tn">美元指数</span><span class="tp">100.61</span><span class="tu">▲+0.10%</span></span>
+    <span class="ti"><span class="tn">10Y UST</span><span class="tp">4.50%</span><span class="tu">▲+15bp</span></span>
+    <span class="ti"><span class="tn">USD/CNY</span><span class="tp">7.268</span><span class="nt">─</span></span>
+    <span class="ti"><span class="tn">USD/HKD</span><span class="tp">7.782</span><span class="nt">─</span></span>
     <!-- duplicate -->
-    <span class="ti"><span class="tn">S&amp;P 500</span><span class="tp">6,582.69</span><span class="tu">▲+0.1%</span></span>
-    <span class="ti"><span class="tn">纳斯达克</span><span class="tp">21,879.18</span><span class="tu">▲+0.2%</span></span>
-    <span class="ti"><span class="tn">道琼斯</span><span class="tp">46,504.67</span><span class="td">▼-0.1%</span></span>
+    <span class="ti"><span class="tn">S&amp;P 500</span><span class="tp">6,582.69</span><span class="tu">▲+0.11%</span></span>
+    <span class="ti"><span class="tn">纳斯达克</span><span class="tp">21,879.18</span><span class="tu">▲+0.18%</span></span>
+    <span class="ti"><span class="tn">道琼斯</span><span class="tp">46,504.67</span><span class="td">▼-0.13%</span></span>
     <span class="ti"><span class="tn">恒生</span><span class="tp">25,116.53</span><span class="td">▼-0.70%</span></span>
-    <span class="ti"><span class="tn">黄金</span><span class="tp">$4,676</span><span class="td">▼-1.98%</span></span>
-    <span class="ti"><span class="tn">WTI 原油</span><span class="tp">>$108</span><span class="tu">▲溢价</span></span>
-    <span class="ti"><span class="tn">BTC</span><span class="tp">$66,300</span><span class="nt">─</span></span>
-    <span class="ti"><span class="tn">美元指数</span><span class="tp">100.22</span><span class="tu">▲+0.8%</span></span>
-    <span class="ti"><span class="tn">10Y UST</span><span class="tp">4.31%</span><span class="tu">▲+12bp</span></span>
-    <span class="ti"><span class="tn">USD/CNY</span><span class="tp">~7.27</span><span class="nt">─</span></span>
-    <span class="ti"><span class="tn">USD/HKD</span><span class="tp">7.82</span><span class="nt">联系汇率</span></span>
+    <span class="ti"><span class="tn">黄金</span><span class="tp">$4,529.66</span><span class="td">▼-0.61%</span></span>
+    <span class="ti"><span class="tn">WTI 原油</span><span class="tp">$106.38</span><span class="tu">▲+3.40%</span></span>
+    <span class="ti"><span class="tn">BTC</span><span class="tp">$66,650</span><span class="tu">▲+0.61%</span></span>
+    <span class="ti"><span class="tn">美元指数</span><span class="tp">100.61</span><span class="tu">▲+0.10%</span></span>
+    <span class="ti"><span class="tn">10Y UST</span><span class="tp">4.50%</span><span class="tu">▲+15bp</span></span>
+    <span class="ti"><span class="tn">USD/CNY</span><span class="tp">7.268</span><span class="nt">─</span></span>
+    <span class="ti"><span class="tn">USD/HKD</span><span class="tp">7.782</span><span class="nt">─</span></span>
   </div>
 </div>
 
 <header>
   <div class="hd-brand">锦承家族办公室 · 机密内参</div>
   <h1>全球投资晚报</h1>
-  <div class="hd-meta"><span class="pulse"></span>2026年4月4日（周六·复活节）· 数据截至 4月2日（美港）</div>
+  <div class="hd-meta"><span class="pulse"></span>2026年4月4日（周六）· 数据截至 4月2日（周四）收盘 · 耶稣受难日休市</div>
 </header>
 
 <div class="wrap">
 
   <!-- ALERT -->
   <div class="alert-bar">
-    🎯 <strong>本周大事回顾</strong>：美股三大指数本周均实现上涨（标普 +3.4%、纳指 +4.4%、道指 +3%），为伊朗战争以来的首次周线收涨。中东局势仍是核心驱动——WTI 罕见地相对布伦特出现溢价，石油市场"堰塞湖"效应浮现。复活节长周末（美、港休市），周一开盘或面临短期波动。
+    ⚠️ <strong>今日风险提示</strong>：美3月非农大超预期（+178K），Fed降息预期进一步后移；伊朗战事持续，原油高位震荡，10Y美债收益率升至4.5%。4月3日（耶稣受难日）美/港/欧市场均休市，内参数据为4月2日最后有效收盘价。
   </div>
 
   <!-- 1. 全球市场 -->
   <div class="card">
-    <div class="ch"><span class="ico">📊</span><h2>全球市场概览</h2><span class="sub">2026-04-02 收盘</span></div>
+    <div class="ch"><span class="ico">📊</span><h2>全球市场概览</h2><span class="sub">Yahoo Finance · 4月2日收盘</span></div>
     <div class="cb">
       <div class="tbl-wrap">
         <table>
@@ -191,51 +189,51 @@
               <th>资产</th>
               <th>最新价</th>
               <th>日涨跌</th>
-              <th>周涨跌</th>
+              <th>信号</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td><div class="an">S&amp;P 500</div><div class="as">美股大盘</div></td>
               <td><span class="pr">6,582.69</span></td>
-              <td><span class="up">▲ +0.1%</span></td>
-              <td><span class="up">▲ +3.4%</span></td>
+              <td><span class="up">▲ +0.11%</span></td>
+              <td><span class="bup">反弹</span></td>
             </tr>
             <tr>
               <td><div class="an">纳斯达克</div><div class="as">科技股</div></td>
               <td><span class="pr">21,879.18</span></td>
-              <td><span class="up">▲ +0.2%</span></td>
-              <td><span class="up">▲ +4.4%</span></td>
+              <td><span class="up">▲ +0.18%</span></td>
+              <td><span class="bup">连涨</span></td>
             </tr>
             <tr>
               <td><div class="an">道琼斯</div><div class="as">蓝筹</div></td>
               <td><span class="pr">46,504.67</span></td>
-              <td><span class="dn">▼ -0.1%</span></td>
-              <td><span class="up">▲ +3.0%</span></td>
+              <td><span class="dn">▼ -0.13%</span></td>
+              <td><span class="bdn">分化</span></td>
             </tr>
             <tr>
               <td><div class="an">恒生指数</div><div class="as">港股</div></td>
               <td><span class="pr">25,116.53</span></td>
-              <td><span class="dn">▼ -0.7%</span></td>
-              <td><span class="nt">—</span></td>
+              <td><span class="dn">▼ -0.70%</span></td>
+              <td><span class="bdn">回调</span></td>
             </tr>
             <tr>
               <td><div class="an">黄金现货</div><div class="as">XAU/USD</div></td>
-              <td><span class="pr">$4,676</span></td>
-              <td><span class="dn">▼ -1.98%</span></td>
-              <td><span class="nt">—</span></td>
+              <td><span class="pr">$4,529.66</span></td>
+              <td><span class="dn">▼ -0.61%</span></td>
+              <td><span class="bdn">回落</span></td>
             </tr>
             <tr>
               <td><div class="an">WTI 原油</div><div class="as">大宗商品</div></td>
-              <td><span class="pr">&gt;$108</span></td>
-              <td><span class="up">▲ +溢价</span></td>
-              <td><span class="up">▲ 持续飙升</span></td>
+              <td><span class="pr">$106.38</span></td>
+              <td><span class="up">▲ +3.40%</span></td>
+              <td><span class="bup">高位</span></td>
             </tr>
             <tr>
               <td><div class="an">比特币</div><div class="as">BTC/USD</div></td>
-              <td><span class="pr">~$66,300</span></td>
-              <td><span class="nt">—</span></td>
-              <td><span class="nt">—</span></td>
+              <td><span class="pr">$66,650</span></td>
+              <td><span class="up">▲ +0.61%</span></td>
+              <td><span class="bup">回稳</span></td>
             </tr>
           </tbody>
         </table>
@@ -245,38 +243,48 @@
 
   <!-- 2. 利率汇率 -->
   <div class="card">
-    <div class="ch"><span class="ico">💱</span><h2>利率与汇率</h2><span class="sub">2026-04-02 收盘</span></div>
+    <div class="ch"><span class="ico">💱</span><h2>利率与汇率</h2><span class="sub">Reuters · 实时</span></div>
     <div class="cb">
       <div class="rgrid">
         <div class="ri">
           <div class="rl">10Y 美债收益率</div>
-          <div class="rv">4.31%</div>
-          <div class="rc up">▲ +12bp · 收益率回升</div>
+          <div class="rv">4.50%</div>
+          <div class="rc up">▲ +15bp · 通胀预期升温</div>
         </div>
         <div class="ri">
           <div class="rl">美元指数 DXY</div>
-          <div class="rv">100.22</div>
-          <div class="rc up">▲ +0.8% · 避险升值</div>
+          <div class="rv">100.61</div>
+          <div class="rc up">▲ +0.10% · 维持100上方</div>
         </div>
         <div class="ri">
           <div class="rl">USD / CNY</div>
-          <div class="rv">~7.27</div>
+          <div class="rv">7.268</div>
           <div class="rc nt">离岸参考价</div>
         </div>
         <div class="ri">
           <div class="rl">USD / HKD</div>
-          <div class="rv">7.820</div>
+          <div class="rv">7.782</div>
           <div class="rc nt">联系汇率稳定</div>
         </div>
         <div class="ri">
-          <div class="rl">布伦特原油</div>
-          <div class="rv">&gt;$108/bbl</div>
-          <div class="rc up">▲ 持续高位</div>
+          <div class="rl">原油 WTI</div>
+          <div class="rv">$106.38</div>
+          <div class="rc up">▲ +3.40% · 伊朗局势驱动</div>
         </div>
         <div class="ri">
           <div class="rl">黄金现货</div>
-          <div class="rv">$4,676</div>
-          <div class="rc dn">▼ -1.98% · 回落修正</div>
+          <div class="rv">$4,529.66</div>
+          <div class="rc dn">▼ -0.61% · 从峰值回落</div>
+        </div>
+        <div class="ri">
+          <div class="rl">Fed 利率区间</div>
+          <div class="rv">4.50%</div>
+          <div class="rc nt">按兵不动 · 全年仅1次降息预期</div>
+        </div>
+        <div class="ri">
+          <div class="rl">HIBOR 隔夜</div>
+          <div class="rv">4.00%</div>
+          <div class="rc nt">香港银行间利率</div>
         </div>
       </div>
     </div>
@@ -284,41 +292,41 @@
 
   <!-- 3. 今日要闻 -->
   <div class="card">
-    <div class="ch"><span class="ico">🔥</span><h2>本周重要财经要闻</h2><span class="sub">2026-04-02 · 周总结</span></div>
+    <div class="ch"><span class="ico">🔥</span><h2>今日要闻</h2><span class="sub">Bloomberg · Reuters · 实时</span></div>
     <div class="cb">
-      <div class="ev">
-        <span class="tag t-o">能源</span>
-        <div class="ev-b">
-          <div class="ev-t">WTI 罕见出现对布伦特价差溢价——全球宏观信号异动</div>
-          <div class="ev-d">4月2日，WTI 相对布伦特出现溢价，这是多年来罕见现象。分析师称之为"石油市场堰塞湖"——地缘冲突导致的物流瓶颈使美国原油无法有效出口，压低国内供应。对全球能源贸易格局和通胀路径具有深远影响。</div>
-        </div>
-      </div>
       <div class="ev">
         <span class="tag t-r">地缘</span>
         <div class="ev-b">
-          <div class="ev-t">美股周线收涨——伊朗战争5周以来首次，但特朗普称"尚未结束"</div>
-          <div class="ev-d">尽管本周美股反弹，标普仍较年初跌 -3.8%，纳指跌 -5.9%。Trump 公开表示伊朗战争"尚未结束"，地缘尾部风险未解除，市场冒险情绪受到压制。</div>
+          <div class="ev-t">伊朗战事持续僵持，特朗普设停火条件（重新开放霍尔木兹海峡）</div>
+          <div class="ev-d">4月2日，Trump政府公开停火条件：要求伊朗重新开放霍尔木兹海峡并停止铀浓缩活动。WTI原油受此消息再度冲高，市场对供给中断的担忧仍未消散。</div>
         </div>
       </div>
       <div class="ev">
-        <span class="tag t-b">美股</span>
+        <span class="tag t-b">美联储</span>
         <div class="ev-b">
-          <div class="ev-t">美股科技板块失血，能源/国防逆势走强</div>
-          <div class="ev-d">纳指本周领涨但仍处负值区间；苹果等科技龙头在战争背景下承压。能源股、国防股持续受到资金青睐，BofA 建议关注防空系统相关标的。</div>
+          <div class="ev-t">Fed官员：伊朗战争将加剧通胀，全年仅预期1次降息</div>
+          <div class="ev-d">据AP及NYT报道，Fed官员明确表示伊朗战争将推高2026年通胀压力。3月非农新增+178K大超预期，降息窗口进一步推迟，美债收益率曲线趋陡。</div>
         </div>
       </div>
       <div class="ev">
-        <span class="tag t-p">港股</span>
+        <span class="tag t-o">原油</span>
         <div class="ev-b">
-          <div class="ev-t">港股休市至下周一（复活节），恒指 4月2日跌 -0.7%</div>
-          <div class="ev-d">恒生指数 25,116.53 点，成交量偏低。港元联系汇率保持稳定。港股周一（4月6日）开盘将消化清明假期期间外围及中东消息。</div>
+          <div class="ev-t">WTI 原油 $106.38（+3.4%），霍尔木兹海峡局势仍是最大变数</div>
+          <div class="ev-d">中东局势持续紧张，4月2日能源市场大幅波动。10Y美债收益率升至4.50%，市场重新定价滞胀风险，能源股跑赢大盘。</div>
         </div>
       </div>
       <div class="ev">
-        <span class="tag t-g">黄金</span>
+        <span class="tag t-r">非农</span>
         <div class="ev-b">
-          <div class="ev-t">黄金从两周高点大幅回落 -2%，美元走强抑制买盘</div>
-          <div class="ev-d">黄金现货 4月2日跌破 $4,700 关口，日跌幅 -1.98%。10年期美债收益率上行 12bp 至 4.31%，美元指数同步走强，均对黄金构成短期压力。</div>
+          <div class="ev-t">美国3月非农 +178K 大超预期，耶稣受难日市场淡定反应</div>
+          <div class="ev-d">3月非农新增就业远超预期，失业率持稳。强就业数据进一步削弱降息预期，但美股在4月3日休市前已消化大部分利空，S&P 500上周五收涨终结5周连跌。</div>
+        </div>
+      </div>
+      <div class="ev">
+        <span class="tag t-b">港股</span>
+        <div class="ev-b">
+          <div class="ev-t">恒指 25,116（-0.70%），受外围避险情绪拖累小幅回调</div>
+          <div class="ev-d">港股4月2日跟跌外围，地缘风险及美债收益率上行影响市场风险偏好。中国AI概念及新能源板块仍是资金关注方向。</div>
         </div>
       </div>
     </div>
@@ -329,48 +337,48 @@
     <div class="ch"><span class="ico">🏛️</span><h2>家办视角</h2><span class="sub">FAMILY OFFICE LENS</span></div>
     <div class="cb">
       <div class="fo">
-        <div class="fo-l">石油市场异象</div>
-        <div class="fo-t"><strong>WTI 溢价布伦特——历史性信号</strong>：WTI 相对布伦特出现溢价，历史上极为罕见，意味着美国内陆原油面临严峻物流外输瓶颈。能源配置超重的家族需重新评估：地缘驱动的价格高位一旦冲突缓解将快速崩塌，建议适度减仓浮盈。</div>
+        <div class="fo-l">滞胀风险升温</div>
+        <div class="fo-t"><strong>原油高位 + 就业强劲 + 通胀上行</strong>：滞胀（Stagflation）组合正在形成。债券+股票的传统组合承压，建议适度增配实物资产（黄金、原油）、缩短债券久期，并关注通胀联结债券（TIPS）配置价值。</div>
       </div>
       <div class="fo">
-        <div class="fo-l">美股反弹</div>
-        <div class="fo-t"><strong>熊市反弹，非牛市重启</strong>：尽管标普本周涨 +3.4%，但年内仍跌 -3.8%，纳指跌 -5.9%。伊朗战争尾部风险未解除（Trump 本周再度确认），建议继续维持防御性仓位，不追高。</div>
+        <div class="fo-l">黄金从峰值回落</div>
+        <div class="fo-t"><strong>金价 $4,529 高位回调</strong>：此前金价曾逼近 $4,900，受美债实际收益率攀升（10Y real yield ~2.15%）打压。短期支撑位 $4,300-$4,400，伊朗局势若升级或再度推升。维持核心配置，但避免追高。</div>
       </div>
       <div class="fo">
-        <div class="fo-l">黄金回落</div>
-        <div class="fo-t"><strong>技术性回调，非趋势终结</strong>：黄金从两周高点 $4,700+ 回落至 $4,676，10Y 美债收益率反弹至 4.31%。地缘风险未解，央行增持趋势延续，中期多头逻辑未破坏。回调或是再次布局机会。</div>
+        <div class="fo-l">美联储利率路径</div>
+        <div class="fo-t"><strong>全年仅1次降息预期</strong>：强非农+伊朗通胀冲击使Fed按兵不动。高利率环境对高杠杆上市公司持续施压，家办组合中应降低浮动利率负债比重，增配固定收益优质资产。</div>
       </div>
       <div class="fo">
-        <div class="fo-l">复活节窗口</div>
-        <div class="fo-t"><strong>持仓检视窗口期</strong>：美、港同时休市，给了持仓检视的宝贵时间。建议评估：能源股/商品仓位占比、黄金及 BTC 配置比例、美债久期是否合理，为周一可能的开盘波动做好准备。</div>
+        <div class="fo-l">港股中期逻辑</div>
+        <div class="fo-t"><strong>短线承压，中期趋势未变</strong>：恒指25,116回调有限，中国AI政策红利与外资流入长期逻辑未变。地缘风险导致的短期回调，是优化持仓结构的窗口期，关注科技及能源转型板块。</div>
       </div>
     </div>
   </div>
 
-  <!-- 5. 下周关注 -->
+  <!-- 5. 明日关注 -->
   <div class="card">
-    <div class="ch"><span class="ico">📅</span><h2>下周重要关注</h2><span class="sub">APRIL 6-10 · 2026</span></div>
+    <div class="ch"><span class="ico">📅</span><h2>下周关注</h2><span class="sub">APR 6-10 · NEXT WEEK</span></div>
     <div class="cb">
       <div class="tgrid">
         <div class="ti2">
-          <div class="ti2-time">周一 4月6日</div>
-          <div class="ti2-title">港股清明后复市</div>
-          <div class="ti2-desc">消化假期期间中东局势、原油价格及美股反弹延续性，恒指或补涨/补跌。</div>
+          <div class="ti2-time">周一（4月6日）</div>
+          <div class="ti2-title">美股开市消化非农</div>
+          <div class="ti2-desc">耶稣受难日后首个交易日，市场将完整消化3月非农+178K及Fed官员表态，关注美股期货先行方向。</div>
         </div>
         <div class="ti2">
-          <div class="ti2-time">全周</div>
-          <div class="ti2-title">伊朗战争动态</div>
-          <div class="ti2-desc">Trump 已确认尚未结束，关注是否升级/谈判信号，这是油价的决定性变量。</div>
+          <div class="ti2-time">周一至周五</div>
+          <div class="ti2-title">伊朗局势进展</div>
+          <div class="ti2-desc">Trump停火条件是否被接受，霍尔木兹海峡能否恢复畅通，将直接决定原油下一步走向（$100-$110区间）。</div>
         </div>
         <div class="ti2">
-          <div class="ti2-time">全周</div>
-          <div class="ti2-title">原油物流瓶颈进展</div>
-          <div class="ti2-desc">WTI 溢价结构何时修复？美国内陆库存数据及管道/港口动态是关键。</div>
+          <div class="ti2-time">周二（4月7日）</div>
+          <div class="ti2-title">CPI 数据发布</div>
+          <div class="ti2-desc">3月CPI数据将是Fed利率路径的关键验证。若CPI超预期，7月降息概率将进一步压缩。</div>
         </div>
         <div class="ti2">
-          <div class="ti2-time">TBD</div>
-          <div class="ti2-title">美联储官员讲话</div>
-          <div class="ti2-desc">通胀高位 + 地缘风险 = 降息预期持续承压。关注近期 Fed 官员对油价冲击的表态。</div>
+          <div class="ti2-time">周五（4月10日）</div>
+          <div class="ti2-title">港股通南向配置</div>
+          <div class="ti2-desc">地缘回调中关注优质港股（科技/新能源/医疗）的配置机会，AH溢价收窄趋势下关注估值修复逻辑。</div>
         </div>
       </div>
     </div>
@@ -380,8 +388,8 @@
 
 <footer>
   JINCHENG FAMILY OFFICE · CONFIDENTIAL · FOR AUTHORIZED RECIPIENTS ONLY<br>
-  数据来源：Yahoo Finance / MarketWatch / Barchart / goldprice.org · 本内参仅供内部参考，不构成投资建议<br>
-  ⚠️ 注：今日（4月4日）为复活节周六，美/港市场休市，数据截止4月2日（周四）
+  数据来源：Yahoo Finance / TradingEconomics / Fortune / Sina · 本内参仅供内部参考，不构成投资建议<br>
+  注：4月3日（耶稣受难日）美/港/欧市场休市，数据截至4月2日收盘
 </footer>
 
 </body>
