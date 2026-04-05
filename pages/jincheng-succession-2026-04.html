@@ -1,567 +1,423 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>谁来接班？高净值家族的下一代传承图谱 | 锦承4月专题</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;600;700&family=Georgia&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #0a0e1a;
-      --text: #e8e4d4;
-      --gold: #c9a227;
-      --blue-gray: #8a9bb5;
-      --border: #1e2a3a;
-      --card-bg: #111827;
-      --quote-bg: #0d1220;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      width: 100%;
-      margin: 0;
-      padding: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Noto Sans SC', sans-serif;
-      font-size: 16px;
-      line-height: 1.8;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    .page-wrap {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    /* ── Header ── */
-    .site-header {
-      border-bottom: 1px solid var(--border);
-      padding: 28px 0 24px;
-      margin-bottom: 48px;
-    }
-    .header-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .brand {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--gold);
-      letter-spacing: 0.08em;
-    }
-    .brand-sub {
-      font-size: 12px;
-      color: var(--blue-gray);
-      letter-spacing: 0.05em;
-      margin-top: 2px;
-    }
-    .report-meta {
-      text-align: right;
-      font-size: 12px;
-      color: var(--blue-gray);
-      line-height: 1.6;
-    }
-
-    /* ── Hero ── */
-    .hero {
-      margin-bottom: 52px;
-      padding-bottom: 40px;
-      border-bottom: 1px solid var(--border);
-    }
-    .hero h1 {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 32px;
-      font-weight: 700;
-      color: var(--gold);
-      line-height: 1.3;
-      margin-bottom: 16px;
-      letter-spacing: 0.02em;
-    }
-    .hero .subtitle {
-      font-size: 15px;
-      color: var(--blue-gray);
-      letter-spacing: 0.04em;
-    }
-    .hero .divider {
-      width: 48px;
-      height: 2px;
-      background: var(--gold);
-      margin: 20px 0;
-    }
-
-    /* ── Sections ── */
-    .section {
-      margin-bottom: 52px;
-    }
-    .section-num {
-      font-family: Georgia, serif;
-      font-size: 11px;
-      color: var(--gold);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-    .section h2 {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 22px;
-      font-weight: 600;
-      color: var(--gold);
-      margin-bottom: 20px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--border);
-      line-height: 1.4;
-    }
-    .section p {
-      margin-bottom: 16px;
-      font-weight: 300;
-    }
-    .section p:last-child { margin-bottom: 0; }
-
-    /* ── Data list ── */
-    .data-list {
-      list-style: none;
-      margin: 20px 0;
-    }
-    .data-list li {
-      padding: 14px 18px;
-      background: var(--card-bg);
-      border-left: 3px solid var(--gold);
-      margin-bottom: 12px;
-      font-size: 14px;
-      line-height: 1.7;
-    }
-    .data-list li strong {
-      color: var(--text);
-      font-weight: 500;
-    }
-    .data-list li .src {
-      display: block;
-      font-size: 11px;
-      color: var(--blue-gray);
-      margin-top: 4px;
-      font-style: italic;
-    }
-
-    /* ── Scene cards ── */
-    .scene-card {
-      background: var(--card-bg);
-      border-left: 3px solid var(--gold);
-      padding: 22px 24px;
-      margin: 24px 0;
-    }
-    .scene-card .scene-label {
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--gold);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-    .scene-card .scene-title {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 17px;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 12px;
-      line-height: 1.5;
-    }
-    .scene-card p {
-      font-size: 14px;
-      font-weight: 300;
-      margin-bottom: 12px;
-    }
-    .scene-card .takeaway {
-      font-size: 13px;
-      color: var(--gold);
-      font-style: italic;
-      border-top: 1px solid var(--border);
-      padding-top: 10px;
-      margin-top: 4px;
-      margin-bottom: 0;
-    }
-
-    /* ── Tools ── */
-    .tool-item {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      padding: 20px 22px;
-      margin: 16px 0;
-    }
-    .tool-item .tool-num {
-      font-family: Georgia, serif;
-      font-size: 11px;
-      color: var(--gold);
-      letter-spacing: 0.1em;
-      margin-bottom: 6px;
-    }
-    .tool-item h3 {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 10px;
-    }
-    .tool-item p {
-      font-size: 13px;
-      font-weight: 300;
-      color: var(--blue-gray);
-      margin-bottom: 0;
-    }
-
-    /* ── Failure list ── */
-    .failure-item {
-      background: var(--card-bg);
-      border-left: 3px solid #c0392b;
-      padding: 16px 20px;
-      margin: 16px 0;
-    }
-    .failure-item h3 {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 8px;
-    }
-    .failure-item p {
-      font-size: 13px;
-      font-weight: 300;
-      color: var(--blue-gray);
-      margin-bottom: 0;
-    }
-
-    /* ── Quote block ── */
-    .quote-block {
-      background: var(--quote-bg);
-      border-left: 3px solid var(--gold);
-      padding: 20px 24px;
-      margin: 24px 0;
-      font-family: 'Noto Serif SC', serif;
-      font-size: 15px;
-      font-style: italic;
-      color: var(--text);
-      line-height: 1.8;
-    }
-
-    /* ── Steps ── */
-    .steps-wrap {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      margin: 24px 0;
-    }
-    .step-card {
-      display: flex;
-      gap: 20px;
-      align-items: flex-start;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      padding: 20px 22px;
-    }
-    .step-num {
-      flex-shrink: 0;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--gold);
-      color: var(--bg);
-      font-family: Georgia, serif;
-      font-size: 16px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .step-body h3 {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 6px;
-    }
-    .step-body p {
-      font-size: 13px;
-      font-weight: 300;
-      color: var(--blue-gray);
-      margin-bottom: 0;
-    }
-
-    /* ── Outro ── */
-    .outro {
-      margin: 52px 0 40px;
-      padding: 28px 30px;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      text-align: center;
-    }
-    .outro p {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 16px;
-      color: var(--gold);
-      font-style: italic;
-      font-weight: 400;
-      margin-bottom: 0;
-    }
-
-    /* ── Footer ── */
-    .site-footer {
-      border-top: 1px solid var(--border);
-      padding: 24px 0 40px;
-      font-size: 11px;
-      color: var(--blue-gray);
-      line-height: 1.8;
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 600px) {
-      .hero h1 { font-size: 24px; }
-      .section h2 { font-size: 18px; }
-      .header-inner { flex-direction: column; }
-      .report-meta { text-align: left; }
-      .step-card { gap: 14px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>谁来接班？高净值家族的下一代传承图谱 | 锦承家族办公室 2026年4月</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+font-family:'Noto Sans SC',sans-serif;
+background:#0a0e1a;
+color:#e8e4d4;
+width:100%;
+margin:0;padding:0;
+line-height:1.8;
+font-size:15px;
+}
+.container{max-width:800px;margin:0 auto;padding:0 24px}
+header{
+background:linear-gradient(135deg,#0d1220 0%,#0a0e1a 100%);
+border-bottom:1px solid #c9a227;
+padding:40px 0 32px;
+text-align:center;
+}
+header .brand{
+font-family:'Noto Serif SC',serif;
+font-size:13px;
+letter-spacing:4px;
+color:#8a9bb5;
+text-transform:uppercase;
+margin-bottom:16px;
+}
+header h1{
+font-family:'Noto Serif SC',serif;
+font-size:28px;
+font-weight:700;
+color:#c9a227;
+line-height:1.4;
+margin-bottom:12px;
+}
+header .subtitle{
+font-size:14px;
+color:#8a9bb5;
+letter-spacing:1px;
+}
+.header-rule{
+width:60px;height:2px;
+background:#c9a227;
+margin:20px auto 0;
+}
+main{padding:40px 0 60px}
+.chapter{margin-bottom:48px}
+.chapter-num{
+font-family:'Noto Serif SC',serif;
+font-size:11px;
+color:#c9a227;
+letter-spacing:3px;
+text-transform:uppercase;
+margin-bottom:8px;
+}
+.chapter h2{
+font-family:'Noto Serif SC',serif;
+font-size:20px;
+font-weight:700;
+color:#e8e4d4;
+border-left:3px solid #c9a227;
+padding-left:14px;
+margin-bottom:20px;
+line-height:1.5;
+}
+.data-block{
+background:#111827;
+border-radius:8px;
+padding:20px 24px;
+margin-bottom:16px;
+border-left:3px solid #c9a227;
+}
+.data-block .stat{
+font-family:Georgia,serif;
+font-size:26px;
+font-weight:700;
+color:#c9a227;
+margin-bottom:4px;
+}
+.data-block .source{
+font-size:12px;
+color:#8a9bb5;
+margin-top:6px;
+}
+p{margin-bottom:14px;color:#d4d0c4}
+.scene-card{
+background:#0d1220;
+border-radius:8px;
+padding:20px 24px;
+margin-bottom:16px;
+border-left:4px solid #c9a227;
+}
+.scene-card .scene-label{
+font-family:'Noto Serif SC',serif;
+font-size:12px;
+color:#c9a227;
+letter-spacing:2px;
+margin-bottom:10px;
+font-weight:600;
+}
+.scene-card .scene-title{
+font-size:15px;
+font-weight:500;
+color:#e8e4d4;
+margin-bottom:12px;
+}
+.scene-card p{font-size:14px;color:#b8b4a8;margin-bottom:8px}
+.scene-card .lesson{
+font-size:13px;
+color:#c9a227;
+font-style:italic;
+margin-top:10px;
+padding-top:10px;
+border-top:1px solid #1e2a3a;
+}
+.tools-grid{
+display:grid;
+grid-template-columns:1fr;
+gap:12px;
+margin-top:16px;
+}
+.tool-item{
+background:#111827;
+border-radius:8px;
+padding:16px 20px;
+border-left:3px solid #c9a227;
+}
+.tool-item .tool-num{
+font-size:11px;
+color:#c9a227;
+letter-spacing:2px;
+margin-bottom:6px;
+}
+.tool-item .tool-name{
+font-family:'Noto Serif SC',serif;
+font-size:15px;
+font-weight:600;
+color:#e8e4d4;
+margin-bottom:8px;
+}
+.tool-item p{font-size:13px;color:#b8b4a8;margin-bottom:0}
+.quote-block{
+background:#0d1220;
+border-left:3px solid #c9a227;
+padding:16px 20px;
+margin:20px 0;
+font-style:italic;
+color:#d4d0c4;
+}
+.failure-item{
+background:#0d1220;
+border-radius:8px;
+padding:16px 20px;
+margin-bottom:12px;
+border-left:3px solid #c9a227;
+}
+.failure-item .failure-title{
+font-size:14px;
+font-weight:500;
+color:#e8e4d4;
+margin-bottom:6px;
+}
+.failure-item p{font-size:13px;color:#b8b4a8;margin-bottom:0}
+.step-card{
+background:#111827;
+border-radius:8px;
+padding:20px 24px;
+margin-bottom:14px;
+border-left:4px solid #c9a227;
+}
+.step-card .step-num{
+font-size:11px;
+color:#c9a227;
+letter-spacing:3px;
+margin-bottom:6px;
+}
+.step-card .step-name{
+font-family:'Noto Serif SC',serif;
+font-size:16px;
+font-weight:700;
+color:#c9a227;
+margin-bottom:10px;
+}
+.step-card p{font-size:13px;color:#b8b4a8;margin-bottom:0}
+.highlight-box{
+background:#111827;
+border-radius:8px;
+padding:20px 24px;
+margin:24px 0;
+text-align:center;
+border:1px solid #c9a227;
+}
+.highlight-box p{
+font-family:'Noto Serif SC',serif;
+font-size:16px;
+color:#c9a227;
+margin:0;
+font-weight:600;
+}
+footer{
+border-top:1px solid #1e2a3a;
+padding:32px 0;
+text-align:center;
+}
+footer .footer-brand{
+font-family:'Noto Serif SC',serif;
+font-size:13px;
+color:#8a9bb5;
+letter-spacing:3px;
+margin-bottom:12px;
+}
+footer .footer-note{
+font-size:11px;
+color:#5a6a7a;
+line-height:1.8;
+}
+</style>
 </head>
 <body>
+<header>
+<div class="container">
+<div class="brand">锦承家族办公室</div>
+<h1>谁来接班？<br>高净值家族的下一代传承图谱</h1>
+<div class="subtitle">2026年4月专题报告</div>
+<div class="header-rule"></div>
+</div>
+</header>
 
-<div class="page-wrap">
+<main>
+<div class="container">
 
-  <!-- Header -->
-  <header class="site-header">
-    <div class="header-inner">
-      <div>
-        <div class="brand">锦承家族办公室</div>
-        <div class="brand-sub">JINCHENG FAMILY OFFICE</div>
-      </div>
-      <div class="report-meta">
-        2026年4月专题报告<br>
-        Vol.04 · 2026.04
-      </div>
-    </div>
-  </header>
+<!-- 第一章：危机现场 -->
+<div class="chapter">
+<div class="chapter-num">01 / 06</div>
+<h2>危机现场：财富在悄悄消失</h2>
 
-  <!-- Hero -->
-  <div class="hero">
-    <div class="section-num">专题报告</div>
-    <h1>谁来接班？<br>高净值家族的下一代传承图谱</h1>
-    <div class="divider"></div>
-    <p class="subtitle">锦承家族办公室 · 2026年4月</p>
-  </div>
-
-  <!-- Section 1 -->
-  <div class="section">
-    <div class="section-num">01</div>
-    <h2>危机现场：财富在悄悄消失</h2>
-
-    <p>有一组数据，很多人听过，但没有认真面对：</p>
-
-    <ul class="data-list">
-      <li>
-        <strong>全球家族企业，二代传承成功率仅30%，三代不足13%</strong>
-        <span class="src">建信信托《2024-2025中国家族财富可持续发展报告》，调研全国25城300余位企业家</span>
-      </li>
-      <li><strong>中国超60%的家族企业，会在传承过程中消失</strong></li>
-      <li>
-        <strong>美国Williams Group 25年追踪研究：70%的家族财富在二代流失，90%在三代耗尽</strong>
-      </li>
-      <li>
-        <strong>全球家族办公室87%的财富尚未传给年轻一代，但其中59%将在未来10年内转移</strong>
-        <span class="src">Bank of America Family Office Study 2025</span>
-      </li>
-    </ul>
-
-    <p>这不是"别人家"的故事。</p>
-
-    <p>中国高净值家庭数量从2009年的82.5万户增长到现在的169万户，翻了一倍。超高净值家庭从5.1万户飙升到13.3万户。这批财富，正在进入第一轮大规模传承窗口。</p>
-
-    <p>香港单一家族办公室（SFO）已达<strong style="color:var(--gold)">3,384间</strong>，两年增长25%，AUM超10万亿港元。其中，仍由<strong>创富第一代</strong>领导的占多数，但<strong>40%已有第二代成员执掌管理层，13%有第三代参与</strong>。</p>
-
-    <p>问题不是"要不要传"，而是"能不能传好"。</p>
-  </div>
-
-  <!-- Section 2 -->
-  <div class="section">
-    <div class="section-num">02</div>
-    <h2>接班人的三种命运</h2>
-
-    <p>每一个高净值家族，都会在某个时刻面临同一道题。而答案，往往在题目出现之前就已经决定了。</p>
-
-    <div class="scene-card">
-      <div class="scene-label">场景 A</div>
-      <div class="scene-title">被动接班</div>
-      <p>陈先生，深圳制造业，资产8位数，独子在英国读完本科回来，进了家族企业。</p>
-      <p>但父亲从没有认真问过儿子：你想要什么？</p>
-      <p>儿子进了公司，做了副总，签字但不决策，开会但不发言。三年后，父亲一场重病，儿子突然接手——他不懂供应链，不懂财务，不懂核心客户关系，也不懂父亲的那套"江湖逻辑"。</p>
-      <p>企业没倒，但慢慢萎缩了。</p>
-      <p class="takeaway">问题不在儿子，在于从未准备。</p>
-    </div>
-
-    <div class="scene-card">
-      <div class="scene-label">场景 B</div>
-      <div class="scene-title">主动放弃</div>
-      <p>林女士，香港二代，父亲是地产商，家族持有多处物业。</p>
-      <p>她移民加拿大，做了艺术家。父亲理解，但家族资产没有合适的人管理，最后委托一家私人银行打理，10年下来，费用吃掉了大部分增值收益。</p>
-      <p>她不是"败家"，她只是没被纳入任何规划。</p>
-      <p class="takeaway">家族没有给她一个可以选择的路径，于是她选择了离开。</p>
-    </div>
-
-    <div class="scene-card">
-      <div class="scene-label">场景 C</div>
-      <div class="scene-title">有规划的接班（少数派）</div>
-      <p>某家族，港资背景，两个孩子，一个擅长投资，一个擅长运营。</p>
-      <p>父母在孩子20多岁时，就为他们各自设计了角色：投资委员会、日常管理、决策边界。家族宪章在孩子30岁前就签署完毕，每年家族会议，两代人共同参与。</p>
-      <p>财富没有缩水，反而在规范治理下稳步增值。</p>
-      <p class="takeaway">这不是运气，是系统。</p>
-    </div>
-  </div>
-
-  <!-- Section 3 -->
-  <div class="section">
-    <div class="section-num">03</div>
-    <h2>香港家族办公室怎么做</h2>
-
-    <p>香港是亚太区家办密度最高的城市，也是传承工具最完整的地方。</p>
-
-    <p>2026年，香港SFO税务豁免将扩展至<strong style="color:var(--gold)">数字资产、贵金属</strong>，立法预计上半年提交立法会，从2025/26课税年度起溯及生效。这为更多类型的家族资产纳入SFO架构创造了条件。</p>
-
-    <p><strong>在这个背景下，次代接班人的参与路径，正在成为SFO治理的核心议题。</strong></p>
-
-    <p>全球家族办公室2026年调查（IQ-EQ）显示：<em>家族宪章+决策框架+次代接班路径，是全球家办2026年首要治理议程</em>。</p>
-
-    <div class="tool-item">
-      <div class="tool-num">①</div>
-      <h3>家族委员会（Family Council）</h3>
-      <p>把家族成员正式纳入决策结构，不只是"听话的股东"。设立议事规则、年度会议、投票机制。让二代有合法发声的渠道，而不是在饭桌上争论。</p>
-    </div>
-
-    <div class="tool-item">
-      <div class="tool-num">②</div>
-      <h3>青年股东协议</h3>
-      <p>明确二代持股的条件、权利和限制。例如：需在家族企业工作满3年、年度考核合格，方可获得完整表决权。这不是不信任，而是给二代一个清晰的成长路径。</p>
-    </div>
-
-    <div class="tool-item">
-      <div class="tool-num">③</div>
-      <h3>影子董事期（Shadow Director Period）</h3>
-      <p>接班前2-3年，二代以观察员身份参与董事会，见证真实决策过程，积累信任，也让外部合作方逐渐接受新的领导人。</p>
-    </div>
-
-    <p>这三个工具组合使用，是全球成功传承案例中最常见的路径。</p>
-  </div>
-
-  <!-- Section 4 -->
-  <div class="section">
-    <div class="section-num">04</div>
-    <h2>钱以外的传承</h2>
-
-    <p>大多数人谈传承，谈的是"怎么把钱留住"。</p>
-
-    <p>但Williams Group那项25年研究发现，<strong style="color:var(--gold)">60%的传承失败来自沟通破裂和信任缺失，25%来自二代缺乏准备，只有不到15%是因为税务或法律问题</strong>。</p>
-
-    <p>钱不是最难传的。</p>
-
-    <p><strong>最难传的，是判断力、价值观、和面对风险的底气。</strong></p>
-
-    <div class="quote-block">
-      正确的顺序是：<br>
-      1. 让孩子理解财富从哪里来（创富的故事，不是数字）<br>
-      2. 建立家族对"钱的意义"的共同认知（养家？传承？社会责任？）<br>
-      3. 然后才是工具：信托、家族办公室、资产配置
-    </div>
-
-    <p><strong>家族宪章的核心价值，就是把这些共识变成文字，防止每一代人都要从头争论一遍。</strong></p>
-  </div>
-
-  <!-- Section 5 -->
-  <div class="section">
-    <div class="section-num">05</div>
-    <h2>常见失败模式（锦承视角）</h2>
-
-    <p>在我们接触的案例中，传承出问题，往往有以下几种迹象：</p>
-
-    <div class="failure-item">
-      <h3>"等我死了再说"</h3>
-      <p>最常见，也最危险。传承是一个需要10-20年培育的过程，不是签几份文件就能完成的事。等到健康出问题、企业遇到危机再启动，几乎没有好结果。</p>
-    </div>
-
-    <div class="failure-item">
-      <h3>过早给钱，过晚给权</h3>
-      <p>给了大量财富，却不给决策权——二代没有机会犯错学习，也没有机会建立威信。等到真正接手，已经没有时间积累信任。</p>
-    </div>
-
-    <div class="failure-item">
-      <h3>没有退出机制</h3>
-      <p>家族企业里，"进来容易，出去难"。兄弟姐妹之间，一旦意见分歧，又没有预设的退出机制，往往要靠打官司解决。家族信托和股权协议，应该在矛盾出现之前就把出口设计好。</p>
-    </div>
-
-    <div class="failure-item">
-      <h3>忽视家族以外的利益相关方</h3>
-      <p>核心员工、长期合作伙伴、客户关系——这些"软资产"都不会自动跟着股权走。传承计划必须包括这些人的安抚和交接。</p>
-    </div>
-  </div>
-
-  <!-- Section 6 -->
-  <div class="section">
-    <div class="section-num">06</div>
-    <h2>锦承的做法</h2>
-
-    <p>我们不卖产品，我们帮你设计系统。</p>
-
-    <p><strong>锦承传承规划三步法：</strong></p>
-
-    <div class="steps-wrap">
-      <div class="step-card">
-        <div class="step-num">1</div>
-        <div class="step-body">
-          <h3>摸底</h3>
-          <p>了解家族现状：资产结构、成员关系、二代意愿、潜在风险点。这一步不是收集数字，是理解这个家族的"真实问题"。</p>
-        </div>
-      </div>
-      <div class="step-card">
-        <div class="step-num">2</div>
-        <div class="step-body">
-          <h3>建架构</h3>
-          <p>根据家族情况，设计传承架构：香港SFO、家族信托、股权安排、税务优化路径。把分散的资产和关系，放进一个清晰的框架里。</p>
-        </div>
-      </div>
-      <div class="step-card">
-        <div class="step-num">3</div>
-        <div class="step-body">
-          <h3>培育路径</h3>
-          <p>为二代设计参与路径：从接触到参与，从参与到决策，从决策到接班。这不是一份文件，是一套持续的培育计划。</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="quote-block" style="font-size:16px; text-align:center;">
-      我们帮你把财富和价值观，一起传给下一代。
-    </div>
-  </div>
-
-  <!-- Outro -->
-  <div class="outro">
-    <p>中国第一批改革开放后创富的企业家，现在60岁出头。他们的孩子，30-40岁。</p>
-    <p>这是历史上最大规模的财富传承窗口，正在开启。</p>
-    <p>但窗口不会一直开着。</p>
-    <p><strong style="color:var(--text)">最好的时机，永远是现在还来得及的时候。</strong></p>
-  </div>
-
-  <!-- Footer -->
-  <footer class="site-footer">
-    <p>本报告由锦承家族办公室研究团队出品。</p>
-    <p>数据来源：建信信托、Bank of America、Williams Group、IQ-EQ、香港立法会研究报告（ISSH07/2026）。</p>
-    <p>预约家族传承评估，请联系锦承团队。</p>
-  </footer>
-
+<div class="data-block">
+<div class="stat">二代传承成功率仅 30%，三代不足 13%</div>
+<div class="source">建信信托《2024-2025中国家族财富可持续发展报告》，调研全国25城300余位企业家</div>
 </div>
 
+<div class="data-block">
+<div class="stat">70% → 90%</div>
+<div class="source">美国 Williams Group 25年追踪研究：70%的家族财富在二代流失，90%在三代耗尽</div>
+</div>
+
+<div class="data-block">
+<div class="stat">87% / 59%</div>
+<div class="source">全球家族办公室87%的财富尚未传给年轻一代，但其中59%将在未来10年内转移（BofA 2025）</div>
+</div>
+
+<p>中国高净值家庭数量从2009年的82.5万户增长到现在的169万户，翻了一倍。超高净值家庭从5.1万户飙升到13.3万户。这批财富，正在进入第一轮大规模传承窗口。</p>
+
+<p>香港单一家族办公室（SFO）已达<strong style="color:#c9a227">3,384间</strong>，两年增长25%，AUM超10万亿港元。其中40%已有第二代成员执掌管理层，13%有第三代参与。</p>
+
+<p style="margin-top:20px;color:#c9a227;font-weight:500">问题不是"要不要传"，而是"能不能传好"。</p>
+</div>
+
+<!-- 第二章：三种命运 -->
+<div class="chapter">
+<div class="chapter-num">02 / 06</div>
+<h2>接班人的三种命运</h2>
+
+<p>每一个高净值家族，都会在某个时刻面临同一道题。而答案，往往在题目出现之前就已经决定了。</p>
+
+<div class="scene-card">
+<div class="scene-label">场景 A — 被动接班</div>
+<div class="scene-title">陈先生，深圳制造业，资产8位数</div>
+<p>独子在英国读完本科回来，进了家族企业。但父亲从没有认真问过儿子：你想要什么？</p>
+<p>儿子进了公司，做了副总，签字但不决策，开会但不发言。三年后，父亲一场重病，儿子突然接手——他不懂供应链，不懂财务，不懂核心客户关系，也不懂父亲的那套"江湖逻辑"。企业没倒，但慢慢萎缩了。</p>
+<div class="lesson">问题不在儿子，在于从未准备。</div>
+</div>
+
+<div class="scene-card">
+<div class="scene-label">场景 B — 主动放弃</div>
+<div class="scene-title">林女士，香港二代，父亲是地产商</div>
+<p>她移民加拿大，做了艺术家。父亲理解，但家族资产没有合适的人管理，最后委托一家私人银行打理，10年下来，费用吃掉了大部分增值收益。</p>
+<div class="lesson">家族没有给她一个可以选择的路径，于是她选择了离开。</div>
+</div>
+
+<div class="scene-card">
+<div class="scene-label">场景 C — 有规划的接班（少数派）</div>
+<div class="scene-title">某家族，港资背景</div>
+<p>两个孩子，一个擅长投资，一个擅长运营。父母在孩子20多岁时，就为他们各自设计了角色：投资委员会、日常管理、决策边界。家族宪章在孩子30岁前就签署完毕，每年家族会议，两代人共同参与。</p>
+<div class="lesson">这不是运气，是系统。</div>
+</div>
+</div>
+
+<!-- 第三章：香港家办 -->
+<div class="chapter">
+<div class="chapter-num">03 / 06</div>
+<h2>香港家族办公室怎么做</h2>
+
+<p>2026年，香港SFO税务豁免将扩展至<strong style="color:#c9a227">数字资产、贵金属</strong>，立法预计上半年提交，从2025/26课税年度起溯及生效。这为更多类型的家族资产纳入SFO架构创造了条件。</p>
+
+<p>全球家族办公室2026年调查（IQ-EQ）显示：<strong style="color:#c9a227">家族宪章+决策框架+次代接班路径，是全球家办2026年首要治理议程</strong>。</p>
+
+<div class="tools-grid">
+<div class="tool-item">
+<div class="tool-num">①</div>
+<div class="tool-name">家族委员会（Family Council）</div>
+<p>把家族成员正式纳入决策结构，不只是"听话的股东"。设立议事规则、年度会议、投票机制。让二代有合法发声的渠道。</p>
+</div>
+<div class="tool-item">
+<div class="tool-num">②</div>
+<div class="tool-name">青年股东协议</div>
+<p>明确二代持股的条件、权利和限制。例如：需在家族企业工作满3年、年度考核合格，方可获得完整表决权。这不是不信任，而是给二代一个清晰的成长路径。</p>
+</div>
+<div class="tool-item">
+<div class="tool-num">③</div>
+<div class="tool-name">影子董事期（Shadow Director Period）</div>
+<p>接班前2-3年，二代以观察员身份参与董事会，见证真实决策过程，积累信任，也让外部合作方逐渐接受新的领导人。</p>
+</div>
+</div>
+</div>
+
+<!-- 第四章：钱以外的传承 -->
+<div class="chapter">
+<div class="chapter-num">04 / 06</div>
+<h2>钱以外的传承</h2>
+
+<div class="quote-block">
+Williams Group 25年研究发现：<strong style="color:#c9a227">60%的传承失败来自沟通破裂和信任缺失，25%来自二代缺乏准备，只有不到15%是因为税务或法律问题。</strong>
+</div>
+
+<p><strong style="color:#c9a227">最难传的，是判断力、价值观、和面对风险的底气。</strong></p>
+
+<p>很多家长给孩子报财商课、学投资。顺序错了——一个没有价值观根基的人，学会了金融工具，只会更高效地挥霍。</p>
+
+<p>正确的顺序是：</p>
+<p style="padding-left:20px">1. 让孩子理解财富从哪里来（创富的故事，不是数字）<br>
+2. 建立家族对"钱的意义"的共同认知（养家？传承？社会责任？）<br>
+3. 然后才是工具：信托、家族办公室、资产配置</p>
+
+<p style="margin-top:16px"><strong style="color:#c9a227">家族宪章的核心价值</strong>，就是把这些共识变成文字，防止每一代人都要从头争论一遍。</p>
+</div>
+
+<!-- 第五章：常见失败模式 -->
+<div class="chapter">
+<div class="chapter-num">05 / 06</div>
+<h2>常见失败模式（锦承视角）</h2>
+
+<div class="failure-item">
+<div class="failure-title">"等我死了再说"</div>
+<p>传承是一个需要10-20年培育的过程，不是签几份文件就能完成的事。等到健康出问题、企业遇到危机再启动，几乎没有好结果。</p>
+</div>
+
+<div class="failure-item">
+<div class="failure-title">过早给钱，过晚给权</div>
+<p>给了大量财富，却不给决策权——二代没有机会犯错学习，也没有机会建立威信。等到真正接手，已经没有时间积累信任。</p>
+</div>
+
+<div class="failure-item">
+<div class="failure-title">没有退出机制</div>
+<p>家族企业里，"进来容易，出去难"。兄弟姐妹之间，一旦意见分歧，又没有预设的退出机制，往往要靠打官司解决。</p>
+</div>
+
+<div class="failure-item">
+<div class="failure-title">忽视家族以外的利益相关方</div>
+<p>核心员工、长期合作伙伴、客户关系——这些"软资产"都不会自动跟着股权走。传承计划必须包括这些人的安抚和交接。</p>
+</div>
+</div>
+
+<!-- 第六章：锦承做法 -->
+<div class="chapter">
+<div class="chapter-num">06 / 06</div>
+<h2>锦承的做法</h2>
+
+<p>我们不卖产品，我们帮你设计系统。</p>
+
+<div class="step-card">
+<div class="step-num">STEP 1</div>
+<div class="step-name">摸底</div>
+<p>了解家族现状：资产结构、成员关系、二代意愿、潜在风险点。这一步不是收集数字，是理解这个家族的"真实问题"。</p>
+</div>
+
+<div class="step-card">
+<div class="step-num">STEP 2</div>
+<div class="step-name">建架构</div>
+<p>根据家族情况，设计传承架构：香港SFO、家族信托、股权安排、税务优化路径。把分散的资产和关系，放进一个清晰的框架里。</p>
+</div>
+
+<div class="step-card">
+<div class="step-num">STEP 3</div>
+<div class="step-name">培育路径</div>
+<p>为二代设计参与路径：从接触到参与，从参与到决策，从决策到接班。这不是一份文件，是一套持续的培育计划。</p>
+</div>
+
+<div class="highlight-box">
+<p>我们帮你把财富和价值观，<br>一起传给下一代。</p>
+</div>
+</div>
+
+<!-- 结语 -->
+<div class="chapter" style="margin-bottom:0">
+<h2 style="border-left-color:#1e2a3a;padding-left:0">结语：窗口期有多长？</h2>
+<p>中国内地第一批改革开放后创富的企业家，现在60岁出头。他们的孩子，30-40岁。</p>
+<p>这是历史上最大规模的财富传承窗口，正在开启。但窗口不会一直开着。</p>
+<p style="color:#c9a227;font-weight:500;margin-top:16px"><strong>最好的时机，永远是现在还来得及的时候。</strong></p>
+</div>
+
+</div>
+</main>
+
+<footer>
+<div class="container">
+<div class="footer-brand">锦承家族办公室</div>
+<div class="footer-note">
+数据来源：建信信托、Bank of America、Williams Group、IQ-EQ、香港立法会研究报告（ISSH07/2026）<br>
+本报告由锦承家族办公室研究团队出品<br>
+预约家族传承评估，请联系锦承团队
+</div>
+</div>
+</footer>
 </body>
 </html>
