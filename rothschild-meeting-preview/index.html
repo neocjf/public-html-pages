@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>罗斯柴尔德家族传承研究 · 锦承家办内参</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0f1e;
+    color: #e8edf5;
+    font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+  .container { max-width: 860px; margin: 0 auto; }
+
+  /* Header */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(212,175,55,0.3);
+    padding-bottom: 24px;
+  }
+  .header-left .tag {
+    display: inline-block;
+    background: linear-gradient(135deg, #1a3a6b, #0d2240);
+    border: 1px solid #d4af37;
+    color: #d4af37;
+    font-size: 11px;
+    letter-spacing: 2px;
+    padding: 4px 12px;
+    border-radius: 2px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+  .header-left h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.3;
+    letter-spacing: -0.5px;
+  }
+  .header-left .subtitle {
+    margin-top: 8px;
+    color: #8a9bb8;
+    font-size: 14px;
+  }
+  .header-right {
+    text-align: right;
+    color: #5a6a88;
+    font-size: 12px;
+    line-height: 1.8;
+    flex-shrink: 0;
+    margin-left: 20px;
+  }
+  .header-right .date { color: #d4af37; font-size: 13px; }
+
+  /* Status Banner */
+  .status-banner {
+    background: linear-gradient(135deg, rgba(212,175,55,0.08), rgba(212,175,55,0.03));
+    border: 1px solid rgba(212,175,55,0.25);
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin-bottom: 36px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .status-dot {
+    width: 10px; height: 10px;
+    background: #d4af37;
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: 0 0 8px rgba(212,175,55,0.6);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .status-banner p { font-size: 14px; color: #c9d8f0; line-height: 1.6; }
+  .status-banner strong { color: #d4af37; }
+
+  /* Agenda Cards */
+  .agenda-section { margin-bottom: 36px; }
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #d4af37;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(212,175,55,0.2);
+  }
+
+  .agenda-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 12px;
+  }
+  .agenda-item {
+    display: flex;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .agenda-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .agenda-item:first-child { padding-top: 0; }
+  .agenda-num {
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(135deg, #1a3a6b, #0d2240);
+    border: 1px solid rgba(212,175,55,0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #d4af37;
+    flex-shrink: 0;
+  }
+  .agenda-content h3 { font-size: 15px; color: #e8edf5; font-weight: 600; margin-bottom: 4px; }
+  .agenda-content p { font-size: 13px; color: #7a8aa8; line-height: 1.6; }
+
+  /* KYC Section */
+  .kyc-section { margin-bottom: 36px; }
+  .kyc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 12px;
+  }
+  .kyc-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    padding: 18px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .kyc-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: linear-gradient(to bottom, #d4af37, #1a3a6b);
+  }
+  .kyc-card h4 { font-size: 13px; color: #d4af37; font-weight: 600; margin-bottom: 8px; letter-spacing: 0.5px; }
+  .kyc-card p { font-size: 13px; color: #8a9bb8; line-height: 1.7; }
+
+  /* Footer */
+  .footer {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(212,175,55,0.15);
+    text-align: center;
+    color: #4a5a78;
+    font-size: 12px;
+    line-height: 1.8;
+  }
+  .footer .org { color: #d4af37; font-weight: 600; }
+  .footer .note { margin-top: 4px; font-size: 11px; color: #3a4a68; }
+
+  /* Agent Tags */
+  .agent-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .agent-tag {
+    background: rgba(26,58,107,0.4);
+    border: 1px solid rgba(212,175,55,0.3);
+    color: #8ab4f8;
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+  .divider { margin: 8px 0; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <span class="tag">内部研调 · 仅供参考</span>
+      <h1>罗斯柴尔德家族传承研究<br>暨 A 股上市公司传承方案专项</h1>
+      <p class="subtitle">研究任务已启动，后台跑批中 — 完整报告待输出</p>
+    </div>
+    <div class="header-right">
+      <div class="date">2026年4月5日</div>
+      <div>锦承家办 · Jencere</div>
+      <div>Channel: 飞书群聊</div>
+    </div>
+  </div>
+
+  <!-- Status -->
+  <div class="status-banner">
+    <div class="status-dot"></div>
+    <p><strong>研究进行中</strong> — 多 Agent 并行研读 Rothschild 家族历史与传承结构资料。<br>
+    研究完成后将在飞书群同步结果，随即召开专项讨论会议。</p>
+  </div>
+
+  <!-- Agents -->
+  <div class="agent-row">
+    <span class="agent-tag">@JCFObot  — 统筹协调</span>
+    <span class="agent-tag">@JC-JOEbot  — 信托/法律结构</span>
+    <span class="agent-tag">@JC-HXbot  — 家族治理机制</span>
+    <span class="agent-tag">@哆啦A梦  — 媒体/品牌</span>
+    <span class="agent-tag">@JC-XFbot  — 融资/财务</span>
+  </div>
+
+  <!-- Agenda -->
+  <div class="agenda-section">
+    <div class="section-label">会议议程</div>
+    <div class="agenda-card">
+      <div class="agenda-item">
+        <div class="agenda-num">1</div>
+        <div class="agenda-content">
+          <h3>罗斯柴尔德 200 年传承的核心精髓（5个维度）</h3>
+          <p>从"六朵金花"战略、家族委员会、沉默合伙人机制到罗斯柴尔德银行集团的控制权结构，深度解析200年传承底层逻辑。</p>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-num">2</div>
+        <div class="agenda-content">
+          <h3>哪些可以直接用在 A 股上市公司传承方案</h3>
+          <p>筛选可落地的工具与机制：家族委员会制度、AB股结构、跨境信托架构、一致行动人协议等境内可用方案。</p>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-num">3</div>
+        <div class="agenda-content">
+          <h3>哪些境内行不通、要换替代工具</h3>
+          <p>离岸信托、民族资产、老钱文化等在境内直接复制存在法律/监管壁垒，分析替代路径与创新方案。</p>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-num">4</div>
+        <div class="agenda-content">
+          <h3>结合客户 KYC 后的个性化方案方向</h3>
+          <p>待客户 KYC 信息就位后（控制权结构、家族成员、资产分布、税务身份、传承目标），出具定制化传承方案。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KYC Info Needed -->
+  <div class="kyc-section">
+    <div class="section-label">KYC 信息待收集</div>
+    <div class="kyc-grid">
+      <div class="kyc-card">
+        <h4>控制权结构</h4>
+        <p>直接/间接持股比例<br>一致行动人协议<br>表决权安排</p>
+      </div>
+      <div class="kyc-card">
+        <h4>家族成员</h4>
+        <p>核心家族成员<br>接班人候选<br>是否存在争议</p>
+      </div>
+      <div class="kyc-card">
+        <h4>资产分布</h4>
+        <p>A股持仓比例<br>减持限制情况<br>境外资产配置</p>
+      </div>
+      <div class="kyc-card">
+        <h4>税务身份</h4>
+        <p>客户及家族成员<br>居民身份 / 纳税地<br>跨境税务合规状况</p>
+      </div>
+      <div class="kyc-card">
+        <h4>传承目标</h4>
+        <p>控制权优先 vs 财富分配优先<br>时间窗口<br>家族治理意愿</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div><span class="org">锦承家办 Jencere</span> · 跨境财富管理与家族传承解决方案</div>
+    <div class="note">本页面内容仅供内部研究使用，不构成任何投资建议。完整报告待研究任务完成后发布。</div>
+  </div>
+
+</div>
+</body>
+</html>
