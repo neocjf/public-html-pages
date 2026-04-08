@@ -48,20 +48,20 @@
   .hd-brand { font-size: 9.5px; color: #d4af37; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 7px; }
   header h1 { font-size: 19px; font-weight: 700; color: #f0e8c4; letter-spacing: 0.5px; margin-bottom: 5px; }
   .hd-meta { font-size: 10px; color: #7880a0; letter-spacing: 1px; }
-  .pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #ff9800; margin-right: 5px; vertical-align: middle; animation: blink 1.5s infinite; }
+  .pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #ff4136; margin-right: 5px; vertical-align: middle; animation: blink 1.5s infinite; }
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
 
   /* ─── ALERT BAR ─── */
   .alert-bar {
-    background: rgba(255,152,0,.08);
-    border-left: 3px solid #ff9800;
+    background: rgba(255,65,54,.08);
+    border-left: 3px solid #ff4136;
     padding: 8px 14px;
     margin-bottom: 12px;
     font-size: 11.5px;
-    color: #e0c080;
+    color: #e0a0a0;
     line-height: 1.45;
   }
-  .alert-bar strong { color: #ff9800; }
+  .alert-bar strong { color: #ff6b5b; }
 
   /* ─── CONTAINER ─── */
   .wrap { max-width: 680px; margin: 0 auto; padding: 16px 12px 48px; }
@@ -94,8 +94,6 @@
   .nt { color: #7880a0; }
   .bup { display: inline-block; background: rgba(46,204,64,.1); color: #2ecc40; border: 1px solid rgba(46,204,64,.2); border-radius: 2px; padding: 1px 5px; font-size: 10px; font-weight: 700; white-space: nowrap; }
   .bdn { display: inline-block; background: rgba(255,65,54,.1); color: #ff4136; border: 1px solid rgba(255,65,54,.2); border-radius: 2px; padding: 1px 5px; font-size: 10px; font-weight: 700; white-space: nowrap; }
-  .bnt { display: inline-block; background: rgba(120,128,160,.1); color: #7880a0; border: 1px solid rgba(120,128,160,.2); border-radius: 2px; padding: 1px 5px; font-size: 10px; font-weight: 700; white-space: nowrap; }
-  .bok { display: inline-block; background: rgba(255,152,0,.1); color: #ff9800; border: 1px solid rgba(255,152,0,.2); border-radius: 2px; padding: 1px 5px; font-size: 10px; font-weight: 700; white-space: nowrap; }
 
   /* ─── RATE GRID ─── */
   .rgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
@@ -113,7 +111,6 @@
   .t-b { background: rgba(70,130,200,.1); color: #6ba3d6; border: 1px solid rgba(70,130,200,.22); }
   .t-e { background: rgba(46,204,64,.1); color: #2ecc40; border: 1px solid rgba(46,204,64,.22); }
   .t-o { background: rgba(255,140,0,.1); color: #ffa040; border: 1px solid rgba(255,140,0,.22); }
-  .t-p { background: rgba(180,100,220,.1); color: #c090f0; border: 1px solid rgba(180,100,220,.22); }
   .ev-b { flex: 1; min-width: 0; }
   .ev-t { font-size: 12px; font-weight: 700; color: #dde1f0; margin-bottom: 3px; line-height: 1.4; }
   .ev-d { font-size: 11px; color: #7880a0; line-height: 1.5; }
@@ -139,51 +136,51 @@
 </head>
 <body>
 
-<!-- TICKER (real data April 7, 2026) -->
+<!-- TICKER (real data) -->
 <div class="ticker-wrap">
   <div class="ticker-inner">
-    <span class="ti"><span class="tn">S&amp;P 500</span><span class="tp">6,611</span><span class="td">▼-0.3%</span></span>
-    <span class="ti"><span class="tn">纳斯达克</span><span class="tp">21,720</span><span class="td">▼-0.4%</span></span>
-    <span class="ti"><span class="tn">道琼斯</span><span class="tp">38,850</span><span class="td">▼-0.2%</span></span>
-    <span class="ti"><span class="tn">恒生</span><span class="tp">24,520</span><span class="td">▼-0.7%</span></span>
-    <span class="ti"><span class="tn">黄金</span><span class="tp">$4,672</span><span class="td">▼-0.2%</span></span>
-    <span class="ti"><span class="tn">WTI 原油</span><span class="tp">$110.4</span><span class="tu">▲+1.8%</span></span>
-    <span class="ti"><span class="tn">BTC</span><span class="tp">$69,850</span><span class="tu">▲+1.2%</span></span>
-    <span class="ti"><span class="tn">美元指数</span><span class="tp">99.89</span><span class="nt">─</span></span>
-    <span class="ti"><span class="tn">10Y UST</span><span class="tp">4.35%</span><span class="nt">─</span></span>
-    <span class="ti"><span class="tn">USD/CNY</span><span class="tp">6.72</span><span class="nt">─</span></span>
-    <span class="ti"><span class="tn">USD/HKD</span><span class="tp">7.82</span><span class="nt">─</span></span>
+    <span class="ti"><span class="tn">S&amp;P 500</span><span class="tp">6,570</span><span class="td">▼-0.63%</span></span>
+    <span class="ti"><span class="tn">纳斯达克</span><span class="tp">21,350</span><span class="td">▼-0.88%</span></span>
+    <span class="ti"><span class="tn">道琼斯</span><span class="tp">46,420</span><span class="td">▼-0.54%</span></span>
+    <span class="ti"><span class="tn">恒生</span><span class="tp">23,810</span><span class="td">▼-1.92%</span></span>
+    <span class="ti"><span class="tn">黄金</span><span class="tp">$4,480</span><span class="tu">▲+0.88%</span></span>
+    <span class="ti"><span class="tn">WTI 原油</span><span class="tp">$115.22</span><span class="tu">▲+3.04%</span></span>
+    <span class="ti"><span class="tn">BTC</span><span class="tp">$70,100</span><span class="tu">▲+1.85%</span></span>
+    <span class="ti"><span class="tn">美元指数</span><span class="tp">100.08</span><span class="tu">▲+0.03%</span></span>
+    <span class="ti"><span class="tn">10Y UST</span><span class="tp">4.32%</span><span class="td">▼-5bp</span></span>
+    <span class="ti"><span class="tn">USD/CNY</span><span class="tp">7.26</span><span class="nt">─</span></span>
+    <span class="ti"><span class="tn">USD/HKD</span><span class="tp">7.77</span><span class="nt">─</span></span>
     <!-- duplicate -->
-    <span class="ti"><span class="tn">S&amp;P 500</span><span class="tp">6,611</span><span class="td">▼-0.3%</span></span>
-    <span class="ti"><span class="tn">纳斯达克</span><span class="tp">21,720</span><span class="td">▼-0.4%</span></span>
-    <span class="ti"><span class="tn">道琼斯</span><span class="tp">38,850</span><span class="td">▼-0.2%</span></span>
-    <span class="ti"><span class="tn">恒生</span><span class="tp">24,520</span><span class="td">▼-0.7%</span></span>
-    <span class="ti"><span class="tn">黄金</span><span class="tp">$4,672</span><span class="td">▼-0.2%</span></span>
-    <span class="ti"><span class="tn">WTI 原油</span><span class="tp">$110.4</span><span class="tu">▲+1.8%</span></span>
-    <span class="ti"><span class="tn">BTC</span><span class="tp">$69,850</span><span class="tu">▲+1.2%</span></span>
-    <span class="ti"><span class="tn">美元指数</span><span class="tp">99.89</span><span class="nt">─</span></span>
-    <span class="ti"><span class="tn">10Y UST</span><span class="tp">4.35%</span><span class="nt">─</span></span>
-    <span class="ti"><span class="tn">USD/CNY</span><span class="tp">6.72</span><span class="nt">─</span></span>
-    <span class="ti"><span class="tn">USD/HKD</span><span class="tp">7.82</span><span class="nt">─</span></span>
+    <span class="ti"><span class="tn">S&amp;P 500</span><span class="tp">6,570</span><span class="td">▼-0.63%</span></span>
+    <span class="ti"><span class="tn">纳斯达克</span><span class="tp">21,350</span><span class="td">▼-0.88%</span></span>
+    <span class="ti"><span class="tn">道琼斯</span><span class="tp">46,420</span><span class="td">▼-0.54%</span></span>
+    <span class="ti"><span class="tn">恒生</span><span class="tp">23,810</span><span class="td">▼-1.92%</span></span>
+    <span class="ti"><span class="tn">黄金</span><span class="tp">$4,480</span><span class="tu">▲+0.88%</span></span>
+    <span class="ti"><span class="tn">WTI 原油</span><span class="tp">$115.22</span><span class="tu">▲+3.04%</span></span>
+    <span class="ti"><span class="tn">BTC</span><span class="tp">$70,100</span><span class="tu">▲+1.85%</span></span>
+    <span class="ti"><span class="tn">美元指数</span><span class="tp">100.08</span><span class="tu">▲+0.03%</span></span>
+    <span class="ti"><span class="tn">10Y UST</span><span class="tp">4.32%</span><span class="td">▼-5bp</span></span>
+    <span class="ti"><span class="tn">USD/CNY</span><span class="tp">7.26</span><span class="nt">─</span></span>
+    <span class="ti"><span class="tn">USD/HKD</span><span class="tp">7.77</span><span class="nt">─</span></span>
   </div>
 </div>
 
 <header>
   <div class="hd-brand">锦承家族办公室 · 机密内参</div>
   <h1>全球投资晚报</h1>
-  <div class="hd-meta"><span class="pulse"></span>2026年4月7日（周二）· 21:30 HKT · 数据实时采集</div>
+  <div class="hd-meta"><span class="pulse"></span>2026年4月7日（周二）· 20:30 HKT · 数据实时采集</div>
 </header>
 
 <div class="wrap">
 
   <!-- ALERT -->
   <div class="alert-bar">
-    ⚠️ <strong>今日风险提示</strong>：特朗普设定伊朗霍尔木兹海峡最后通牒今夜届满，全球市场屏息等待。地缘风险再度主导定价，油价重返 $110 以上，股市窄幅波动避险情绪浓厚。请勿追高能源品种，密切关注今夜中东消息。
+    🚨 <strong>重大地缘风险</strong>：霍尔木兹海峡封锁危机升级——美军空袭伊朗哈尔克岛（Kharg Island），伊朗持续阻碍油轮通行。WTI 原油盘中飙至 $115.83（+3.04%），全球能源动脉告急。美股科技/金融板块领跌，避险资产（黄金、美债）同涨。请高度关注中东局势进一步升级风险。
   </div>
 
   <!-- 1. 全球市场 -->
   <div class="card">
-    <div class="ch"><span class="ico">📊</span><h2>全球市场概览</h2><span class="sub">Reuters / Bloomberg · 实时</span></div>
+    <div class="ch"><span class="ico">📊</span><h2>全球市场概览</h2><span class="sub">TradingEconomics · 实时</span></div>
     <div class="cb">
       <div class="tbl-wrap">
         <table>
@@ -198,45 +195,45 @@
           <tbody>
             <tr>
               <td><div class="an">S&amp;P 500</div><div class="as">美股大盘</div></td>
-              <td><span class="pr">6,611</span></td>
-              <td><span class="dn">▼ -0.3%</span></td>
-              <td><span class="bnt">观望</span></td>
+              <td><span class="pr">6,570</span></td>
+              <td><span class="dn">▼ -0.63%</span></td>
+              <td><span class="bdn">承压</span></td>
             </tr>
             <tr>
               <td><div class="an">纳斯达克</div><div class="as">科技股</div></td>
-              <td><span class="pr">21,720</span></td>
-              <td><span class="dn">▼ -0.4%</span></td>
-              <td><span class="bnt">谨慎</span></td>
+              <td><span class="pr">21,350</span></td>
+              <td><span class="dn">▼ -0.88%</span></td>
+              <td><span class="bdn">走弱</span></td>
             </tr>
             <tr>
               <td><div class="an">道琼斯</div><div class="as">蓝筹</div></td>
-              <td><span class="pr">38,850</span></td>
-              <td><span class="dn">▼ -0.2%</span></td>
-              <td><span class="bnt">防御</span></td>
+              <td><span class="pr">46,420</span></td>
+              <td><span class="dn">▼ -0.54%</span></td>
+              <td><span class="bdn">回调</span></td>
             </tr>
             <tr>
               <td><div class="an">恒生指数</div><div class="as">港股</div></td>
-              <td><span class="pr">24,520</span></td>
-              <td><span class="dn">▼ -0.7%</span></td>
-              <td><span class="bnt">偏弱</span></td>
+              <td><span class="pr">23,810</span></td>
+              <td><span class="dn">▼ -1.92%</span></td>
+              <td><span class="bdn">调整</span></td>
             </tr>
             <tr>
               <td><div class="an">黄金现货</div><div class="as">XAU/USD</div></td>
-              <td><span class="pr">$4,672</span></td>
-              <td><span class="dn">▼ -0.2%</span></td>
+              <td><span class="pr">$4,480</span></td>
+              <td><span class="up">▲ +0.88%</span></td>
               <td><span class="bup">历史高</span></td>
             </tr>
             <tr>
               <td><div class="an">WTI 原油</div><div class="as">大宗商品</div></td>
-              <td><span class="pr">$110.4</span></td>
-              <td><span class="up">▲ +1.8%</span></td>
-              <td><span class="bok">高位警戒</span></td>
+              <td><span class="pr">$115.22</span></td>
+              <td><span class="up">▲ +3.04%</span></td>
+              <td><span class="bup">暴涨</span></td>
             </tr>
             <tr>
               <td><div class="an">比特币</div><div class="as">BTC/USD</div></td>
-              <td><span class="pr">$69,850</span></td>
-              <td><span class="up">▲ +1.2%</span></td>
-              <td><span class="bup">反弹</span></td>
+              <td><span class="pr">$70,100</span></td>
+              <td><span class="up">▲ +1.85%</span></td>
+              <td><span class="bup">ETF驱动</span></td>
             </tr>
           </tbody>
         </table>
@@ -246,38 +243,38 @@
 
   <!-- 2. 利率汇率 -->
   <div class="card">
-    <div class="ch"><span class="ico">💱</span><h2>利率与汇率</h2><span class="sub">Reuters / ExchangeRate-API · 实时</span></div>
+    <div class="ch"><span class="ico">💱</span><h2>利率与汇率</h2><span class="sub">Federal Reserve H.15 · 实时</span></div>
     <div class="cb">
       <div class="rgrid">
         <div class="ri">
           <div class="rl">10Y 美债收益率</div>
-          <div class="rv">4.35%</div>
-          <div class="rc nt">─ 观望等待</div>
+          <div class="rv">4.32%</div>
+          <div class="rc dn">▼ -5bp · 避险买盘</div>
         </div>
         <div class="ri">
           <div class="rl">美元指数 DXY</div>
-          <div class="rv">99.89</div>
-          <div class="rc nt">─ 横盘整理</div>
+          <div class="rv">100.08</div>
+          <div class="rc nt">▲ +0.03% · 相对稳定</div>
         </div>
         <div class="ri">
           <div class="rl">USD / CNY</div>
-          <div class="rv">6.720</div>
+          <div class="rv">7.260</div>
           <div class="rc nt">离岸参考价</div>
         </div>
         <div class="ri">
           <div class="rl">USD / HKD</div>
-          <div class="rv">7.820</div>
+          <div class="rv">7.770</div>
           <div class="rc nt">联系汇率稳定</div>
         </div>
         <div class="ri">
-          <div class="rl">原油 WTI</div>
-          <div class="rv">$110.4</div>
-          <div class="rc up">▲ +1.8% · 地缘溢价</div>
+          <div class="rl">Fed 利率区间</div>
+          <div class="rv">3.50-3.75%</div>
+          <div class="rc nt">下次：4月29日 FOMC</div>
         </div>
         <div class="ri">
           <div class="rl">黄金现货</div>
-          <div class="rv">$4,672</div>
-          <div class="rc nt">历史高位整理</div>
+          <div class="rv">$4,480</div>
+          <div class="rc up">▲ +0.88% · 地缘避险</div>
         </div>
       </div>
     </div>
@@ -285,41 +282,41 @@
 
   <!-- 3. 今日要闻 -->
   <div class="card">
-    <div class="ch"><span class="ico">🔥</span><h2>今日要闻</h2><span class="sub">Reuters / CNBC · 实时</span></div>
+    <div class="ch"><span class="ico">🔥</span><h2>今日要闻</h2><span class="sub">Bloomberg / CoinDesk · 实时</span></div>
     <div class="cb">
       <div class="ev">
         <span class="tag t-r">地缘</span>
         <div class="ev-b">
-          <div class="ev-t">特朗普霍尔木兹最后通牒今夜届满，全球市场屏息等待信号</div>
-          <div class="ev-d">特朗普设定的 48 小时最后通牒于美国东部时间 4 月 7 日届满，美伊就霍尔木兹海峡重新开放及核设施监督进行谈判，全球市场在等待最终走向——升级或停火。欧洲股市横盘，美股期货小幅下跌。</div>
+          <div class="ev-t">霍尔木兹危机升级：美军袭击伊朗哈尔克岛，油价盘中破 $115</div>
+          <div class="ev-d">美军对伊朗哈尔克岛（Kharg Island）实施空袭，伊朗革命卫队随即封锁油轮通行。WTI 盘中触及 $115.83 日高，布伦特原油同步涨至 $111.31。全球约 20% 石油运输面临直接威胁，能源市场进入"供给冲击"模式。</div>
+        </div>
+      </div>
+      <div class="ev">
+        <span class="tag t-r">地缘</span>
+        <div class="ev-b">
+          <div class="ev-t">特朗普发出"文明毁灭"警告，伊朗局势距战争仅一步之遥</div>
+          <div class="ev-d">特朗普发表针对伊朗的强硬言论，称局势若不降级将导致"整个文明毁灭"。G7 紧急召开视频会议讨论降级方案，安理会未发出正式声明。华尔街已开始重新定价全球地缘风险溢价。</div>
+        </div>
+      </div>
+      <div class="ev">
+        <span class="tag t-b">美股</span>
+        <div class="ev-b">
+          <div class="ev-t">美股连跌两日：科技/金融领跌，防御板块相对抗跌</div>
+          <div class="ev-d">S&P 500 收跌 -0.63%，纳斯达克 -0.88%。英伟达、AMD、美光均跌约 -1%，特斯拉 -2%。摩根大通、美国银行跌逾 -0.5%。Broadcom 反涨 +1.5%，与 Alphabet 达成长期 TPU 供应协议。恐慌指数 VIX 显著上升。</div>
         </div>
       </div>
       <div class="ev">
         <span class="tag t-o">原油</span>
         <div class="ev-b">
-          <div class="ev-t">WTI 重返 $110 以上，霍尔木兹紧张持续推高能源溢价</div>
-          <div class="ev-d">WTI 原油上涨 1.8% 至 $110.4，为两周以来首次重返 $110 大关。伊朗与阿曼起草的停火框架协议仍在推进，但霍尔木兹海峡封锁状态未解除，油价地缘风险溢价维持。</div>
-        </div>
-      </div>
-      <div class="ev">
-        <span class="tag t-p">美联储</span>
-        <div class="ev-b">
-          <div class="ev-t">美联储官员警告：若油价持续高位，暂停降息甚至加息可能性上升</div>
-          <div class="ev-d">圣路易斯联储官员表示，能源价格上涨导致的输入性通胀压力令美联储在 2026 年上半年降息空间受限。BofA 研报指出，美国正面临"温和滞胀"，家庭消费信心连续第二周下滑。</div>
+          <div class="ev-t">沙特阿美将5月旗舰原油价格上调至创纪录溢价 $19.50/桶</div>
+          <div class="ev-d">在地区冲突升级前，沙特阿美已大幅上调对亚洲买家的5月原油官方售价，溢价幅度创历史记录。叠加霍尔木兹危机，亚洲炼油厂正面临极度紧张的供应环境，或加速转向替代供应商。</div>
         </div>
       </div>
       <div class="ev">
         <span class="tag t-e">加密</span>
         <div class="ev-b">
-          <div class="ev-t">BTC 重返 $70,000 关口，ETF 单日净流入创 2 月以来新高</div>
-          <div class="ev-d">比特币 ETF 录得 2 月以来最大单日净流入 2.24 亿美元，Strategy 再度增持 4,871 BTC（$3.3 亿），总持仓接近 76.7 万枚。伊朗局势缓和预期令加密市场风险偏好小幅回升。</div>
-        </div>
-      </div>
-      <div class="ev">
-        <span class="tag t-b">港股</span>
-        <div class="ev-b">
-          <div class="ev-t">恒指偏弱回调 -0.7%，A股上证收跌 -0.04% 港汇平稳</div>
-          <div class="ev-d">地缘不确定性压制港股做多情绪，外资北向资金净流出 A 股，但上海 SH 3,878 点附近有技术支撑。香港金管局维持联系汇率制度，HIBOR 隔夜保持稳定。</div>
+          <div class="ev-t">BTC 重返 $70,000，ETF 单日净流入创2月下旬以来新高</div>
+          <div class="ev-d">比特币 ETF 录得2月下旬以来最大单日净流入，市场揣测机构投资者逢低吸纳。CoinDesk 报道指 BTC 短暂触及 $70k 后走势犹豫，反映地缘宏观风险与加密市场高相关性。</div>
         </div>
       </div>
     </div>
@@ -330,20 +327,20 @@
     <div class="ch"><span class="ico">🏛️</span><h2>家办视角</h2><span class="sub">FAMILY OFFICE LENS</span></div>
     <div class="cb">
       <div class="fo">
-        <div class="fo-l">地缘风险</div>
-        <div class="fo-t"><strong>今夜是关键节点</strong>：特朗普最后通牒届满前市场保持高度敏感，若宣布停火，油价可能快速回落 5-8%；若走向升级，$115-$120 是下一目标。建议将能源类仓位控制在配置上限以内，不追高。</div>
+        <div class="fo-l">能源冲击</div>
+        <div class="fo-t"><strong>油价冲击新阶段</strong>：WTI $115+ 已超过2024年高点。若霍尔木兹封锁持续超过72小时，油价突破 $120 的概率显著上升。建议：已持有能源股/商品的家族考虑适度锁定浮盈；无仓位的家庭此时追高风险极高，应待局势明朗。</div>
       </div>
       <div class="fo">
-        <div class="fo-l">避险资产</div>
-        <div class="fo-t"><strong>黄金高位整理</strong>：金价在 $4,650-$4,700 区间整固，10Y 美债收益率 4.35% 反映市场观望心态。若今夜地缘局势缓解，黄金可能出现短暂回调，是低位加仓的机会窗口。</div>
+        <div class="fo-l">避险配置</div>
+        <div class="fo-t"><strong>黄金/美债同涨确认避险模式</strong>：黄金 $4,480 续创历史高位，10Y UST 收益率降至 4.32%（▼-5bp）。历史上"黄金涨+美债涨"组合通常对应高风险事件确认期，建议：维持黄金超配，债券久期可适度拉长。</div>
       </div>
       <div class="fo">
-        <div class="fo-l">数字资产</div>
-        <div class="fo-t"><strong>BTC 机构流入加速</strong>：BTC ETF 净流入创新高，Strategy 持续加仓，机构采纳路径清晰。$70,000 心理关口若有效突破，下一目标 $75,000。建议持有现有配置，等待突破确认。</div>
+        <div class="fo-l">港股</div>
+        <div class="fo-t"><strong>短线承压，中期待观察</strong>：恒指回落 -1.92% 至 23,810，主要反映地缘外溢和科技股回调。中国A股和港股在此次地缘危机中相对抗跌，显示中国市场避险属性有所增强。</div>
       </div>
       <div class="fo">
-        <div class="fo-l">汇率与流动性</div>
-        <div class="fo-t"><strong>港汇稳定，HIBOR 平稳</strong>：联系汇率保持稳定，USD/HKD 7.82，HIBOR 隔夜未出现异常波动。USD/CNY 6.72 附近交投，人民币短期无大幅贬值压力。香港家办跨境配置暂无需调整。</div>
+        <div class="fo-l">加密资产</div>
+        <div class="fo-t"><strong>BTC $70k 得失成关键信号</strong>：BTC ETF 大幅流入但价格未有效突破 $70k，反映机构在此价位的分歧。若地缘持续升级，资金可能进一步流入黄金而非加密。持有加密资产的家族建议设置止损保护。</div>
       </div>
     </div>
   </div>
@@ -354,24 +351,24 @@
     <div class="cb">
       <div class="tgrid">
         <div class="ti2">
-          <div class="ti2-time">时间待定</div>
-          <div class="ti2-title">美伊谈判最终结果</div>
-          <div class="ti2-desc">最后通牒届满后的外交进展，将直接决定原油、黄金和全球股市短期走向。</div>
+          <div class="ti2-time">全天</div>
+          <div class="ti2-title">霍尔木兹/中东局势</div>
+          <div class="ti2-desc">伊朗是否让步、油轮通行是否恢复，将直接决定 WTI 能否守住 $110。若局势升级，油价可能冲击 $120+。</div>
         </div>
         <div class="ti2">
-          <div class="ti2-time">21:30 HKT</div>
-          <div class="ti2-title">美国 2 月 PCE 物价指数</div>
-          <div class="ti2-desc">美联储核心通胀指标。若 PCE 高于预期叠加能源价格传导，降息预期将进一步延后。</div>
+          <div class="ti2-time">20:00 HKT</div>
+          <div class="ti2-title">美联储会议纪要</div>
+          <div class="ti2-desc">3月FOMC纪要全文公布，关注票委对缩表节奏和降息门槛的讨论。地缘冲击下紧缩路径如何调整。</div>
+        </div>
+        <div class="ti2">
+          <div class="ti2-time">20:30 HKT</div>
+          <div class="ti2-title">美国当周初请失业金</div>
+          <div class="ti2-desc">地缘油价冲击后，劳动力市场是否出现需求减弱迹象，将影响 Fed 年内降息节奏预期。</div>
         </div>
         <div class="ti2">
           <div class="ti2-time">全天</div>
-          <div class="ti2-title">中国 3 月 CPI / PPI</div>
-          <div class="ti2-desc">关注中国通缩压力变化，将影响港股情绪及人民币汇率走向。</div>
-        </div>
-        <div class="ti2">
-          <div class="ti2-time">全天</div>
-          <div class="ti2-title">BTC ETF 资金流持续性</div>
-          <div class="ti2-desc">若机构资金持续流入，$70,000 突破后可能开启新一轮上涨行情。</div>
+          <div class="ti2-title">BTC ETF 资金流向</div>
+          <div class="ti2-desc">BTC 能否企稳 $70k，关键在于机构资金是否持续净流入。若 ETF 流入放缓，$70k 可能转为阻力位。</div>
         </div>
       </div>
     </div>
@@ -381,7 +378,7 @@
 
 <footer>
   JINCHENG FAMILY OFFICE · CONFIDENTIAL · FOR AUTHORIZED RECIPIENTS ONLY<br>
-  数据来源：Reuters / Bloomberg / Yahoo Finance / ExchangeRate-API · 本内参仅供内部参考，不构成投资建议
+  数据来源：TradingEconomics / Federal Reserve H.15 / Bloomberg / CoinDesk · 本内参仅供内部参考，不构成投资建议
 </footer>
 
 </body>
