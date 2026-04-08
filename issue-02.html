@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>家族文化与治理内参 · 第2期</title>
+<style>
+
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0B1220;
+    font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    width: 1080px;
+    min-height: 2400px;
+    color: #fff;
+    overflow-x: hidden;
+  }
+  .wrap { padding: 0 56px 80px; }
+
+  /* ── Header ── */
+  .hdr {
+    background: linear-gradient(160deg, #0D1B35 0%, #0B1220 60%);
+    border-bottom: 1px solid rgba(195,168,87,0.25);
+    padding: 52px 56px 40px;
+    position: relative;
+  }
+  .hdr::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 56px; right: 56px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #C3A857, transparent);
+  }
+  .hdr-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 32px;
+  }
+  .logo {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: #C3A857;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+  .logo-en {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.3);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .date-badge {
+    text-align: right;
+  }
+  .date-day {
+    font-size: 42px;
+    font-weight: 900;
+    color: #C3A857;
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+  .date-month {
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .hdr-title {
+    font-size: 36px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    margin-bottom: 10px;
+  }
+  .hdr-title span { color: #C3A857; }
+  .hdr-sub {
+    font-size: 15px;
+    color: rgba(255,255,255,0.45);
+    font-weight: 300;
+    letter-spacing: 1px;
+  }
+
+  /* ── Section label ── */
+  .sec-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 44px 0 28px;
+  }
+  .sec-label-text {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: #C3A857;
+    text-transform: uppercase;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .sec-label-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(195,168,87,0.5), transparent);
+  }
+
+  /* ── Card ── */
+  .card {
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(195,168,87,0.12);
+    border-radius: 4px;
+    padding: 36px 40px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .card-gold-border {
+    border-left: 3px solid #C3A857;
+  }
+  .card-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .card-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    font-weight: 300;
+    margin-bottom: 24px;
+    letter-spacing: 0.5px;
+  }
+  .card-sub strong { color: #C3A857; font-weight: 500; }
+
+  /* ── Insight box ── */
+  .insight-box {
+    background: rgba(195,168,87,0.08);
+    border: 1px solid rgba(195,168,87,0.25);
+    border-radius: 4px;
+    padding: 22px 28px;
+    margin-bottom: 28px;
+  }
+  .insight-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #C3A857;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+  .insight-text {
+    font-size: 16px;
+    color: rgba(255,255,255,0.9);
+    font-weight: 400;
+    line-height: 1.8;
+  }
+
+  /* ── Bullet list ── */
+  .bullet-list { list-style: none; }
+  .bullet-list li {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 18px;
+    align-items: flex-start;
+  }
+  .bullet-list li:last-child { margin-bottom: 0; }
+  .bl-tag {
+    min-width: 72px;
+    padding: 3px 0;
+    background: rgba(195,168,87,0.12);
+    border: 1px solid rgba(195,168,87,0.3);
+    border-radius: 2px;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: #C3A857;
+    text-align: center;
+    font-weight: 700;
+    white-space: nowrap;
+    margin-top: 2px;
+  }
+  .bl-content {}
+  .bl-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 3px;
+  }
+  .bl-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* ── Mistake table ── */
+  .mistake-table { width: 100%; border-collapse: collapse; }
+  .mistake-table th {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.35);
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 0 0 14px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .mistake-table td {
+    font-size: 13px;
+    color: rgba(255,255,255,0.75);
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    vertical-align: top;
+    line-height: 1.7;
+  }
+  .mistake-table td:first-child {
+    color: rgba(255,255,255,0.35);
+    width: 100px;
+    font-size: 12px;
+  }
+  .mistake-table tr:last-child td { border-bottom: none; }
+
+  /* ── Case study ── */
+  .case-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(195,168,87,0.15);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .case-header {
+    background: linear-gradient(90deg, rgba(195,168,87,0.12), rgba(195,168,87,0.04));
+    border-bottom: 1px solid rgba(195,168,87,0.15);
+    padding: 24px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .case-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .case-name-en {
+    font-size: 11px;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 1px;
+    margin-top: 3px;
+  }
+  .case-tag {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #C3A857;
+    border: 1px solid rgba(195,168,87,0.4);
+    padding: 4px 12px;
+    border-radius: 2px;
+    text-transform: uppercase;
+  }
+  .case-body { padding: 32px; }
+  .case-bg {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 28px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .case-point {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+    align-items: flex-start;
+  }
+  .case-point:last-child { margin-bottom: 0; }
+  .cp-num {
+    width: 26px;
+    height: 26px;
+    background: rgba(195,168,87,0.15);
+    border: 1px solid rgba(195,168,87,0.35);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: #C3A857;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .cp-text {}
+  .cp-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .cp-desc {
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* ── Reference ── */
+  .ref-section {
+    background: rgba(255,255,255,0.018);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 4px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+  }
+  .ref-item {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 16px;
+    align-items: flex-start;
+  }
+  .ref-item:last-child { margin-bottom: 0; }
+  .ref-icon {
+    width: 20px;
+    height: 20px;
+    background: rgba(195,168,87,0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: #C3A857;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .ref-text {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+  .ref-text strong { color: rgba(255,255,255,0.85); font-weight: 500; }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    padding: 40px 56px 48px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    margin-top: 20px;
+  }
+  .footer-text {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.2);
+    text-transform: uppercase;
+  }
+  .footer-disclaimer {
+    font-size: 10px;
+    color: rgba(255,255,255,0.15);
+    margin-top: 10px;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── Gold divider ── */
+  .gold-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(195,168,87,0.4), transparent);
+    margin: 20px 0;
+  }
+
+  .highlight-box{background:rgba(195,168,87,.06);border:1px solid rgba(195,168,87,.2);border-radius:4px;padding:20px 28px;margin-bottom:24px}
+  .highlight-title{font-size:13px;font-weight:700;color:#C3A857;letter-spacing:1px;margin-bottom:12px}
+  .highlight-items{list-style:none}
+  .highlight-items li{display:flex;gap:12px;margin-bottom:10px;font-size:13px;color:rgba(255,255,255,.75);line-height:1.7}
+  .highlight-items li:last-child{margin-bottom:0}
+  .hi-dot{color:#C3A857;font-weight:700;flex-shrink:0}
+  .tpl-box{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.08);border-radius:4px;padding:20px 24px;margin-bottom:16px;font-size:13px;line-height:1.9}
+  .tpl-label{font-size:10px;letter-spacing:2px;color:#C3A857;text-transform:uppercase;margin-bottom:10px;font-weight:700}
+  .tpl-bad{color:rgba(255,100,100,.75)}
+  .tpl-good{color:rgba(100,220,150,.9)}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-top">
+    <div>
+      <div class="logo">锦承家办研究部</div>
+      <div class="logo-en">Jin Cheng Family Office · Research Division</div>
+      <div class="hdr-title">家族文化<span>与</span>治理内参</div>
+      <div class="hdr-sub">Family Culture &amp; Governance · Insider Report</div>
+    </div>
+    <div class="date-badge">
+      <div class="date-day">02</div>
+      <div class="date-month">2026 / 04</div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="sec-label"><span class="sec-label-text">今日主题</span><span class="sec-label-line"></span></div>
+
+  <div class="card card-gold-border">
+    <div class="card-title">家族宪章里的「价值观条款」：如何写得不空洞</div>
+    <div class="card-sub">Family Charter · Value Clauses — From Rhetoric to Rooted Practice</div>
+    <div class="insight-box">
+      <div class="insight-label">一句话理解</div>
+      <div class="insight-text">价值观条款是家族宪章的「灵魂」，但90%的家族宪章写完就成空话。<br>区别在于：能不能把价值观<span style="color:#C3A857">翻译成具体行为规则</span>，而不是停留在抽象原则。</div>
+    </div>
+    <ul class="bullet-list">
+      <li><span class="bl-tag">核心命题</span><div class="bl-content"><div class="bl-title">价值观条款 ≠ 墙上标语</div><div class="bl-desc">「诚信、创新、传承」放在宪章里毫无用处——除非和具体决策场景挂钩</div></div></li>
+      <li><span class="bl-tag">写作关键</span><div class="bl-content"><div class="bl-title">三个维度：语义具体 · 场景对应 · 执行可判断</div><div class="bl-desc">一个好条款 = 一个价值观 + 一个具体场景 + 一个判断标准</div></div></li>
+      <li><span class="bl-tag">失效原因</span><div class="bl-content"><div class="bl-title">用抽象解释抽象 · 缺乏场景锚点 · 未定义违反后果</div><div class="bl-desc">三条全中，条款等于白写</div></div></li>
+    </ul>
+  </div>
+
+  <div class="gold-divider"></div>
+  <div class="sec-label"><span class="sec-label-text">认知校准</span><span class="sec-label-line"></span></div>
+
+  <div class="card">
+    <table class="mistake-table">
+      <tr><th>常见误区</th><th>正确认知</th></tr>
+      <tr><td>把使命宣言等同于价值观条款</td><td>使命宣言回答「我们要成为什么」，价值观条款回答「遇到X情况时我们怎么做」</td></tr>
+      <tr><td>认为条款写得越全面越好</td><td>3-5条核心价值观各配一个具体场景，比20条空洞原则更有约束力</td></tr>
+      <tr><td>认为条款不需要违反成本</td><td>没有对应后果的条款都是虚文——轻则文化压力，重则退出机制，都须写清楚</td></tr>
+      <tr><td>认为价值观「软」，无法落地</td><td>价值观只有写进决策程序（如「并购须过家族理事会价值观审查」）才算真正落地</td></tr>
+    </table>
+  </div>
+
+  <div class="gold-divider"></div>
+  <div class="sec-label"><span class="sec-label-text">今日案例</span><span class="sec-label-line"></span></div>
+
+  <div class="case-card">
+    <div class="case-header">
+      <div><div class="case-name">方太集团 · 茅忠群家族</div><div class="case-name-en">FOTILE · Mao Family</div></div>
+      <div class="case-tag">本土典范</div>
+    </div>
+    <div class="case-body">
+      <div class="case-bg"><strong style="color:#C3A857">背景：</strong>茅理翔创办、儿子茅忠群接手的方太集团，是中国家族企业「一代转二代」最平稳的案例之一。茅理翔著有《传承十六论》，核心观点是——<strong style="color:#fff">「传承的核心是文化传承，不是资产传承」</strong>。方太的价值观条款体系，正是这一理念的实践样本。</div>
+      <div class="case-point"><div class="cp-num">1</div><div class="cp-text"><div class="cp-title">「人品、企品、产品」三品合一</div><div class="cp-desc">方太将价值观浓缩为「三品合一」，每个词都有具体行为注解：人品不是「诚信」这种空词，而是「不拿不该拿的钱、不去不该去的场合、不瞒不该瞒的事」</div></div></div>
+      <div class="case-point"><div class="cp-num">2</div><div class="cp-text"><div class="cp-title">「中学明道、西学优术」方法论嵌入决策流程</div><div class="cp-desc">在并购、合资等重大决策条款里明确写入：用西方管理工具做运营，用中国传统文化做价值判断——不是口号，而是写进程序的硬规定</div></div></div>
+      <div class="case-point"><div class="cp-num">3</div><div class="cp-text"><div class="cp-title">茅氏「二十条」行为准则：价值观条款带后果</div><div class="cp-desc">涵盖股东行为、继承人行为、家庭关系处理，并明确「如有违反，由家族理事会裁决，严重者冻结股权收益权」</div></div></div>
+      <div class="case-point"><div class="cp-num">4</div><div class="cp-text"><div class="cp-title">交接前五年的「草稿期」：接班人全程参与修订</div><div class="cp-desc">接班人参与起草的规则，才是真正有认同感的规则——这是茅理翔最核心的传承心法之一</div></div></div>
+    </div>
+  </div>
+
+  <div class="gold-divider"></div>
+  <div class="sec-label"><span class="sec-label-text">实操指南</span><span class="sec-label-line"></span></div>
+
+  <div class="highlight-box">
+    <div class="highlight-title">价值观条款速写公式</div>
+    <ul class="highlight-items">
+      <li><span class="hi-dot">◆</span>第一步：找出家族最核心的3个价值词（不是20个，就3个）</li>
+      <li><span class="hi-dot">◆</span>第二步：每个价值词对应一个真实决策场景（「当股权要卖给外人时……」）</li>
+      <li><span class="hi-dot">◆</span>第三步：这个场景下「会怎么做」和「不会怎么做」各写一条</li>
+      <li><span class="hi-dot">◆</span>第四步：违反了这个条款，谁来认定？什么后果？</li>
+    </ul>
+  </div>
+
+  <div class="card card-gold-border">
+    <div class="card-title">空洞 vs. 具体——对比示范</div>
+    <div class="tpl-box"><div class="tpl-label">❌ 空洞写法</div><div class="tpl-bad">「家族成员应当诚实守信，维护家族荣誉。」</div></div>
+    <div class="tpl-box"><div class="tpl-label">✓ 具体写法</div><div class="tpl-good">「任何家族股东在与第三方合资前，须向家族理事会披露全部关联关系；若理事会认定存在利益冲突，该股东须在家族会议上当面说明，并获得超过2/3的家族股东批准方可继续。」</div></div>
+    <div class="tpl-box"><div class="tpl-label">❌ 空洞写法</div><div class="tpl-bad">「我们重视家族团结，共同传承企业。」</div></div>
+    <div class="tpl-box"><div class="tpl-label">✓ 具体写法</div><div class="tpl-good">「若家族成员之间发生涉及股权的争议，须先进入家族理事会调解程序（为期30天）；调解不成方可寻求外部仲裁；未经调解直接起诉其他家族成员者，视为违反本宪章，理事会可暂停其投票权直至下一个家族会议议决。」</div></div>
+  </div>
+
+  <div class="gold-divider"></div>
+  <div class="sec-label"><span class="sec-label-text">可参考点</span><span class="sec-label-line"></span></div>
+
+  <div class="card card-gold-border">
+    <ul class="bullet-list">
+      <li><span class="bl-tag">从三品开始</span><div class="bl-content"><div class="bl-title">参考方太「人品 × 企品 × 产品」，梳理家族的三品定位</div><div class="bl-desc">越简单的结构越容易形成共识，也越容易代际传递</div></div></li>
+      <li><span class="bl-tag">场景优先</span><div class="bl-content"><div class="bl-title">价值观条款从真实冲突场景里生长出来，不是从字典里挑好词</div><div class="bl-desc">建议先召开一次「家族冲突复盘会」，把历史上真实发生过的不和拿出来谈，从中提炼条款</div></div></li>
+      <li><span class="bl-tag">代际共建</span><div class="bl-content"><div class="bl-title">价值观条款的起草，须有各代际代表参与</div><div class="bl-desc">一代人写的规则，二代人往往不认——这个认同缺口，就是传承失败的起点</div></div></li>
+    </ul>
+  </div>
+
+  <div class="gold-divider"></div>
+  <div class="sec-label"><span class="sec-label-text">延伸阅读</span><span class="sec-label-line"></span></div>
+
+  <div class="ref-section">
+    <div class="ref-item"><div class="ref-icon">📖</div><div class="ref-text"><strong>茅理翔《传承十六论》</strong>（浙江大学出版社）<br>系统阐述「文化传承先行于股权传承」的核心方法论，方太实践的理论基础</div></div>
+    <div class="ref-item"><div class="ref-icon">📖</div><div class="ref-text"><strong>陈凌、戴俊《治理传承顶层结构》</strong>（浙江大学出版社）<br>提供从文化理念到制度文本的转化框架</div></div>
+    <div class="ref-item"><div class="ref-icon">⚠️</div><div class="ref-text"><strong>反面案例：</strong>某浙江制造业家族（化名「华峰集团」）<br>宪章价值观条款全为抽象词，无场景、无后果。交接后五年三名子女因价值观分歧爆发控制权争夺，宪章形同虚设</div></div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <div class="footer-text">锦承家办研究部 · 家族文化与治理内参</div>
+  <div class="footer-disclaimer">本内参仅供内部参考，不构成法律或投资建议</div>
+</div>
+
+</body>
+</html>
