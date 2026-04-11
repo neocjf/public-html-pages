@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>市场快报｜2026-04-11｜锦承家办</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0e1a;
+    color: #e0e6f0;
+    font-family: -apple-system, 'SF Pro Display', 'PingFang SC', 'Helvetica Neue', sans-serif;
+    min-height: 100vh;
+    padding: 24px 16px 48px;
+  }
+  .container { max-width: 680px; margin: 0 auto; }
+  
+  /* Header */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 24px 0 20px;
+    border-bottom: 1px solid #1e2a3a;
+    margin-bottom: 28px;
+  }
+  .brand { font-size: 13px; color: #5a7a9a; letter-spacing: 0.08em; text-transform: uppercase; }
+  .title { font-size: 22px; font-weight: 700; color: #ffffff; margin-top: 6px; letter-spacing: -0.02em; }
+  .date-tag {
+    text-align: right;
+    font-size: 12px;
+    color: #3a5a7a;
+    line-height: 1.8;
+  }
+  .date-tag .day { font-size: 28px; font-weight: 700; color: #2a6aaa; display: block; line-height: 1; }
+
+  /* Section */
+  .section { margin-bottom: 28px; }
+  .section-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #3a6a9a;
+    padding: 0 0 10px;
+    border-bottom: 1px solid #1a2535;
+    margin-bottom: 14px;
+  }
+
+  /* Ticker rows */
+  .ticker-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #111a26;
+  }
+  .ticker-row:last-child { border-bottom: none; }
+  .ticker-left { display: flex; flex-direction: column; gap: 2px; }
+  .ticker-name { font-size: 15px; font-weight: 600; color: #d0dce8; }
+  .ticker-sub { font-size: 11px; color: #3a5a7a; }
+  .ticker-right { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; }
+  .ticker-price { font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums; color: #ffffff; }
+  .change-up {
+    font-size: 12px; font-weight: 600;
+    color: #2ecc8a;
+    background: rgba(46,204,138,0.1);
+    padding: 2px 8px; border-radius: 10px;
+  }
+  .change-down {
+    font-size: 12px; font-weight: 600;
+    color: #ff4d6a;
+    background: rgba(255,77,106,0.1);
+    padding: 2px 8px; border-radius: 10px;
+  }
+  .change-warn {
+    font-size: 12px; font-weight: 700;
+    color: #ff4d6a;
+    background: rgba(255,77,106,0.15);
+    border: 1px solid rgba(255,77,106,0.3);
+    padding: 2px 10px; border-radius: 10px;
+  }
+
+  /* Alert box */
+  .alert {
+    background: linear-gradient(135deg, rgba(255,77,106,0.08), rgba(255,77,106,0.03));
+    border: 1px solid rgba(255,77,106,0.25);
+    border-left: 3px solid #ff4d6a;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-top: 12px;
+  }
+  .alert-title { font-size: 12px; font-weight: 700; color: #ff4d6a; margin-bottom: 6px; letter-spacing: 0.06em; }
+  .alert-body { font-size: 13px; color: #8a9ab0; line-height: 1.6; }
+
+  /* Summary box */
+  .summary {
+    background: rgba(42, 106, 170, 0.06);
+    border: 1px solid rgba(42, 106, 170, 0.15);
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-top: 8px;
+  }
+  .summary-title { font-size: 11px; font-weight: 600; color: #3a6a9a; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
+  .summary-body { font-size: 13px; color: #8aacca; line-height: 1.8; }
+  .summary-body strong { color: #aaccee; }
+
+  /* Footer */
+  .footer {
+    margin-top: 36px;
+    padding-top: 20px;
+    border-top: 1px solid #111a26;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-brand { font-size: 13px; color: #2a4a6a; font-weight: 600; }
+  .footer-note { font-size: 11px; color: #1e3050; text-align: right; line-height: 1.6; }
+
+  /* Responsive */
+  @media (max-width: 480px) {
+    .header { flex-direction: column; gap: 10px; }
+    .date-tag { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div>
+      <div class="brand">Jencere Family Office</div>
+      <div class="title">全球市场快报</div>
+    </div>
+    <div class="date-tag">
+      <span class="day">11</span>
+      APR 2026 · SAT<br>周末版
+    </div>
+  </div>
+
+  <!-- 美股 -->
+  <div class="section">
+    <div class="section-title">🇺🇸 美股 · 周五收盘</div>
+    <div class="ticker-row">
+      <div class="ticker-left">
+        <div class="ticker-name">S&P 500</div>
+        <div class="ticker-sub">标普500指数</div>
+      </div>
+      <div class="ticker-right">
+        <div class="ticker-price">6,816.89</div>
+        <span class="change-up">▲ 3.56%</span>
+      </div>
+    </div>
+    <div class="ticker-row">
+      <div class="ticker-left">
+        <div class="ticker-name">NASDAQ 100</div>
+        <div class="ticker-sub">纳斯达克100</div>
+      </div>
+      <div class="ticker-right">
+        <div class="ticker-price">25,116.34</div>
+        <span class="change-up">▲ 4.45%</span>
+      </div>
+    </div>
+    <div class="ticker-row">
+      <div class="ticker-left">
+        <div class="ticker-name">Dow Jones</div>
+        <div class="ticker-sub">道琼斯工业</div>
+      </div>
+      <div class="ticker-right">
+        <div class="ticker-price">47,916.57</div>
+        <span class="change-up">▲ 3.04%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 中港 -->
+  <div class="section">
+    <div class="section-title">🇨🇳🇭🇰 中港股市 · 周五收盘</div>
+    <div class="ticker-row">
+      <div class="ticker-left">
+        <div class="ticker-name">恒生指数</div>
+        <div class="ticker-sub">Hang Seng Index</div>
+      </div>
+      <div class="ticker-right">
+        <div class="ticker-price">25,893.54</div>
+        <span class="change-up">▲ 4.46%</span>
+      </div>
+    </div>
+    <div class="ticker-row">
+      <div class="ticker-left">
+        <div class="ticker-name">沪深 300</div>
+        <div class="ticker-sub">CSI 300</div>
+      </div>
+      <div class="ticker-right">
+        <div class="ticker-price">4,636.57</div>
+        <span class="change-up">▲ 4.41%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 商品 -->
+  <div class="section">
+    <div class="section-title">🥇 商品与能源</div>
+    <div class="ticker-row">
+      <div class="ticker-left">
+        <div class="ticker-name">黄金</div>
+        <div class="ticker-sub">Gold Futures · GC=F</div>
+      </div>
+      <div class="ticker-right">
+        <div class="ticker-price">$4,771.00</div>
+        <span class="change-up">▲ 2.45%</span>
+      </div>
+    </div>
+    <div class="ticker-row">
+      <div class="ticker-left">
+        <div class="ticker-name">原油 WTI</div>
+        <div class="ticker-sub">Crude Oil · CL=F</div>
+      </div>
+      <div class="ticker-right">
+        <div class="ticker-price">$95.63</div>
+        <span class="change-warn">▼ 14.93% ⚠️</span>
+      </div>
+    </div>
+    <div class="alert">
+      <div class="alert-title">⚠️ 原油单日暴跌近 15%</div>
+      <div class="alert-body">关注 OPEC+ 供应端变化、美国贸易政策冲击及全球需求预期调整。此幅度属于异常波动，需持续追踪。</div>
+    </div>
+  </div>
+
+  <!-- 加密 -->
+  <div class="section">
+    <div class="section-title">₿ 加密资产</div>
+    <div class="ticker-row">
+      <div class="ticker-left">
+        <div class="ticker-name">Bitcoin</div>
+        <div class="ticker-sub">BTC / USD</div>
+      </div>
+      <div class="ticker-right">
+        <div class="ticker-price">$72,981.84</div>
+        <span class="change-up">▲ 1.45%</span>
+      </div>
+    </div>
+    <div class="ticker-row">
+      <div class="ticker-left">
+        <div class="ticker-name">Ethereum</div>
+        <div class="ticker-sub">ETH / USD</div>
+      </div>
+      <div class="ticker-right">
+        <div class="ticker-price">$2,246.34</div>
+        <span class="change-up">▲ 0.20%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 汇率 -->
+  <div class="section">
+    <div class="section-title">💱 汇率</div>
+    <div class="ticker-row">
+      <div class="ticker-left">
+        <div class="ticker-name">USD / CNY</div>
+        <div class="ticker-sub">美元兑人民币</div>
+      </div>
+      <div class="ticker-right">
+        <div class="ticker-price">6.83</div>
+        <span class="change-up">稳定</span>
+      </div>
+    </div>
+    <div class="ticker-row">
+      <div class="ticker-left">
+        <div class="ticker-name">USD / HKD</div>
+        <div class="ticker-sub">美元兑港元</div>
+      </div>
+      <div class="ticker-right">
+        <div class="ticker-price">7.83</div>
+        <span class="change-up">联汇稳定</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 市场摘要 -->
+  <div class="summary">
+    <div class="summary-title">📝 市场摘要</div>
+    <div class="summary-body">
+      周五全球股市<strong>普涨</strong>，美股三大指数领涨，纳指单日+4.45%。中港市场同步大涨逾4%，市场情绪明显回暖。<br><br>
+      黄金与股市<strong>同步上涨</strong>，避险与风险偏好并存，背后逻辑值得关注。<strong>原油暴跌近15%</strong>为本周最大异常信号，或预示全球需求端或供给端出现重大变量。<br><br>
+      BTC 稳守 7.2 万上方，加密市场相对平稳。
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-brand">Jencere 锦承家办</div>
+    <div class="footer-note">数据来源：Yahoo Finance<br>2026-04-11 · 仅供参考，不构成投资建议</div>
+  </div>
+
+</div>
+</body>
+</html>
