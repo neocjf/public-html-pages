@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>锦承家办 · 内容中心</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #07090f;
+    --card: #0c1020;
+    --card2: #0f1428;
+    --border: #1e2448;
+    --gold: #d4af37;
+    --gold2: #e8c84a;
+    --text: #d4d8e8;
+    --muted: #7a8099;
+    --green: #2ecc71;
+    --blue: #4a90d9;
+    --red: #e74c3c;
+  }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #050d1e 0%, #0c1a3a 50%, #050d1e 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 16px 16px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-logo {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .header-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 1px;
+  }
+  .header-sub {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  /* TICKER */
+  .ticker-wrap {
+    background: #060910;
+    border-bottom: 1px solid var(--border);
+    padding: 6px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .ticker-inner {
+    display: inline-block;
+    animation: ticker 30s linear infinite;
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .ticker-inner span { margin: 0 24px; }
+  .ticker-inner .up { color: var(--green); }
+  .ticker-inner .dn { color: var(--red); }
+  .ticker-inner .hi { color: var(--gold); }
+  @keyframes ticker {
+    from { transform: translateX(100vw); }
+    to   { transform: translateX(-100%); }
+  }
+
+  /* SEARCH */
+  .search-bar {
+    padding: 12px 16px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+  .search-bar input {
+    width: 100%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 9px 14px;
+    color: var(--text);
+    font-size: 13px;
+    outline: none;
+  }
+  .search-bar input::placeholder { color: var(--muted); }
+  .search-bar input:focus { border-color: var(--gold); }
+
+  /* TABS */
+  .tabs {
+    display: flex;
+    overflow-x: auto;
+    padding: 10px 16px 0;
+    gap: 6px;
+    border-bottom: 1px solid var(--border);
+    scrollbar-width: none;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    flex-shrink: 0;
+    padding: 7px 14px;
+    border-radius: 8px 8px 0 0;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--muted);
+    border: 1px solid transparent;
+    border-bottom: none;
+    transition: all .2s;
+    background: none;
+  }
+  .tab.active {
+    color: var(--gold);
+    background: var(--card);
+    border-color: var(--border);
+    border-bottom-color: var(--card);
+    margin-bottom: -1px;
+  }
+  .tab:hover:not(.active) { color: var(--text); }
+
+  /* SECTION */
+  .section {
+    display: none;
+    padding: 14px 16px;
+  }
+  .section.active { display: block; }
+
+  /* STAT STRIP */
+  .stat-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .stat-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .stat-lbl {
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 3px;
+  }
+
+  /* CARD LIST */
+  .card-list { display: flex; flex-direction: column; gap: 8px; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color .2s, background .2s;
+  }
+  .card:hover { border-color: var(--gold); background: var(--card2); }
+  .card-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .icon-gold { background: rgba(212,175,55,.15); }
+  .icon-blue { background: rgba(74,144,217,.15); }
+  .icon-green { background: rgba(46,204,113,.15); }
+  .icon-red { background: rgba(231,76,60,.15); }
+  .icon-purple { background: rgba(155,89,182,.15); }
+  .card-body { flex: 1; min-width: 0; }
+  .card-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .card-meta {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  .card-badge {
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 20px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .badge-new { background: rgba(212,175,55,.2); color: var(--gold); }
+  .badge-week { background: rgba(74,144,217,.2); color: var(--blue); }
+  .badge-series { background: rgba(46,204,113,.2); color: var(--green); }
+
+  /* GROUP HEADER */
+  .group-hdr {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 10px 0 6px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 8px;
+    margin-top: 4px;
+  }
+  .group-hdr:first-child { margin-top: 0; }
+
+  /* HIDDEN via search */
+  .card.hidden { display: none; }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 20px 16px;
+    font-size: 11px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    margin-top: 10px;
+  }
+  .footer a { color: var(--gold); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-logo">Jincheng Family Office</div>
+  <div class="header-title">锦承家办 · 内容中心</div>
+  <div class="header-sub">早报 · 晚报 · 家族治理 · 内参合订本</div>
+</div>
+
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span class="hi">🏛 锦承家办</span>
+    <span>早间内参</span><span class="up">家族治理</span>
+    <span>信托架构</span><span class="hi">跨境配置</span>
+    <span class="up">财富传承</span><span>晚间投资内参</span>
+    <span class="hi">BTC 实时</span><span class="up">黄金</span>
+    <span>恒生指数</span><span class="hi">S&P500</span>
+    <span>CRS合规</span><span class="up">家族宪章</span>
+    <span class="hi">锦承家办</span>
+    <span>早间内参</span><span class="up">家族治理</span>
+    <span>信托架构</span><span class="hi">跨境配置</span>
+    <span class="up">财富传承</span><span>晚间投资内参</span>
+  </div>
+</div>
+
+<div class="search-bar">
+  <input type="text" id="searchInput" placeholder="🔍 搜索内容（日期、主题、关键词…）" oninput="doSearch(this.value)">
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="switchTab('all', this)">📋 全部</button>
+  <button class="tab" onclick="switchTab('morning', this)">🌅 早间内参</button>
+  <button class="tab" onclick="switchTab('evening', this)">📊 晚间投资</button>
+  <button class="tab" onclick="switchTab('governance', this)">🏛 家族治理</button>
+  <button class="tab" onclick="switchTab('special', this)">⭐ 专题报告</button>
+</div>
+
+<!-- ALL TAB -->
+<div class="section active" id="tab-all">
+  <div class="stat-strip">
+    <div class="stat-item"><div class="stat-num">21</div><div class="stat-lbl">早间内参</div></div>
+    <div class="stat-item"><div class="stat-num">16</div><div class="stat-lbl">晚间投资</div></div>
+    <div class="stat-item"><div class="stat-num">3</div><div class="stat-lbl">治理专栏</div></div>
+  </div>
+
+  <div class="group-hdr">📌 本周最新</div>
+  <div class="card-list" id="all-latest">
+
+    <a class="card" href="jincheng-brief-20260412.html" target="_blank" data-tags="早间 内参 20260412 4月12日">
+      <div class="card-icon icon-gold">🌅</div>
+      <div class="card-body">
+        <div class="card-title">锦承早间内参 · 2026-04-12</div>
+        <div class="card-meta">早间内参 · 行情 · 政策动态</div>
+      </div>
+      <span class="card-badge badge-new">今日</span>
+    </a>
+
+    <a class="card" href="jincheng-brief-evening-2026-04-12.html" target="_blank" data-tags="晚间 投资 内参 20260412 4月12日 周末">
+      <div class="card-icon icon-blue">📊</div>
+      <div class="card-body">
+        <div class="card-title">锦承晚间投资内参 · 2026-04-12</div>
+        <div class="card-meta">晚间投资 · 全球市场 · 周末特别版</div>
+      </div>
+      <span class="card-badge badge-new">今日</span>
+    </a>
+
+    <a class="card" href="jincheng-brief-20260411.html" target="_blank" data-tags="早间 内参 20260411 4月11日">
+      <div class="card-icon icon-gold">🌅</div>
+      <div class="card-body">
+        <div class="card-title">锦承早间内参 · 2026-04-11</div>
+        <div class="card-meta">早间内参 · 行情 · 政策动态</div>
+      </div>
+      <span class="card-badge badge-week">本周</span>
+    </a>
+
+    <a class="card" href="jincheng-brief-evening-2026-04-10.html" target="_blank" data-tags="晚间 投资 内参 20260410 4月10日">
+      <div class="card-icon icon-blue">📊</div>
+      <div class="card-body">
+        <div class="card-title">锦承晚间投资内参 · 2026-04-10</div>
+        <div class="card-meta">晚间投资 · 全球市场 · 行情分析</div>
+      </div>
+      <span class="card-badge badge-week">本周</span>
+    </a>
+
+  </div>
+
+  <div class="group-hdr" style="margin-top:16px">🏛 家族治理专栏（最新）</div>
+  <div class="card-list">
+    <a class="card" href="https://neocjf.github.io/public-html-pages/pages/jincheng-succession-2026-04.html" target="_blank" data-tags="传承 专题 家族 接班人 4月">
+      <div class="card-icon icon-purple">👑</div>
+      <div class="card-body">
+        <div class="card-title">4月专题：下一代接班人</div>
+        <div class="card-meta">家族传承 · 接班路径 · 治理体系</div>
+      </div>
+      <span class="card-badge badge-series">专题</span>
+    </a>
+  </div>
+</div>
+
+<!-- MORNING TAB -->
+<div class="section" id="tab-morning">
+  <div class="group-hdr">🌅 早间内参 · 4月</div>
+  <div class="card-list">
+    <a class="card" href="jincheng-brief-20260412.html" target="_blank" data-tags="早间 内参 20260412">
+      <div class="card-icon icon-gold">🌅</div>
+      <div class="card-body"><div class="card-title">早间内参 2026-04-12（周日）</div><div class="card-meta">StyleB + StyleC · 周末版</div></div>
+      <span class="card-badge badge-new">今日</span>
+    </a>
+    <a class="card" href="jincheng-brief-20260411.html" target="_blank" data-tags="早间 内参 20260411">
+      <div class="card-icon icon-gold">🌅</div>
+      <div class="card-body"><div class="card-title">早间内参 2026-04-11</div><div class="card-meta">StyleB + StyleC · 日报</div></div>
+      <span class="card-badge badge-week">本周</span>
+    </a>
+    <a class="card" href="jincheng-brief-20260410.html" target="_blank" data-tags="早间 内参 20260410">
+      <div class="card-icon icon-gold">🌅</div>
+      <div class="card-body"><div class="card-title">早间内参 2026-04-10</div><div class="card-meta">StyleB + StyleC · 日报</div></div>
+      <span class="card-badge badge-week">本周</span>
+    </a>
+    <a class="card" href="jincheng-brief-20260409.html" target="_blank" data-tags="早间 内参 20260409">
+      <div class="card-icon icon-gold">🌅</div>
+      <div class="card-body"><div class="card-title">早间内参 2026-04-09</div><div class="card-meta">StyleB + StyleC · 日报</div></div>
+      <span class="card-badge badge-week">本周</span>
+    </a>
+    <a class="card" href="jincheng-brief-20260408.html" target="_blank" data-tags="早间 内参 20260408">
+      <div class="card-icon icon-gold">🌅</div>
+      <div class="card-body"><div class="card-title">早间内参 2026-04-08</div><div class="card-meta">StyleB + StyleC · 日报</div></div>
+      <span class="card-badge badge-week">本周</span>
+    </a>
+    <a class="card" href="jincheng-brief-20260407.html" target="_blank" data-tags="早间 内参 20260407">
+      <div class="card-icon icon-gold">🌅</div>
+      <div class="card-body"><div class="card-title">早间内参 2026-04-07</div><div class="card-meta">StyleB + StyleC · 日报</div></div>
+    </a>
+    <a class="card" href="jincheng-brief-20260406.html" target="_blank" data-tags="早间 内参 20260406">
+      <div class="card-icon icon-gold">🌅</div>
+      <div class="card-body"><div class="card-title">早间内参 2026-04-06</div><div class="card-meta">StyleB + StyleC · 日报</div></div>
+    </a>
+    <a class="card" href="jincheng-brief-20260405.html" target="_blank" data-tags="早间 内参 20260405">
+      <div class="card-icon icon-gold">🌅</div>
+      <div class="card-body"><div class="card-title">早间内参 2026-04-05</div><div class="card-meta">StyleB + StyleC · 日报</div></div>
+    </a>
+    <a class="card" href="jincheng-brief-20260404.html" target="_blank" data-tags="早间 内参 20260404">
+      <div class="card-icon icon-gold">🌅</div>
+      <div class="card-body"><div class="card-title">早间内参 2026-04-04</div><div class="card-meta">StyleB + StyleC · 日报</div></div>
+    </a>
+    <a class="card" href="jincheng-brief-20260403.html" target="_blank" data-tags="早间 内参 20260403">
+      <div class="card-icon icon-gold">🌅</div>
+      <div class="card-body"><div class="card-title">早间内参 2026-04-03</div><div class="card-meta">StyleB + StyleC · 日报</div></div>
+    </a>
+    <a class="card" href="jincheng-brief-20260402.html" target="_blank" data-tags="早间 内参 20260402">
+      <div class="card-icon icon-gold">🌅</div>
+      <div class="card-body"><div class="card-title">早间内参 2026-04-02</div><div class="card-meta">StyleB + StyleC · 日报</div></div>
+    </a>
+    <a class="card" href="jincheng-brief-20260401.html" target="_blank" data-tags="早间 内参 20260401">
+      <div class="card-icon icon-gold">🌅</div>
+      <div class="card-body"><div class="card-title">早间内参 2026-04-01</div><div class="card-meta">StyleB + StyleC · 日报</div></div>
+    </a>
+  </div>
+
+  <div class="group-hdr" style="margin-top:16px">🌅 早间内参 · 3月</div>
+  <div class="card-list">
+    <a class="card" href="jincheng-brief-20260331.html" target="_blank" data-tags="早间 内参 20260331">
+      <div class="card-icon icon-gold">🌅</div>
+      <div class="card-body"><div class="card-title">早间内参 2026-03-31</div><div class="card-meta">StyleB + StyleC · 日报</div></div>
+    </a>
+    <a class="card" href="jincheng-brief-20260330.html" target="_blank" data-tags="早间 内参 20260330">
+      <div class="card-icon icon-gold">🌅</div>
+      <div class="card-body"><div class="card-title">早间内参 2026-03-30</div><div class="card-meta">StyleB + StyleC · 日报</div></div>
+    </a>
+    <a class="card" href="jincheng-brief-20260329.html" target="_blank" data-tags="早间 内参 20260329">
+      <div class="card-icon icon-gold">🌅</div>
+      <div class="card-body"><div class="card-title">早间内参 2026-03-29</div><div class="card-meta">StyleB + StyleC · 日报</div></div>
+    </a>
+    <a class="card" href="jincheng-brief-20260327.html" target="_blank" data-tags="早间 内参 20260327">
+      <div class="card-icon icon-gold">🌅</div>
+      <div class="card-body"><div class="card-title">早间内参 2026-03-27</div><div class="card-meta">StyleB + StyleC · 首发版</div></div>
+    </a>
+    <a class="card" href="jincheng-brief-20260326.html" target="_blank" data-tags="早间 内参 20260326">
+      <div class="card-icon icon-gold">🌅</div>
+      <div class="card-body"><div class="card-title">早间内参 2026-03-26</div><div class="card-meta">创刊号</div></div>
+    </a>
+    <a class="card" href="jincheng-brief-20260325.html" target="_blank" data-tags="早间 内参 20260325">
+      <div class="card-icon icon-gold">🌅</div>
+      <div class="card-body"><div class="card-title">早间内参 2026-03-25</div><div class="card-meta">测试版</div></div>
+    </a>
+  </div>
+</div>
+
+<!-- EVENING TAB -->
+<div class="section" id="tab-evening">
+  <div class="group-hdr">📊 晚间投资内参 · 4月</div>
+  <div class="card-list">
+    <a class="card" href="jincheng-brief-evening-2026-04-12.html" target="_blank" data-tags="晚间 投资 20260412 周末">
+      <div class="card-icon icon-blue">📊</div>
+      <div class="card-body"><div class="card-title">晚间投资内参 2026-04-12</div><div class="card-meta">彭博风 · 全球市场 · 周末特别版</div></div>
+      <span class="card-badge badge-new">今日</span>
+    </a>
+    <a class="card" href="jincheng-brief-evening-2026-04-10.html" target="_blank" data-tags="晚间 投资 20260410">
+      <div class="card-icon icon-blue">📊</div>
+      <div class="card-body"><div class="card-title">晚间投资内参 2026-04-10</div><div class="card-meta">彭博风 · 全球市场 · 日报</div></div>
+      <span class="card-badge badge-week">本周</span>
+    </a>
+    <a class="card" href="jincheng-brief-evening-2026-04-08.html" target="_blank" data-tags="晚间 投资 20260408">
+      <div class="card-icon icon-blue">📊</div>
+      <div class="card-body"><div class="card-title">晚间投资内参 2026-04-08</div><div class="card-meta">彭博风 · 全球市场 · 日报</div></div>
+    </a>
+    <a class="card" href="jincheng-brief-evening-2026-04-07.html" target="_blank" data-tags="晚间 投资 20260407">
+      <div class="card-icon icon-blue">📊</div>
+      <div class="card-body"><div class="card-title">晚间投资内参 2026-04-07</div><div class="card-meta">彭博风 · 全球市场 · 日报</div></div>
+    </a>
+    <a class="card" href="jincheng-brief-evening-2026-04-06.html" target="_blank" data-tags="晚间 投资 20260406">
+      <div class="card-icon icon-blue">📊</div>
+      <div class="card-body"><div class="card-title">晚间投资内参 2026-04-06</div><div class="card-meta">彭博风 · 全球市场 · 日报</div></div>
+    </a>
+    <a class="card" href="jincheng-brief-evening-2026-04-04.html" target="_blank" data-tags="晚间 投资 20260404">
+      <div class="card-icon icon-blue">📊</div>
+      <div class="card-body"><div class="card-title">晚间投资内参 2026-04-04</div><div class="card-meta">彭博风 · 全球市场 · 日报</div></div>
+    </a>
+    <a class="card" href="jincheng-brief-evening-2026-04-03.html" target="_blank" data-tags="晚间 投资 20260403">
+      <div class="card-icon icon-blue">📊</div>
+      <div class="card-body"><div class="card-title">晚间投资内参 2026-04-03</div><div class="card-meta">彭博风 · 全球市场 · 日报</div></div>
+    </a>
+    <a class="card" href="jincheng-brief-evening-2026-04-02.html" target="_blank" data-tags="晚间 投资 20260402">
+      <div class="card-icon icon-blue">📊</div>
+      <div class="card-body"><div class="card-title">晚间投资内参 2026-04-02</div><div class="card-meta">彭博风 · 全球市场 · 日报</div></div>
+    </a>
+    <a class="card" href="jincheng-brief-evening-2026-04-01.html" target="_blank" data-tags="晚间 投资 20260401">
+      <div class="card-icon icon-blue">📊</div>
+      <div class="card-body"><div class="card-title">晚间投资内参 2026-04-01</div><div class="card-meta">彭博风 · 全球市场 · 日报</div></div>
+    </a>
+  </div>
+
+  <div class="group-hdr" style="margin-top:16px">📊 晚间投资内参 · 3月</div>
+  <div class="card-list">
+    <a class="card" href="jincheng-brief-evening-2026-03-30.html" target="_blank" data-tags="晚间 投资 20260330">
+      <div class="card-icon icon-blue">📊</div>
+      <div class="card-body"><div class="card-title">晚间投资内参 2026-03-30</div><div class="card-meta">彭博风 · 全球市场 · 日报</div></div>
+    </a>
+    <a class="card" href="jincheng-brief-evening-2026-03-29.html" target="_blank" data-tags="晚间 投资 20260329">
+      <div class="card-icon icon-blue">📊</div>
+      <div class="card-body"><div class="card-title">晚间投资内参 2026-03-29</div><div class="card-meta">彭博风 · 全球市场 · 日报</div></div>
+    </a>
+    <a class="card" href="jincheng-brief-evening-2026-03-28.html" target="_blank" data-tags="晚间 投资 20260328">
+      <div class="card-icon icon-blue">📊</div>
+      <div class="card-body"><div class="card-title">晚间投资内参 2026-03-28</div><div class="card-meta">彭博风 · 全球市场 · 日报</div></div>
+    </a>
+    <a class="card" href="jincheng-brief-evening-2026-03-27.html" target="_blank" data-tags="晚间 投资 20260327">
+      <div class="card-icon icon-blue">📊</div>
+      <div class="card-body"><div class="card-title">晚间投资内参 2026-03-27</div><div class="card-meta">彭博风 · 创刊号</div></div>
+    </a>
+    <a class="card" href="jincheng-brief-evening-20260326.html" target="_blank" data-tags="晚间 投资 20260326">
+      <div class="card-icon icon-blue">📊</div>
+      <div class="card-body"><div class="card-title">晚间投资内参 2026-03-26</div><div class="card-meta">彭博风 · 测试版</div></div>
+    </a>
+  </div>
+</div>
+
+<!-- GOVERNANCE TAB -->
+<div class="section" id="tab-governance">
+  <div class="group-hdr">🏛 家族治理专栏（系列A · 家族宪章深度拆解）</div>
+  <div class="card-list">
+    <a class="card" href="https://neocjf.github.io/public-html-pages/pages/jincheng-succession-2026-04.html" target="_blank" data-tags="传承 接班人 4月 专题">
+      <div class="card-icon icon-purple">👑</div>
+      <div class="card-body">
+        <div class="card-title">4月专题：下一代接班人</div>
+        <div class="card-meta">C系列 · 获客专题 · 2026年4月</div>
+      </div>
+      <span class="card-badge badge-series">专题</span>
+    </a>
+  </div>
+
+  <div class="group-hdr" style="margin-top:16px">📚 家族治理内参（雪菲专栏）</div>
+  <div class="card-list">
+    <a class="card" href="https://neocjf.github.io/public-html-pages/pages/jincheng-family-trust.html" target="_blank" data-tags="家族信托 架构 治理">
+      <div class="card-icon icon-purple">📜</div>
+      <div class="card-body">
+        <div class="card-title">家族信托架构指南</div>
+        <div class="card-meta">信托架构 · 境内外对比 · 实操要点</div>
+      </div>
+    </a>
+    <a class="card" href="https://neocjf.github.io/public-html-pages/pages/wang-jianguo-listed-family-succession.html" target="_blank" data-tags="上市公司 家族 传承 股权">
+      <div class="card-icon icon-purple">🏢</div>
+      <div class="card-body">
+        <div class="card-title">境内上市企业家族传承方案</div>
+        <div class="card-meta">上市公司 · 股权传承 · 控制权设计</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="group-hdr" style="margin-top:16px">📖 家族宪章深度拆解（连载）</div>
+  <div class="card-list">
+    <a class="card" href="https://neocjf.github.io/public-html-pages/pages/jincheng-family-governance-issue-03.html" target="_blank" data-tags="家族宪章 治理条款 系列A 第三期">
+      <div class="card-icon icon-green">📖</div>
+      <div class="card-body">
+        <div class="card-title">系列A·第3期：家族宪章的治理条款</div>
+        <div class="card-meta">家族宪章 · 治理架构 · 系列A 3/5</div>
+      </div>
+      <span class="card-badge badge-new">最新</span>
+    </a>
+    <a class="card" href="https://neocjf.github.io/public-html-pages/pages/jincheng-family-governance-issue-02.html" target="_blank" data-tags="家族宪章 价值观 系列A 第二期">
+      <div class="card-icon icon-green">📖</div>
+      <div class="card-body">
+        <div class="card-title">系列A·第2期：价值观条款如何写不空洞</div>
+        <div class="card-meta">家族宪章 · 价值观设计 · 系列A 2/5</div>
+      </div>
+    </a>
+    <a class="card" href="https://neocjf.github.io/public-html-pages/pages/jincheng-family-governance-issue-01.html" target="_blank" data-tags="家族宪章 创刊 系列A 第一期">
+      <div class="card-icon icon-green">📖</div>
+      <div class="card-body">
+        <div class="card-title">系列A·第1期：什么是家族宪章</div>
+        <div class="card-meta">家族宪章 · 基础概念 · 系列A 1/5</div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- SPECIAL TAB -->
+<div class="section" id="tab-special">
+  <div class="group-hdr">⭐ 专题报告</div>
+  <div class="card-list">
+    <a class="card" href="jincheng-succession-2026-04.html" target="_blank" data-tags="传承 专题 接班人 4月">
+      <div class="card-icon icon-purple">👑</div>
+      <div class="card-body">
+        <div class="card-title">2026年4月专题：下一代接班人</div>
+        <div class="card-meta">家族传承 · 获客专题 · 对外报告</div>
+      </div>
+      <span class="card-badge badge-series">专题</span>
+    </a>
+    <a class="card" href="jincheng-ai-strategy-report.html" target="_blank" data-tags="AI 战略 家办 报告">
+      <div class="card-icon icon-blue">🤖</div>
+      <div class="card-body">
+        <div class="card-title">锦承AI战略报告</div>
+        <div class="card-meta">AI体系 · 战略规划 · 内部报告</div>
+      </div>
+    </a>
+    <a class="card" href="jincheng-investment-report-20260325.html" target="_blank" data-tags="投资 报告 3月 2026">
+      <div class="card-icon icon-blue">📈</div>
+      <div class="card-body">
+        <div class="card-title">锦承投资研究报告 2026-03-25</div>
+        <div class="card-meta">投资研究 · 市场分析 · 深色版</div>
+      </div>
+    </a>
+    <a class="card" href="jincheng-investment-report-20260325-light.html" target="_blank" data-tags="投资 报告 3月 2026 浅色">
+      <div class="card-icon icon-gold">📈</div>
+      <div class="card-body">
+        <div class="card-title">锦承投资研究报告 2026-03-25（浅色版）</div>
+        <div class="card-meta">投资研究 · 市场分析 · 浅色版</div>
+      </div>
+    </a>
+    <a class="card" href="joe-family-office-profile.html" target="_blank" data-tags="家办 介绍 司小龙 信托">
+      <div class="card-icon icon-green">🏛</div>
+      <div class="card-body">
+        <div class="card-title">锦承家办 · 机构介绍</div>
+        <div class="card-meta">家办简介 · 服务体系 · 对外展示</div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<div class="footer">
+  © 锦承家族办公室 · 内部内容中心<br>
+  <a href="https://neocjf.github.io/public-html-pages/pages/jincheng-hub.html">🔗 公开链接</a>
+  &nbsp;·&nbsp; 每日自动更新
+</div>
+
+<script>
+function switchTab(name, el) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('tab-' + name).classList.add('active');
+  document.getElementById('searchInput').value = '';
+  document.querySelectorAll('.card').forEach(c => c.classList.remove('hidden'));
+}
+
+function doSearch(q) {
+  q = q.trim().toLowerCase();
+  // show all tabs when searching
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelector('.tab').classList.add('active');
+  document.getElementById('tab-all').classList.add('active');
+
+  // search all cards across all sections
+  document.querySelectorAll('.card').forEach(card => {
+    if (!q) {
+      card.classList.remove('hidden');
+      return;
+    }
+    const text = (card.dataset.tags || '') + ' ' + card.innerText;
+    card.classList.toggle('hidden', !text.toLowerCase().includes(q));
+  });
+}
+</script>
+
+</body>
+</html>
