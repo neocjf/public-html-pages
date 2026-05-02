@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>锦承瑞和 · 家族办公室</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Noto+Serif+SC:wght@400;700&display=swap');
+
+:root {
+  --gold: #c9a84c;
+  --gold-light: #e8c96a;
+  --gold-dim: rgba(201,168,76,0.15);
+  --gold-border: rgba(201,168,76,0.35);
+  --navy: #0a1628;
+  --navy-mid: #0d2040;
+  --navy-light: #162d52;
+  --navy-card: #0f1e35;
+  --navy-card2: #0c1a2e;
+  --white: #ffffff;
+  --white-dim: rgba(255,255,255,0.85);
+  --white-muted: rgba(255,255,255,0.55);
+  --white-faint: rgba(255,255,255,0.12);
+  --border: rgba(201,168,76,0.2);
+  --ease: cubic-bezier(.4,0,.2,1);
+}
+
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  width: 100%; height: 100%;
+  background: var(--navy);
+  font-family: 'Noto Sans SC', 'PingFang SC', -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+.deck { position: relative; width: 100vw; height: 100vh; overflow: hidden; background: var(--navy); }
+
+.slide {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 60px 80px;
+  opacity: 0; pointer-events: none;
+  transition: opacity .5s var(--ease), transform .5s var(--ease);
+  transform: translateX(40px);
+  overflow: hidden;
+}
+.slide.is-active { opacity: 1; pointer-events: auto; transform: translateX(0); z-index: 2; }
+.slide.is-prev { transform: translateX(-40px); }
+
+.progress-bar { position: fixed; left: 0; right: 0; bottom: 0; height: 2px; z-index: 20; }
+.progress-bar span { display: block; height: 100%; width: 0; background: var(--gold); transition: width .3s var(--ease); }
+.slide-num { position: fixed; bottom: 16px; right: 28px; font-size: 11px; color: var(--white-muted); letter-spacing: 2px; z-index: 20; }
+
+/* ===== COVER ===== */
+.slide-cover {
+  background: linear-gradient(135deg, #060e1c 0%, #0a1628 40%, #0d2040 70%, #162d52 100%);
+  justify-content: flex-end;
+  padding-bottom: 80px;
+  overflow: hidden;
+}
+.cover-photo {
+  position: absolute; inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1616713586898-e32a4fa0b39c?w=1600&q=80');
+  background-size: cover; background-position: center;
+  opacity: 0.18;
+  filter: saturate(0.4) brightness(0.7);
+}
+.cover-bg-deco {
+  position: absolute; top: -100px; right: -100px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 65%);
+  border-radius: 50%;
+}
+.cover-line-deco {
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.cover-logo-area {
+  position: absolute; top: 60px; left: 80px;
+  display: flex; align-items: center; gap: 16px;
+}
+.cover-logo-mark {
+  width: 48px; height: 48px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--gold), #8a6020);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; font-family: 'Noto Serif SC', serif; color: white; font-weight: 700;
+}
+.cover-logo-text { font-size: 13px; color: var(--white-muted); letter-spacing: 3px; }
+.cover-content { position: relative; z-index: 2; }
+.cover-eyebrow { font-size: 12px; letter-spacing: 5px; color: var(--gold); text-transform: uppercase; margin-bottom: 20px; }
+.cover-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 80px; font-weight: 700; color: var(--white);
+  line-height: 1.1; margin-bottom: 16px; letter-spacing: 8px;
+}
+.cover-title span { color: var(--gold); }
+.cover-subtitle { font-size: 20px; color: var(--white-dim); font-weight: 300; letter-spacing: 3px; margin-bottom: 40px; }
+.cover-divider { width: 60px; height: 2px; background: var(--gold); margin-bottom: 28px; }
+.cover-tagline { font-size: 14px; color: var(--white-muted); letter-spacing: 2px; line-height: 2; }
+.cover-en { position: absolute; bottom: 80px; right: 80px; font-size: 13px; color: var(--white-muted); letter-spacing: 3px; text-align: right; }
+.cover-stats {
+  position: absolute; top: 60px; right: 80px;
+  display: flex; gap: 32px;
+}
+.cover-stat { text-align: center; }
+.cover-stat-num { font-family: 'Noto Serif SC', serif; font-size: 28px; font-weight: 700; color: var(--gold); }
+.cover-stat-label { font-size: 11px; color: var(--white-muted); letter-spacing: 2px; margin-top: 4px; }
+
+/* ===== INNER LAYOUT ===== */
+.slide-inner { background: var(--navy); flex-direction: row; gap: 0; padding: 0; }
+.sidebar {
+  width: 220px; flex-shrink: 0;
+  background: linear-gradient(180deg, #06101e, #0d1e36);
+  border-right: 1px solid var(--border);
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 48px 24px;
+}
+.sidebar-chapter { font-size: 10px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 12px; }
+.sidebar-title { font-size: 15px; font-weight: 700; color: var(--white); line-height: 1.6; letter-spacing: 1px; }
+.sidebar-num { font-family: 'Noto Serif SC', serif; font-size: 64px; font-weight: 700; color: var(--gold-dim); line-height: 1; }
+.sidebar-logo { font-size: 11px; color: var(--white-muted); letter-spacing: 2px; }
+.content-area { flex: 1; padding: 52px 60px; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
+.section-label { font-size: 11px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
+.slide-heading { font-family: 'Noto Serif SC', serif; font-size: 36px; font-weight: 700; color: var(--white); margin-bottom: 8px; line-height: 1.3; }
+.slide-sub { font-size: 14px; color: var(--white-muted); margin-bottom: 32px; line-height: 1.8; }
+.gold-line { width: 40px; height: 2px; background: var(--gold); margin-bottom: 28px; }
+
+/* ===== CARDS ===== */
+.card-grid { display: grid; gap: 16px; }
+.g2 { grid-template-columns: 1fr 1fr; }
+.g3 { grid-template-columns: 1fr 1fr 1fr; }
+.g4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+
+.card { background: var(--navy-card); border: 1px solid var(--border); border-radius: 14px; padding: 22px 24px; }
+.card-gold { border-top: 2px solid var(--gold); }
+.card-icon { font-size: 28px; margin-bottom: 12px; }
+.card-title { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+.card-body { font-size: 13px; color: var(--white-muted); line-height: 1.8; }
+
+/* ===== PILLS ===== */
+.pills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.pill { display: inline-block; padding: 6px 16px; border: 1px solid var(--gold); border-radius: 999px; font-size: 13px; color: var(--gold); background: var(--gold-dim); letter-spacing: 1px; }
+
+/* ===== VALUE CARDS ===== */
+.value-row { display: flex; gap: 16px; margin-top: 16px; }
+.value-card { flex: 1; background: var(--navy-card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; text-align: center; }
+.value-char { font-family: 'Noto Serif SC', serif; font-size: 36px; font-weight: 700; color: var(--gold); margin-bottom: 8px; }
+.value-name { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+.value-desc { font-size: 12px; color: var(--white-muted); line-height: 1.7; }
+
+/* ===== MISSION ===== */
+.mission-row { display: flex; gap: 20px; margin-bottom: 24px; }
+.mission-box { flex: 1; background: var(--navy-card); border: 1px solid var(--border); border-radius: 14px; padding: 24px; }
+.mission-label { font-size: 11px; letter-spacing: 3px; color: var(--gold); margin-bottom: 10px; }
+.mission-text { font-size: 14px; color: var(--white-dim); line-height: 1.9; }
+
+/* ===== LICENSE ===== */
+.license-list { display: flex; flex-direction: column; gap: 12px; }
+.license-item { display: flex; align-items: flex-start; gap: 16px; background: var(--navy-card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; }
+.license-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+.license-name { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+.license-desc { font-size: 12px; color: var(--white-muted); line-height: 1.7; }
+
+/* ===== STEPS ===== */
+.steps { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+.step-card { background: var(--navy-card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; }
+.step-num { font-family: 'Noto Serif SC', serif; font-size: 28px; font-weight: 700; color: var(--gold); margin-bottom: 10px; }
+.step-title { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+.step-items { font-size: 12px; color: var(--white-muted); line-height: 1.8; }
+
+/* ===== TIMELINE ===== */
+.timeline { display: flex; gap: 0; }
+.tl-item { flex: 1; background: var(--navy-card); border: 1px solid var(--border); padding: 22px 20px; position: relative; }
+.tl-item:first-child { border-radius: 14px 0 0 14px; }
+.tl-item:last-child { border-radius: 0 14px 14px 0; }
+.tl-item::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gold); opacity: 0.5; }
+.tl-item:nth-child(1)::before { opacity: 1; }
+.tl-item:nth-child(2)::before { opacity: 0.75; }
+.tl-item:nth-child(3)::before { opacity: 0.5; }
+.tl-item:nth-child(4)::before { opacity: 0.3; }
+.tl-phase { font-size: 10px; letter-spacing: 3px; color: var(--gold); margin-bottom: 8px; }
+.tl-title { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 10px; }
+.tl-items { font-size: 12px; color: var(--white-muted); line-height: 2; }
+
+/* ===== TEAM ===== */
+.team-list { display: flex; flex-direction: column; gap: 14px; }
+.team-card { display: flex; align-items: flex-start; gap: 20px; background: var(--navy-card); border: 1px solid var(--border); border-radius: 14px; padding: 20px 24px; }
+.team-photo { width: 64px; height: 64px; border-radius: 14px; object-fit: cover; flex-shrink: 0; border: 1px solid var(--border); }
+.team-role { font-size: 11px; letter-spacing: 3px; color: var(--gold); margin-bottom: 6px; }
+.team-name { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+.team-desc { font-size: 12px; color: var(--white-muted); line-height: 1.8; }
+
+/* ===== TOC ===== */
+.toc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.toc-item { background: var(--navy-card); border: 1px solid var(--border); border-radius: 14px; padding: 28px; display: flex; align-items: flex-start; gap: 16px; }
+.toc-num { font-family: 'Noto Serif SC', serif; font-size: 48px; font-weight: 700; color: var(--gold-dim); line-height: 1; flex-shrink: 0; }
+.toc-title { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+.toc-sub { font-size: 13px; color: var(--white-muted); line-height: 1.7; }
+
+/* ===== CLOSING ===== */
+.slide-closing {
+  background: linear-gradient(135deg, #060e1c 0%, #0a1628 40%, #0d2040 70%, #162d52 100%);
+  align-items: center; justify-content: center; text-align: center; overflow: hidden;
+}
+.closing-photo {
+  position: absolute; inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1444653614773-995cb1ef9efa?w=1600&q=80');
+  background-size: cover; background-position: center;
+  opacity: 0.12;
+}
+.closing-line { width: 80px; height: 2px; background: var(--gold); margin: 20px auto; }
+.closing-title { font-family: 'Noto Serif SC', serif; font-size: 56px; font-weight: 700; color: var(--white); letter-spacing: 6px; line-height: 1.4; }
+.closing-dots { color: var(--gold); }
+.closing-sub { font-size: 16px; color: var(--white-muted); line-height: 2; max-width: 560px; margin: 0 auto; }
+.closing-cities { display: flex; gap: 24px; justify-content: center; margin-top: 32px; }
+.closing-city { font-size: 13px; color: var(--white-muted); letter-spacing: 3px; padding: 8px 20px; border: 1px solid var(--border); border-radius: 999px; }
+
+/* ===== ASSET BOXES ===== */
+.asset-row { display: flex; gap: 16px; }
+.asset-half { flex: 1; }
+.asset-box { background: var(--navy-card); border: 1px solid var(--border); border-radius: 14px; padding: 20px 22px; height: 100%; }
+.asset-label { font-size: 11px; letter-spacing: 3px; color: var(--gold); margin-bottom: 10px; }
+.asset-title { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 10px; }
+.asset-body { font-size: 13px; color: var(--white-muted); line-height: 1.9; }
+.asset-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.asset-tag { font-size: 11px; color: var(--gold); background: var(--gold-dim); border: 1px solid rgba(201,168,76,0.3); border-radius: 6px; padding: 3px 10px; }
+
+/* ===== ARCH DIAGRAM STYLES ===== */
+.arch-slide { background: var(--navy); flex-direction: row; gap: 0; padding: 0; }
+.arch-content { flex: 1; padding: 48px 52px; display: flex; flex-direction: column; overflow: hidden; }
+.arch-svg-wrap { flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+svg.arch { width: 100%; height: 100%; }
+.photo-banner {
+  width: 100%; height: 160px; border-radius: 14px; overflow: hidden;
+  margin-bottom: 16px; position: relative; flex-shrink: 0;
+}
+.photo-banner img { width: 100%; height: 100%; object-fit: cover; opacity: 0.75; }
+.photo-banner-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(10,22,40,0.9), rgba(10,22,40,0.3));
+  display: flex; align-items: center; padding: 0 32px; gap: 20px;
+}
+.photo-banner-text h3 { font-size: 22px; font-weight: 700; color: white; margin-bottom: 4px; }
+.photo-banner-text p { font-size: 13px; color: var(--white-muted); }
+
+/* ===== SYS GRID ===== */
+.sys-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.sys-card { background: var(--navy-card); border: 1px solid var(--border); border-radius: 14px; padding: 20px 22px; }
+.sys-num { font-size: 11px; letter-spacing: 3px; color: var(--gold); margin-bottom: 8px; }
+.sys-title { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 10px; }
+.sys-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.sys-tag { font-size: 11px; color: var(--white-muted); background: rgba(255,255,255,0.06); border-radius: 6px; padding: 3px 10px; }
+
+/* ===== PHOTO GRID (team) ===== */
+.team-photo-card {
+  display: flex; flex-direction: column;
+  background: var(--navy-card); border: 1px solid var(--border); border-radius: 14px;
+  overflow: hidden;
+}
+.team-photo-header {
+  height: 100px; overflow: hidden; position: relative; flex-shrink: 0;
+}
+.team-photo-header img { width: 100%; height: 100%; object-fit: cover; opacity: 0.65; filter: saturate(0.5); }
+.team-photo-header-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent, rgba(10,22,40,0.95));
+  display: flex; align-items: flex-end; padding: 12px 16px;
+}
+.team-photo-body { padding: 12px 16px 16px; }
+.team-photo-role { font-size: 10px; letter-spacing: 3px; color: var(--gold); margin-bottom: 4px; }
+.team-photo-name { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+.team-photo-desc { font-size: 11px; color: var(--white-muted); line-height: 1.7; }
+</style>
+</head>
+<body>
+<div class="deck">
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 1: COVER
+════════════════════════════════════════════ -->
+<div class="slide slide-cover is-active">
+  <div class="cover-photo"></div>
+  <div class="cover-bg-deco"></div>
+  <div class="cover-line-deco"></div>
+  <div class="cover-logo-area">
+    <div class="cover-logo-mark">锦</div>
+    <div class="cover-logo-text">JENCERE FAMILY OFFICE</div>
+  </div>
+  <div class="cover-stats">
+    <div class="cover-stat">
+      <div class="cover-stat-num">4+</div>
+      <div class="cover-stat-label">专业牌照</div>
+    </div>
+    <div class="cover-stat">
+      <div class="cover-stat-num">3</div>
+      <div class="cover-stat-label">核心城市</div>
+    </div>
+    <div class="cover-stat">
+      <div class="cover-stat-num">20+</div>
+      <div class="cover-stat-label">年行业经验</div>
+    </div>
+  </div>
+  <div class="cover-content">
+    <div class="cover-eyebrow">Family Office · Wealth Succession</div>
+    <div class="cover-title"><span>锦承</span>瑞和</div>
+    <div class="cover-subtitle">家族企业与财富传承系统解决方案提供商</div>
+    <div class="cover-divider"></div>
+    <div class="cover-tagline">
+      助力远见家族传承与发展<br>
+      帮助华人家族实现事业延续与稳健发展
+    </div>
+  </div>
+  <div class="cover-en">Jincheng Ruihe · Jencere Family Office</div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 2: 目录
+════════════════════════════════════════════ -->
+<div class="slide slide-inner">
+  <div class="sidebar">
+    <div>
+      <div class="sidebar-chapter">Contents</div>
+      <div class="sidebar-title">目录</div>
+    </div>
+    <div class="sidebar-num">00</div>
+    <div class="sidebar-logo">锦承瑞和</div>
+  </div>
+  <div class="content-area">
+    <div class="section-label">Table of Contents</div>
+    <div class="slide-heading">公司全景</div>
+    <div class="gold-line"></div>
+    <div class="toc-grid">
+      <div class="toc-item">
+        <div class="toc-num">01</div>
+        <div>
+          <div class="toc-title">公司介绍</div>
+          <div class="toc-sub">定位 · 资质 · 价值观 · 全球架构</div>
+        </div>
+      </div>
+      <div class="toc-item">
+        <div class="toc-num">02</div>
+        <div>
+          <div class="toc-title">解决方案</div>
+          <div class="toc-sub">治理 · 企业传承 · 财富架构 · 教育</div>
+        </div>
+      </div>
+      <div class="toc-item">
+        <div class="toc-num">03</div>
+        <div>
+          <div class="toc-title">赋能体系</div>
+          <div class="toc-sub">顾问赋能 · 品牌打造 · 实施路径</div>
+        </div>
+      </div>
+      <div class="toc-item">
+        <div class="toc-num">04</div>
+        <div>
+          <div class="toc-title">专业团队</div>
+          <div class="toc-sub">文化治理 · 企业传承 · 财富传承</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 3: 公司简介 + 城市图片
+════════════════════════════════════════════ -->
+<div class="slide slide-inner">
+  <div class="sidebar">
+    <div>
+      <div class="sidebar-chapter">Chapter 01</div>
+      <div class="sidebar-title">公司介绍</div>
+    </div>
+    <div class="sidebar-num">01</div>
+    <div class="sidebar-logo">锦承瑞和</div>
+  </div>
+  <div class="content-area">
+    <div class="section-label">Company Overview</div>
+    <div class="slide-heading">关于锦承瑞和</div>
+    <div class="gold-line"></div>
+    <!-- 香港夜景 banner -->
+    <div class="photo-banner">
+      <img src="https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=1200&q=80" alt="Hong Kong">
+      <div class="photo-banner-overlay">
+        <div style="font-size:36px;">🌏</div>
+        <div class="photo-banner-text">
+          <h3>香港 · 新加坡 · 深圳</h3>
+          <p>多地持牌 · 跨境服务 · 国际视野</p>
+        </div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+      <div class="card">
+        <div class="card-title">机构定位</div>
+        <div class="card-body">专业从事家族企业与财富传承系统解决方案的咨询顾问机构，致力于为华人家族提供全方位的传承规划服务。</div>
+      </div>
+      <div class="card">
+        <div class="card-title">服务宗旨</div>
+        <div class="card-body">助力家族穿越万象周期、护航家族绵延锦程。以具有国际视野、华人特色、系统方案与管家式执行，助力家族实现基业长青。</div>
+      </div>
+    </div>
+    <div class="pills">
+      <span class="pill">🌏 国际视野</span>
+      <span class="pill">🏮 华人特色</span>
+      <span class="pill">🗂 系统方案</span>
+      <span class="pill">🎯 执行落地</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 4: 核心特色
+════════════════════════════════════════════ -->
+<div class="slide slide-inner">
+  <div class="sidebar">
+    <div>
+      <div class="sidebar-chapter">Chapter 01</div>
+      <div class="sidebar-title">核心定位</div>
+    </div>
+    <div class="sidebar-num">01</div>
+    <div class="sidebar-logo">锦承瑞和</div>
+  </div>
+  <div class="content-area">
+    <div class="section-label">Core Positioning</div>
+    <div class="slide-heading">四大核心特色</div>
+    <div class="gold-line"></div>
+    <div class="card-grid g2">
+      <div class="card card-gold">
+        <div class="card-icon">🌏</div>
+        <div class="card-title">国际视野</div>
+        <div class="card-body">内地、香港、新加坡、欧美等多地分支机构及国际牌照，整合全球家办资源，满足家族全球化传承需求。</div>
+      </div>
+      <div class="card card-gold">
+        <div class="card-icon">🏮</div>
+        <div class="card-title">华人特色</div>
+        <div class="card-body">深刻理解华人家族文化与价值观，结合华人家族成员结构，量身定制符合华人传统与现代需求的传承方案。</div>
+      </div>
+      <div class="card card-gold">
+        <div class="card-icon">🗂</div>
+        <div class="card-title">系统方案</div>
+        <div class="card-body">从家族文化到财富架构，不是单点服务，是完整的家族治理、企业传承、财富管理、教育规划一体化体系。</div>
+      </div>
+      <div class="card card-gold">
+        <div class="card-icon">🎯</div>
+        <div class="card-title">执行落地</div>
+        <div class="card-body">秉持专业敬畏与长期主义，综合家族需求整体谋划，提供分步实施的管家式执行服务，确保方案有效落地。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 5: 使命愿景价值观
+════════════════════════════════════════════ -->
+<div class="slide slide-inner">
+  <div class="sidebar">
+    <div>
+      <div class="sidebar-chapter">Chapter 01</div>
+      <div class="sidebar-title">价值观与使命</div>
+    </div>
+    <div class="sidebar-num">01</div>
+    <div class="sidebar-logo">锦承瑞和</div>
+  </div>
+  <div class="content-area">
+    <div class="section-label">Mission & Values</div>
+    <div class="slide-heading">使命 · 愿景 · 价值观</div>
+    <div class="gold-line"></div>
+    <div class="mission-row">
+      <div class="mission-box">
+        <div class="mission-label">使命</div>
+        <div class="mission-text">助力远见家族传承与发展，帮助华人家族实现事业延续与稳健发展，确保家族在时代变迁中行稳致远。</div>
+      </div>
+      <div class="mission-box">
+        <div class="mission-label">愿景</div>
+        <div class="mission-text">成为全球华人家族信赖的传承基石伙伴，让卓越家族实现有序传承、生生不息。</div>
+      </div>
+    </div>
+    <div class="value-row">
+      <div class="value-card">
+        <div class="value-char">致</div>
+        <div class="value-name">致远</div>
+        <div class="value-desc">长期主义与专业敬畏，为家族谋划百年蓝图</div>
+      </div>
+      <div class="value-card">
+        <div class="value-char">共</div>
+        <div class="value-name">共荣</div>
+        <div class="value-desc">与家族发展深度绑定，实现共同成长与繁荣</div>
+      </div>
+      <div class="value-card">
+        <div class="value-char">系</div>
+        <div class="value-name">系统</div>
+        <div class="value-desc">综合需求整体谋划，提供管家式执行服务</div>
+      </div>
+      <div class="value-card">
+        <div class="value-char">保</div>
+        <div class="value-name">保密</div>
+        <div class="value-desc">以绝对诚信守护家族隐私，筑牢信赖底线</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 6: 专业资质
+════════════════════════════════════════════ -->
+<div class="slide slide-inner">
+  <div class="sidebar">
+    <div>
+      <div class="sidebar-chapter">Chapter 01</div>
+      <div class="sidebar-title">专业资质</div>
+    </div>
+    <div class="sidebar-num">01</div>
+    <div class="sidebar-logo">锦承瑞和</div>
+  </div>
+  <div class="content-area">
+    <div class="section-label">Licenses & Qualifications</div>
+    <div class="slide-heading">专业牌照与国际资质</div>
+    <div class="gold-line"></div>
+    <div class="license-list">
+      <div class="license-item">
+        <div class="license-icon">🏦</div>
+        <div>
+          <div class="license-name">香港证监会牌照（SFC）</div>
+          <div class="license-desc">1号（证券交易）、4号（证券意见）及9号（资产管理）牌照，具备完整证券业务资质</div>
+        </div>
+      </div>
+      <div class="license-item">
+        <div class="license-icon">🇸🇬</div>
+        <div>
+          <div class="license-name">新加坡 FA 牌照（MAS）</div>
+          <div class="license-desc">新加坡财务顾问（FA）牌照，可在新加坡提供专业财务顾问服务</div>
+        </div>
+      </div>
+      <div class="license-item">
+        <div class="license-icon">📋</div>
+        <div>
+          <div class="license-name">TCSP 牌照</div>
+          <div class="license-desc">信托或公司服务提供者牌照，提供信托及公司相关专业服务</div>
+        </div>
+      </div>
+      <div class="license-item">
+        <div class="license-icon">🌐</div>
+        <div>
+          <div class="license-name">环球保险资质 · 国际分支</div>
+          <div class="license-desc">香港、新加坡、美国、百慕大及开曼保险公司合约 · 香港上环 / 九龙 / 深圳 / 新加坡</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 7: 全球架构图 (NEW)
+════════════════════════════════════════════ -->
+<div class="slide slide-inner arch-slide">
+  <div class="sidebar">
+    <div>
+      <div class="sidebar-chapter">Chapter 01</div>
+      <div class="sidebar-title">全球架构</div>
+    </div>
+    <div class="sidebar-num">01</div>
+    <div class="sidebar-logo">锦承瑞和</div>
+  </div>
+  <div class="arch-content">
+    <div class="section-label">Global Structure</div>
+    <div class="slide-heading">集团架构图</div>
+    <div class="gold-line" style="margin-bottom:16px;"></div>
+    <div class="arch-svg-wrap">
+      <svg viewBox="0 0 700 420" xmlns="http://www.w3.org/2000/svg" style="max-height:380px;">
+        <defs>
+          <linearGradient id="gGold" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#c9a84c;stop-opacity:0.8"/>
+            <stop offset="100%" style="stop-color:#e8c96a;stop-opacity:0.8"/>
+          </linearGradient>
+          <linearGradient id="gNavy" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#162d52;stop-opacity:1"/>
+            <stop offset="100%" style="stop-color:#0f1e35;stop-opacity:1"/>
+          </linearGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+            <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        <!-- 顶层：锦承瑞和集团 -->
+        <rect x="220" y="10" width="260" height="56" rx="10" fill="url(#gGold)"/>
+        <text x="350" y="34" text-anchor="middle" fill="#0a1628" font-size="13" font-weight="700" font-family="'Noto Sans SC',sans-serif">锦承瑞和集团</text>
+        <text x="350" y="52" text-anchor="middle" fill="#0a1628" font-size="10" font-family="'Noto Sans SC',sans-serif">Jencere Family Office</text>
+
+        <!-- 连线到三大分支 -->
+        <line x1="350" y1="66" x2="350" y2="90" stroke="#c9a84c" stroke-width="1.5" opacity="0.6"/>
+        <line x1="350" y1="90" x2="120" y2="90" stroke="#c9a84c" stroke-width="1.5" opacity="0.6"/>
+        <line x1="350" y1="90" x2="350" y2="90" stroke="#c9a84c" stroke-width="1.5" opacity="0.6"/>
+        <line x1="350" y1="90" x2="580" y2="90" stroke="#c9a84c" stroke-width="1.5" opacity="0.6"/>
+        <line x1="120" y1="90" x2="120" y2="110" stroke="#c9a84c" stroke-width="1.5" opacity="0.6"/>
+        <line x1="350" y1="90" x2="350" y2="110" stroke="#c9a84c" stroke-width="1.5" opacity="0.6"/>
+        <line x1="580" y1="90" x2="580" y2="110" stroke="#c9a84c" stroke-width="1.5" opacity="0.6"/>
+
+        <!-- 香港分支 -->
+        <rect x="30" y="110" width="180" height="52" rx="8" fill="url(#gNavy)" stroke="#c9a84c" stroke-width="1" stroke-opacity="0.5"/>
+        <text x="120" y="132" text-anchor="middle" fill="#c9a84c" font-size="11" font-weight="700" font-family="'Noto Sans SC',sans-serif">🇭🇰  香港总部</text>
+        <text x="120" y="150" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="9.5" font-family="'Noto Sans SC',sans-serif">SFC · TCSP · 保险经纪</text>
+
+        <!-- 深圳/内地分支 -->
+        <rect x="260" y="110" width="180" height="52" rx="8" fill="url(#gNavy)" stroke="#c9a84c" stroke-width="1" stroke-opacity="0.5"/>
+        <text x="350" y="132" text-anchor="middle" fill="#c9a84c" font-size="11" font-weight="700" font-family="'Noto Sans SC',sans-serif">🇨🇳  深圳 · 内地</text>
+        <text x="350" y="150" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="9.5" font-family="'Noto Sans SC',sans-serif">跨境咨询 · 内地拓展</text>
+
+        <!-- 新加坡分支 -->
+        <rect x="490" y="110" width="180" height="52" rx="8" fill="url(#gNavy)" stroke="#c9a84c" stroke-width="1" stroke-opacity="0.5"/>
+        <text x="580" y="132" text-anchor="middle" fill="#c9a84c" font-size="11" font-weight="700" font-family="'Noto Sans SC',sans-serif">🇸🇬  新加坡</text>
+        <text x="580" y="150" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="9.5" font-family="'Noto Sans SC',sans-serif">FA牌照 · 区域家办中心</text>
+
+        <!-- 第三层：四大服务系统 -->
+        <line x1="120" y1="162" x2="120" y2="195" stroke="#c9a84c" stroke-width="1" opacity="0.4"/>
+        <line x1="350" y1="162" x2="350" y2="195" stroke="#c9a84c" stroke-width="1" opacity="0.4"/>
+        <line x1="120" y1="195" x2="580" y2="195" stroke="#c9a84c" stroke-width="1" opacity="0.4"/>
+        <line x1="580" y1="162" x2="580" y2="195" stroke="#c9a84c" stroke-width="1" opacity="0.4"/>
+
+        <!-- 4个系统节点 -->
+        <g transform="translate(30,205)">
+          <rect width="140" height="64" rx="8" fill="#0f1e35" stroke="rgba(201,168,76,0.35)" stroke-width="1"/>
+          <rect width="140" height="3" rx="2" fill="#c9a84c" opacity="0.8"/>
+          <text x="70" y="24" text-anchor="middle" fill="white" font-size="11" font-weight="700" font-family="'Noto Sans SC',sans-serif">🏛 家族治理</text>
+          <text x="70" y="42" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="9" font-family="'Noto Sans SC',sans-serif">宪章 · 委员会 · 会议</text>
+          <text x="70" y="56" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="9" font-family="'Noto Sans SC',sans-serif">冲突解决 · 战略发展</text>
+        </g>
+        <line x1="100" y1="195" x2="100" y2="205" stroke="#c9a84c" stroke-width="1" opacity="0.4"/>
+
+        <g transform="translate(195,205)">
+          <rect width="140" height="64" rx="8" fill="#0f1e35" stroke="rgba(201,168,76,0.35)" stroke-width="1"/>
+          <rect width="140" height="3" rx="2" fill="#c9a84c" opacity="0.8"/>
+          <text x="70" y="24" text-anchor="middle" fill="white" font-size="11" font-weight="700" font-family="'Noto Sans SC',sans-serif">🏭 企业传承</text>
+          <text x="70" y="42" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="9" font-family="'Noto Sans SC',sans-serif">接班人 · 领导力 · 股权</text>
+          <text x="70" y="56" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="9" font-family="'Noto Sans SC',sans-serif">战略路径 · 代际交接</text>
+        </g>
+        <line x1="265" y1="195" x2="265" y2="205" stroke="#c9a84c" stroke-width="1" opacity="0.4"/>
+
+        <g transform="translate(360,205)">
+          <rect width="140" height="64" rx="8" fill="#0f1e35" stroke="rgba(201,168,76,0.35)" stroke-width="1"/>
+          <rect width="140" height="3" rx="2" fill="#c9a84c" opacity="0.8"/>
+          <text x="70" y="24" text-anchor="middle" fill="white" font-size="11" font-weight="700" font-family="'Noto Sans SC',sans-serif">💰 财富传承</text>
+          <text x="70" y="42" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="9" font-family="'Noto Sans SC',sans-serif">信托 · 保险 · 资产配置</text>
+          <text x="70" y="56" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="9" font-family="'Noto Sans SC',sans-serif">财富保护 · 全球结构</text>
+        </g>
+        <line x1="430" y1="195" x2="430" y2="205" stroke="#c9a84c" stroke-width="1" opacity="0.4"/>
+
+        <g transform="translate(525,205)">
+          <rect width="140" height="64" rx="8" fill="#0f1e35" stroke="rgba(201,168,76,0.35)" stroke-width="1"/>
+          <rect width="140" height="3" rx="2" fill="#c9a84c" opacity="0.8"/>
+          <text x="70" y="24" text-anchor="middle" fill="white" font-size="11" font-weight="700" font-family="'Noto Sans SC',sans-serif">📚 教育文化</text>
+          <text x="70" y="42" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="9" font-family="'Noto Sans SC',sans-serif">AI数字家办 · 教育规划</text>
+          <text x="70" y="56" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="9" font-family="'Noto Sans SC',sans-serif">文化建设 · 慈善公益</text>
+        </g>
+        <line x1="595" y1="195" x2="595" y2="205" stroke="#c9a84c" stroke-width="1" opacity="0.4"/>
+
+        <!-- 底部标签 -->
+        <text x="350" y="295" text-anchor="middle" fill="rgba(201,168,76,0.5)" font-size="9" letter-spacing="4" font-family="'Noto Sans SC',sans-serif">JINCHENG RUIHE · SYSTEM ARCHITECTURE</text>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 8: 解决方案体系 (4 systems)
+════════════════════════════════════════════ -->
+<div class="slide slide-inner">
+  <div class="sidebar">
+    <div>
+      <div class="sidebar-chapter">Chapter 02</div>
+      <div class="sidebar-title">解决方案</div>
+    </div>
+    <div class="sidebar-num">02</div>
+    <div class="sidebar-logo">锦承瑞和</div>
+  </div>
+  <div class="content-area">
+    <div class="section-label">Solution Framework</div>
+    <div class="slide-heading">家族办公室系统解决方案体系</div>
+    <div class="gold-line"></div>
+    <div class="sys-grid">
+      <div class="sys-card">
+        <div class="sys-num">SYSTEM 01</div>
+        <div class="sys-title">🏛 家族治理传承架构系统</div>
+        <div class="sys-tags">
+          <span class="sys-tag">家族宪章</span><span class="sys-tag">治理结构设计</span>
+          <span class="sys-tag">家族会议</span><span class="sys-tag">冲突解决机制</span>
+        </div>
+      </div>
+      <div class="sys-card">
+        <div class="sys-num">SYSTEM 02</div>
+        <div class="sys-title">🏭 家族企业传承管理系统</div>
+        <div class="sys-tags">
+          <span class="sys-tag">接班人计划</span><span class="sys-tag">领导力诊断</span>
+          <span class="sys-tag">所有权安排</span><span class="sys-tag">代际交接</span>
+        </div>
+      </div>
+      <div class="sys-card">
+        <div class="sys-num">SYSTEM 03</div>
+        <div class="sys-title">💰 家族财富传承管理系统</div>
+        <div class="sys-tags">
+          <span class="sys-tag">信托架构</span><span class="sys-tag">资产保护</span>
+          <span class="sys-tag">全球配置</span><span class="sys-tag">保险规划</span>
+        </div>
+      </div>
+      <div class="sys-card">
+        <div class="sys-num">SYSTEM 04</div>
+        <div class="sys-title">📚 家族教育文化支持系统</div>
+        <div class="sys-tags">
+          <span class="sys-tag">教育规划</span><span class="sys-tag">文化建设</span>
+          <span class="sys-tag">人才发展</span><span class="sys-tag">AI数字家办</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 9: 家族文化与治理
+════════════════════════════════════════════ -->
+<div class="slide slide-inner">
+  <div class="sidebar">
+    <div>
+      <div class="sidebar-chapter">Chapter 02</div>
+      <div class="sidebar-title">文化与治理</div>
+    </div>
+    <div class="sidebar-num">02</div>
+    <div class="sidebar-logo">锦承瑞和</div>
+  </div>
+  <div class="content-area">
+    <div class="section-label">Culture & Governance</div>
+    <div class="slide-heading">家族文化与治理解决方案</div>
+    <div class="gold-line"></div>
+    <div class="card-grid g2">
+      <div class="card">
+        <div class="card-icon">📜</div>
+        <div class="card-title">文化根基与精神传承</div>
+        <div class="card-body">家族史编著 · 家族使命愿景提炼 · 家族宪章制定 · 家族公约起草 · 传承诊断报告</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">⚖️</div>
+        <div class="card-title">治理体系与决策机制</div>
+        <div class="card-body">家族治理结构设计 · 治理评估与修订 · 家族会议规划 · 冲突解决机制 · 家族战略发展</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎓</div>
+        <div class="card-title">教育与人才发展</div>
+        <div class="card-body">家族人才盘点 · 胜任力模型 · 教育规划 · 定制课程 · 家族仪式 · 公益慈善规划</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🤖</div>
+        <div class="card-title">数字科技创新服务</div>
+        <div class="card-body">家族数据中台 · AI数字家族管家 · VR祠堂 · 电子家谱 · 虚拟档案馆 · 隐私安全保障</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 10: 资产保护架构图 (NEW)
+════════════════════════════════════════════ -->
+<div class="slide slide-inner arch-slide">
+  <div class="sidebar">
+    <div>
+      <div class="sidebar-chapter">Chapter 02</div>
+      <div class="sidebar-title">资产保护架构</div>
+    </div>
+    <div class="sidebar-num">02</div>
+    <div class="sidebar-logo">锦承瑞和</div>
+  </div>
+  <div class="arch-content">
+    <div class="section-label">Wealth Architecture</div>
+    <div class="slide-heading">家族财富保护架构图</div>
+    <div class="gold-line" style="margin-bottom:12px;"></div>
+    <div class="arch-svg-wrap">
+      <svg viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg" style="max-height:350px;">
+        <defs>
+          <linearGradient id="gGold2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#c9a84c;stop-opacity:1"/>
+            <stop offset="100%" style="stop-color:#e8c96a;stop-opacity:1"/>
+          </linearGradient>
+        </defs>
+
+        <!-- 家族 -->
+        <ellipse cx="350" cy="36" rx="100" ry="24" fill="url(#gGold2)" opacity="0.95"/>
+        <text x="350" y="32" text-anchor="middle" fill="#0a1628" font-size="12" font-weight="700" font-family="'Noto Sans SC',sans-serif">👨‍👩‍👧‍👦 华人家族</text>
+        <text x="350" y="48" text-anchor="middle" fill="#0a1628" font-size="9" font-family="'Noto Sans SC',sans-serif">委托方 / 受益人</text>
+
+        <!-- 虚线保护圈 -->
+        <ellipse cx="350" cy="200" rx="295" ry="145" fill="none" stroke="#c9a84c" stroke-width="1" stroke-dasharray="6,4" opacity="0.25"/>
+
+        <!-- 连线到信托 -->
+        <line x1="350" y1="60" x2="350" y2="90" stroke="#c9a84c" stroke-width="1.5" opacity="0.7"/>
+
+        <!-- 家族信托核心 -->
+        <rect x="255" y="90" width="190" height="52" rx="10" fill="#162d52" stroke="#c9a84c" stroke-width="1.5"/>
+        <rect x="255" y="90" width="190" height="3" rx="2" fill="#c9a84c"/>
+        <text x="350" y="114" text-anchor="middle" fill="white" font-size="13" font-weight="700" font-family="'Noto Sans SC',sans-serif">🏦 家族信托架构</text>
+        <text x="350" y="132" text-anchor="middle" fill="rgba(201,168,76,0.85)" font-size="9.5" font-family="'Noto Sans SC',sans-serif">Family Trust · 资产隔离 · 受托人管理</text>
+
+        <!-- 信托连到4个资产类别 -->
+        <line x1="350" y1="142" x2="350" y2="168" stroke="#c9a84c" stroke-width="1" opacity="0.5"/>
+        <line x1="350" y1="168" x2="100" y2="168" stroke="#c9a84c" stroke-width="1" opacity="0.5"/>
+        <line x1="350" y1="168" x2="600" y2="168" stroke="#c9a84c" stroke-width="1" opacity="0.5"/>
+        <line x1="230" y1="168" x2="230" y2="168" stroke="#c9a84c" stroke-width="1" opacity="0.5"/>
+        <line x1="470" y1="168" x2="470" y2="168" stroke="#c9a84c" stroke-width="1" opacity="0.5"/>
+
+        <line x1="100" y1="168" x2="100" y2="186" stroke="#c9a84c" stroke-width="1" opacity="0.5"/>
+        <line x1="233" y1="168" x2="233" y2="186" stroke="#c9a84c" stroke-width="1" opacity="0.5"/>
+        <line x1="467" y1="168" x2="467" y2="186" stroke="#c9a84c" stroke-width="1" opacity="0.5"/>
+        <line x1="600" y1="168" x2="600" y2="186" stroke="#c9a84c" stroke-width="1" opacity="0.5"/>
+
+        <!-- 4资产节点 -->
+        <!-- 保险 -->
+        <rect x="28" y="186" width="144" height="58" rx="8" fill="#0f1e35" stroke="rgba(201,168,76,0.4)" stroke-width="1"/>
+        <text x="100" y="208" text-anchor="middle" fill="#c9a84c" font-size="11" font-weight="700" font-family="'Noto Sans SC',sans-serif">📄 保险保单</text>
+        <text x="100" y="224" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="9" font-family="'Noto Sans SC',sans-serif">寿险 · IUL · 年金</text>
+        <text x="100" y="238" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="9" font-family="'Noto Sans SC',sans-serif">杠杆融资 · 传承杠杆</text>
+
+        <!-- 股权 -->
+        <rect x="162" y="186" width="144" height="58" rx="8" fill="#0f1e35" stroke="rgba(201,168,76,0.4)" stroke-width="1"/>
+        <text x="234" y="208" text-anchor="middle" fill="#c9a84c" font-size="11" font-weight="700" font-family="'Noto Sans SC',sans-serif">🏢 家族企业</text>
+        <text x="234" y="224" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="9" font-family="'Noto Sans SC',sans-serif">股权架构 · 持股平台</text>
+        <text x="234" y="238" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="9" font-family="'Noto Sans SC',sans-serif">控制权保护 · 治理</text>
+
+        <!-- 不动产 -->
+        <rect x="395" y="186" width="144" height="58" rx="8" fill="#0f1e35" stroke="rgba(201,168,76,0.4)" stroke-width="1"/>
+        <text x="467" y="208" text-anchor="middle" fill="#c9a84c" font-size="11" font-weight="700" font-family="'Noto Sans SC',sans-serif">🏠 不动产</text>
+        <text x="467" y="224" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="9" font-family="'Noto Sans SC',sans-serif">香港 · 大湾区</text>
+        <text x="467" y="238" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="9" font-family="'Noto Sans SC',sans-serif">SPV结构 · 持有规划</text>
+
+        <!-- 金融资产 -->
+        <rect x="528" y="186" width="144" height="58" rx="8" fill="#0f1e35" stroke="rgba(201,168,76,0.4)" stroke-width="1"/>
+        <text x="600" y="208" text-anchor="middle" fill="#c9a84c" font-size="11" font-weight="700" font-family="'Noto Sans SC',sans-serif">📊 金融资产</text>
+        <text x="600" y="224" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="9" font-family="'Noto Sans SC',sans-serif">股票 · 基金 · 债券</text>
+        <text x="600" y="238" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="9" font-family="'Noto Sans SC',sans-serif">全球配置 · 另类投资</text>
+
+        <!-- 底部：传承到下一代 -->
+        <line x1="350" y1="244" x2="350" y2="268" stroke="#c9a84c" stroke-width="1" opacity="0.5" stroke-dasharray="4,3"/>
+        <rect x="260" y="268" width="180" height="44" rx="8" fill="#162d52" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
+        <text x="350" y="287" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="11" font-weight="700" font-family="'Noto Sans SC',sans-serif">下一代 · 慈善公益</text>
+        <text x="350" y="303" text-anchor="middle" fill="rgba(201,168,76,0.6)" font-size="9" font-family="'Noto Sans SC',sans-serif">有序传承 · 代际延续</text>
+
+        <!-- 右侧保护标签 -->
+        <text x="666" y="200" text-anchor="middle" fill="rgba(201,168,76,0.4)" font-size="9" writing-mode="tb" letter-spacing="3" font-family="'Noto Sans SC',sans-serif">资产保护圈</text>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 11: 企业传承接班人培养
+════════════════════════════════════════════ -->
+<div class="slide slide-inner">
+  <div class="sidebar">
+    <div>
+      <div class="sidebar-chapter">Chapter 02</div>
+      <div class="sidebar-title">企业传承</div>
+    </div>
+    <div class="sidebar-num">02</div>
+    <div class="sidebar-logo">锦承瑞和</div>
+  </div>
+  <div class="content-area">
+    <div class="section-label">Succession Planning</div>
+    <div class="slide-heading">家族企业传承与接班人培养</div>
+    <div class="gold-line"></div>
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-title">共同梦想与所有权结构</div>
+        <div class="step-items">企业共同梦想评估<br>家族所有权结构设计<br>传承计划三层结构</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-title">接班人领导力潜力诊断</div>
+        <div class="step-items">成长环境分析<br>优势与发展需求诊断<br>优先发展事项评估</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-title">家族企业战略路径分析</div>
+        <div class="step-items">战略潜力评估<br>可行战略路径设计<br>传承创业投资计划</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <div class="step-title">接班人领导力模型设计</div>
+        <div class="step-items">领导力抓手评估<br>核心团队效力评估<br>领导力模式分析</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">05</div>
+        <div class="step-title">接班人成长督导策略</div>
+        <div class="step-items">督导小组成员甄选<br>责任落实与追踪<br>企业托管与控制</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">06</div>
+        <div class="step-title">接班人培养方案设计</div>
+        <div class="step-items">原则与程序制定<br>发展战略路径<br>培养阶段计划与评估</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 12: 顾问赋能体系
+════════════════════════════════════════════ -->
+<div class="slide slide-inner">
+  <div class="sidebar">
+    <div>
+      <div class="sidebar-chapter">Chapter 03</div>
+      <div class="sidebar-title">赋能体系</div>
+    </div>
+    <div class="sidebar-num">03</div>
+    <div class="sidebar-logo">锦承瑞和</div>
+  </div>
+  <div class="content-area">
+    <div class="section-label">Advisor Empowerment</div>
+    <div class="slide-heading">家族顾问赋能体系</div>
+    <div class="gold-line"></div>
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div class="card">
+        <div style="display:flex;align-items:flex-start;gap:16px;">
+          <div style="font-size:28px;flex-shrink:0;">📚</div>
+          <div>
+            <div class="card-title">专业课程体系学习</div>
+            <div class="card-body">家族文化治理、资产保护、企业传承、教育规划、家族影响力、AI数字家办智能体实操、家族办公室顾问式行销等核心领域系统培训</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div style="display:flex;align-items:flex-start;gap:16px;">
+          <div style="font-size:28px;flex-shrink:0;">🎙</div>
+          <div>
+            <div class="card-title">全媒体行业品牌标签打造</div>
+            <div class="card-body">IP诊断与打造 · 传承管理杂志封面 · 图书出版 · 门户网站 · 自媒体矩阵 · 视频访谈 · 直播策划 · 行业峰会与奖项赋能</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div style="display:flex;align-items:flex-start;gap:16px;">
+          <div style="font-size:28px;flex-shrink:0;">🛠</div>
+          <div>
+            <div class="card-title">系统解决方案赋能</div>
+            <div class="card-body">依托锦承瑞和全链条家族办公室解决方案规划与执行能力，结合 AI 数字智能体落地支持，助力顾问有效开拓与经营客户</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 13: 实施路径
+════════════════════════════════════════════ -->
+<div class="slide slide-inner">
+  <div class="sidebar">
+    <div>
+      <div class="sidebar-chapter">Chapter 03</div>
+      <div class="sidebar-title">实施路径</div>
+    </div>
+    <div class="sidebar-num">03</div>
+    <div class="sidebar-logo">锦承瑞和</div>
+  </div>
+  <div class="content-area">
+    <div class="section-label">Implementation Path</div>
+    <div class="slide-heading">系统解决方案实施路径</div>
+    <div class="gold-line"></div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-phase">Phase 01</div>
+        <div class="tl-title">商务洽谈</div>
+        <div class="tl-items">
+          了解客户需求<br>初步调研分析<br>初步方案讨论<br>签订合同
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-phase">Phase 02</div>
+        <div class="tl-title">方案设计</div>
+        <div class="tl-items">
+          问题分析与诊断<br>设计咨询方案<br>修正项目方案<br>成果交付确认
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-phase">Phase 03</div>
+        <div class="tl-title">实施辅导</div>
+        <div class="tl-items">
+          相关人员培训<br>现场实施辅导<br>推动实施方案<br>追踪实施效果
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-phase">Phase 04</div>
+        <div class="tl-title">后续跟踪</div>
+        <div class="tl-items">
+          客户发展建议<br>后续需求承接<br>持续优化迭代<br>长期陪伴服务
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 14: 专业团队 (with real photos)
+════════════════════════════════════════════ -->
+<div class="slide slide-inner">
+  <div class="sidebar">
+    <div>
+      <div class="sidebar-chapter">Chapter 04</div>
+      <div class="sidebar-title">专业团队</div>
+    </div>
+    <div class="sidebar-num">04</div>
+    <div class="sidebar-logo">锦承瑞和</div>
+  </div>
+  <div class="content-area">
+    <div class="section-label">Professional Team</div>
+    <div class="slide-heading">专业顾问团队</div>
+    <div class="gold-line"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;">
+
+      <div class="team-photo-card">
+        <div class="team-photo-header">
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80" alt="team">
+          <div class="team-photo-header-overlay"></div>
+        </div>
+        <div class="team-photo-body">
+          <div class="team-photo-role">CULTURE · GOVERNANCE</div>
+          <div class="team-photo-name">家族治理专家</div>
+          <div class="team-photo-desc">20年华人家族治理实战，主导家族宪章、委员会设计及冲突化解，帮助多个家族实现系统治理落地。</div>
+        </div>
+      </div>
+
+      <div class="team-photo-card">
+        <div class="team-photo-header">
+          <img src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=400&q=80" alt="team">
+          <div class="team-photo-header-overlay"></div>
+        </div>
+        <div class="team-photo-body">
+          <div class="team-photo-role">BUSINESS SUCCESSION</div>
+          <div class="team-photo-name">企业传承专家</div>
+          <div class="team-photo-desc">近20年家族企业传承与接班人培养服务经验，多个细分产业领域代际交接陪跑落地案例。</div>
+        </div>
+      </div>
+
+      <div class="team-photo-card">
+        <div class="team-photo-header">
+          <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&q=80" alt="team">
+          <div class="team-photo-header-overlay"></div>
+        </div>
+        <div class="team-photo-body">
+          <div class="team-photo-role">WEALTH SUCCESSION</div>
+          <div class="team-photo-name">财富传承专家</div>
+          <div class="team-photo-desc">曾任头部信托/资管机构高管，主导家族信托、股权投资、保险架构，深厚法税与传承经验。</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 15: 合作保险公司
+════════════════════════════════════════════ -->
+<div class="slide slide-inner">
+  <div class="sidebar">
+    <div>
+      <div class="sidebar-chapter">Chapter 04</div>
+      <div class="sidebar-title">合作伙伴</div>
+    </div>
+    <div class="sidebar-num">04</div>
+    <div class="sidebar-logo">锦承瑞和</div>
+  </div>
+  <div class="content-area">
+    <div class="section-label">Partners & Insurers</div>
+    <div class="slide-heading">全球合作保险公司</div>
+    <div class="gold-line"></div>
+    <!-- 保险公司城市图片 -->
+    <div class="photo-banner" style="height:130px;margin-bottom:20px;">
+      <img src="https://images.unsplash.com/photo-1444653614773-995cb1ef9efa?w=1200&q=80" alt="Financial District">
+      <div class="photo-banner-overlay">
+        <div style="font-size:32px;">🏦</div>
+        <div class="photo-banner-text">
+          <h3>环球保险资质</h3>
+          <p>香港 · 新加坡 · 美国 · 百慕大 · 开曼</p>
+        </div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+      <div class="card" style="text-align:center;padding:16px;">
+        <div style="font-size:22px;margin-bottom:8px;">🔵</div>
+        <div class="card-title" style="font-size:14px;">AXA 安盛</div>
+        <div class="card-body" style="font-size:11px;">法国 · 全球第一大保险集团</div>
+      </div>
+      <div class="card" style="text-align:center;padding:16px;">
+        <div style="font-size:22px;margin-bottom:8px;">🟢</div>
+        <div class="card-title" style="font-size:14px;">Manulife 宏利</div>
+        <div class="card-body" style="font-size:11px;">加拿大 · 北美领先保险集团</div>
+      </div>
+      <div class="card" style="text-align:center;padding:16px;">
+        <div style="font-size:22px;margin-bottom:8px;">🔴</div>
+        <div class="card-title" style="font-size:14px;">AIA 友邦</div>
+        <div class="card-body" style="font-size:11px;">香港 · 亚太区最大人寿保险</div>
+      </div>
+      <div class="card" style="text-align:center;padding:16px;">
+        <div style="font-size:22px;margin-bottom:8px;">🟠</div>
+        <div class="card-title" style="font-size:14px;">Prudential 保诚</div>
+        <div class="card-body" style="font-size:11px;">英国 · 亚洲人寿旗舰品牌</div>
+      </div>
+      <div class="card" style="text-align:center;padding:16px;">
+        <div style="font-size:22px;margin-bottom:8px;">🟡</div>
+        <div class="card-title" style="font-size:14px;">FWD 盈聚</div>
+        <div class="card-body" style="font-size:11px;">香港 · 亚洲新生代保险品牌</div>
+      </div>
+      <div class="card" style="text-align:center;padding:16px;">
+        <div style="font-size:22px;margin-bottom:8px;">🔵</div>
+        <div class="card-title" style="font-size:14px;">Sun Life 永明</div>
+        <div class="card-body" style="font-size:11px;">加拿大 · 顶级寿险与财富管理</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 16: 结语封底
+════════════════════════════════════════════ -->
+<div class="slide slide-closing">
+  <div class="closing-photo"></div>
+  <div class="cover-bg-deco"></div>
+  <div class="cover-line-deco"></div>
+  <div class="closing-title">锦承瑞和<br><span class="closing-dots">·</span> 传承发展 <span class="closing-dots">·</span><br>领航未来</div>
+  <div class="closing-line"></div>
+  <div class="closing-sub">
+    以"助力远见家族传承与发展"为使命<br>
+    致力于成为全球华人家族信赖的传承基石伙伴<br>
+    让卓越家族实现有序传承、生生不息
+  </div>
+  <div class="closing-cities">
+    <span class="closing-city">香港</span>
+    <span class="closing-city">深圳</span>
+    <span class="closing-city">新加坡</span>
+  </div>
+</div>
+
+</div><!-- .deck -->
+
+<div class="progress-bar"><span></span></div>
+<div class="slide-num" id="slideNum">1 / 16</div>
+
+<script>
+(function(){
+  function ready(fn){if(document.readyState!='loading')fn();else document.addEventListener('DOMContentLoaded',fn);}
+  ready(function(){
+    const deck=document.querySelector('.deck');
+    if(!deck)return;
+    const slides=Array.from(deck.querySelectorAll('.slide'));
+    if(!slides.length)return;
+    let idx=0;
+    const total=slides.length;
+    const barFill=document.querySelector('.progress-bar span');
+    const numEl=document.getElementById('slideNum');
+
+    function go(n){
+      n=Math.max(0,Math.min(total-1,n));
+      slides.forEach((s,i)=>{
+        s.classList.toggle('is-active',i===n);
+        s.classList.toggle('is-prev',i<n);
+      });
+      idx=n;
+      if(barFill)barFill.style.width=((n+1)/total*100)+'%';
+      if(numEl)numEl.textContent=(n+1)+' / '+total;
+      history.replaceState(null,'','#/'+(n+1));
+    }
+
+    deck.addEventListener('click',function(e){
+      if(e.clientX > window.innerWidth*0.5) go(idx+1);
+      else go(idx-1);
+    });
+
+    document.addEventListener('keydown',function(e){
+      if(e.metaKey||e.ctrlKey||e.altKey)return;
+      if(['ArrowRight',' ','PageDown','Enter'].includes(e.key)){go(idx+1);e.preventDefault();}
+      else if(['ArrowLeft','PageUp','Backspace'].includes(e.key)){go(idx-1);e.preventDefault();}
+      else if(e.key==='Home')go(0);
+      else if(e.key==='End')go(total-1);
+      else if(e.key==='f'||e.key==='F'){
+        document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();
+      }
+    });
+
+    let tx=0;
+    deck.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;},{passive:true});
+    deck.addEventListener('touchend',function(e){
+      const dx=e.changedTouches[0].clientX-tx;
+      if(Math.abs(dx)>50){dx<0?go(idx+1):go(idx-1);}
+    },{passive:true});
+
+    const m=/^#\/(\d+)/.exec(location.hash||'');
+    if(m)go(Math.max(0,parseInt(m[1],10)-1));
+    else go(0);
+  });
+})();
+</script>
+</body>
+</html>
