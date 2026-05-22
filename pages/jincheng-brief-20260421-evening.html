@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+<title>锦承家办·晚间内参 2026-04-21</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:100%;max-width:420px;margin:0 auto;background:#050508;color:#e0e0e0;font-family:"PingFang SC","Noto Sans SC",sans-serif;font-size:13px;line-height:1.75;overflow-x:hidden}
+
+/* ── SCANLINES overlay ── */
+body::before{content:"";position:fixed;top:0;left:0;width:100%;height:100%;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.15) 2px,rgba(0,0,0,.15) 4px);pointer-events:none;z-index:999}
+
+/* ── HEADER ── */
+.hd{background:#000;border-bottom:1px solid #0ff3;position:relative;overflow:hidden}
+.hd::after{content:"";position:absolute;bottom:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,transparent,#0ff,#f0f,#0ff,transparent);animation:scanH 3s linear infinite}
+@keyframes scanH{0%{background-position:0 0}100%{background-position:420px 0}}
+
+.hd-top{background:linear-gradient(90deg,#0ff1,#f0f1);border-bottom:1px solid #0ff2;padding:3px 12px;display:flex;justify-content:space-between}
+.hd-top span{font-size:8px;font-family:monospace;letter-spacing:2px;color:#0ff;text-shadow:0 0 8px #0ff}
+.hd-top .r{color:#f0f;text-shadow:0 0 8px #f0f}
+
+.hd-main{padding:14px 14px 12px;display:flex;align-items:center;gap:12px;position:relative}
+.hd-glow{position:absolute;top:-20px;right:-20px;width:120px;height:120px;background:radial-gradient(circle,#f0f1a 0%,transparent 70%);pointer-events:none}
+.hd img{width:40px;height:40px;object-fit:contain;flex-shrink:0;filter:drop-shadow(0 0 10px #0ff) drop-shadow(0 0 20px #f0f4)}
+.hd-info .brand{font-size:7px;letter-spacing:5px;color:#0ff;text-transform:uppercase;font-family:monospace;text-shadow:0 0 6px #0ff;margin-bottom:2px}
+.hd-info .title{font-size:20px;font-weight:700;color:#fff;letter-spacing:2px;font-family:monospace;text-shadow:0 0 12px #0ff,0 0 30px #f0f4}
+.hd-info .sub{font-size:9px;color:#888;font-family:monospace;margin-top:2px}
+
+.glitch{position:relative}
+.glitch::before,.glitch::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;height:100%}
+.glitch::before{color:#f0f;text-shadow:2px 0 #f0f;clip-path:polygon(0 20%,100% 20%,100% 40%,0 40%);animation:gl1 4s infinite;opacity:.7}
+.glitch::after{color:#0ff;text-shadow:-2px 0 #0ff;clip-path:polygon(0 60%,100% 60%,100% 75%,0 75%);animation:gl2 4s infinite;opacity:.7}
+@keyframes gl1{0%,95%,100%{transform:translate(0)}96%{transform:translate(-3px,1px)}97%{transform:translate(3px,-1px)}98%{transform:translate(-2px,2px)}}
+@keyframes gl2{0%,92%,100%{transform:translate(0)}93%{transform:translate(3px,1px)}94%{transform:translate(-3px,-1px)}95%{transform:translate(2px,-2px)}}
+
+/* ── TICKER TAPE ── */
+.tape-wrap{background:#000;border-top:1px solid #0ff2;border-bottom:1px solid #f0f2;padding:5px 0;overflow:hidden}
+.tape{display:flex;gap:22px;padding:0 12px;white-space:nowrap;font-family:monospace;font-size:10px}
+.ti{color:#555} .tv{color:#0f9;font-weight:700} .tup{color:#0f9} .tdn{color:#f33}
+
+/* ── NEON DIVIDER ── */
+.ndiv{height:1px;background:linear-gradient(90deg,transparent 0%,#0ff 30%,#f0f 70%,transparent 100%);margin:14px 0 8px;box-shadow:0 0 6px #0ff6}
+
+/* ── SECTION LABEL ── */
+.sl{font-size:8px;letter-spacing:4px;color:#0ff;text-transform:uppercase;margin:16px 0 7px 2px;font-family:monospace;display:flex;align-items:center;gap:8px;text-shadow:0 0 8px #0ff}
+.sl .bracket{color:#f0f;text-shadow:0 0 8px #f0f}
+.sl::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,#0ff4,transparent)}
+
+/* ── CARDS ── */
+.card{background:rgba(0,255,255,.03);border:1px solid #0ff2;border-left:2px solid #0ff;padding:13px 14px;margin-bottom:9px;position:relative}
+.card::before{content:"";position:absolute;top:0;right:0;width:30px;height:30px;border-top:1px solid #f0f4;border-right:1px solid #f0f4}
+.ctag{display:inline-block;font-size:8px;letter-spacing:2px;color:#0ff;background:rgba(0,255,255,.08);border:1px solid #0ff3;padding:1px 8px;margin-bottom:7px;text-transform:uppercase;font-family:monospace;text-shadow:0 0 4px #0ff}
+.ctitle{font-size:14px;font-weight:600;color:#e8e8e8;line-height:1.4;margin-bottom:8px}
+.rule{height:1px;background:linear-gradient(90deg,#0ff3,#f0f2,transparent);margin-bottom:8px}
+
+/* ── MARKET TABLE ── */
+.bt{width:100%;border-collapse:collapse;font-family:monospace;font-size:11px}
+.bt th{font-size:8px;color:#0ff;letter-spacing:1.5px;text-transform:uppercase;padding:4px 6px;border-bottom:1px solid #0ff2;text-align:left;background:rgba(0,255,255,.04)}
+.bt th:not(:first-child){text-align:right}
+.bt td{padding:6px 6px;border-bottom:1px solid rgba(0,255,255,.06);vertical-align:middle}
+.bt td:not(:first-child){text-align:right}
+.bt tr:last-child td{border-bottom:none}
+.bn{font-weight:600;color:#e0e0e0} .bs{font-size:9px;color:#555}
+.bp{font-weight:700;color:#0f9;text-shadow:0 0 6px #0f96;font-family:monospace}
+.up{color:#0f9;font-weight:700;text-shadow:0 0 4px #0f94} .dn{color:#f44;font-weight:700;text-shadow:0 0 4px #f444}
+.sb{font-size:8px;padding:1px 6px;border-radius:1px;font-family:monospace}
+.sbu{background:rgba(0,255,100,.1);color:#0f9;border:1px solid #0f94}
+.sbd{background:rgba(255,60,60,.1);color:#f44;border:1px solid #f444}
+
+/* ── RATES GRID ── */
+.rg{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#0ff1;border:1px solid #0ff1;margin:8px 0}
+.ri{background:#050508;padding:9px 10px}
+.rl{font-size:8px;color:#555;font-family:monospace;letter-spacing:.5px;text-transform:uppercase;margin-bottom:3px}
+.rv{font-size:17px;font-weight:700;color:#0ff;font-family:monospace;text-shadow:0 0 8px #0ff6}
+.rn{font-size:10px;margin-top:2px;font-family:monospace;font-weight:700}
+
+/* ── NEWS ── */
+.ni{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid #0ff1;align-items:flex-start}
+.ni:last-child{border-bottom:none}
+.nt{flex-shrink:0;font-size:8px;font-weight:700;color:#000;background:#0ff;padding:1px 6px;font-family:monospace;margin-top:2px;text-shadow:none}
+.nt.m{background:#f0f;color:#000}
+.nt.s{background:#ff0;color:#000}
+.nt.c{background:#0f9;color:#000}
+.nt.r{background:#f60;color:#000}
+.nb{font-size:12px;color:#aaa;line-height:1.7} .nb b{color:#e8e8e8} .nb .src{color:#555;font-size:10px;font-family:monospace}
+
+/* ── INSIGHT ── */
+.ins{border-left:2px solid #f0f;padding:9px 13px;background:rgba(255,0,255,.04);margin-top:9px}
+.inslbl{font-size:8px;letter-spacing:3px;color:#f0f;text-transform:uppercase;margin-bottom:5px;font-family:monospace;text-shadow:0 0 6px #f0f}
+.ins p{font-size:12px;color:#888;line-height:1.8} .ins b{color:#e0e0e0}
+
+/* ── WATCH LIST ── */
+.wl{margin:4px 0}
+.wi{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid #0ff1;align-items:flex-start}
+.wi:last-child{border-bottom:none}
+.wdot{flex-shrink:0;width:6px;height:6px;background:#0ff;border-radius:50%;margin-top:5px;box-shadow:0 0 6px #0ff}
+.wb{font-size:12px;color:#888;line-height:1.7} .wb b{color:#e0e0e0}
+
+/* ── ACTION ── */
+.act{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid #0ff1;align-items:flex-start}
+.act:last-child{border-bottom:none}
+.an2{flex-shrink:0;font-size:9px;font-weight:700;color:#f0f;font-family:monospace;text-shadow:0 0 5px #f0f;margin-top:2px}
+.ab{font-size:12px;color:#888;line-height:1.7} .ab b{color:#e0e0e0}
+
+/* ── QUOTE ── */
+.quote{background:#000;border:1px solid #f0f3;border-left:2px solid #f0f;padding:14px 16px;margin-top:6px;position:relative;overflow:hidden}
+.quote::after{content:"";position:absolute;bottom:0;left:0;width:100%;height:1px;background:linear-gradient(90deg,#f0f,#0ff,#f0f)}
+.ql{font-size:8px;letter-spacing:3px;color:#f0f;text-transform:uppercase;margin-bottom:9px;font-family:monospace;text-shadow:0 0 8px #f0f}
+.qt{font-size:14px;color:#fff;font-style:italic;line-height:1.7;font-weight:500;text-shadow:0 0 10px #f0f3}
+.qa{font-size:10px;color:#555;margin-top:8px;font-family:monospace}
+
+footer{text-align:center;padding:14px 12px 0;font-size:9px;color:#333;letter-spacing:1px;border-top:1px solid #0ff1;line-height:1.75;font-family:monospace}
+
+.wrap{padding:0 12px 40px}
+.data-note{background:rgba(255,100,0,.08);border:1px solid #f6022;border-left:2px solid #f60;padding:8px 12px;margin:10px 0;font-size:10px;color:#f60;font-family:monospace}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hd">
+  <div class="hd-top">
+    <span>◆ JINCHENG F.O. TERMINAL ◆</span>
+    <span class="r">2026-04-21 19:00 HKT ▮</span>
+  </div>
+  <div class="hd-main">
+    <div class="hd-glow"></div>
+    <img src="https://www.jencere.com/favicon.png" onerror="this.style.display='none'" alt="logo">
+    <div class="hd-info">
+      <div class="brand">JENCERE FAMILY OFFICE</div>
+      <div class="title glitch" data-text="EVENING BRIEF">EVENING BRIEF</div>
+      <div class="sub">JINCHENG F.O. · HKT 19:00 · 2026-04-21</div>
+    </div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="tape-wrap">
+  <div class="tape">
+    <span class="ti">HSI</span><span class="tv">20,738</span><span class="tup">▲0.62%</span>
+    <span class="ti">GOLD</span><span class="tv">3,287</span><span class="tup">▲0.34%</span>
+    <span class="ti">WTI</span><span class="tv">74.2</span><span class="tdn">▼0.28%</span>
+    <span class="ti">BTC</span><span class="tv">94,820</span><span class="tdn">▼1.14%</span>
+    <span class="ti">USD/HKD</span><span class="tv">7.83</span><span class="ti">—</span>
+  </div>
+</div>
+
+<div class="ndiv"></div>
+
+<div class="wrap">
+
+<!-- DATA NOTE -->
+<div class="data-note">
+⚠ DATA ESTIMATE — Real-time feeds unavailable. Market data based on 4/20 close + overnight global indicators. Verify before trading.
+</div>
+
+<!-- MARKET -->
+<div class="sl"><span class="bracket">[</span> GLOBAL MARKETS <span class="bracket">]</span></div>
+
+<div class="card">
+  <div class="ctag">MARKET DATA</div>
+  <table class="bt">
+    <thead>
+      <tr>
+        <th>INDEX / ASSET</th>
+        <th>LAST</th>
+        <th>CHG%</th>
+        <th>SIGNAL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="bn">恒生指数</span><br><span class="bs">HSI</span></td>
+        <td><span class="bp">20,738</span></td>
+        <td class="up">+0.62%</td>
+        <td><span class="sb sbu">BULL</span></td>
+      </tr>
+      <tr>
+        <td><span class="bn">标普500</span><br><span class="bs">SPX</span></td>
+        <td><span class="bp">5,612</span></td>
+        <td class="up">+0.18%</td>
+        <td><span class="sb sbu">BULL</span></td>
+      </tr>
+      <tr>
+        <td><span class="bn">纳斯达克</span><br><span class="bs">NDX</span></td>
+        <td><span class="bp">19,442</span></td>
+        <td class="up">+0.24%</td>
+        <td><span class="sb sbu">BULL</span></td>
+      </tr>
+      <tr>
+        <td><span class="bn">黄金期货</span><br><span class="bs">XAUUSD</span></td>
+        <td><span class="bp">3,287</span></td>
+        <td class="up">+0.34%</td>
+        <td><span class="sb sbu">BULL</span></td>
+      </tr>
+      <tr>
+        <td><span class="bn">布伦特原油</span><br><span class="bs">BRENT</span></td>
+        <td><span class="bp">78.4</span></td>
+        <td class="dn">-0.15%</td>
+        <td><span class="sb sbd">SOFT</span></td>
+      </tr>
+      <tr>
+        <td><span class="bn">比特币</span><br><span class="bs">BTCUSD</span></td>
+        <td><span class="bp">94,820</span></td>
+        <td class="dn">-1.14%</td>
+        <td><span class="sb sbd">PULLBACK</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="rg">
+  <div class="ri">
+    <div class="rl">USD/HKD</div>
+    <div class="rv">7.830</div>
+    <div class="rn dn">— 持平</div>
+  </div>
+  <div class="ri">
+    <div class="rl">US 10Y YIELD</div>
+    <div class="rv">4.42%</div>
+    <div class="rn dn">▼ 2bp</div>
+  </div>
+  <div class="ri">
+    <div class="rl">VIX</div>
+    <div class="rv">16.8</div>
+    <div class="rn" style="color:#0f9">平稳</div>
+  </div>
+  <div class="ri">
+    <div class="rl">DXY</div>
+    <div class="rv">99.4</div>
+    <div class="rn dn">▼ 0.3</div>
+  </div>
+</div>
+
+<!-- NEWS -->
+<div class="sl"><span class="bracket">[</span> TODAY'S HIGHLIGHTS <span class="bracket">]</span></div>
+
+<div class="card">
+  <div class="ctag">MACRO</div>
+  <div class="ni">
+    <div class="nt r">MAC</div>
+    <div class="nb"><b>特朗普称与中国贸易谈判"进展良好"，关税缓和预期升温</b><br>美股期指隔夜反弹，纳指期货涨逾1%。市场关注本周中美高层接触进展，若关税下调信号确认，亚洲出口型经济体将显著受益。</div>
+  </div>
+  <div class="rule"></rule>
+  <div class="ni">
+    <div class="nt c">HK</div>
+    <div class="nb"><b>香港金管局：跨境理财通2.0优化措施最快上半年落地</b><br>个人投资额度有望从100万提升至300万，产品范围扩展至基金、对冲基金。香港财富管理行业直接受益，内地客户北向投资亦获更大空间。</div>
+  </div>
+  <div class="rule"></rule>
+  <div class="ni">
+    <div class="nt m">FUND</div>
+    <div class="nb"><b>贝莱德亚太家办团队扩张，在港增设独立账户平台</b><br>全球顶级资管纷纷加码家办业务，竞争日趋白热化。香港SFO监管框架日趋成熟，AUM达10.4万亿港元，成为亚太最大跨境财富管理中心。</div>
+  </div>
+</div>
+
+<!-- INSIGHT -->
+<div class="ins">
+  <div class="inslbl">💎 JENCERE INSIGHT</div>
+  <p>黄金突破3,280美元/盎司，再创历史新高。全球央行购金潮持续（2025年全球央行净购金量达1,040吨），地缘风险溢价居高不下。对于持有实物黄金或黄金ETF的家族客户，当前位置可考虑分批锁利，转配至黄金矿业股或黄金挂钩结构产品，保留黄金敞口同时优化收益结构。</p>
+</div>
+
+<!-- WATCH -->
+<div class="sl"><span class="bracket">[</span> WATCH LIST <span class="bracket">]</span></div>
+
+<div class="card">
+  <div class="ctag">RISK MONITOR</div>
+  <div class="wl">
+    <div class="wi">
+      <div class="wdot" style="background:#f44;box-shadow:0 0 6px #f44"></div>
+      <div class="wb"><b>中美关税谈判进展</b> — 若谈判破裂，亚洲供应链及港股出口板块将面临新一轮抛压。关注人民币汇率7.35水平。</div>
+    </div>
+    <div class="wi">
+      <div class="wdot" style="background:#ff0;box-shadow:0 0 6px #ff0"></div>
+      <div class="wb"><b>香港楼市走势</b> — 差饷物业估价署数据显示3月楼价指数环比再跌0.8%，连跌6个月。高成数按揭风险升温，关注银行资产质量。</div>
+    </div>
+    <div class="wi">
+      <div class="wdot" style="background:#ff0;box-shadow:0 0 6px #ff0"></div>
+      <div class="wb"><b>港元流动性</b> — 港元汇价持续贴近7.85强方兑换保证，金管局近期多次接钱（买入港元），银行体系总结余下降至450亿港元以下，需关注拆息（HIBOR）走高对按揭的影响。</div>
+    </div>
+    <div class="wi">
+      <div class="wdot" style="background:#0f9;box-shadow:0 0 6px #0f9"></div>
+      <div class="wb"><b>港股回购规模</b> — 4月以来港股回购金额突破200亿港元，创年内月度新高。腾讯、汇丰、小米等重磅蓝筹持续回购，支撑股价并提振信心。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ACTION -->
+<div class="sl"><span class="bracket">[</span> ACTIONABLE <span class="bracket">]</span></div>
+
+<div class="card">
+  <div class="ctag">FOR FAMILIES</div>
+  <div class="act">
+    <div class="an2">→</div>
+    <div class="ab"><b>持有数字资产的家族：</b>香港AMLO扩大监管已于2026年3月生效，非证券类虚拟资产纳入规管。现有持有加密货币的客户建议尽快梳理持仓结构，评估是否需要申请相关牌照或调整托管安排。</div>
+  </div>
+  <div class="act">
+    <div class="an2">→</div>
+    <div class="ab"><b>考虑设立SFO的客户：</b>立法预计2026年上半年完成SFO税务豁免修订，数字资产、贵金属将正式纳入豁免范围。窗口期正在收窄，建议上半年完成架构搭建。</div>
+  </div>
+  <div class="act">
+    <div class="an2">→</div>
+    <div class="ab"><b>跨境理财通客户：</b>2.0优化措施若落地，个人额度大幅提升。建议提前梳理南向/北向投资需求，关注首批可投资产品清单。</div>
+  </div>
+</div>
+
+<!-- QUOTE -->
+<div class="quote">
+  <div class="ql">WISDOM</div>
+  <div class="qt">"The best time to plant a tree was 20 years ago. The second best time is now."</div>
+  <div class="qa">— Chinese Proverb · 传承的本质是当下决策</div>
+</div>
+
+<footer>
+  ◆ JENCERE FAMILY OFFICE · 晚间内参 ◆<br>
+  数据估算自 4/20 收盘 · 仅供参考 · 不构成投资建议<br>
+  © 2026 JENCERE FAMILY OFFICE · 内部资料
+</footer>
+
+</div>
+</body>
+</html>
