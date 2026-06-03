@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pelosi 持仓变动报告 · 锦承家办</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #050d1a;
+    color: #c8d8e8;
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', monospace;
+    font-size: 14px;
+    min-height: 100vh;
+  }
+  .container { max-width: 680px; margin: 0 auto; padding: 16px; }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #0a1628 0%, #0d1f3a 100%);
+    border: 1px solid #c9a227;
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .brand {
+    font-size: 11px;
+    color: #c9a227;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #e8f4ff;
+    letter-spacing: 0.5px;
+  }
+  .subtitle {
+    font-size: 12px;
+    color: #7a9abf;
+  }
+
+  /* CARD */
+  .card {
+    background: #0a1628;
+    border: 1px solid #1a2d4a;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  .card-title {
+    font-size: 11px;
+    color: #c9a227;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #1a2d4a;
+  }
+
+  /* SUMMARY */
+  .no-change {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #8ab0d0;
+    font-size: 13px;
+    padding: 8px 0;
+  }
+  .dot-grey { color: #888; font-size: 16px; }
+
+  /* TABLE */
+  .trade-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .trade-table th {
+    color: #7a9abf;
+    text-align: left;
+    padding: 6px 4px;
+    border-bottom: 1px solid #1a2d4a;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+  }
+  .trade-table td {
+    padding: 7px 4px;
+    border-bottom: 1px solid #0e1e33;
+    vertical-align: middle;
+  }
+  .trade-table tr:last-child td { border-bottom: none; }
+  .tag {
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .tag-buy { background: #0d2d1a; color: #2ecc71; border: 1px solid #1a5c35; }
+  .tag-sell { background: #2d0d0d; color: #e74c3c; border: 1px solid #5c1a1a; }
+  .tag-other { background: #0d1d3a; color: #5b9bd5; border: 1px solid #1a3a6a; }
+  .ticker { color: #e8f4ff; font-weight: 700; font-size: 13px; }
+  .amount { color: #a0b8d0; font-size: 11px; }
+  .date-cell { color: #7a9abf; font-size: 11px; }
+
+  /* ANALYSIS */
+  .analysis-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px 0;
+    border-bottom: 1px solid #0e1e33;
+  }
+  .analysis-row:last-child { border-bottom: none; }
+  .a-label { color: #7a9abf; font-size: 12px; }
+  .a-val { color: #e8f4ff; font-size: 12px; text-align: right; max-width: 55%; }
+  .a-count-buy { color: #2ecc71; font-weight: 700; font-size: 15px; }
+  .a-count-sell { color: #e74c3c; font-weight: 700; font-size: 15px; }
+  .tickers-buy { color: #2ecc71; font-size: 11px; margin-top: 2px; }
+  .tickers-sell { color: #e74c3c; font-size: 11px; margin-top: 2px; }
+
+  /* ETF */
+  .etf-block {
+    background: #0d1f3a;
+    border: 1px solid #1a3a6a;
+    border-radius: 6px;
+    padding: 12px 14px;
+  }
+  .etf-name { color: #c9a227; font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .etf-desc { color: #8ab0d0; font-size: 12px; line-height: 1.5; }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 14px 0 6px;
+    font-size: 11px;
+    color: #3a5a7a;
+    line-height: 1.7;
+  }
+  .footer a { color: #5b9bd5; text-decoration: none; }
+
+  /* BADGE */
+  .status-badge {
+    display: inline-block;
+    background: #1a2d4a;
+    color: #8ab0d0;
+    border: 1px solid #2a4a6a;
+    border-radius: 12px;
+    padding: 3px 10px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="brand">锦承家办 · Jencere Family Office</div>
+    <div class="title">👩‍💼 Pelosi 持仓变动报告</div>
+    <div class="subtitle">
+      2026-06-04 00:03 HKT &nbsp;·&nbsp;
+      <span class="status-badge">⚪ 本期无新披露变动</span>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="card">
+    <div class="card-title">摘要 · 新增变动</div>
+    <div class="no-change">
+      <span class="dot-grey">⚪</span>
+      自上次报告以来无新披露变动（STOCK Act 45日窗口内）
+    </div>
+  </div>
+
+  <!-- TRADE TABLE -->
+  <div class="card">
+    <div class="card-title">最近交易记录（共20笔）</div>
+    <table class="trade-table">
+      <thead>
+        <tr>
+          <th>日期</th>
+          <th>类型</th>
+          <th>标的</th>
+          <th>金额区间</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="date-cell">01/16/2026</td><td><span class="tag tag-buy">BUY</span></td><td class="ticker">?</td><td class="amount">$1M – $5M</td></tr>
+        <tr><td class="date-cell">12/30/2025</td><td><span class="tag tag-buy">BUY</span></td><td class="ticker">AMZN</td><td class="amount">$250K – $500K</td></tr>
+        <tr><td class="date-cell">12/30/2025</td><td><span class="tag tag-sell">SELL</span></td><td class="ticker">AMZN</td><td class="amount">$5M – $25M</td></tr>
+        <tr><td class="date-cell">12/30/2025</td><td><span class="tag tag-other">OTHER</span></td><td class="ticker">AMZN</td><td class="amount">$100K – $250K</td></tr>
+        <tr><td class="date-cell">12/30/2025</td><td><span class="tag tag-sell">SELL</span></td><td class="ticker">AAPL</td><td class="amount">$250K – $500K</td></tr>
+        <tr><td class="date-cell">12/30/2025</td><td><span class="tag tag-sell">SELL</span></td><td class="ticker">DIS</td><td class="amount">$1M – $5M</td></tr>
+        <tr><td class="date-cell">12/24/2025</td><td><span class="tag tag-sell">SELL(P)</span></td><td class="ticker">GOOGL</td><td class="amount">$1M – $5M</td></tr>
+        <tr><td class="date-cell">12/24/2025</td><td><span class="tag tag-other">OTHER</span></td><td class="ticker">AMZN</td><td class="amount">$1M – $5M</td></tr>
+        <tr><td class="date-cell">12/24/2025</td><td><span class="tag tag-other">SP</span></td><td class="ticker">NVDA</td><td class="amount">N/A</td></tr>
+        <tr><td class="date-cell">12/20/2024</td><td><span class="tag tag-buy">BUY</span></td><td class="ticker">GOOGL</td><td class="amount">$500K – $1M</td></tr>
+        <tr><td class="date-cell">12/20/2024</td><td><span class="tag tag-buy">BUY</span></td><td class="ticker">PANW</td><td class="amount">$1M – $5M</td></tr>
+        <tr><td class="date-cell">12/31/2024</td><td><span class="tag tag-sell">SELL(P)</span></td><td class="ticker">GOOGL</td><td class="amount">$5M – $25M</td></tr>
+        <tr><td class="date-cell">12/31/2024</td><td><span class="tag tag-sell">SELL(P)</span></td><td class="ticker">GOOGL</td><td class="amount">$1M – $5M</td></tr>
+        <tr><td class="date-cell">07/01/2024</td><td><span class="tag tag-sell">SELL(P)</span></td><td class="ticker">AVGO</td><td class="amount">$500K – $1M</td></tr>
+        <tr><td class="date-cell">06/26/2024</td><td><span class="tag tag-buy">BUY</span></td><td class="ticker">AVGO</td><td class="amount">$1M – $5M</td></tr>
+        <tr><td class="date-cell">06/24/2024</td><td><span class="tag tag-sell">SELL</span></td><td class="ticker">AVGO</td><td class="amount">$250K – $500K</td></tr>
+        <tr><td class="date-cell">06/24/2024</td><td><span class="tag tag-sell">SELL</span></td><td class="ticker">TSLA</td><td class="amount">N/A</td></tr>
+        <tr><td class="date-cell">06/20/2025</td><td><span class="tag tag-sell">SELL</span></td><td class="ticker">?</td><td class="amount">$15K – $50K</td></tr>
+        <tr><td class="date-cell">02/21/2024</td><td><span class="tag tag-buy">BUY</span></td><td class="ticker">PANW</td><td class="amount">$100K – $250K</td></tr>
+        <tr><td class="date-cell">02/12/2024</td><td><span class="tag tag-sell">SELL</span></td><td class="ticker">PANW</td><td class="amount">N/A</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ANALYSIS -->
+  <div class="card">
+    <div class="card-title">持仓倾向分析（近30笔）</div>
+    <div class="analysis-row">
+      <div class="a-label">买入操作</div>
+      <div class="a-val">
+        <span class="a-count-buy">11笔</span>
+        <div class="tickers-buy">AAPL · AMZN · NVDA · PANW · AVGO · VST · GOOGL</div>
+      </div>
+    </div>
+    <div class="analysis-row">
+      <div class="a-label">卖出操作</div>
+      <div class="a-val">
+        <span class="a-count-sell">15笔</span>
+        <div class="tickers-sell">AAPL · AMZN · DIS · TEM · PANW · AVGO · VST · TSLA</div>
+      </div>
+    </div>
+    <div class="analysis-row">
+      <div class="a-label">近期倾向</div>
+      <div class="a-val" style="color:#e74c3c;">净减仓趋势（卖出 &gt; 买入）</div>
+    </div>
+    <div class="analysis-row">
+      <div class="a-label">重点标的</div>
+      <div class="a-val" style="color:#e8f4ff;">GOOGL（持续减持）· AMZN（双向）· PANW（持有）</div>
+    </div>
+  </div>
+
+  <!-- ETF -->
+  <div class="card">
+    <div class="card-title">跟踪 ETF 信息</div>
+    <div class="etf-block">
+      <div class="etf-name">NANC</div>
+      <div class="etf-desc">
+        发行方：Tidal Financial Group<br>
+        策略：追踪美国国会议员交易信号（以 Pelosi 等议员持仓为核心）<br>
+        数据同源：disclosures-clerk.house.gov（STOCK Act 官方披露）<br>
+        适合作为本报告信号的市场化跟踪工具
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    数据来源：<a href="https://disclosures-clerk.house.gov" target="_blank">disclosures-clerk.house.gov</a>（美国众议院官方 PTR 财务申报）<br>
+    STOCK Act 要求国会议员在交易后 45 天内披露<br>
+    <br>
+    锦承家办 · Jencere Family Office &nbsp;·&nbsp; 仅供参考，不构成投资建议
+  </div>
+
+</div>
+</body>
+</html>
