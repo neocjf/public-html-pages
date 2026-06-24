@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>锦承家办·每日市场简报 2026-06-24</title>
+  <style>
+    :root {
+      --bg: #07090f;
+      --card: #0d1220;
+      --card2: #111827;
+      --gold: #d4af37;
+      --gold-light: #f0d060;
+      --green: #22c55e;
+      --red: #ef4444;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --border: #1e2a3a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Noto Sans SC', sans-serif;
+      min-height: 100vh;
+      padding: 0 0 40px;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: linear-gradient(135deg, #0a0e1a 0%, #0f1829 60%, #1a1400 100%);
+      border-bottom: 1px solid var(--gold);
+      padding: 28px 20px 22px;
+      text-align: center;
+    }
+    .header-logo {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+      opacity: 0.8;
+    }
+    .header-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--gold-light);
+      letter-spacing: 1px;
+    }
+    .header-date {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* ── Container ── */
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 14px;
+    }
+
+    /* ── Section title ── */
+    .section-title {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.75;
+      margin: 28px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--border), transparent);
+    }
+
+    /* ── Market Table Card ── */
+    .market-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    .market-group-title {
+      background: #0b1221;
+      padding: 9px 16px;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.65;
+      border-bottom: 1px solid var(--border);
+    }
+    .market-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .market-table tr {
+      border-bottom: 1px solid var(--border);
+    }
+    .market-table tr:last-child { border-bottom: none; }
+    .market-table td {
+      padding: 13px 16px;
+      font-size: 14px;
+      vertical-align: middle;
+    }
+    .market-table .name {
+      color: var(--muted);
+      font-size: 13px;
+      width: 38%;
+    }
+    .market-table .price {
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      text-align: right;
+    }
+    .market-table .change {
+      text-align: right;
+      font-size: 13px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      width: 30%;
+    }
+    .up { color: var(--green); }
+    .down { color: var(--red); }
+    .neutral { color: var(--muted); }
+    .badge-up {
+      display: inline-flex; align-items: center; gap: 3px;
+      background: rgba(34,197,94,0.10);
+      border: 1px solid rgba(34,197,94,0.25);
+      border-radius: 6px;
+      padding: 2px 7px;
+      font-size: 12px;
+      color: var(--green);
+    }
+    .badge-down {
+      display: inline-flex; align-items: center; gap: 3px;
+      background: rgba(239,68,68,0.10);
+      border: 1px solid rgba(239,68,68,0.25);
+      border-radius: 6px;
+      padding: 2px 7px;
+      font-size: 12px;
+      color: var(--red);
+    }
+    .badge-neutral {
+      display: inline-flex; align-items: center; gap: 3px;
+      background: rgba(148,163,184,0.08);
+      border: 1px solid rgba(148,163,184,0.2);
+      border-radius: 6px;
+      padding: 2px 7px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ── Highlights ── */
+    .highlights {
+      display: grid;
+      gap: 10px;
+    }
+    .highlight-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text);
+    }
+    .highlight-num {
+      color: var(--gold);
+      font-weight: 700;
+      margin-right: 6px;
+    }
+
+    /* ── Summary ── */
+    .summary-card {
+      background: linear-gradient(135deg, #0d1220, #1a1400);
+      border: 1px solid var(--gold);
+      border-radius: 14px;
+      padding: 22px 20px;
+      text-align: center;
+    }
+    .summary-icon { font-size: 26px; margin-bottom: 10px; }
+    .summary-text {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--gold-light);
+      font-weight: 500;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      margin-top: 36px;
+      font-size: 11px;
+      color: var(--muted);
+      opacity: 0.6;
+      padding: 0 20px;
+    }
+    .footer a { color: var(--gold); text-decoration: none; }
+
+    /* Mobile tweaks */
+    @media (max-width: 420px) {
+      .header-title { font-size: 18px; }
+      .market-table td { padding: 11px 12px; font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-logo">Jencere Family Office</div>
+  <div class="header-title">📊 每日市场简报</div>
+  <div class="header-date">2026 年 6 月 24 日（周三）· 香港时间 16:00</div>
+</div>
+
+<div class="container">
+
+  <!-- ── A股 ── -->
+  <div class="section-title">A 股</div>
+  <div class="market-card">
+    <table class="market-table">
+      <tr>
+        <td class="name">上证综指</td>
+        <td class="price neutral">≈ 4,090</td>
+        <td class="change"><span class="badge-down">▼ -0.39%</span></td>
+      </tr>
+      <tr>
+        <td class="name">深证成指</td>
+        <td class="price neutral">— </td>
+        <td class="change"><span class="badge-down">▼ -0.15%</span></td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ── 港股 ── -->
+  <div class="section-title">港 股</div>
+  <div class="market-card">
+    <table class="market-table">
+      <tr>
+        <td class="name">恒生指数</td>
+        <td class="price down">24,276.50</td>
+        <td class="change"><span class="badge-down">▼ -0.89%</span></td>
+      </tr>
+      <tr>
+        <td class="name">国企指数</td>
+        <td class="price neutral">未获取到</td>
+        <td class="change"><span class="badge-neutral">—</span></td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ── 美股 ── -->
+  <div class="section-title">美 股（6/23 收盘）</div>
+  <div class="market-card">
+    <table class="market-table">
+      <tr>
+        <td class="name">标普 500</td>
+        <td class="price down">7,404.25</td>
+        <td class="change"><span class="badge-down">▼ -0.92%</span></td>
+      </tr>
+      <tr>
+        <td class="name">纳斯达克</td>
+        <td class="price down">约 21,800</td>
+        <td class="change"><span class="badge-down">▼ -2.00%</span></td>
+      </tr>
+      <tr>
+        <td class="name">道琼斯</td>
+        <td class="price up">51,839.66</td>
+        <td class="change"><span class="badge-up">▲ +0.24%</span></td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ── 大宗商品 ── -->
+  <div class="section-title">大宗商品</div>
+  <div class="market-card">
+    <table class="market-table">
+      <tr>
+        <td class="name">黄金 (XAU/USD)</td>
+        <td class="price down">≈ $4,050</td>
+        <td class="change"><span class="badge-down">▼ 下跌</span></td>
+      </tr>
+      <tr>
+        <td class="name">WTI 原油</td>
+        <td class="price neutral">未获取到</td>
+        <td class="change"><span class="badge-down">▼ 下跌</span></td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ── 加密 & 宏观 ── -->
+  <div class="section-title">加密 & 宏观</div>
+  <div class="market-card">
+    <table class="market-table">
+      <tr>
+        <td class="name">比特币 (BTC)</td>
+        <td class="price down">≈ $62,576</td>
+        <td class="change"><span class="badge-down">▼ -2.0%</span></td>
+      </tr>
+      <tr>
+        <td class="name">美元指数 (DXY)</td>
+        <td class="price up">≈ 101.1</td>
+        <td class="change"><span class="badge-up">▲ 走强</span></td>
+      </tr>
+      <tr>
+        <td class="name">10Y 美债收益率</td>
+        <td class="price neutral">≈ 4.50%</td>
+        <td class="change"><span class="badge-neutral">— 稳定</span></td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ── 今日要点 ── -->
+  <div class="section-title">今日市场要点</div>
+  <div class="highlights">
+    <div class="highlight-item">
+      <span class="highlight-num">①</span>全球科技股继续承压——纳斯达克前日大跌 2%，Micron 领跌，亚太科技板块跟跌；韩国 KOSPI 在监管压力下创近期最大跌幅（约 -10%），全球 AI 板块短期情绪明显降温。
+    </div>
+    <div class="highlight-item">
+      <span class="highlight-num">②</span>港股随外围走弱，恒生指数跌 0.89% 至 24,276 点；上证综指开盘下行约 0.4%，A股整体承压但跌幅相对可控，科创 50 有所反弹。
+    </div>
+    <div class="highlight-item">
+      <span class="highlight-num">③</span>黄金滑向年内低点附近（约 $4,050），美元创 13 个月新高（DXY ≈ 101.1），美联储维持鹰派预期、市场定价 25bp 加息概率上升，压制贵金属及新兴市场货币。
+    </div>
+    <div class="highlight-item">
+      <span class="highlight-num">④</span>伊朗和谈传言令 WTI 原油下行；比特币前日短暂升至 $65.5K，随后回落至 $62,500 区间，与股市正相关性再度显现。
+    </div>
+    <div class="highlight-item">
+      <span class="highlight-num">⑤</span>道琼斯相对抗跌（+0.24%），防御性板块及价值股逢低受到资金关注；Micron 财报将成为本周美股科技板块能否企稳的关键试金石。
+    </div>
+  </div>
+
+  <!-- ── 总结 ── -->
+  <div class="section-title">财富管理视角</div>
+  <div class="summary-card">
+    <div class="summary-icon">⚖️</div>
+    <div class="summary-text">
+      科技泡沫降温 + 美元强势 + 美债利率高企三重压力共振，短期风险资产承压；黄金、港股、BTC 均走弱，建议高净值客户适度增配流动性、关注美元现金及短债机会，暂缓激进加仓科技。
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>数据来源：Xinhua、Reuters、CNBC、Investing.com、BitPinas · 截至港时 16:00</p>
+    <p style="margin-top:6px;">锦承家办 · <a href="https://www.jencere.com" target="_blank">jencere.com</a> · 仅供参考，不构成投资建议</p>
+  </div>
+
+</div>
+</body>
+</html>
