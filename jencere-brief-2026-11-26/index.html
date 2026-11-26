@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>早晨内参 2026-11-26</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: #f6f5f1;
+    color: #1b2e4b;
+    font-family: -apple-system, 'PingFang SC', 'Heiti SC', sans-serif;
+    padding: 0 0 40px;
+  }
+  .container { max-width: 680px; margin: 0 auto; background:#fff; }
+
+  .header {
+    display: flex; align-items:center; gap:14px;
+    padding: 24px 22px 20px; border-bottom: 1px solid #eae6da;
+  }
+  .header-logo { width: 72px; height:auto; flex-shrink:0; }
+  .header-text { flex:1; }
+  .brand { font-size: 11px; color: #a08a4a; letter-spacing: 0.12em; text-transform: uppercase; }
+  .title { font-size: 20px; font-weight: 700; color: #1b2e4b; margin-top: 4px; }
+  .date-tag { text-align:right; font-size:12px; color:#9a9280; line-height:1.6; }
+  .date-tag .day { font-size: 26px; font-weight: 700; color: #1b2e4b; display:block; line-height:1; }
+
+  .section { padding: 0 22px; margin-top: 24px; }
+  .section-title {
+    font-size: 11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
+    color: #a08a4a; padding-bottom: 8px; border-bottom: 1px solid #eee9db; margin-bottom: 10px;
+    display:flex; align-items:center;
+  }
+  .section-icon {
+    width: 28px; height: 28px; margin-right: 8px; vertical-align: middle;
+  }
+
+  .ticker-row {
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 11px 0; border-bottom: 1px solid #f1eee3;
+  }
+  .ticker-row:last-child { border-bottom:none; }
+  .ticker-left { display:flex; flex-direction:column; gap:2px; }
+  .ticker-name { font-size: 14.5px; font-weight:600; color:#2c3e50; }
+  .ticker-sub { font-size: 11px; color:#a39a84; }
+  .ticker-right { display:flex; flex-direction:column; align-items:flex-end; gap:3px; }
+  .ticker-price { font-size: 16px; font-weight:700; color:#1b2e4b; font-variant-numeric: tabular-nums; }
+  .chg-up { font-size:11.5px; font-weight:700; color:#a8422f; background:#f7e9e5; padding:2px 9px; border-radius:10px; }
+  .chg-down { font-size:11.5px; font-weight:700; color:#1e7d52; background:#e6f0ea; padding:2px 9px; border-radius:10px; }
+
+  .fx-grid { display:grid; grid-template-columns: repeat(3,1fr); gap:10px; }
+  @media (max-width:480px) { .fx-grid { grid-template-columns: repeat(1,1fr); } }
+  .fx-card { background:#faf8f3; border:1px solid #eee9db; border-radius:10px; padding:12px 14px; }
+  .fx-label { font-size:11px; color:#a39a84; }
+  .fx-val { font-size:17px; font-weight:700; color:#1b2e4b; margin-top:2px; }
+
+  .sentiment {
+    margin-top: 10px; background: #fbf6e8; border:1px solid #ecdfb4; border-radius:10px;
+    padding: 12px 16px; display:flex; justify-content:space-between; align-items:center;
+  }
+  .sent-label { font-size:12.5px; color:#9a8657; }
+  .sent-val { font-size:18px; font-weight:800; color:#a87c1f; }
+
+  .brief-item { display:flex; gap:12px; padding: 13px 0; border-bottom: 1px solid #f1eee3; }
+  .brief-item:last-child { border-bottom:none; }
+  .brief-num {
+    flex-shrink:0; width:22px; height:22px; border-radius:50%;
+    background: #1b2e4b; color:#e8d9ad;
+    font-size:11px; font-weight:800; display:flex; align-items:center; justify-content:center;
+    margin-top:1px;
+  }
+  .brief-text { font-size: 14.5px; color:#2c3e50; line-height:1.65; }
+  .brief-text b { color:#1b2e4b; }
+
+  .summary {
+    margin-top: 10px; background: #f4f6f3; border:1px solid #dde4dc; border-radius:10px;
+    padding: 16px 18px;
+  }
+  .summary-title { font-size:11px; font-weight:700; color:#5c7a68; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:8px; }
+  .summary-body { font-size: 13.5px; color:#475a4e; line-height:1.75; }
+  .summary-body strong { color:#1b2e4b; }
+
+  .disclaimer {
+    margin: 18px 22px 0; padding: 12px 14px; background:#faf8f3; border-left:3px solid #c8a96e;
+    font-size: 12px; color:#9a8f78; line-height:1.6;
+  }
+
+  .footer {
+    margin-top: 22px; padding: 18px 22px 0; border-top:1px solid #eae6da;
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px;
+  }
+  .footer-brand { font-size:13px; color:#1b2e4b; font-weight:700; }
+  .footer-note { font-size:11.5px; color:#a39a84; text-align:right; line-height:1.6; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <img class="header-logo" src="logo.png" alt="锦承瑞和">
+    <div class="header-text">
+      <div class="brand">Jencere Ruihe Family Office</div>
+      <div class="title">早晨内参</div>
+    </div>
+    <div class="date-tag">
+      <span class="day">26</span>
+      NOV 2026 · THU
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><img src="icon_stock.png" class="section-icon" alt="">港股 · 美股收盘</div>
+    <div class="ticker-row">
+      <div class="ticker-left"><div class="ticker-name">恒生指数</div><div class="ticker-sub">Hang Seng Index</div></div>
+      <div class="ticker-right"><div class="ticker-price">22,280.11</div><span class="chg-up">▲ 0.27%</span></div>
+    </div>
+    <div class="ticker-row">
+      <div class="ticker-left"><div class="ticker-name">国企指数</div><div class="ticker-sub">H-Share Index</div></div>
+      <div class="ticker-right"><div class="ticker-price">7,509.52</div><span class="chg-up">▲ 0.76%</span></div>
+    </div>
+    <div class="ticker-row">
+      <div class="ticker-left"><div class="ticker-name">恒生科技</div><div class="ticker-sub">Hang Seng TECH</div></div>
+      <div class="ticker-right"><div class="ticker-price">3,454.75</div><span class="chg-up">▲ 2.26%</span></div>
+    </div>
+    <div class="ticker-row">
+      <div class="ticker-left"><div class="ticker-name">标普500</div><div class="ticker-sub">S&P 500</div></div>
+      <div class="ticker-right"><div class="ticker-price">7,182.78</div><span class="chg-down">▼ 0.75%</span></div>
+    </div>
+    <div class="ticker-row">
+      <div class="ticker-left"><div class="ticker-name">纳斯达克100</div><div class="ticker-sub">NASDAQ 100</div></div>
+      <div class="ticker-right"><div class="ticker-price">26,046.90</div><span class="chg-down">▼ 2.61%</span></div>
+    </div>
+    <div class="ticker-row">
+      <div class="ticker-left"><div class="ticker-name">道琼斯</div><div class="ticker-sub">Dow Jones</div></div>
+      <div class="ticker-right"><div class="ticker-price">50,182.95</div><span class="chg-up">▲ 1.18%</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><img src="icon_bitcoin.png" class="section-icon" alt="">汇率 · 加密资产</div>
+    <div class="fx-grid">
+      <div class="fx-card"><div class="fx-label">USD / HKD</div><div class="fx-val">7.8419</div></div>
+      <div class="fx-card"><div class="fx-label">USD / CNY</div><div class="fx-val">6.6782</div></div>
+      <div class="fx-card"><div class="fx-label">BTC / USD</div><div class="fx-val">$60,910</div></div>
+    </div>
+    <div class="sentiment">
+      <div class="sent-label">加密市场恐贪指数</div>
+      <div class="sent-val">11 · 极度恐慌</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><img src="icon_family.png" class="section-icon" alt="">家办 · 财富 · 传承速览</div>
+    <div class="brief-item"><div class="brief-num">01</div><div class="brief-text"><b>恒生科技指数高开走强、12月扩容在即</b>，11月26日恒指高开1.22%，恒生科技涨2.29%报3,455.73点；恒生科技指数将于12月7日由30只成分股扩至50只，指数覆盖面与流动性预期改善。</div></div>
+    <div class="brief-item"><div class="brief-num">02</div><div class="brief-text"><b>美股科技股承压回调、纳指低开3.3%</b>，11月25日英伟达跌超7%、费城半导体指数重挫7.88%；同期美国三季度GDP按年率增4.3%，显著高于市场预期的3.5%，宏观与科技股估值形成分化博弈。</div></div>
+    <div class="brief-item"><div class="brief-num">03</div><div class="brief-text"><b>比特币在6万美元附近震荡</b>，加密市场恐贪指数处于「极度恐慌」区间，情绪低位与价格波动并存，高净值客户加密资产配置需关注波动与仓位结构。</div></div>
+    <div class="brief-item"><div class="brief-num">04</div><div class="brief-text"><b>香港分红型寿险仍是主力险种</b>，香港保监局数据显示分红型寿险按件数占比41.20%、按保费占比82.87%；投保时应重点对比各家5年期实际分红实现率，而非仅看计划书演示收益。</div></div>
+    <div class="brief-item"><div class="brief-num">05</div><div class="brief-text"><b>分红险演示利率上限已下调</b>，2026年7月起全行业分红险演示利率上限由3.9%统一降至3.5%，保证利率、演示利率与红利实现率需区分看待，评估产品应看长期实际兑现情况。</div></div>
+    <div class="brief-item"><div class="brief-num">06</div><div class="brief-text"><b>离岸信托税收合规要求趋严</b>，近期公开信息显示个人将财产装入离岸信托及通过离岸信托取得收益的个税申报受到关注，跨境财富架构需以合规与治理为核心，而非依赖单一税务安排。</div></div>
+    <div class="brief-item"><div class="brief-num">07</div><div class="brief-text"><b>家族信托资产隔离依赖架构合规性</b>，清晰的设立目的、资金真实入池与持续治理记录，是信托资产保护功能有效的前提，架构本身不能替代合规底子。</div></div>
+    <div class="brief-item"><div class="brief-num">08</div><div class="brief-text"><b>香港扩展虚拟资产服务监管范围</b>，11月20日刊宪的《虚拟资产服务条例（修订）草案》拟将交易商、顾问、资产管理人及托管人纳入发牌监管，家族办公室涉及虚拟资产需关注合规安排。</div></div>
+    <div class="brief-item"><div class="brief-num">09</div><div class="brief-text"><b>人民币中间价小幅走贬</b>，11月26日报6.7096、贬值8个基点，美元兑人民币维持区间波动，跨境配置的换汇时点仍是家办客户日常咨询重点。</div></div>
+    <div class="brief-item"><div class="brief-num">10</div><div class="brief-text"><b>多元货币保单现金价值增长路径分化</b>，建议关注保单中长期（第10-15年）实际内部收益率（IRR）而非首年演示利率，结合保证部分与非保证红利的比例结构评估传承工具真实效能。</div></div>
+  </div>
+
+  <div class="section">
+    <div class="summary">
+      <div class="summary-title"><img src="icon_shield.png" class="section-icon" alt="">今日市场摘要</div>
+      <div class="summary-body">
+        港股今日高开，<strong>恒生科技涨超2%</strong>、指数12月扩容在即；美股方面科技股承压，<strong>纳指低开3.3%、费半重挫7.88%</strong>，但同期美国三季度GDP上修至4.3%，宏观与科技估值分化明显。<br><br>
+        加密市场恐贪指数处于「极度恐慌」区间，比特币在6万美元附近震荡；人民币中间价报6.7096、小幅走贬，美元兑港元及人民币维持窄幅波动。<br><br>
+        传承与保险领域，<strong>分红险演示利率上限下调</strong>、<strong>离岸信托税收合规趋严</strong>及<strong>香港虚拟资产监管扩围</strong>是近期需重点关注的三大议题，建议结合个案做针对性方案比对。
+      </div>
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    本内参内容综合公开市场数据与公开信息整理，仅供参考，不构成投资建议，亦不构成税务、法律或信托架构的最终意见；具体方案请结合个人情况与专业顾问进一步沟通。
+  </div>
+
+  <div class="footer">
+    <div class="footer-brand">锦承瑞和 JENCERE RUIHE</div>
+    <div class="footer-note">数据来源：公开市场行情<br>2026-11-26 10:22 更新</div>
+  </div>
+
+</div>
+</body>
+</html>
